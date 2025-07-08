@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#6" class="md-skip">
+        <a href="#6if" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -1170,107 +1170,28 @@
   
 
 
-<h1 id="6">第6話 オブジェクトという設定集<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
-<p>土曜日の午後二時。約束の時間ちょうどに、部屋のチャイムが鳴った。</p>
-<p>「お邪魔します」</p>
-<p>ヒロ先輩の部屋に入るのは初めて。思ったより片付いていて、本棚にはプログラミングの本がずらりと並んでいる。</p>
-<p>「散らかってるけど、適当に座って」</p>
-<p>「全然散らかってないです」</p>
-<p>リビングのテーブルに、ノートパソコンを置く。隣にヒロ先輩が座る。学校より距離が近くて、ドキドキする。</p>
-<p>「今日は何を教えてもらえるんですか？」</p>
-<p>「オブジェクトっていう概念を学ぼうと思って」</p>
-<p>オブジェクト。また新しい言葉。</p>
-<p>「難しそう...」</p>
-<p>「大丈夫。みくなら簡単に理解できるよ」</p>
-<p>ヒロ先輩がコードを書き始める。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">character</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;美久&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">16</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">hobby</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;読書と創作&#39;</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「これがオブジェクト。キャラクターの設定をまとめて管理できる箱みたいなもの」</p>
-<p>「あ！キャラクター設定表みたいな感じですか？」</p>
-<p>「その通り！さすが文芸部」</p>
-<p>褒められて嬉しい。</p>
-<p>「じゃあ、実際に使ってみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">character</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;は&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">character</span><span class="p">.</span><span class="nx">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;歳です&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;趣味は&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">character</span><span class="p">.</span><span class="nx">hobby</span><span class="p">);</span>
-</code></pre></div>
-<p>「なるほど...設定を一箇所にまとめておけば、後で使いやすいんですね」</p>
-<p>「そう。小説でも、キャラクターの設定がバラバラだと管理が大変でしょ？」</p>
-<p>確かにその通り。私も創作ノートにキャラクター設定をまとめている。</p>
-<p>「じゃあ、みくの小説のキャラクターをオブジェクトにしてみて」</p>
-<p>言われて、インタラクティブ小説の主人公をコード化してみる。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">heroine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;美咲&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">16</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">personality</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;内気だけど芯が強い&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">like</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;読書とプログラミング&#39;</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>書きながら、ふと手が止まる。likeの部分、最初は「憧れの先輩」って書きそうになった。</p>
-<p>「いいね。じゃあ、相手のキャラクターも作ってみる？」</p>
-<p>ヒロ先輩が提案する。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">senpai</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;隆斗&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">17</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">personality</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;優しくて少し鈍感&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">hobby</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;プログラミングと...&#39;</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>途中で止まってしまう。</p>
-<p>「どうしたの？」</p>
-<p>ヒロ先輩が画面を覗き込む。近い、近いです！</p>
-<p>「えっと、先輩の趣味って、プログラミング以外に何があるんだろうって...」</p>
-<p>慌てて画面を隠そうとする。でも、もう見られてしまった。</p>
-<p>「僕の趣味？」</p>
-<p>ヒロ先輩が不思議そうな顔をしている。</p>
-<p>「い、いえ！これはあくまでキャラクター設定で...」</p>
-<p>「でも、名前が隆斗って、僕の名前に似てるね」</p>
-<p>しまった。無意識に似せてしまった。</p>
-<p>「た、たまたまです！」</p>
-<p>顔が熱い。きっと真っ赤になってる。</p>
-<p>「そうなんだ」</p>
-<p>ヒロ先輩は優しく微笑んで、それ以上は追及しない。</p>
-<p>「趣味は...読書とか、映画鑑賞とか、かな」</p>
-<p>「そうなんですね」</p>
-<p>慌ててメモする。ヒロ先輩のこと、もっと知りたい。</p>
-<p>「オブジェクトは、こうやって関連する情報をまとめられるから便利なんだ」</p>
-<p>話を戻してくれるヒロ先輩。優しい。</p>
-<p>その後も、オブジェクトの使い方を色々教えてもらう。配列と組み合わせたり、関数の中で使ったり。</p>
-<p>「キャラクター同士の会話も、オブジェクトを使えば管理しやすくなる」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">talk</span><span class="p">(</span><span class="nx">character1</span><span class="p">,</span><span class="w"> </span><span class="nx">character2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">character1</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;「こんにちは、&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">character2</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;さん」&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">character2</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;「こんにちは」&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「すごい...本当に会話してるみたい」</p>
-<p>画面に表示される会話を見て、感動する。</p>
-<p>「これで、みくの小説もどんどん複雑にできるね」</p>
-<p>「はい！頑張ります」</p>
-<p>時計を見ると、もう四時。あっという間に時間が過ぎた。</p>
-<p>「休憩する？お茶でも」</p>
-<p>「あ、じゃあお願いします」</p>
-<p>ヒロ先輩がキッチンに行っている間、部屋を見回す。机の上には、プログラミングの本に混じって、小説も何冊か。</p>
-<p>（読書も好きなんだ）</p>
-<p>嬉しくなる。共通点があるって、なんだか特別な感じ。</p>
-<p>「はい、麦茶」</p>
-<p>「ありがとうございます」</p>
-<p>冷たいグラスを受け取る。指が少し触れて、ドキッとする。</p>
-<p>「みくのオブジェクト、面白かったよ」</p>
-<p>「え？」</p>
-<p>「さっきの、キャラクター設定」</p>
-<p>ヒロ先輩が画面を見ながら言う。</p>
-<p>「主人公とsenpaiの関係性が、丁寧に考えられてる」</p>
-<p>「そ、そうですか？」</p>
-<p>「うん。きっといい物語になる」</p>
-<p>優しい言葉に、胸が温かくなる。</p>
-<p>（ヒロ先輩に読んでもらえる日が来るかな）</p>
-<p>その時、私の本当の気持ちに気づいてくれるだろうか。</p>
-<p>「続き、やる？」</p>
-<p>「はい！」</p>
-<p>夕方まで、ヒロ先輩の部屋でプログラミングを学ぶ。幸せな土曜日の午後だった。</p>
+<h1 id="6if">第6話「ゲーマーたちのif文」<a class="headerlink" href="#6if" title="Permanent link">&para;</a></h1>
+<p>秘密を共有した翌日、部室の空気は昨日までとは一変していた。気まずさはどこへやら、僕たちの間には、まるで長年の友人のような、心地よい親密さが生まれていた。美久は、僕の隣で、昨日よりもずっとリラックスした表情で座っている。</p>
+<p>「今日は、if文について説明する」</p>
+<p>僕は、ホワイトボードに「if」と書いた。if文は、プログラミングにおける「もしも」の条件分岐だ。ノベルゲームで言えば、プレイヤーの選択によってシナリオが分岐する、あの仕組みの根幹をなすものだ。</p>
+<p>「if文は、『もし、この条件が真（true）だったら、この処理を実行する』っていう命令なんだ」</p>
+<p>僕は、簡単な例を挙げて説明した。例えば、「もし、プレイヤーが『はい』を選んだら、Aのシナリオに進む。そうでなければ、Bのシナリオに進む」といった具合だ。</p>
+<p>「これって、ゲームの選択肢そのものですね！」</p>
+<p>美久が、目を輝かせて言った。その言葉に、僕は小さく頷いた。まさにその通りだ。プログラミングの概念を、ゲームに例えて説明すると、美久の理解は格段に速くなる。</p>
+<p>「そう。例えば、美久が乙女ゲーで、好きなキャラに告白するシーンを想像してみてくれ」</p>
+<p>僕の言葉に、美久の頬が、ふわりと赤く染まる。その反応に、僕の胸が小さく跳ねた。いや、これはあくまで例だ。例だからな、僕。</p>
+<p>「そこで、『好きだ』と答えるか、『友達として好き』と答えるか、選択肢が出るだろ？ もし『好きだ』を選んだら、ハッピーエンド直行ルート。そうでなければ、友情エンド、みたいな」</p>
+<p>「あー！ わかります！ それ、まさにif文ですね！ 『もし、好感度が一定以上だったら、告白成功』とか、『もし、特定のアイテムを持っていたら、隠しイベント発生』とか！」</p>
+<p>美久は、身を乗り出して熱っぽく語り始めた。その瞳は、ゲームの攻略本を読み解くゲーマーのそれだ。僕もまた、美久の言葉に触発され、興奮気味に言葉を重ねる。</p>
+<p>「そうそう！ あと、ギャルゲーだと、『もし、この選択肢を選んだら、ヒロインの好感度がアップする』とか、『これはバッドエンド直行ルートだから、絶対に選んじゃダメなやつ！』とか、そういうのもif文で制御されてるんだ」</p>
+<p>「うわー！ それ、まさに『神の視点』ですね！ ゲームの裏側が、if文で動いてるなんて、なんか感動します！」</p>
+<p>美久は、興奮冷めやらぬ様子で、僕が書いたif文のコードを食い入るように見つめている。その姿は、まるで初めて魔法の呪文を覚えた魔法使いの卵のようだ。僕もまた、美久の反応を見て、プログラミングを教えることの楽しさを改めて感じていた。</p>
+<p>僕たちは、if文を使って、簡単な選択肢分岐のプログラムを組んでみた。画面に表示される「はい」と「いいえ」の選択肢。美久が「はい」をクリックすると、「あなたは勇者だ！」と表示され、「いいえ」をクリックすると、「あなたは逃げ出した！」と表示される。たったそれだけのプログラムなのに、美久は「すごい！ ゲームだ！」と歓声を上げた。</p>
+<p>「先輩、これ、もっと複雑な分岐もできるんですよね？ 例えば、三択とか、四択とか！」</p>
+<p>「ああ、もちろん。if-else if-elseを使えば、いくらでも複雑な分岐が作れる。まるで、迷宮のようなシナリオも、if文があれば自由自在だ」</p>
+<p>僕の言葉に、美久の目はさらに輝いた。彼女の頭の中では、もうすでに、複雑な分岐を持つ乙女ゲームのシナリオが、if文の構造と結びついて、形になり始めているのかもしれない。</p>
+<p>プログラミングは、単なる記号の羅列じゃない。それは、僕たちの「好き」を形にするための、強力なツールだ。if文という、たった一つの概念を学ぶだけで、美久はこんなにも目を輝かせ、ゲームの可能性を広げようとしている。その姿を見ていると、僕の胸にも、温かいものがこみ上げてきた。</p>
+<p>僕たちのノベルゲーム制作は、if文という強力な武器を手に入れ、さらに面白くなりそうだ。そして、僕たちの関係もまた、if文のように、様々な選択肢を経て、どこまでも深く、甘く分岐していくのだろう。そんな予感が、僕の胸を、優しく、そして強く、締め付けた。</p>
 
 
 
