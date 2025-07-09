@@ -22,7 +22,7 @@
     
     
       
-        <title>第22話「心躍る演出（setTimeout）」 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+        <title>第22話 DOMで描く未来 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#22settimeout" class="md-skip">
+        <a href="#22-dom" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第22話「心躍る演出（setTimeout）」
+              第22話 DOMで描く未来
             
           </span>
         </div>
@@ -1139,25 +1139,440 @@
   
 
 
-<h1 id="22settimeout">第22話「心躍る演出（setTimeout）」<a class="headerlink" href="#22settimeout" title="Permanent link">&para;</a></h1>
-<p><code>localStorage</code>でセーブ機能を実装し、僕たちのゲームは、いつでも中断・再開できるようになった。美久が口にした「この時間もセーブできたらいいのに」という言葉は、僕の心に深く残り、二人で過ごす時間の尊さを改めて感じさせてくれた。</p>
-<p>「先輩、このセリフ、一気に表示されるんじゃなくて、少しずつ出てくるようにできませんか？ あと、キャラクターの立ち絵も、ふわっと現れるように……」</p>
-<p>美久が、目を輝かせながらそう言った。彼女の視線は、すでにゲームの「演出」へと向かっている。プレイヤーの感情を揺さぶる、細やかな表現。その探究心に、僕は感心した。</p>
-<p>「もちろんできるぞ。それが、<code>setTimeout</code>や<code>setInterval</code>の役割だ」</p>
-<p>僕は、ホワイトボードに「setTimeout / setInterval」と書いた。これらは、JavaScriptで時間を制御するための機能だ。特定の処理を、指定した時間後に一度だけ実行したり（<code>setTimeout</code>）、一定時間ごとに繰り返し実行したり（<code>setInterval</code>）することができる。</p>
-<p>「例えば、セリフを一文字ずつ表示する演出は、<code>setInterval</code>を使って、一文字表示するたびに少しずつ時間をずらして繰り返すことで実現できる。そして、キャラクターが画面にふわっと現れるフェードイン演出は、<code>setTimeout</code>を使って、透明度を少しずつ変えていく処理を、時間差で何度も実行するんだ」</p>
-<p>僕は、簡単なコードを書いて見せた。<code>setTimeout(function() { console.log("時間差で表示"); }, 1000);</code>。1秒後にコンソールにメッセージが表示される。美久は「わあ！」と歓声を上げた。その瞳は、まるで魔法を見たかのように輝いている。</p>
-<p>「すごい！ 時間まで操れるなんて！」</p>
-<p>美久は、興奮冷めやらぬ様子で、僕が書いたコードを食い入るように見つめている。彼女の言葉を聞いて、僕も改めて、この技術の持つ可能性に気づかされた。単に処理を遅らせるだけじゃない。これこそが、僕たちのゲームに「息吹」を吹き込み、プレイヤーの感情を揺さぶる「間」を生み出す瞬間なのだ。</p>
-<p>「そう。ゲームの演出は、この『間』が重要なんだ。セリフの表示速度一つで、キャラクターの感情表現が変わるし、BGMの入り方一つで、シーンの印象がガラッと変わる」</p>
-<p>僕の言葉に、美久は深く頷いた。彼女の頭の中では、すでに、僕たちのゲームが、よりドラマチックに、より感情豊かに動き始めているのだろう。</p>
-<p>「先輩、私、告白シーンのセリフ、もっとゆっくり表示させたいです！ あと、その時に、キャラクターの表情が、少しずつ赤くなっていく演出とか！」</p>
-<p>美久は、熱っぽく語り始めた。そのアイデアは、僕の想像を超えるものだった。僕は、美久のアイデアを形にするために、<code>setTimeout</code>とCSSの<code>transition</code>プロパティを組み合わせる方法を教えた。美久は、僕がコードを打ち込むたびに、画面の変化に一喜一憂している。</p>
-<p>僕たちは、実際に美久が考えた演出をゲームに組み込んでみた。セリフがゆっくりと表示され、キャラクターの表情が時間差で変化する。そして、重要なシーンでは、BGMがフェードインしてくる。たったそれだけの動作なのに、僕たちの胸には、大きな感動がこみ上げてきた。</p>
-<p>美久は、自分のアイデアが、コードによって現実のものとなっていくことに、純粋な喜びを感じている。その姿は、僕にとって、何よりも尊いものだった。僕一人では、決して生み出せなかっただろう、この「感動」。美久と一緒だからこそ、感じられる、この特別な感情。</p>
-<p>プログラミングは、単なる技術じゃない。それは、僕たちの「想い」を、具体的な形にするための、そして、誰かの「心」を揺さぶるための、最高のツールだ。<code>setTimeout</code>という、たった一つの概念を学ぶだけで、美久はこんなにも目を輝かせ、ゲーム制作の喜びを全身で表現している。その姿を見ていると、僕の胸にも、温かいものがこみ上げてきた。</p>
-<p>僕たちのノベルゲーム制作は、<code>setTimeout</code>という強力な武器を手に入れた。これで、より感情豊かで、プレイヤーの記憶に残る物語を紡ぐことができるだろう。そして、僕たちの関係もまた、この<code>setTimeout</code>のように、お互いの「心」の動きに、時間をかけて寄り添い、より深く、より甘く、結びついていくのだろう。そんな予感が、僕の胸を、優しく、そして強く、締め付けた。</p>
+<h1 id="22-dom">第22話 DOMで描く未来<a class="headerlink" href="#22-dom" title="Permanent link">&para;</a></h1>
+<h2 id="10317">10月31日（火）午前7時<a class="headerlink" href="#10317" title="Permanent link">&para;</a></h2>
+<p>ハロウィンの朝。</p>
+<p>でも、私たちには文化祭の方が大事。</p>
+<p>あと3日で本番。</p>
+<p>ゲームはほぼ完成してるけど、まだやることがある。</p>
+<p>「おはよう、美久」</p>
+<p>エレベーターで隆弘くんと会った。</p>
+<p>「おはよう」</p>
+<p>「今日の放課後も、頑張ろうね」</p>
+<p>「うん」</p>
+<p>二人だけの秘密の時間。</p>
+<p>学校では普通の先輩後輩。</p>
+<p>でも、心はいつも繋がってる。</p>
 <p>◇◇◇◇</p>
+<h2 id="4">午後4時　プログラミング部室<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>「今日は、DOM操作について詳しく教えるよ」</p>
+<p>隆弘くんがホワイトボードに大きく「DOM」と書く。</p>
+<p>「DOM？」</p>
+<p>「Document Object Model。HTMLを操作する仕組みだよ」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// DOM要素の取得方法いろいろ</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">element1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;game-title&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">element2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.character-name&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.choice-button&#39;</span><span class="p">);</span>
+
+<span class="c1">// 要素の作成</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">newDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="nx">newDiv</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;新しい要素&#39;</span><span class="p">;</span>
+<span class="nx">newDiv</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;message-box&#39;</span><span class="p">;</span>
+
+<span class="c1">// 要素の追加</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newDiv</span><span class="p">);</span>
+
+<span class="c1">// 要素の削除</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">oldElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;old-element&#39;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">oldElement</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">oldElement</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「なるほど！HTMLを動的に変えられるんだ」</p>
+<p>「そう。これでゲーム画面を自由に操作できる」</p>
+<p>◇◇◇◇</p>
+<h2 id="445">午後4時45分　ゲーム画面の構築<a class="headerlink" href="#445" title="Permanent link">&para;</a></h2>
+<p>「実際にゲーム画面を作ってみよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ゲーム画面の基本構造を作る</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">GameScreen</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;game-container&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// ゲーム画面をクリア</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// 背景レイヤー</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">backgroundLayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;background-layer&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// キャラクターレイヤー</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">characterLayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;character-layer&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// UIレイヤー</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">uiLayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ui-layer&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// テキストボックス</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">textBox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;text-box&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">nameBox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;name-box&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">messageBox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;message-box&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 要素を組み立てる</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">textBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">nameBox</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">textBox</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">messageBox</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">uiLayer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">textBox</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// コンテナに追加</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">backgroundLayer</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">characterLayer</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">uiLayer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">createElement</span><span class="p">(</span><span class="nx">tag</span><span class="p">,</span><span class="w"> </span><span class="nx">className</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">tag</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">className</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">element</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">className</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">element</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 背景を変更</span>
+<span class="w">    </span><span class="nx">setBackground</span><span class="p">(</span><span class="nx">imagePath</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">backgroundLayer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`url(</span><span class="si">${</span><span class="nx">imagePath</span><span class="si">}</span><span class="sb">)`</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">backgroundLayer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;cover&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// キャラクターを表示</span>
+<span class="w">    </span><span class="nx">showCharacter</span><span class="p">(</span><span class="nx">imagePath</span><span class="p">,</span><span class="w"> </span><span class="nx">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;center&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">character</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;character&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">character</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">imagePath</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">character</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;absolute&#39;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// 位置を設定</span>
+<span class="w">        </span><span class="k">switch</span><span class="p">(</span><span class="nx">position</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;left&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">character</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;10%&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;right&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">character</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;10%&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">default</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">character</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;50%&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">character</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;translateX(-50%)&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">characterLayer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">character</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// メッセージを表示</span>
+<span class="w">    </span><span class="nx">showMessage</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">nameBox</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">messageBox</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// タイプライター効果</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">typeWriter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">text</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">messageBox</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">text</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+<span class="w">                </span><span class="nx">index</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">typeWriter</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">typeWriter</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「すごい！レイヤー構造になってる」</p>
+<p>「そう。背景、キャラクター、UIを別々に管理できる」</p>
+<p>美久が興奮気味に画面を見つめる。</p>
+<p>◇◇◇◇</p>
+<h2 id="530">午後5時30分　選択肢システム<a class="headerlink" href="#530" title="Permanent link">&para;</a></h2>
+<p>「選択肢も動的に作ろう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 選択肢システム</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">ChoiceSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">gameScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">gameScreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gameScreen</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 選択肢を表示</span>
+<span class="w">    </span><span class="nx">showChoices</span><span class="p">(</span><span class="nx">choices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 既存の選択肢を削除</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 選択肢コンテナを作成</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;choice-container&#39;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// 各選択肢を作成</span>
+<span class="w">        </span><span class="nx">choices</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">choice</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">createChoiceButton</span><span class="p">(</span><span class="nx">choice</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">);</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">button</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// UIレイヤーに追加</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">uiLayer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// フェードインアニメーション</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opacity 0.5s&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 選択肢ボタンを作成</span>
+<span class="w">    </span><span class="nx">createChoiceButton</span><span class="p">(</span><span class="nx">choice</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">button</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;choice-button&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">button</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">choice</span><span class="p">.</span><span class="nx">text</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// ホバー効果</span>
+<span class="w">        </span><span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">button</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;scale(1.05)&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">button</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#ff6b6b&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">button</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;scale(1)&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">button</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#4ecdc4&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// クリック処理</span>
+<span class="w">        </span><span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">selectChoice</span><span class="p">(</span><span class="nx">choice</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// 遅延表示</span>
+<span class="w">        </span><span class="nx">button</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">button</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;opacity 0.3s&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">button</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">200</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">button</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 選択肢を選んだ時の処理</span>
+<span class="w">    </span><span class="nx">selectChoice</span><span class="p">(</span><span class="nx">choice</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`選択: </span><span class="si">${</span><span class="nx">choice</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 選択エフェクト</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">buttons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.choice-button&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">buttons</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">btn</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">btn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#ff4757&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">btn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;scale(1.1)&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">btn</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0.3&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// 選択肢を消す</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">choiceContainer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="w">                </span><span class="c1">// 選択後の処理を実行</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">choice</span><span class="p">.</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">choice</span><span class="p">.</span><span class="nx">callback</span><span class="p">();</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「選択肢にアニメーションがついてる！」</p>
+<p>「ユーザー体験を良くするためだよ」</p>
+<p>隆弘くんの細やかな配慮が嬉しい。</p>
+<p>◇◇◇◇</p>
+<h2 id="615">午後6時15分　エフェクトシステム<a class="headerlink" href="#615" title="Permanent link">&para;</a></h2>
+<p>「特別な演出も作ろう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// エフェクトシステム</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">EffectSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">gameScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">gameScreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">gameScreen</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 画面を揺らす</span>
+<span class="w">    </span><span class="nx">shake</span><span class="p">(</span><span class="nx">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">500</span><span class="p">,</span><span class="w"> </span><span class="nx">intensity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">container</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">originalTransform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">container</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">shakeAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">intensity</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">intensity</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">container</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`translate(</span><span class="si">${</span><span class="nx">x</span><span class="si">}</span><span class="sb">px, </span><span class="si">${</span><span class="nx">y</span><span class="si">}</span><span class="sb">px)`</span><span class="p">;</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(</span><span class="nx">shakeAnimation</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">interval</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">container</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">originalTransform</span><span class="p">;</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="nx">duration</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// フラッシュ効果</span>
+<span class="w">    </span><span class="nx">flash</span><span class="p">(</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">200</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">flashDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">flashDiv</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">            position: absolute;</span>
+<span class="sb">            top: 0;</span>
+<span class="sb">            left: 0;</span>
+<span class="sb">            width: 100%;</span>
+<span class="sb">            height: 100%;</span>
+<span class="sb">            background-color: </span><span class="si">${</span><span class="nx">color</span><span class="si">}</span><span class="sb">;</span>
+<span class="sb">            opacity: 0;</span>
+<span class="sb">            z-index: 9999;</span>
+<span class="sb">            pointer-events: none;</span>
+<span class="sb">        `</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">flashDiv</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// フラッシュアニメーション</span>
+<span class="w">        </span><span class="nx">flashDiv</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`opacity </span><span class="si">${</span><span class="nx">duration</span><span class="o">/</span><span class="mf">2</span><span class="si">}</span><span class="sb">ms`</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">flashDiv</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">flashDiv</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">flashDiv</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">                </span><span class="p">},</span><span class="w"> </span><span class="nx">duration</span><span class="o">/</span><span class="mf">2</span><span class="p">);</span>
+<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="nx">duration</span><span class="o">/</span><span class="mf">2</span><span class="p">);</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ハートエフェクト</span>
+<span class="w">    </span><span class="nx">showHearts</span><span class="p">(</span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">count</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">createHeart</span><span class="p">();</span>
+<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">200</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">createHeart</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">heart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">heart</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;heart-effect&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">heart</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;❤️&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">heart</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">            position: absolute;</span>
+<span class="sb">            font-size: 30px;</span>
+<span class="sb">            z-index: 9999;</span>
+<span class="sb">            pointer-events: none;</span>
+<span class="sb">            left: </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">80</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">10</span><span class="si">}</span><span class="sb">%;</span>
+<span class="sb">            bottom: -50px;</span>
+<span class="sb">            animation: floatUp 3s ease-out forwards;</span>
+<span class="sb">        `</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">heart</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">heart</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 暗転</span>
+<span class="w">    </span><span class="nx">fadeToBlack</span><span class="p">(</span><span class="nx">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="p">,</span><span class="w"> </span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">blackScreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">blackScreen</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">            position: absolute;</span>
+<span class="sb">            top: 0;</span>
+<span class="sb">            left: 0;</span>
+<span class="sb">            width: 100%;</span>
+<span class="sb">            height: 100%;</span>
+<span class="sb">            background-color: black;</span>
+<span class="sb">            opacity: 0;</span>
+<span class="sb">            z-index: 9998;</span>
+<span class="sb">        `</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">blackScreen</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">blackScreen</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`opacity </span><span class="si">${</span><span class="nx">duration</span><span class="si">}</span><span class="sb">ms`</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">blackScreen</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="nx">callback</span><span class="p">();</span>
+<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="nx">duration</span><span class="p">);</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「ハートエフェクト！」</p>
+<p>美久が目を輝かせる。</p>
+<p>「告白シーンで使えそうでしょ？」</p>
+<p>「うん！絶対使う！」</p>
+<p>◇◇◇◇</p>
+<h2 id="7">午後7時　統合テスト<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p>「全部組み合わせてテストしてみよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ゲームの初期化</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gameScreen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">GameScreen</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">choiceSystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ChoiceSystem</span><span class="p">(</span><span class="nx">gameScreen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">effectSystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EffectSystem</span><span class="p">(</span><span class="nx">gameScreen</span><span class="p">);</span>
+
+<span class="c1">// 告白シーンのデモ</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">confessionScene</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 背景を夕暮れの屋上に</span>
+<span class="w">    </span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">setBackground</span><span class="p">(</span><span class="s1">&#39;images/rooftop_sunset.jpg&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// キャラクターを表示</span>
+<span class="w">    </span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">showCharacter</span><span class="p">(</span><span class="s1">&#39;images/miku_blush.png&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;center&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// セリフ</span>
+<span class="w">    </span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;美久&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;あの……隆弘くん……&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 3秒後に選択肢</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;美久、好きだ&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">callback</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">effectSystem</span><span class="p">.</span><span class="nx">showHearts</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;美久&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;私も……ずっと好きでした！&#39;</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;大切な友達だよ&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">callback</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">effectSystem</span><span class="p">.</span><span class="nx">shake</span><span class="p">(</span><span class="mf">300</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+<span class="w">                    </span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;美久&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;そう……だよね……&#39;</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">];</span>
+
+<span class="w">        </span><span class="nx">choiceSystem</span><span class="p">.</span><span class="nx">showChoices</span><span class="p">(</span><span class="nx">choices</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// デモ実行</span>
+<span class="nx">confessionScene</span><span class="p">();</span>
+</code></pre></div>
+<p>画面に表示される告白シーン。</p>
+<p>ハートが舞い上がる演出。</p>
+<p>「きれい……」</p>
+<p>美久が呟く。</p>
+<p>「これ、私たちの告白シーンみたい」</p>
+<p>隆弘くんが照れくさそうに笑う。</p>
+<p>◇◇◇◇</p>
+<h2 id="745">午後7時45分　最後の調整<a class="headerlink" href="#745" title="Permanent link">&para;</a></h2>
+<p>「DOM操作、理解できた？」</p>
+<p>「うん。HTMLを自由に操れるんだね」</p>
+<p>「そう。これで思い通りの画面が作れる」</p>
+<p>二人で画面を見つめる。</p>
+<p>私たちが作ったゲーム。</p>
+<p>もうすぐ完成。</p>
+<p>「隆弘くん」</p>
+<p>「なに？」</p>
+<p>「このゲーム、私たちの思い出だね」</p>
+<p>「うん」</p>
+<p>「DOMで作った画面に、私たちの気持ちが詰まってる」</p>
+<p>隆弘くんが私の手を握る。</p>
+<p>「文化祭が終わっても、この思い出は消えない」</p>
+<p>「うん」</p>
+<p>「次は、もっとすごいゲーム作ろう」</p>
+<p>「約束」</p>
+<p>小指を絡める。</p>
+<p>約束のしるし。</p>
+<p>プログラミングが繋いだ私たち。</p>
+<p>DOMで描く未来は、きっと明るい。</p>
+<p>そう信じて、今日も一緒に帰る。</p>
+<p>手を繋いで、同じ未来を見つめながら。</p>
 
 
 

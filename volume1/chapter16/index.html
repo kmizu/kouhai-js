@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#16for" class="md-skip">
+        <a href="#16" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -1027,6 +1027,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    第16話 疲れた時は
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1038,6 +1051,106 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10244" class="md-nav__link">
+    <span class="md-ellipsis">
+      10月24日（火）午後4時
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#430" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後4時30分 緊急ミーティング
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後5時 美久との作戦会議
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#530" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後5時30分 技術的検証
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後6時 実行委員会への再提案
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#645" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後6時45分 新たな課題
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#730" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後7時30分 実装作業
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後8時 承認
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#830" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後8時30分 帰り道
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1170,27 +1283,182 @@
   
 
 
-<h1 id="16for">第16話「物語を紡ぐ（for文）」<a class="headerlink" href="#16for" title="Permanent link">&para;</a></h1>
-<p>配列という「シナリオの入れ物」を手に入れた僕たちは、これでどんなに長い物語でも、効率的に管理できるようになった。美久は、自分の書いたシナリオが、配列の中に整然と並べられているのを見て、まるで本棚に並んだ愛しい本たちを眺めるように、目を細めている。その姿は、僕の心に、温かい光を灯した。</p>
-<p>「先輩、この配列に入れたシナリオを、順番に表示していくには、どうすればいいんですか？」</p>
-<p>美久が、ふとそんな質問をしてきた。彼女の視点は、すでに次のステップ、つまり「物語を動かす」ことへと向かっている。その探究心に、僕は感心した。</p>
-<p>「いい質問だな、美久。そこで登場するのが、for文だ」</p>
-<p>僕は、ホワイトボードに「for文（for loop）」と書いた。for文は、プログラミングにおいて、同じ処理を何度も繰り返すための「繰り返し」の命令だ。ノベルゲームで言えば、配列に格納されたセリフを、一つずつ順番に表示していくのに最適だ。</p>
-<p>「for文は、『この条件が満たされている間、この処理を繰り返す』っていう命令なんだ。例えば、配列の最初から最後まで、順番にセリフを表示していく、みたいな時に使う」</p>
-<p>僕は、簡単なfor文のコードを書いて見せた。<code>for (let i = 0; i &lt; scenario.length; i++) { ... }</code>。そして、<code>scenario[i]</code>を使って、配列の要素を順番に呼び出す方法を説明した。</p>
-<p>「わあ！ これって、まるで物語のページを、一枚一枚めくっていくみたいですね！」</p>
-<p>美久が、目を輝かせて言った。その例えは、まさに的を射ていた。文芸部である美久にとって、物語のページをめくるという行為は、とてもしっくりきたようだ。</p>
-<p>「そう。そして、このfor文を使えば、セリフをただ表示するだけじゃなくて、例えば、タイプライターみたいに、一文字ずつ表示する演出とかもできるんだ」</p>
-<p>僕の言葉に、美久の目がさらに大きく見開かれた。彼女の頭の中では、すでに、文字がカタカタと音を立てながら表示されていく、ドラマチックな演出が描かれているのだろう。</p>
-<p>「タイプライター！ それ、乙女ゲーでよくある演出です！ キャラクターのセリフに、感情がこもるっていうか……！」</p>
-<p>美久は、興奮冷めやらぬ様子で、僕が書いたfor文のコードを食い入るように見つめている。その姿は、まるで、初めて魔法の呪文を覚えた魔法使いの卵のようだ。僕もまた、美久のその反応を見て、プログラミングを教えることの楽しさを改めて感じていた。</p>
-<p>僕たちは、実際に美久が書いたシナリオの一部を配列に格納し、for文を使って順番に表示させてみた。ボタンをクリックするたびに、次のセリフがスムーズに表示されていく。そして、さらに一歩進んで、タイプライターのように一文字ずつ表示される演出にも挑戦した。</p>
-<p>最初は少し戸惑っていた美久も、僕のサポートを受けながら、少しずつコードを修正していく。文字がカタカタと表示され、最後にピリオドが打たれる。その一連の動作に、美久は「すごい！ 本当にゲームみたい！」と歓声を上げた。</p>
-<p>その声を聞いて、僕の胸にも、じんわりと温かいものが広がっていく。僕一人では、決して味わえなかっただろう、この喜び。美久の感動が、僕のプログラミングへの情熱を、さらに燃え上がらせる。</p>
-<p>「先輩、これって、物語を紡いでいく作業そのものですね！ for文が、私たちの物語を、一歩ずつ進めてくれるんだ！」</p>
-<p>美久は、感動のあまり、瞳を潤ませていた。その姿を見て、僕もまた、胸が熱くなる。プログラミングは、単なる技術じゃない。それは、僕たちの「想い」を、具体的な形にするための、そして、誰かと「物語」を創造するための、最高のツールだ。for文という、たった一つの概念を学ぶだけで、美久はこんなにも目を輝かせ、ゲーム制作の喜びを全身で表現している。その姿を見ていると、僕の胸にも、温かいものがこみ上げてきた。</p>
-<p>僕たちのノベルゲーム制作は、for文という強力な武器を手に入れた。これで、どんなに長いシナリオでも、どんなに複雑な物語でも、僕たちはそれをスムーズに、そしてドラマチックに紡ぐことができるだろう。そして、僕たちの関係もまた、このfor文のように、一つ一つの出来事を順番に積み重ねていくことで、より深く、より甘く、結びついていくのだろう。そんな予感が、僕の胸を、優しく、そして強く、締め付けた。</p>
+<h1 id="16">第16話 文化祭実行委員との交渉<a class="headerlink" href="#16" title="Permanent link">&para;</a></h1>
+<h2 id="10244">10月24日（火）午後4時<a class="headerlink" href="#10244" title="Permanent link">&para;</a></h2>
+<p>「嵐山、ちょっといいか」</p>
+<p>文化祭実行委員長の3年生、山田先輩が部室に入ってきた。</p>
+<p>「どうしました？」</p>
+<p>「展示場所の件なんだが」</p>
+<p>山田先輩の表情が険しい。</p>
+<p>嫌な予感がする。</p>
+<p>「実は、体育館の展示スペースが予定より狭くなってな」</p>
+<p>「え？」</p>
+<p>「設備の関係で、各団体のスペースを縮小せざるを得ない」</p>
+<p>まさかの事態に、頭が真っ白になる。</p>
+<p>「でも、僕たちはゲームの展示で、PCを複数台設置する必要が……」</p>
+<p>「分かってる。だが、他の団体も同じ状況だ」</p>
+<p>山田先輩も困った顔をしている。</p>
+<p>「何か、解決策はありませんか？」</p>
+<p>僕は必死に食い下がった。</p>
 <p>◇◇◇◇</p>
+<h2 id="430">午後4時30分　緊急ミーティング<a class="headerlink" href="#430" title="Permanent link">&para;</a></h2>
+<p>「大変なことになった」</p>
+<p>部員たちを集めて、状況を説明する。</p>
+<p>「スペースが狭くなるって、どれくらい？」</p>
+<p>田中が心配そうに聞く。</p>
+<p>「半分以下になるかもしれない」</p>
+<p>その言葉に、みんなの顔が青ざめた。</p>
+<p>「そんな……せっかくここまで作ったのに」</p>
+<p>美久が肩を落とす。</p>
+<p>「諦めるのは早い。何か方法があるはずだ」</p>
+<p>僕は部員たちを励ました。</p>
+<p>でも、正直、僕も不安でいっぱいだった。</p>
+<p>◇◇◇◇</p>
+<h2 id="5">午後5時　美久との作戦会議<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>「隆弘くん、何かいい案はない？」</p>
+<p>美久が心配そうに聞いてくる。</p>
+<p>「考えているんだけど……」</p>
+<p>頭を抱える僕。</p>
+<p>「そうだ！」</p>
+<p>美久が突然声を上げた。</p>
+<p>「どうした？」</p>
+<p>「展示方法を工夫すればいいんじゃない？」</p>
+<p>「展示方法？」</p>
+<p>「例えば、Webブラウザで動くようにすれば、来場者のスマホでも遊べる」</p>
+<p>美久の提案に、目から鱗が落ちた。</p>
+<p>「それだ！」</p>
+<p>◇◇◇◇</p>
+<h2 id="530">午後5時30分　技術的検証<a class="headerlink" href="#530" title="Permanent link">&para;</a></h2>
+<p>「Webアプリとして公開すれば、展示スペースは最小限で済む」</p>
+<p>僕はすぐに実装方法を検討し始めた。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// PWA（Progressive Web App）として実装</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">serviceWorkerRegistration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;serviceWorker&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">navigator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">registration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;/sw.js&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Service Worker登録成功:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">registration</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Service Worker登録失敗:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// QRコードでアクセスできるようにする</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">generateQRCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">qr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">QRious</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">element</span><span class="o">:</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;qrcode&#39;</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">url</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">size</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">qr</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「これなら、QRコードを掲示して、来場者が自分のスマホでプレイできる」</p>
+<p>「すごい！これなら省スペースで大勢が遊べる！」</p>
+<p>美久が興奮した声を上げる。</p>
+<p>◇◇◇◇</p>
+<h2 id="6">午後6時　実行委員会への再提案<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>「山田先輩、提案があります」</p>
+<p>僕は実行委員会室を訪れた。</p>
+<p>美久も一緒だ。</p>
+<p>「なんだ？」</p>
+<p>「展示方法を変更することで、スペース問題を解決できます」</p>
+<p>僕は準備した資料を見せながら説明した。</p>
+<ul>
+<li>Webアプリとして公開</li>
+<li>QRコード掲示で来場者がアクセス</li>
+<li>必要なのは説明パネルとデモ機1〜2台のみ</li>
+<li>同時に多数がプレイ可能</li>
+</ul>
+<p>「これは面白い」</p>
+<p>山田先輩の表情が和らぐ。</p>
+<p>「技術的に可能なのか？」</p>
+<p>「はい。すでにプロトタイプも作りました」</p>
+<p>美久がタブレットでデモを見せる。</p>
+<p>「素晴らしい。これなら他の団体の参考にもなる」</p>
+<p>◇◇◇◇</p>
+<h2 id="645">午後6時45分　新たな課題<a class="headerlink" href="#645" title="Permanent link">&para;</a></h2>
+<p>「でも、一つ問題が」</p>
+<p>山田先輩が指摘する。</p>
+<p>「ネットワーク環境だ。当日、大勢がアクセスしたら……」</p>
+<p>確かに、それは盲点だった。</p>
+<p>「学校のWi-Fiでは対応しきれないかもしれません」</p>
+<p>「そうだな」</p>
+<p>また壁にぶつかった。</p>
+<p>でも、美久が言った。</p>
+<p>「オフラインでも動くようにすればいいんです」</p>
+<p>「オフライン？」</p>
+<p>「PWAの機能を使えば、一度アクセスしたらオフラインでも動きます」</p>
+<p>美久の知識に驚く。</p>
+<p>いつの間に、そんなことまで勉強したんだ。</p>
+<p>◇◇◇◇</p>
+<h2 id="730">午後7時30分　実装作業<a class="headerlink" href="#730" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">// Service Workerでオフライン対応</span>
+<span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;install&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">caches</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;game-v1&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">cache</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">cache</span><span class="p">.</span><span class="nx">addAll</span><span class="p">([</span>
+<span class="w">                </span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;/index.html&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;/game.js&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;/style.css&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;/images/characters/&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;/images/backgrounds/&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;/sounds/&#39;</span>
+<span class="w">            </span><span class="p">]);</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">caches</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">);</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>「これで、一度読み込めばオフラインでも動く」</p>
+<p>「隆弘くん、天才！」</p>
+<p>美久が目を輝かせる。</p>
+<p>「美久のアイデアのおかげだよ」</p>
+<p>二人で顔を見合わせて笑う。</p>
+<p>ピンチがチャンスに変わった瞬間だった。</p>
+<p>◇◇◇◇</p>
+<h2 id="8">午後8時　承認<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<p>「嵐山、河内、素晴らしい提案だ」</p>
+<p>山田先輩から正式な承認が下りた。</p>
+<p>「むしろ、特別展示枠として、入り口近くのスペースを用意しよう」</p>
+<p>「本当ですか！」</p>
+<p>思わぬ好条件に、美久と顔を見合わせる。</p>
+<p>「最新技術を使った展示として、注目を集めるだろう」</p>
+<p>「ありがとうございます！」</p>
+<p>二人で深々と頭を下げた。</p>
+<p>◇◇◇◇</p>
+<h2 id="830">午後8時30分　帰り道<a class="headerlink" href="#830" title="Permanent link">&para;</a></h2>
+<p>「やったね、隆弘くん！」</p>
+<p>美久が飛び跳ねるように喜ぶ。</p>
+<p>「美久のおかげだよ」</p>
+<p>「ううん、二人で解決したんだよ」</p>
+<p>そう言って、美久は僕の腕に手を回してきた。</p>
+<p>「美久？」</p>
+<p>「嬉しくて」</p>
+<p>僕も美久の手を握り返す。</p>
+<p>「文化祭、成功させよう」</p>
+<p>「うん！」</p>
+<p>月明かりの下、手を繋いで歩く。</p>
+<p>困難を二人で乗り越えたことで、絆がより深まった気がする。</p>
+<p>「ねえ、隆弘くん」</p>
+<p>「ん？」</p>
+<p>「完成まで、あと少しだね」</p>
+<p>美久の言葉に、約束を思い出す。</p>
+<p>ゲームが完成したら、伝えたいことがある。</p>
+<p>その時が、もうすぐそこまで来ている。</p>
+<p>「うん、あと少しだ」</p>
+<p>プログラミングの技術だけでなく、問題解決能力も身についた。</p>
+<p>そして何より、美久との絆が、どんな困難も乗り越える力になることを知った。</p>
+<p>文化祭まで、あと2週間。</p>
+<p>最高の展示にしよう。</p>
 
 
 

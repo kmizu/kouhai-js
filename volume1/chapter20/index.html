@@ -1117,6 +1117,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    第20話 本当の気持ち
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1128,6 +1141,115 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#102910" class="md-nav__link">
+    <span class="md-ellipsis">
+      10月29日（日）午前10時
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1030" class="md-nav__link">
+    <span class="md-ellipsis">
+      午前10時30分 新しい機能の実装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1115" class="md-nav__link">
+    <span class="md-ellipsis">
+      午前11時15分 セーブスロットの実装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-cg" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後0時 CG回想モードの作成
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#130" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後1時30分 ランチ休憩
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#230" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後2時30分 複雑なループ処理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後4時 エンディングリストの実装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#530" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後5時30分 最後の仕上げ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#645" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後6時45分 完成間近
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#730" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後7時30分 約束
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1168,27 +1290,328 @@
   
 
 
-<h1 id="20">第20話「二人なら越えられる（解決）」<a class="headerlink" href="#20" title="Permanent link">&para;</a></h1>
-<p>夜が明け、部室には、昨日と変わらぬ緊張感が漂っていた。しかし、僕たちの心には、昨日の焦りとは違う、静かな決意が宿っていた。美久は、僕の隣で、真剣な眼差しでディスプレイを見つめている。その横顔は、疲労の色を滲ませながらも、どこか凛としていた。</p>
-<p>「よし、もう一度、最初から追ってみよう」</p>
-<p>僕は、そう言って、ゲームの冒頭からテストプレイを始めた。美久は、僕の隣で、シナリオの流れと、僕が書いたコードを照らし合わせながら、小さな声で確認していく。<code>console.log</code>を駆使し、変数の中身や、if文の条件分岐がどうなっているかを、一つ一つ丁寧に確認していく。</p>
-<p>何時間経っただろうか。僕たちは、黙々とデバッグ作業を続けていた。集中力は限界に近づき、頭の中は、無数のコードとシナリオの断片で埋め尽くされていた。それでも、僕たちは諦めなかった。このゲームを、二人で完成させるという、強い思いが僕たちを突き動かしていた。</p>
-<p>「先輩、ここです！」</p>
-<p>美久が、突然、声を上げた。その声には、確かな手応えが宿っていた。僕は、美久が指差すコードの行に目を凝らした。そこは、複雑なフラグ管理が絡み合う、まさにバグの温床となりそうな箇所だった。</p>
-<p>「このフラグ、本来ならここで『true』になるはずなのに、なぜか『false』のままです。だから、次のif文の条件が満たされずに、別のルートに進んでしまっているんだと思います！」</p>
-<p>美久は、自分の書いたシナリオと、僕が書いたコードの矛盾を、的確に指摘した。彼女の言葉に、僕の頭の中で、バラバラだったパズルのピースが、カチリと音を立ててはまった。そうだ、このフラグの更新処理が、別の場所で上書きされてしまっていたんだ！</p>
-<p>「美久、よく気づいたな！ その通りだ！ ここでフラグがリセットされてしまっていたんだ！」</p>
-<p>僕は、興奮気味に叫んだ。美久の指摘は、まさに僕が探し求めていた「バグの根源」だった。僕のプログラミング知識と、美久のシナリオへの深い理解。二つの視点が合わさることで、ようやくバグの正体が見えてきたのだ。</p>
-<p>原因が分かれば、修正は早い。僕は、すぐにコードを修正した。美久は、僕の隣で、その修正を見守っている。そして、修正が終わると、僕たちは、再びゲームのテストプレイを始めた。</p>
-<p>緊張の一瞬。美久が、問題の選択肢をクリックする。そして、次のセリフが表示される。今度は、僕たちが意図した通りの、Aエンドに繋がるセリフが表示された！</p>
-<p>「やった……！ やりました、先輩！」</p>
-<p>美久が、満面の笑みで僕を見上げた。その瞳には、達成感と、そして、僕への感謝の気持ちが溢れている。僕は、思わず美久と顔を見合わせ、そして、自然と、僕たちの手が、空中で重なった。</p>
-<p>パチン、と心地よい音が部室に響く。ハイタッチ。それは、僕たちがバグを乗り越えた証であり、僕たちの絆が、さらに深まった瞬間だった。</p>
-<p>「二人なら、越えられるな」</p>
-<p>僕がそう言うと、美久は、はにかんだように笑った。その笑顔は、朝日に照らされて、いつもよりずっと、輝いて見えた。徹夜明けの疲労感も、この瞬間、全て吹き飛んだ。</p>
-<p>プログラミングは、一人で黙々とやるものだと思っていた。でも、美久と出会って、僕は知った。誰かと一緒に、困難を乗り越え、何かを「創り出す」喜び。それは、一人では決して味わえない、特別な感動だ。</p>
-<p>僕たちのノベルゲーム制作は、最大の試練を乗り越えた。このバグとの戦いを通して、僕たちは、プログラミングの奥深さと、そして、お互いの存在の大きさを、改めて知ることができた。そして、僕たちの関係もまた、このバグを乗り越えたことで、より深く、より甘く、結びついていくのだろう。そんな予感が、僕の胸を、優しく、そして強く、締め付けた。</p>
+<h1 id="20">第20話 ループで紡ぐ物語<a class="headerlink" href="#20" title="Permanent link">&para;</a></h1>
+<h2 id="102910">10月29日（日）午前10時<a class="headerlink" href="#102910" title="Permanent link">&para;</a></h2>
+<p>昨日のデート。</p>
+<p>初めてのキス。</p>
+<p>恋人になった私たち。</p>
+<p>でも、今日はゲーム制作に集中しなきゃ。</p>
+<p>「おはよう、美久」</p>
+<p>隆弘くんの部屋に入ると、もうパソコンの前に座ってた。</p>
+<p>「おはよう」</p>
+<p>昨日と違って、今日は作業着。</p>
+<p>でも、恋人として過ごす初めての作業日。</p>
+<p>ドキドキする。</p>
 <p>◇◇◇◇</p>
+<h2 id="1030">午前10時30分　新しい機能の実装<a class="headerlink" href="#1030" title="Permanent link">&para;</a></h2>
+<p>「今日は、ループ処理について教えるよ」</p>
+<p>隆弘くんがホワイトボードに図を描く。</p>
+<p>「ループ？」</p>
+<p>「同じ処理を繰り返す仕組み。for文って言うんだ」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 基本的なfor文</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="si">}</span><span class="sb">回目のループ`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 1回目のループ</span>
+<span class="c1">// 2回目のループ</span>
+<span class="c1">// 3回目のループ</span>
+<span class="c1">// 4回目のループ</span>
+<span class="c1">// 5回目のループ</span>
+</code></pre></div>
+<p>「なるほど！同じことを何度も書かなくていいんだ」</p>
+<p>「そう。ゲームでも便利だよ」</p>
+<p>隆弘くんが新しいコードを書き始める。</p>
+<p>◇◇◇◇</p>
+<h2 id="1115">午前11時15分　セーブスロットの実装<a class="headerlink" href="#1115" title="Permanent link">&para;</a></h2>
+<p>「セーブデータを複数作れるようにしよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// セーブスロットの管理</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">saveSlots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">maxSlots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+
+<span class="c1">// 全スロットの初期化</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">maxSlots</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">saveSlots</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">slotNumber</span><span class="o">:</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">isEmpty</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">saveDate</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// セーブ機能</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">saveToSlot</span><span class="p">(</span><span class="nx">slotNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">gameData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">scene</span><span class="o">:</span><span class="w"> </span><span class="nx">currentScene</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="nx">playerChoices</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="nx">characterAffection</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">saveSlots</span><span class="p">[</span><span class="nx">slotNumber</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">slotNumber</span><span class="o">:</span><span class="w"> </span><span class="nx">slotNumber</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">isEmpty</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">gameData</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">saveDate</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toLocaleString</span><span class="p">()</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`スロット</span><span class="si">${</span><span class="nx">slotNumber</span><span class="si">}</span><span class="sb">にセーブしました`</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「5つもセーブできるの？」</p>
+<p>「うん。ループを使えば、100個でも1000個でも作れる」</p>
+<p>隆弘くんの説明を聞きながら、コードを理解していく。</p>
+<p>プログラミングって、本当に便利。</p>
+<p>◇◇◇◇</p>
+<h2 id="0-cg">午後0時　CG回想モードの作成<a class="headerlink" href="#0-cg" title="Permanent link">&para;</a></h2>
+<p>「美久の描いたCGを見返せる機能も作ろう」</p>
+<p>隆弘くんが提案する。</p>
+<p>「わあ、嬉しい！」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// CG回想システム</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">cgGallery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cg001&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;初めての出会い&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">unlocked</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;opening.jpg&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cg002&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プログラミングレッスン&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">unlocked</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;lesson.jpg&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cg003&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;深夜のデバッグ&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">unlocked</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;debug.jpg&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cg004&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;告白&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">unlocked</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;confession.jpg&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;cg005&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;初めてのキス&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">unlocked</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">file</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;first_kiss.jpg&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="c1">// CGを解放する関数</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">unlockCG</span><span class="p">(</span><span class="nx">cgId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">cgGallery</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">cgGallery</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">cgId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">cgGallery</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">unlocked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`CG「</span><span class="si">${</span><span class="nx">cgGallery</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">title</span><span class="si">}</span><span class="sb">」が解放されました！`</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 解放済みCGを表示</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">displayUnlockedCGs</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">unlockedCGs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">cg</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">cgGallery</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">cg</span><span class="p">.</span><span class="nx">unlocked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">unlockedCGs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">cg</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">unlockedCGs</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「初めてのキスって……」</p>
+<p>顔が赤くなる。</p>
+<p>「昨日のこと、CGにする？」</p>
+<p>隆弘くんがニヤリと笑う。</p>
+<p>「も、もう！」</p>
+<p>でも、嬉しい。</p>
+<p>◇◇◇◇</p>
+<h2 id="130">午後1時30分　ランチ休憩<a class="headerlink" href="#130" title="Permanent link">&para;</a></h2>
+<p>「お腹すいた」</p>
+<p>「じゃあ、休憩にしよう」</p>
+<p>隆弘くんがカップラーメンを作ってくれる。</p>
+<p>二人で向かい合って食べる。</p>
+<p>「ねえ、隆弘くん」</p>
+<p>「ん？」</p>
+<p>「昨日の続き、聞いてもいい？」</p>
+<p>「何の？」</p>
+<p>「プログラミング始めた理由」</p>
+<p>隆弘くんが箸を止める。</p>
+<p>「実はね、美久が描いた絵を見て思ったんだ」</p>
+<p>「私の絵？」</p>
+<p>「小学校の時、美久が描いてくれたゲームのキャラクター、覚えてる？」</p>
+<p>思い出す。</p>
+<p>確かに、ゲームのキャラクターを描いて、隆弘くんに見せたことがある。</p>
+<p>「あの時、『このキャラクターを動かせたらいいのに』って言ったよね」</p>
+<p>「そんなこと言ったかな……」</p>
+<p>「言った。だから、動かせるようになりたくて」</p>
+<p>隆弘くんの優しい眼差し。</p>
+<p>ずっと、私のことを考えてくれてたんだ。</p>
+<p>◇◇◇◇</p>
+<h2 id="230">午後2時30分　複雑なループ処理<a class="headerlink" href="#230" title="Permanent link">&para;</a></h2>
+<p>「もっと複雑なループも見てみよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 二重ループでマップを生成</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mapWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mapHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gameMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">mapHeight</span><span class="p">;</span><span class="w"> </span><span class="nx">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">gameMap</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">mapWidth</span><span class="p">;</span><span class="w"> </span><span class="nx">x</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">gameMap</span><span class="p">[</span><span class="nx">y</span><span class="p">][</span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;grass&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 特定の場所にイベントを配置</span>
+<span class="nx">gameMap</span><span class="p">[</span><span class="mf">2</span><span class="p">][</span><span class="mf">2</span><span class="p">].</span><span class="nx">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;treasure&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">item</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;幸せの鍵&quot;</span>
+<span class="p">};</span>
+
+<span class="c1">// マップ全体をチェック</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">row</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">gameMap</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">cell</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">cell</span><span class="p">.</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`(</span><span class="si">${</span><span class="nx">cell</span><span class="p">.</span><span class="nx">x</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">cell</span><span class="p">.</span><span class="nx">y</span><span class="si">}</span><span class="sb">)に</span><span class="si">${</span><span class="nx">cell</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">item</span><span class="si">}</span><span class="sb">があります`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「二重ループ？」</p>
+<p>「ループの中にループがあるんだ」</p>
+<p>難しそうだけど、隆弘くんの説明は分かりやすい。</p>
+<p>「幸せの鍵って、ロマンチック」</p>
+<p>「美久と見つけた鍵だから」</p>
+<p>また照れちゃう。</p>
+<p>◇◇◇◇</p>
+<h2 id="4">午後4時　エンディングリストの実装<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>「全てのエンディングを記録する機能も作ろう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// エンディングリスト</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">endings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;True End&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">achieved</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久との愛を貫く&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Good End&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">achieved</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;みんなと仲良く&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Normal End&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">achieved</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;普通の日常&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bad End&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">achieved</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;すれ違いの果てに&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="c1">// エンディング到達時の処理</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">achieveEnding</span><span class="p">(</span><span class="nx">endingId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">ending</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">endings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ending</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">endingId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">ending</span><span class="p">.</span><span class="nx">achieved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">displayEndingAchievement</span><span class="p">(</span><span class="nx">ending</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 全エンディング達成チェック</span>
+<span class="w">    </span><span class="nx">checkAllEndingsAchieved</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 全エンディング達成チェック</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">checkAllEndingsAchieved</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">achievedCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">ending</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">endings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ending</span><span class="p">.</span><span class="nx">achieved</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">achievedCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">achievedCount</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">endings</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">unlockSpecialContent</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 特別なコンテンツを解放</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">unlockSpecialContent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;全てのエンディングを見ました！&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;特別なエピローグが解放されました&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 開発者からのメッセージ</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">        このゲームをプレイしてくれてありがとう。</span>
+<span class="sb">        プログラミングと恋愛、どちらも大切。</span>
+<span class="sb">        あなたにも素敵な出会いがありますように。</span>
+
+<span class="sb">        - 隆弘 &amp; 美久</span>
+<span class="sb">    `</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「Bad Endなんて作りたくない」</p>
+<p>私がつぶやくと、隆弘くんが優しく笑った。</p>
+<p>「現実では、ずっとTrue Endだから」</p>
+<p>「うん」</p>
+<p>◇◇◇◇</p>
+<h2 id="530">午後5時30分　最後の仕上げ<a class="headerlink" href="#530" title="Permanent link">&para;</a></h2>
+<p>「ループを使って、スタッフロールも作ろう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// スタッフロール</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">staffCredits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プログラマー&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;嵐山隆弘&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;イラストレーター&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;河内美久&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;シナリオライター&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;河内美久&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;BGM&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;フリー素材より&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;スペシャルサンクス&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プログラミング部のみんな&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;そして&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プレイしてくれたあなたへ&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="c1">// スタッフロールを流す</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">playStaffRoll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">delay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">credit</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">staffCredits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">displayCredit</span><span class="p">(</span><span class="nx">credit</span><span class="p">.</span><span class="nx">role</span><span class="p">,</span><span class="w"> </span><span class="nx">credit</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="nx">delay</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">delay</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">2000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2秒ずつ遅らせる</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 最後にメッセージ</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">displayFinalMessage</span><span class="p">();</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="nx">delay</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">displayFinalMessage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Thank you for playing!&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">subMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~ Fin ~&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">subMessage</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「私の名前が2回も」</p>
+<p>「美久がいなければ、このゲームは作れなかった」</p>
+<p>隆弘くんの言葉が、心に染みる。</p>
+<p>◇◇◇◇</p>
+<h2 id="645">午後6時45分　完成間近<a class="headerlink" href="#645" title="Permanent link">&para;</a></h2>
+<p>「ループ処理、理解できた？」</p>
+<p>「うん。繰り返しって、人生みたい」</p>
+<p>私の言葉に、隆弘くんが首を傾げる。</p>
+<p>「どういうこと？」</p>
+<p>「毎日会って、毎日好きになって、その繰り返し」</p>
+<p>恥ずかしいけど、本心。</p>
+<p>隆弘くんが立ち上がって、私の隣に来た。</p>
+<p>「美久」</p>
+<p>「なに？」</p>
+<p>「ありがとう」</p>
+<p>突然、抱きしめられた。</p>
+<p>「きゃっ」</p>
+<p>「美久と一緒にゲームを作れて、本当に良かった」</p>
+<p>温かい腕の中で、幸せを感じる。</p>
+<p>「私も。隆弘くんと出会えて良かった」</p>
+<p>◇◇◇◇</p>
+<h2 id="730">午後7時30分　約束<a class="headerlink" href="#730" title="Permanent link">&para;</a></h2>
+<p>「文化祭まであと5日」</p>
+<p>「間に合いそう？」</p>
+<p>「うん。二人なら大丈夫」</p>
+<p>隆弘くんの自信に満ちた言葉。</p>
+<p>「ねえ、約束して」</p>
+<p>「なに？」</p>
+<p>「文化祭が終わっても、一緒にゲーム作ろう」</p>
+<p>私の提案に、隆弘くんが微笑む。</p>
+<p>「もちろん。次はもっとすごいの作ろう」</p>
+<p>「うん！」</p>
+<p>手を繋いで、誓い合う。</p>
+<p>これからも、ずっと一緒に。</p>
+<p>プログラミングで繋がった私たち。</p>
+<p>ループのように、何度でも愛を確かめ合いながら。</p>
+<p>「じゃあ、今日はここまで」</p>
+<p>「お疲れ様」</p>
+<p>部屋を出る前に、もう一度キス。</p>
+<p>昨日より、自然に。</p>
+<p>「明日も頑張ろうね」</p>
+<p>「うん」</p>
+<p>恋人として、パートナーとして。</p>
+<p>私たちの物語は、これからも続いていく。</p>
+<p>無限ループのように、ずっと、ずっと。</p>
 
 
 

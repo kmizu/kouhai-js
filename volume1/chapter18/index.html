@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#18bgm" class="md-skip">
+        <a href="#18" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -1073,6 +1073,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    第18話 隠されたルート
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1084,6 +1097,106 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10267" class="md-nav__link">
+    <span class="md-ellipsis">
+      10月26日（木）午前7時
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#745" class="md-nav__link">
+    <span class="md-ellipsis">
+      午前7時45分 いつもの廊下
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#430" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後4時30分 プログラミング部室
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#515" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後5時15分 ゲームへの実装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後6時 メソッドの追加
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#645" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後6時45分 複雑なオブジェクト
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#730" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後7時30分 オブジェクトの応用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#815" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後8時15分 今日のまとめ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#845" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後8時45分 帰り道
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1170,27 +1283,352 @@
   
 
 
-<h1 id="18bgm">第18話「思い出のBGM（音声再生）」<a class="headerlink" href="#18bgm" title="Permanent link">&para;</a></h1>
-<p>美久が描いたキャラクターたちが、僕たちのゲーム画面の中で生き生きと動き始めた。セリフに合わせて表情が変わり、背景が切り替わる。そのたびに美久は「可愛い！」「すごい！」と歓声を上げ、僕もまた、その純粋な喜びに胸を温かくしていた。</p>
-<p>「先輩、このゲームに、音をつけたいです！」</p>
-<p>美久が、目を輝かせながらそう言った。彼女の視線は、すでに次のステップ、つまり「五感に訴えかけるゲーム」へと向かっている。その探究心に、僕は感心した。</p>
-<p>「もちろんできるぞ。それが、音声再生だ」</p>
-<p>僕は、ホワイトボードに「音声再生」と書いた。ノベルゲームにおいて、BGMや効果音は、物語の雰囲気を演出し、プレイヤーの感情を揺さぶるために不可欠な要素だ。特に、印象的なシーンで流れるBGMは、プレイヤーの記憶に深く刻まれる。</p>
-<p>「JavaScriptには、<code>new Audio()</code>っていう機能があって、これを使えば、簡単に音声を再生できるんだ」</p>
-<p>僕は、簡単な音声再生のコードを書いて見せた。<code>let bgm = new Audio('./audio/bgm_peaceful.mp3'); bgm.play();</code>。部室に、穏やかなBGMが流れ始めた。美久は「わあ！」と歓声を上げた。その瞳は、まるで魔法を見たかのように輝いている。</p>
-<p>「すごい！ 本当に音が鳴ってる！」</p>
-<p>美久は、興奮冷めやらぬ様子で、僕が書いたコードを食い入るように見つめている。彼女の言葉を聞いて、僕も改めて、この技術の持つ可能性に気づかされた。単に音を鳴らすだけじゃない。これこそが、僕たちのゲームに「魂」を吹き込む瞬間なのだ。</p>
-<p>「そう。これで、シーンに合わせてBGMを変えたり、選択肢を選んだ時に効果音を鳴らしたり……。全部、この音声再生でできるんだ」</p>
-<p>僕の言葉に、美久の目がさらに大きく見開かれた。彼女は、ゆっくりと僕の方を向いた。その瞳には、感動と、そして、僕への感謝の気持ちが溢れているように見えた。</p>
-<p>「先輩……！ 私、告白シーンで、あの乙女ゲーの神曲を流したいです！ あの、主人公とヒーローが初めて手をつなぐシーンで流れる、あの曲！」</p>
-<p>美久は、熱っぽく語り始めた。その言葉に、僕も思わず「わかる！」と声を上げた。僕にも、ギャルゲーで「この曲が流れたら、もうエンディングだ！」と確信するような、思い出のBGMがある。音楽は、ゲームの記憶と深く結びついているのだ。</p>
-<p>「わかる！ 俺も、あのギャルゲーの、ヒロインが初めて本音を打ち明けるシーンで流れるBGM、あれは本当に神曲だった……！ あの曲が流れると、今でも胸が締め付けられるんだ」</p>
-<p>僕たちは、お互いの「思い出のBGM」について、熱く語り合った。ゲーム音楽が、いかに僕たちの心に深く刻まれているか。そして、その音楽が、ゲーム体験をいかに豊かにしているか。ゲーマー同士だからこそ分かり合える、深い共感がそこにはあった。</p>
-<p>僕たちは、実際に美久が用意したBGMファイルをゲームに組み込んでみた。告白シーンのプロトタイプに、美久が選んだ乙女ゲーの「神曲」を流す。セリフが表示され、BGMが流れ始めた瞬間、部室の空気が一変した。まるで、本当にゲームの世界に入り込んだかのような、甘く、切ない雰囲気が漂う。</p>
-<p>美久は、そのBGMを聴きながら、うっとりとした表情を浮かべている。その姿は、僕にとって、何よりも尊いものだった。僕一人では、決して生み出せなかっただろう、この感動。美久と一緒だからこそ、感じられる、この特別な感情。</p>
-<p>プログラミングは、単なる技術じゃない。それは、僕たちの「想い」を、具体的な形にするための、そして、誰かの「心」を揺さぶるための、最高のツールだ。音声再生という、たった一つの概念を学ぶだけで、美久はこんなにも目を輝かせ、ゲーム制作の喜びを全身で表現している。その姿を見ていると、僕の胸にも、温かいものがこみ上げてきた。</p>
-<p>僕たちのノベルゲーム制作は、音声再生という強力な武器を手に入れた。これで、より感情豊かで、プレイヤーの記憶に残る物語を紡ぐことができるだろう。そして、僕たちの関係もまた、この思い出のBGMのように、お互いの「心」に深く響き合い、より深く、より甘く、結びついていくのだろう。そんな予感が、僕の胸を、優しく、そして強く、締め付けた。</p>
+<h1 id="18">第18話 オブジェクトで繋がる想い<a class="headerlink" href="#18" title="Permanent link">&para;</a></h1>
+<h2 id="10267">10月26日（木）午前7時<a class="headerlink" href="#10267" title="Permanent link">&para;</a></h2>
+<p>昨夜のキス。</p>
+<p>頬に触れた美久の柔らかい唇の感触が、まだ残っている。</p>
+<p>（嬉しかった）</p>
+<p>素直にそう思う。</p>
+<p>美久の気持ちが、確実に僕に向いている。</p>
+<p>それが分かって、世界が違って見える。</p>
+<p>今日も美久に会える。</p>
+<p>それだけで、朝から幸せな気分だ。</p>
 <p>◇◇◇◇</p>
+<h2 id="745">午前7時45分　いつもの廊下<a class="headerlink" href="#745" title="Permanent link">&para;</a></h2>
+<p>「おはよう、美久」</p>
+<p>いつもより少し早く出て、美久を待っていた。</p>
+<p>「お、おはよう」</p>
+<p>美久の顔が真っ赤だ。</p>
+<p>昨夜のことを思い出しているのかな。</p>
+<p>「よく眠れた？」</p>
+<p>「う、うん。隆弘くんは？」</p>
+<p>「最高の夢を見た」</p>
+<p>僕の言葉に、美久の顔がさらに赤くなる。</p>
+<p>可愛い。</p>
+<p>「今日も一緒に頑張ろう」</p>
+<p>「うん！」</p>
+<p>エレベーターで降りながら、美久がそっと言った。</p>
+<p>「昨日は、ありがとう」</p>
+<p>「こちらこそ」</p>
+<p>二人で顔を見合わせて、照れ笑いを浮かべる。</p>
+<p>新しい朝が、始まった。</p>
+<p>◇◇◇◇</p>
+<h2 id="430">午後4時30分　プログラミング部室<a class="headerlink" href="#430" title="Permanent link">&para;</a></h2>
+<p>「今日は、オブジェクトについて教えるよ」</p>
+<p>放課後の部室。</p>
+<p>他の部員たちは、それぞれの作業に没頭している。</p>
+<p>「オブジェクト？」</p>
+<p>「複数のデータをまとめて管理する仕組みだよ」</p>
+<p>僕はホワイトボードに図を描きながら説明する。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// キャラクターのデータをオブジェクトで表現</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">miku</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;河内美久&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">16</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">grade</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;childhood_friend&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">personality</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;明るい&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;素直&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;一途&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">likes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;プログラミング&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;イラスト&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;隆弘くん&quot;</span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">miku</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;河内美久&quot;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">miku</span><span class="p">.</span><span class="nx">likes</span><span class="p">[</span><span class="mf">2</span><span class="p">]);</span><span class="w"> </span><span class="c1">// &quot;隆弘くん&quot;</span>
+</code></pre></div>
+<p>「わあ、私のデータだ！」</p>
+<p>美久が嬉しそうに画面を見つめる。</p>
+<p>「でも、好きなものに隆弘くんって……」</p>
+<p>「事実でしょ？」</p>
+<p>僕がニヤリと笑うと、美久は真っ赤になった。</p>
+<p>「もう、隆弘くんのいじわる」</p>
+<p>でも、否定はしない。</p>
+<p>それが嬉しい。</p>
+<p>◇◇◇◇</p>
+<h2 id="515">午後5時15分　ゲームへの実装<a class="headerlink" href="#515" title="Permanent link">&para;</a></h2>
+<p>「オブジェクトを使えば、ゲームのデータ管理が楽になる」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ゲーム全体の状態管理</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gameData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">player</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;主人公&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">characters</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">miku</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">yui</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ゆい&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">sakura</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;さくら&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">scene</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">current</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">background</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;classroom.jpg&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">bgm</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;daily.mp3&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 好感度を上げる関数</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">increaseAffection</span><span class="p">(</span><span class="nx">character</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">gameData</span><span class="p">.</span><span class="nx">characters</span><span class="p">[</span><span class="nx">character</span><span class="p">].</span><span class="nx">affection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">amount</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">gameData</span><span class="p">.</span><span class="nx">characters</span><span class="p">[</span><span class="nx">character</span><span class="p">].</span><span class="nx">name</span><span class="si">}</span><span class="sb">の好感度が</span><span class="si">${</span><span class="nx">amount</span><span class="si">}</span><span class="sb">上がった！`</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「なるほど！全部のデータが整理されてる」</p>
+<p>美久が理解した様子で頷く。</p>
+<p>「これなら、どのキャラクターがどんな状態か、すぐ分かるね」</p>
+<p>「そう。プログラミングは、整理整頓が大事なんだ」</p>
+<p>僕の言葉に、美久が微笑む。</p>
+<p>「隆弘くんの部屋みたいに？」</p>
+<p>「あ、あれは……」</p>
+<p>確かに、僕の部屋は整理整頓が行き届いている。</p>
+<p>美久に褒められて、ちょっと照れる。</p>
+<p>◇◇◇◇</p>
+<h2 id="6">午後6時　メソッドの追加<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>「オブジェクトには、関数も入れられるんだ」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// キャラクターオブジェクトに機能を追加</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mikuCharacter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;河内美久&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">mood</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;happy&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">// メソッド（オブジェクトの関数）</span>
+<span class="w">    </span><span class="nx">speak</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">text</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">changeMode</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">newMood</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">mood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newMood</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">の気分が</span><span class="si">${</span><span class="nx">newMood</span><span class="si">}</span><span class="sb">になった`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">confess</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">affection</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">80</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="s2">&quot;あの……実は、ずっと好きでした！&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="s2">&quot;え、えっと……&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 使用例</span>
+<span class="nx">mikuCharacter</span><span class="p">.</span><span class="nx">affection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">85</span><span class="p">;</span>
+<span class="nx">mikuCharacter</span><span class="p">.</span><span class="nx">confess</span><span class="p">();</span><span class="w"> </span><span class="c1">// &quot;河内美久: あの……実は、ずっと好きでした！&quot;</span>
+</code></pre></div>
+<p>「告白機能まで！？」</p>
+<p>美久が顔を真っ赤にする。</p>
+<p>「ゲームには必要でしょ？」</p>
+<p>「そ、そうだけど……」</p>
+<p>画面を見つめる美久の横顔。</p>
+<p>昨夜のキスを思い出してしまう。</p>
+<p>「実際の告白は、もっとドキドキするけどね」</p>
+<p>つい、そんなことを言ってしまった。</p>
+<p>美久が僕を見つめる。</p>
+<p>その瞳に、期待のような何かが宿っている。</p>
+<p>◇◇◇◇</p>
+<h2 id="645">午後6時45分　複雑なオブジェクト<a class="headerlink" href="#645" title="Permanent link">&para;</a></h2>
+<p>「もっと複雑な構造も作れるよ」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// シーンデータの管理</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">sceneDatabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">opening</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;運命の出会い&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;教室&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;放課後&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">characters</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;miku&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">dialogue</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;miku&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;先輩、プログラミング教えてください！&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">expression</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;smile&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;え？どうして急に？&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;もちろん教えるよ&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">effect</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">increaseAffection</span><span class="p">(</span><span class="s2">&quot;miku&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ちょっと忙しいかな&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">effect</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">increaseAffection</span><span class="p">(</span><span class="s2">&quot;miku&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">5</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">confession</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">99</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;想いを伝える時&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;屋上&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;夕暮れ&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">required</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">miku</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;completed_game&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">dialogue</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;miku&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ゲーム、完成したね&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">expression</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;happy&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久のおかげだよ&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;miku&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;違う。二人で作ったから&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">expression</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blush&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久、伝えたいことがあるんだ&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「すごい……物語の全てがデータになってる」</p>
+<p>美久が感心したように呟く。</p>
+<p>「告白シーンまで用意されてる」</p>
+<p>「実装するかは別として、ね」</p>
+<p>僕が言うと、美久が小さく呟いた。</p>
+<p>「実装して欲しいな」</p>
+<p>聞こえたような、聞こえなかったような。</p>
+<p>でも、美久の頬が赤いのは確かだ。</p>
+<p>◇◇◇◇</p>
+<h2 id="730">午後7時30分　オブジェクトの応用<a class="headerlink" href="#730" title="Permanent link">&para;</a></h2>
+<p>「オブジェクトを使えば、セーブデータも簡単に作れる」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// セーブデータの構造</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">saveData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span>
+<span class="w">    </span><span class="nx">playerName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;嵐山隆弘&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">currentScene</span><span class="o">:</span><span class="w"> </span><span class="mf">42</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">gameProgress</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">completedScenes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">15</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="mf">35</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">,</span><span class="w"> </span><span class="mf">42</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">unlockedCGs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;opening&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;first_lesson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;debugging_night&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">unlockedBGMs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;main_theme&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;love_theme&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">characterStatus</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">miku</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">95</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;true_end&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">memories</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;初めてのプログラミングレッスン&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;一緒に作ったゲーム&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;深夜のデバッグ&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;頬へのキス&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// セーブ機能</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">saveGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;gameData&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">saveData</span><span class="p">));</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ゲームを保存しました&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ロード機能</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">loadGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">saved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;gameData&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">saved</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">saved</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「思い出まで保存されてる……」</p>
+<p>美久が画面を見つめる。</p>
+<p>「頬へのキスって」</p>
+<p>「昨日の夜のことも、大切な思い出だから」</p>
+<p>僕の言葉に、美久の目が潤む。</p>
+<p>「隆弘くん……」</p>
+<p>「美久との思い出は、全部大切に保存したい」</p>
+<p>今度は僕が照れる番だった。</p>
+<p>でも、本心だ。</p>
+<p>◇◇◇◇</p>
+<h2 id="815">午後8時15分　今日のまとめ<a class="headerlink" href="#815" title="Permanent link">&para;</a></h2>
+<p>「オブジェクトを使えば、複雑なデータも整理できる」</p>
+<p>部室には、僕と美久だけになっていた。</p>
+<p>他の部員は、みんな帰ってしまった。</p>
+<p>「人の気持ちも、オブジェクトみたいに整理できたらいいのに」</p>
+<p>美久がぽつりと呟く。</p>
+<p>「どういうこと？」</p>
+<p>「だって、好きとか、嬉しいとか、数値化できないじゃない」</p>
+<p>美久の言葉に、僕は少し考えた。</p>
+<p>「でも、それがいいんじゃないかな」</p>
+<p>「え？」</p>
+<p>「数値化できないから、言葉で伝える必要がある」</p>
+<p>僕は美久を見つめる。</p>
+<p>「昨日の夜みたいに、行動で示すこともできる」</p>
+<p>美久の顔が、また赤くなった。</p>
+<p>「そ、そうだね」</p>
+<p>◇◇◇◇</p>
+<h2 id="845">午後8時45分　帰り道<a class="headerlink" href="#845" title="Permanent link">&para;</a></h2>
+<p>「今日もありがとう」</p>
+<p>マンションへの帰り道。</p>
+<p>夜風が心地いい。</p>
+<p>「オブジェクト、難しかった？」</p>
+<p>「ううん。隆弘くんの説明、分かりやすかった」</p>
+<p>「良かった」</p>
+<p>しばらく無言で歩く。</p>
+<p>でも、昨日とは違う。</p>
+<p>もっと近い距離で、もっと自然に。</p>
+<p>「ねえ、隆弘くん」</p>
+<p>「ん？」</p>
+<p>「私たちの関係も、オブジェクトで表現できる？」</p>
+<p>突然の質問に、僕は考える。</p>
+<p>そして、答えた。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">ourRelationship</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;幼馴染から恋人へ&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">startDate</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">currentStatus</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;相思相愛&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">sharedMemories</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;countless&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">futurePromise</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ずっと一緒&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">love</span><span class="o">:</span><span class="w"> </span><span class="kc">Infinity</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>頭の中で組み立てたコードを、そのまま言葉にする。</p>
+<p>美久が立ち止まった。</p>
+<p>「Infinityって……」</p>
+<p>「無限大。測定不能なくらい大きい」</p>
+<p>僕も立ち止まり、美久を見つめる。</p>
+<p>「僕の美久への想いは、数値化できないから」</p>
+<p>美久の瞳から、涙がこぼれた。</p>
+<p>「ずるい……そんな言い方」</p>
+<p>でも、笑っている。</p>
+<p>「私も、Infinityだよ」</p>
+<p>エレベーターで7階に着く。</p>
+<p>今日は、部屋の前で少し話をした。</p>
+<p>明日のこと、ゲームのこと、これからのこと。</p>
+<p>「じゃあ、おやすみ」</p>
+<p>「おやすみなさい」</p>
+<p>それぞれの部屋に入る直前、美久が振り返った。</p>
+<p>「隆弘くん」</p>
+<p>「なに？」</p>
+<p>「大好き」</p>
+<p>昨日と同じ言葉。</p>
+<p>でも、重みが違う。</p>
+<p>「僕も大好きだよ、美久」</p>
+<p>今度は、はっきりと伝えた。</p>
+<p>オブジェクトで整理された想いは、確実に、正確に、相手に届く。</p>
+<p>プログラミングが教えてくれた、大切なこと。</p>
+<p>それは、想いを形にする方法。</p>
+<p>そして、それを伝える勇気。</p>
 
 
 

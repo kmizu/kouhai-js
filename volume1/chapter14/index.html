@@ -913,6 +913,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    第14話 7階の扉
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -924,6 +937,106 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10185" class="md-nav__link">
+    <span class="md-ellipsis">
+      10月18日（火）午後5時
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10219" class="md-nav__link">
+    <span class="md-ellipsis">
+      10月21日（土）午前9時 学校集合
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      午前10時 宿泊研修施設
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      午前11時 作業開始
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後2時 昼食後
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後6時 夕食
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後8時 夜の作業
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後11時 深夜の休憩
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10226" class="md-nav__link">
+    <span class="md-ellipsis">
+      10月22日（日）午前6時
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1170,28 +1283,223 @@
   
 
 
-<h1 id="14">第14話「選択肢をクリック！（イベントリスナー）」<a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>
-<p>DOM操作を学んだ僕たちは、ゲームのセリフを自由自在に書き換えられるようになった。美久は、自分の書いたシナリオが、ボタン一つで次々と表示されていくことに、まるで魔法を見ているかのように目を輝かせている。その純粋な感動が、僕の心にも温かい光を灯した。</p>
-<p>「先輩、これって、選択肢をクリックしたら、次のシナリオに進むようにできますよね？」</p>
-<p>美久が、僕の顔を覗き込むようにして尋ねてきた。彼女の目は、すでにゲームの完成形を思い描いているようだ。その探究心と、ゲームへの情熱に、僕は感心するばかりだ。</p>
-<p>「もちろんできるぞ。それが、イベントリスナーの役割だ」</p>
-<p>僕は、ホワイトボードに「イベントリスナー」と書いた。イベントリスナーとは、ウェブページ上で起こる様々な「イベント」（例えば、ボタンがクリックされた、キーボードが押された、マウスが動いた、など）を監視し、そのイベントが発生した時に特定の処理を実行するための仕組みだ。</p>
-<p>「ゲームで言えば、プレイヤーが選択肢のボタンをクリックする、っていうのが『イベント』だ。そのイベントが発生した時に、『次のシナリオを表示する』っていう処理を実行するように設定するのが、イベントリスナーだ」</p>
-<p>僕は、簡単な例を挙げて説明した。HTMLでボタンを作り、JavaScriptでそのボタンにイベントリスナーを設定する。<code>button.addEventListener('click', function() { ... });</code>。そして、ボタンがクリックされた時に、<code>console.log</code>でメッセージを表示するコードを打ち込んだ。</p>
-<p>美久は、僕の書いたコードを食い入るように見つめている。そして、僕がブラウザでボタンをクリックすると、コンソールに「ボタンがクリックされました！」というメッセージが表示された。美久は「わあ！」と歓声を上げた。</p>
-<p>「すごい！ 私がクリックしたことが、ちゃんとプログラムに伝わってる！」</p>
-<p>美久は、何度もボタンをクリックしては、コンソールに表示されるメッセージを確認している。その姿は、まるで初めて言葉を交わす生き物と対話しているかのように、純粋な喜びと興奮に満ちていた。</p>
-<p>「そう。これで、プレイヤーの操作に反応して、ゲームを動かすことができるようになる。つまり、本格的なノベルゲームの骨格が、これで完成するんだ」</p>
-<p>僕の言葉に、美久の目が大きく見開かれた。彼女は、ゆっくりと僕の方を向いた。その瞳には、感動と、そして、僕への感謝の気持ちが溢れているように見えた。</p>
-<p>「先輩……！ 私、本当にゲームが作れるようになるんですね！」</p>
-<p>美久の声は、少し震えていた。その言葉を聞いて、僕の胸にも、じんわりと温かいものが広がっていく。僕が教えたプログラミングの知識が、美久の「夢」を形にする手助けになっている。その事実が、僕にとって何よりも嬉しいことだった。</p>
-<p>僕たちは、これまでに作ったセリフ表示の機能と、if文による分岐、そして今回のイベントリスナーを組み合わせて、簡単なノベルゲームのプロトタイプを完成させた。画面には、美久が描いたキャラクターの立ち絵と、セリフが表示されている。そして、その下に、二つの選択肢ボタン。</p>
-<p>美久が、震える指で「はい」のボタンをクリックした。すると、セリフが次のものに切り替わり、シナリオが先に進む。次に「いいえ」のボタンをクリックすると、別のセリフが表示され、シナリオが分岐する。たったそれだけの動作なのに、僕たちの胸には、大きな達成感がこみ上げてきた。</p>
-<p>「先輩……！ これ、本当に私たちが作ったゲームなんですね……！」</p>
-<p>美久は、感動のあまり、瞳を潤ませていた。その姿を見て、僕もまた、胸が熱くなる。僕一人では、決して味わえなかっただろう、この喜び。美久と一緒だからこそ、感じられる、この特別な感情。</p>
-<p>プログラミングは、単なるコードの羅列じゃない。それは、僕たちの「想い」を、具体的な形にするための、そして、誰かと「喜び」を分かち合うための、最高のツールだ。イベントリスナーという、たった一つの概念を学ぶだけで、美久はこんなにも目を輝かせ、ゲーム制作の喜びを全身で表現している。その姿を見ていると、僕の胸にも、温かいものがこみ上げてきた。</p>
-<p>僕たちのノベルゲーム制作は、イベントリスナーという強力な武器を手に入れた。これで、プレイヤーの操作に反応する、本格的なゲームを創り出すことができるだろう。そして、僕たちの関係もまた、このイベントリスナーのように、お互いの「心」の動きに反応し、より深く、より甘く、結びついていくのだろう。そんな予感が、僕の胸を、優しく、そして強く、締め付けた。</p>
+<h1 id="14">第14話 プログラミング合宿<a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>
+<h2 id="10185">10月18日（火）午後5時<a class="headerlink" href="#10185" title="Permanent link">&para;</a></h2>
+<p>「みんな、聞いてくれ」</p>
+<p>部活終了後、僕は部員たちを集めた。</p>
+<p>「今週末、プログラミング合宿をやろうと思う」</p>
+<p>部員たちがざわめく。</p>
+<p>「文化祭まであと3週間。ゲームを完成させるには、集中して作業する時間が必要だ」</p>
+<p>田中が手を挙げる。</p>
+<p>「どこでやるんだ？」</p>
+<p>「学校の宿泊研修施設を借りられることになった。土日の1泊2日」</p>
+<p>美久が不安そうな顔をする。</p>
+<p>「私たち文芸部も参加していいんですか？」</p>
+<p>「もちろん。むしろ来てくれないと困る」</p>
+<p>僕の言葉に、美久の表情が明るくなった。</p>
 <p>◇◇◇◇</p>
+<h2 id="10219">10月21日（土）午前9時　学校集合<a class="headerlink" href="#10219" title="Permanent link">&para;</a></h2>
+<p>「おはよう、隆弘くん」</p>
+<p>美久が大きなリュックを背負って現れた。</p>
+<p>「重そうだね」</p>
+<p>「イラストの道具とか、お菓子とか……」</p>
+<p>「お菓子？」</p>
+<p>「みんなで食べようと思って」</p>
+<p>相変わらず気が利く美久。</p>
+<p>文芸部と合わせて、総勢12名が集まった。</p>
+<p>「じゃあ、出発しよう」</p>
+<p>学校のマイクロバスに乗り込む。</p>
+<p>美久が隣に座ってきた。</p>
+<p>「隣、いい？」</p>
+<p>「もちろん」</p>
+<p>バスが動き出す。</p>
+<p>美久との距離が近くて、ドキドキする。</p>
+<p>◇◇◇◇</p>
+<h2 id="10">午前10時　宿泊研修施設<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<p>「わあ、広い！」</p>
+<p>施設に着いた美久が歓声を上げる。</p>
+<p>研修室、宿泊室、食堂、浴場。</p>
+<p>プログラミング合宿には十分な環境だ。</p>
+<p>「まず、部屋割りを決めよう」</p>
+<p>男子部屋と女子部屋に分かれる。</p>
+<p>「研修室で作業して、疲れたら休憩。基本的に自由行動で」</p>
+<p>みんなが荷物を置いて、研修室に集まってきた。</p>
+<p>「じゃあ、現在の進捗を確認しよう」</p>
+<p>◇◇◇◇</p>
+<h2 id="11">午前11時　作業開始<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<p>ホワイトボードに、残りのタスクを書き出す。</p>
+<ul>
+<li>シナリオ執筆（70%完了）</li>
+<li>キャラクターイラスト（60%完了）</li>
+<li>背景イラスト（40%完了）</li>
+<li>プログラム実装（50%完了）</li>
+<li>BGM・効果音選定（20%完了）</li>
+<li>デバッグ・テスト（未着手）</li>
+</ul>
+<p>「結構やることあるな……」</p>
+<p>田中が頭を抱える。</p>
+<p>「だから合宿なんだ。集中すれば終わる」</p>
+<p>僕は自信を持って言った。</p>
+<p>美久が手を挙げる。</p>
+<p>「私、残りのイラスト頑張ります！」</p>
+<p>「俺たちはプログラムの実装を進める」</p>
+<p>それぞれが作業を始めた。</p>
+<p>◇◇◇◇</p>
+<h2 id="2">午後2時　昼食後<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>「隆弘先輩、ちょっといいですか？」</p>
+<p>美久が僕のところにやってきた。</p>
+<p>「どうした？」</p>
+<p>「このシーンの演出なんですけど……」</p>
+<p>美久のノートPCを覗き込む。</p>
+<p>告白シーンの絵コンテだった。</p>
+<p>「ここで、花びらを舞わせたいんです」</p>
+<p>「CSSアニメーションとJavaScriptを組み合わせれば実装できるよ」</p>
+<p>僕は実装方法を説明し始めた。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 桜の花びらアニメーション</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">createPetal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">petal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">petal</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;petal&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">petal</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;px&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">petal</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">animationDuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">petal</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">petal</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">petal</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">5000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 定期的に花びらを生成</span>
+<span class="nx">setInterval</span><span class="p">(</span><span class="nx">createPetal</span><span class="p">,</span><span class="w"> </span><span class="mf">300</span><span class="p">);</span>
+</code></pre></div>
+<p>「素敵！まるで本物の桜みたい」</p>
+<p>美久の笑顔を見て、疲れが吹き飛ぶ。</p>
+<p>◇◇◇◇</p>
+<h2 id="6">午後6時　夕食<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>「みんな、お疲れ様！」</p>
+<p>食堂に集まって、夕食を取る。</p>
+<p>「進捗どう？」</p>
+<p>「シナリオ、あと3ルート分書けました」</p>
+<p>「背景も2枚完成」</p>
+<p>「バグを5個潰した」</p>
+<p>みんなの報告を聞いて、手応えを感じる。</p>
+<p>美久が僕の隣に座る。</p>
+<p>「隆弘くん、すごいね」</p>
+<p>「何が？」</p>
+<p>「みんなをまとめて、ゲームを作り上げていく姿」</p>
+<p>美久の言葉に照れる。</p>
+<p>「みんなのおかげだよ」</p>
+<p>「ううん、隆弘くんがいるから、みんな頑張れるんだよ」</p>
+<p>そんな風に言われると、嬉しくて仕方ない。</p>
+<p>◇◇◇◇</p>
+<h2 id="8">午後8時　夜の作業<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<p>夕食後も作業は続く。</p>
+<p>僕は、ゲームのコア部分の実装に集中していた。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ゲームの状態管理</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">GameState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">currentScene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">affection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">miku</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">yui</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">sakura</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// シーン遷移</span>
+<span class="w">    </span><span class="nx">changeScene</span><span class="p">(</span><span class="nx">sceneId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">currentScene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sceneId</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">displayScene</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// フラグ管理</span>
+<span class="w">    </span><span class="nx">setFlag</span><span class="p">(</span><span class="nx">flagName</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">flags</span><span class="p">[</span><span class="nx">flagName</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 好感度変更</span>
+<span class="w">    </span><span class="nx">changeAffection</span><span class="p">(</span><span class="nx">character</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">affection</span><span class="p">[</span><span class="nx">character</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">amount</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">checkRouteCondition</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>真剣にコードを書いていると、美久がそっと近づいてきた。</p>
+<p>「コーヒー、入れてきたよ」</p>
+<p>「ありがとう」</p>
+<p>温かいコーヒーを受け取る。</p>
+<p>「無理しないでね」</p>
+<p>「大丈夫。楽しいから」</p>
+<p>本当に楽しい。</p>
+<p>美久と一緒に作るゲーム。</p>
+<p>仲間たちとの共同作業。</p>
+<p>プログラミングへの情熱。</p>
+<p>すべてが合わさって、最高の時間になっている。</p>
+<p>◇◇◇◇</p>
+<h2 id="11_1">午後11時　深夜の休憩<a class="headerlink" href="#11_1" title="Permanent link">&para;</a></h2>
+<p>「そろそろ休憩しよう」</p>
+<p>さすがに疲れが見え始めた部員たち。</p>
+<p>でも、みんな充実した表情をしている。</p>
+<p>「今日はここまでにして、明日また頑張ろう」</p>
+<p>部員たちが部屋に戻っていく中、美久が残った。</p>
+<p>「隆弘くん、ちょっと外に出ない？」</p>
+<p>「いいよ」</p>
+<p>施設の外に出ると、満天の星空が広がっていた。</p>
+<p>「きれい……」</p>
+<p>美久が夜空を見上げる。</p>
+<p>「京都でも、こんなに星が見えるんだね」</p>
+<p>「山の中だからね」</p>
+<p>二人で並んで、星を眺める。</p>
+<p>「ねえ、隆弘くん」</p>
+<p>「ん？」</p>
+<p>「ゲームが完成したら、どうなるのかな」</p>
+<p>美久の問いに、少し考える。</p>
+<p>「文化祭で発表して、みんなに遊んでもらって……」</p>
+<p>「それで、終わり？」</p>
+<p>美久の声に、寂しさが滲む。</p>
+<p>「終わりじゃないよ」</p>
+<p>僕は美久を見つめた。</p>
+<p>「これは始まりだ。僕たちの」</p>
+<p>「始まり？」</p>
+<p>「うん。一緒にもっといろんなものを作っていきたい」</p>
+<p>美久の瞳が潤む。</p>
+<p>「私も、隆弘くんと一緒に作り続けたい」</p>
+<p>星空の下、二人の距離が縮まる。</p>
+<p>もう少しで、唇が触れそうな距離。</p>
+<p>「美久……」</p>
+<p>その時、施設のドアが開いた。</p>
+<p>「おーい、二人とも！お風呂の時間だぞー」</p>
+<p>田中の声で我に返る。</p>
+<p>「は、はい！今行きます！」</p>
+<p>慌てて離れる僕たち。</p>
+<p>でも、お互いの気持ちは、もう隠せない。</p>
+<p>◇◇◇◇</p>
+<h2 id="10226">10月22日（日）午前6時<a class="headerlink" href="#10226" title="Permanent link">&para;</a></h2>
+<p>早朝、誰よりも早く起きた。</p>
+<p>外に出ると、朝靄が立ち込めている。</p>
+<p>「隆弘くん」</p>
+<p>振り返ると、美久がいた。</p>
+<p>「早いね」</p>
+<p>「隆弘くんも」</p>
+<p>二人で朝の散歩をする。</p>
+<p>「昨日は、ごめん」</p>
+<p>「何が？」</p>
+<p>「いいところで邪魔が入って」</p>
+<p>美久の顔が赤くなる。</p>
+<p>「べ、別に……」</p>
+<p>でも、嬉しそうな表情。</p>
+<p>「合宿が終わったら、ちゃんと話したいことがある」</p>
+<p>僕の言葉に、美久は小さく頷いた。</p>
+<p>「うん、待ってる」</p>
+<p>朝日が昇り始める。</p>
+<p>新しい一日の始まり。</p>
+<p>そして、僕たちの新しい関係の始まりも、もうすぐそこまで来ている。</p>
+<p>プログラミング合宿は、技術だけでなく、僕たちの絆も深めてくれた。</p>
+<p>ゲームの完成まで、あと少し。</p>
+<p>そして、美久との関係も、あと少しで次のステージへ。</p>
+<p>すべてが、順調に進んでいる。</p>
 
 
 

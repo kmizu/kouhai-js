@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#13dom" class="md-skip">
+        <a href="#13" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -890,6 +890,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    第13話 非同期という言葉
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -901,6 +914,97 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1017720" class="md-nav__link">
+    <span class="md-ellipsis">
+      10月17日（月）午前7時20分
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#745" class="md-nav__link">
+    <span class="md-ellipsis">
+      午前7時45分 マンション廊下
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#430" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後4時30分 プログラミング部室
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#515" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後5時15分 実装練習
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後6時 複雑なイベント処理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#645" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後6時45分 特別な実装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#730" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後7時30分 今日の成果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      午後8時 帰り道
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1170,28 +1274,237 @@
   
 
 
-<h1 id="13dom">第13話「テキストボックスを書き換えろ！（DOM操作）」<a class="headerlink" href="#13dom" title="Permanent link">&para;</a></h1>
-<p>CSSの魔法で、僕たちのゲーム画面は、見違えるほど華やかになった。美久は、自分の描いたキャラクターが、イメージ通りのフォントと色でセリフを喋るのを見て、何度も「可愛い！」と歓声を上げている。その笑顔を見るたびに、僕の心も温かくなる。</p>
-<p>「先輩、このセリフ、ゲームの進行に合わせて、JavaScriptで書き換えられるんですよね？」</p>
-<p>美久が、ふとそんな質問をしてきた。彼女の目は、すでに次のステップを見据えている。その探究心に、僕は感心した。</p>
-<p>「もちろんできるぞ。それが、DOM操作だ」</p>
-<p>僕は、ホワイトボードに「DOM操作」と書いた。DOM（Document Object Model）とは、HTMLやXMLドキュメントを、プログラムから操作できるようにするための仕組みだ。ウェブページ上のあらゆる要素を、JavaScriptで自由自在に操ることができる。</p>
-<p>「HTMLが建物の骨組みで、CSSが内装や外装だとしたら、DOM操作は、その建物の中にあるものを、動かしたり、入れ替えたりするようなものだ。例えば、壁に飾ってある絵を別の絵に変えたり、家具の配置を変えたり……」</p>
-<p>僕の例えに、美久は「なるほど！」と頷いた。彼女の頭の中では、もうすでに、ゲームのセリフが次々と書き換わっていく様子が描かれているのだろう。</p>
-<p>「で、特定の要素をJavaScriptから操作するには、まずその要素を『見つける』必要がある。その時に使うのが、<code>getElementById</code>だ」</p>
-<p>僕は、簡単なHTMLのコードを打ち込んだ。セリフを表示するための<code>&lt;p&gt;</code>タグに、<code>id="message-box"</code>という識別子をつけた。そして、JavaScriptでその要素を取得し、中身を書き換えるコードを打ち込む。</p>
-<p><code>document.getElementById('message-box').textContent = 'こんにちは、世界！';</code></p>
-<p>画面に表示されていた「セリフが入ります」という文字が、一瞬で「こんにちは、世界！」に書き換わる。美久は「わあ！」と歓声を上げた。その瞳は、まるで魔法を見たかのように輝いている。</p>
-<p>「すごい！ これでゲームのセリフを自由に書き換えられるんだ！」</p>
-<p>美久は、興奮冷めやらぬ様子で、僕が書いたコードを食い入るように見つめている。彼女の言葉を聞いて、僕も改めて、この技術の持つ可能性に気づかされた。単に文字を書き換えるだけじゃない。これこそが、ノベルゲームの「物語」を動かす、根幹の技術なのだ。</p>
-<p>「そう。プレイヤーの選択によって、セリフを変えたり、キャラクターの表情を変えたり、背景を切り替えたり……。全部、このDOM操作でできるんだ」</p>
-<p>僕たちは、実際に自分たちのゲームに、DOM操作を組み込んでみた。美久が考えたシナリオの冒頭部分をHTMLに書き込み、JavaScriptでセリフを一つずつ表示させていく。ボタンをクリックするたびに、テキストボックスの中身が次のセリフに切り替わる。たったそれだけの動作なのに、美久は「ゲームだ！ 本当にゲームになってる！」と、感動したように呟いた。</p>
-<p>その声を聞いて、僕の胸にも、じんわりと温かいものが広がっていく。僕一人でコードを書いていた時には感じられなかった、この喜び。美久の感動が、僕のプログラミングへの情熱を、さらに燃え上がらせる。</p>
-<p>「先輩、これって、キャラクターの立ち絵も、背景も、全部JavaScriptで切り替えられるってことですよね？！」</p>
-<p>美久は、目を輝かせながら、次々と質問を投げかけてくる。その探究心は、まるで尽きることがない。僕は、その一つ一つに丁寧に答えながら、美久の成長を間近で見守る喜びを感じていた。</p>
-<p>プログラミングは、単なる技術じゃない。それは、僕たちの「想い」を、具体的な形にするための、強力なツールだ。DOM操作という、たった一つの概念を学ぶだけで、美久はこんなにも目を輝かせ、ゲーム制作が現実味を帯びてきたと感動している。その姿を見ていると、僕の胸にも、温かいものがこみ上げてきた。</p>
-<p>僕たちのノベルゲーム制作は、DOM操作という強力な武器を手に入れた。これで、よりダイナミックで、プレイヤーの感情に訴えかける物語を紡ぐことができるだろう。そして、僕たちの関係もまた、このDOM操作のように、お互いの心を、より深く、より自由に、書き換えていくのだろう。そんな予感が、僕の胸を、優しく、そして強く、締め付けた。</p>
+<h1 id="13">第13話 イベントリスナーと心の距離<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
+<h2 id="1017720">10月17日（月）午前7時20分<a class="headerlink" href="#1017720" title="Permanent link">&para;</a></h2>
+<p>昨日の夜のこと。</p>
+<p>『隆弘くん、大好き』</p>
+<p>私、本当にあんなこと言っちゃった。</p>
+<p>布団の中で、顔を覆う。</p>
+<p>（恥ずかしい……でも、後悔はしてない）</p>
+<p>だって、本当の気持ちだから。</p>
+<p>隆弘くんは、どう思ったかな。</p>
+<p>困ったかな。それとも……。</p>
+<p>スマホを確認するけど、特にメッセージはない。</p>
+<p>いつも通り、ということかな。</p>
 <p>◇◇◇◇</p>
+<h2 id="745">午前7時45分　マンション廊下<a class="headerlink" href="#745" title="Permanent link">&para;</a></h2>
+<p>「おはよう、美久」</p>
+<p>いつものように、隆弘くんが待っていた。</p>
+<p>でも、なんだか照れたような表情。</p>
+<p>「お、おはよう」</p>
+<p>私も緊張してしまう。</p>
+<p>昨日の告白のせいで、空気がぎこちない。</p>
+<p>「今日も一緒に行こう」</p>
+<p>「うん」</p>
+<p>エレベーターの中、いつもより距離を感じる。</p>
+<p>（やっぱり、困らせちゃったかな）</p>
+<p>不安になる私。</p>
+<p>でも、隆弘くんがそっと言った。</p>
+<p>「昨日の……ありがとう」</p>
+<p>え？</p>
+<p>「俺も、美久のこと、大好きだよ」</p>
+<p>小さな声だったけど、はっきりと聞こえた。</p>
+<p>私の心臓が、跳ね上がる。</p>
+<p>◇◇◇◇</p>
+<h2 id="430">午後4時30分　プログラミング部室<a class="headerlink" href="#430" title="Permanent link">&para;</a></h2>
+<p>「今日は、イベントリスナーについて教えるね」</p>
+<p>放課後、いつもの部室で。</p>
+<p>隆弘くんとの距離は、なんだか昨日より近い気がする。</p>
+<p>「イベントリスナー？」</p>
+<p>「ユーザーの操作を検知して、それに反応する仕組みだよ」</p>
+<p>隆弘くんが説明を始める。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ボタンをクリックしたときの処理</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;startButton&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;ゲームスタート！&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">startGame</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="c1">// マウスが要素の上に乗ったとき</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;character&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0.8&#39;</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>「なるほど！クリックとか、マウスの動きとかを感知するんですね」</p>
+<p>「そう。これがあるから、インタラクティブなゲームが作れる」</p>
+<p>隆弘くんの説明を聞きながら、ふと思う。</p>
+<p>人の心にも、イベントリスナーがあればいいのに。</p>
+<p>相手の気持ちの変化を、すぐに感知できたら。</p>
+<p>◇◇◇◇</p>
+<h2 id="515">午後5時15分　実装練習<a class="headerlink" href="#515" title="Permanent link">&para;</a></h2>
+<p>「じゃあ、実際に使ってみよう」</p>
+<p>隆弘くんが新しいコードを書き始める。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// キャラクターをクリックしたときの反応</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mikuCharacter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;miku&#39;</span><span class="p">);</span>
+
+<span class="nx">mikuCharacter</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// クリックされた回数をカウント</span>
+<span class="w">    </span><span class="nx">clickCount</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// クリック数に応じて反応を変える</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">clickCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;えっ、なに？&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">clickCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;もう、しつこいよ〜&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;...実は嬉しい&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>「わあ、クリックするたびに反応が変わる！」</p>
+<p>私が何度もクリックしていると、隆弘くんが笑った。</p>
+<p>「美久みたいだね、この反応」</p>
+<p>「え？」</p>
+<p>「最初は驚いて、次に困って、でも本当は嬉しいって」</p>
+<p>隆弘くんの言葉に、顔が熱くなる。</p>
+<p>見透かされてる。</p>
+<p>◇◇◇◇</p>
+<h2 id="6">午後6時　複雑なイベント処理<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>「もっと複雑なイベントも扱えるよ」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// キーボード入力を検知</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;Enter&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">nextMessage</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">skipAnimation</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// ドラッグ＆ドロップ</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">draggedItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;dragstart&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">draggedItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0.5&#39;</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;dragend&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>「すごい！キーボードやドラッグも検知できるんだ」</p>
+<p>「これで、より直感的な操作ができるゲームが作れる」</p>
+<p>隆弘くんの横顔を見つめる。</p>
+<p>真剣にコードを書く姿が、やっぱりかっこいい。</p>
+<p>（好きだな）</p>
+<p>改めて、そう思う。</p>
+<p>◇◇◇◇</p>
+<h2 id="645">午後6時45分　特別な実装<a class="headerlink" href="#645" title="Permanent link">&para;</a></h2>
+<p>「美久のために、特別な機能を作ってみた」</p>
+<p>隆弘くんが、少し照れながら言う。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ハートのアニメーション</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">heart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+<span class="nx">heart</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;heart&#39;</span><span class="p">;</span>
+<span class="nx">heart</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;❤&#39;</span><span class="p">;</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">newHeart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">heart</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">newHeart</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;px&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">newHeart</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;px&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newHeart</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// アニメーション後に削除</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">newHeart</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// CSSアニメーション</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">);</span>
+<span class="nx">style</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    .heart {</span>
+<span class="sb">        position: absolute;</span>
+<span class="sb">        color: #ff69b4;</span>
+<span class="sb">        font-size: 20px;</span>
+<span class="sb">        animation: float-up 1s ease-out;</span>
+<span class="sb">        pointer-events: none;</span>
+<span class="sb">    }</span>
+
+<span class="sb">    @keyframes float-up {</span>
+<span class="sb">        to {</span>
+<span class="sb">            transform: translateY(-100px);</span>
+<span class="sb">            opacity: 0;</span>
+<span class="sb">        }</span>
+<span class="sb">    }</span>
+<span class="sb">`</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
+</code></pre></div>
+<p>画面をクリックすると、ハートが浮かび上がる。</p>
+<p>「わあ、可愛い！」</p>
+<p>思わず、何度もクリックしてしまう。</p>
+<p>画面中にピンクのハートが舞う。</p>
+<p>「美久が喜ぶと思って」</p>
+<p>隆弘くんの優しさに、胸が温かくなる。</p>
+<p>◇◇◇◇</p>
+<h2 id="730">午後7時30分　今日の成果<a class="headerlink" href="#730" title="Permanent link">&para;</a></h2>
+<p>「イベントリスナーを使えば、こんなこともできる」</p>
+<p>隆弘くんが最後に見せてくれたのは、特別なプログラム。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 特別なメッセージシステム</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">messageCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;プログラミングを教えられて嬉しい&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;美久と一緒に作るゲームは特別&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;毎日が楽しい&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;これからもずっと一緒に&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;大好き&quot;</span>
+<span class="p">];</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;special-button&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">messageCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">messages</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="nx">messages</span><span class="p">[</span><span class="nx">messageCount</span><span class="p">]);</span>
+<span class="w">        </span><span class="nx">messageCount</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="s2">&quot;♥&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>ボタンをクリックするたびに、隆弘くんからのメッセージが表示される。</p>
+<p>最後まで読んで、涙が出そうになった。</p>
+<p>「隆弘くん……」</p>
+<p>「昨日の返事、ちゃんとしたくて」</p>
+<p>真っ直ぐな瞳で見つめられる。</p>
+<p>「俺も美久のこと、本当に大好きだ」</p>
+<p>今度は、はっきりと、力強く。</p>
+<p>私の目から、涙がこぼれた。</p>
+<p>嬉しくて、嬉しくて。</p>
+<p>◇◇◇◇</p>
+<h2 id="8">午後8時　帰り道<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<p>「泣かせるつもりじゃなかったんだけど」</p>
+<p>隆弘くんが心配そうに言う。</p>
+<p>「嬉し涙だから、大丈夫」</p>
+<p>私は笑顔を見せる。</p>
+<p>二人で並んで歩く帰り道。</p>
+<p>手と手の距離が、今日は特に近い。</p>
+<p>「ねえ、隆弘くん」</p>
+<p>「ん？」</p>
+<p>「イベントリスナーみたいに、お互いの気持ちの変化も感知できたらいいのにね」</p>
+<p>私の言葉に、隆弘くんは優しく笑った。</p>
+<p>「でも、言葉で伝え合えるから、人間なんじゃないかな」</p>
+<p>「そうだね」</p>
+<p>エレベーターで7階に着く。</p>
+<p>今日は、名残惜しさがいつも以上に強い。</p>
+<p>「明日も、よろしくね」</p>
+<p>「うん、明日も」</p>
+<p>それぞれの部屋に入る前、隆弘くんが振り返った。</p>
+<p>「美久」</p>
+<p>「なに？」</p>
+<p>「今日のプログラム、本当の気持ちだから」</p>
+<p>そう言って、照れたように部屋に入っていった。</p>
+<p>私も自分の部屋に入り、ドアにもたれかかる。</p>
+<p>胸がいっぱいで、言葉にならない。</p>
+<p>イベントリスナーが、二人の心の距離を教えてくれた。</p>
+<p>もう、隠す必要はない。</p>
+<p>私たちは、お互いに「大好き」なんだから。</p>
+<p>スマホが震えた。隆弘くんからのLINE。</p>
+<p>『今日のコード、復習用に送るね。特別なやつも含めて』</p>
+<p>『ありがとう。大切にする』</p>
+<p>『おやすみ、美久』</p>
+<p>『おやすみなさい、隆弘くん』</p>
+<p>そして、最後にもう一言。</p>
+<p>『大好き』</p>
+<p>『俺も大好き』</p>
+<p>画面を見つめながら、幸せな気持ちで眠りについた。</p>
+<p>明日も、隆弘くんに会える。</p>
+<p>それだけで、世界が輝いて見える。</p>
 
 
 
