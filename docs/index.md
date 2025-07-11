@@ -28,7 +28,8 @@
 
 ## 目次
 
-[第1巻（全20話）](volume1/)
+[第1巻](volume1/index.md)
+[第2巻](volume2/index.md)
 
 ---
 
