@@ -1,0 +1,1728 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="京都中京区を舞台としたラブコメxプログラミング小説">
+      
+      
+        <meta name="author" content="久野真一">
+      
+      
+        <link rel="canonical" href="https://kmizu.github.io/kouhai-js/volume1/chapter50/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>第50話 永遠の始まり - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#50" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど" class="md-header__button md-logo" aria-label="あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第50話 永遠の始まり
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink"  aria-label="ダークモードに切り替え"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切り替え" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="pink"  aria-label="ライトモードに切り替え"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切り替え" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kmizu/kouhai-js" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  第1巻
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど" class="md-nav__button md-logo" aria-label="あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kmizu/kouhai-js" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ホーム
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    第1巻
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            第1巻
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第1部 出会いと始まり
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            第1部 出会いと始まり
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第1話 インタラクティブな出会い
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第2話 本当の理由
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第3話 はじめてのHello World
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第4話 分岐する想い
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第5話 好感度という変数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第2部 深まる絆
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            第2部 深まる絆
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第6話 オブジェクトという設定集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第7話 関数という名のシーン
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第8話 朝の約束
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第9話 配列という選択肢
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第10話 保存したい記憶
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第3部 すれ違いと成長
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            第3部 すれ違いと成長
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第11話 距離
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第12話 ひとりの朝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第13話 非同期という言葉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第14話 7階の扉
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第15話 二人の距離
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    第4部 告白と未来
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            第4部 告白と未来
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第16話 疲れた時は
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第17話 物語の主人公
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第18話 隠されたルート
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第19話 文化祭
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    第20話 本当の気持ち
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="50">第50話 永遠の始まり<a class="headerlink" href="#50" title="Permanent link">&para;</a></h1>
+<h2 id="6110">6月1日（土）午前10時<a class="headerlink" href="#6110" title="Permanent link">&para;</a></h2>
+<p>高校卒業から1年。</p>
+<p>私たちは大学1年生の最後の月を迎えている。</p>
+<p>隆弘くんの部屋で、WinterLangの最新統計を見ている。</p>
+<p>「美久、見て。ついに10万ユーザーを超えた」</p>
+<p>信じられない数字がスクリーンに表示されている。</p>
+<p>私たちが高校の部室で始めた小さなプロジェクトが、ここまで大きくなった。</p>
+<p>◇◇◇◇</p>
+<h2 id="1030-1">午前10時30分　1年間の振り返り<a class="headerlink" href="#1030-1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">// WinterLang 1年間の成長記録</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">yearInReview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">technical_milestones</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;v1.0.0 初回リリース (GitHub 1000 stars)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;v2.0.0 関数機能実装 (5000 stars)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;v3.0.0 オブジェクト指向対応 (15000 stars)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;v4.0.0 多言語アーキテクチャ (25000 stars)&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">community_growth</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">github_stars</span><span class="o">:</span><span class="w"> </span><span class="mf">27583</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">npm_downloads</span><span class="o">:</span><span class="w"> </span><span class="mf">156789</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">discord_members</span><span class="o">:</span><span class="w"> </span><span class="mf">8901</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">contributors</span><span class="o">:</span><span class="w"> </span><span class="mf">234</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">educational_institutions</span><span class="o">:</span><span class="w"> </span><span class="mf">128</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">countries_using</span><span class="o">:</span><span class="w"> </span><span class="mf">34</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">international_recognition</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;MIT講演 (200名の研究者)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Hacker News #1 trending&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;TechCrunch特集記事&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Google I/O 2024登壇&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;PLDI 2024論文採択&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">personal_journey</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">relationship</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;高校生カップル → 大学生パートナー → 世界的な開発者カップル&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">skills</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;初心者 → 中級者 → 言語設計エキスパート&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">vision</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;部活の趣味 → 教育ツール → 世界的プロジェクト&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「1年前は想像もできなかった」</p>
+<p>私が感慨深く言う。</p>
+<p>「でも、一番大切なものは変わってない」</p>
+<p>隆弘くんが私の手を握る。</p>
+<p>◇◇◇◇</p>
+<h2 id="11-mit">午前11時　MIT研究の成果発表<a class="headerlink" href="#11-mit" title="Permanent link">&para;</a></h2>
+<p>先月ボストンから帰ってきたばかり。</p>
+<p>MIT での3ヶ月間の研究成果をまとめている。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// MIT Summer Research 成果報告</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mitResearchResults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">project_title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Cultural Programming Languages: A Cross-Linguistic Framework&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nx">achievements</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">milestone</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;多言語プログラミング理論の確立&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;文化的思考パターンをプログラミング構文に反映する理論的フレームワーク&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">impact</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Programming Language Theory の新分野創設&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">milestone</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;4言語のプロトタイプ実装&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;日本語(WinterLang)、韓国語(HangulScript)、中国語(ZhongScript)、アラビア語(ArabCode)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">impact</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;世界初の本格的多言語プログラミングシステム&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">milestone</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;PLDI 2024 論文採択&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;\&quot;Cultural Syntax: Programming Language Design for Natural Language Integration\&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">impact</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プログラミング言語学の最高峰会議での発表&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">international_collaboration</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;MIT CSAIL との共同研究契約&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Stanford, CMU, UCB との研究ネットワーク&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Microsoft Research Asia パートナーシップ&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Google Research 多言語プロジェクト参画&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">future_funding</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">nsf_grant</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;$500,000 (3年間)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">mit_fellowship</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;$200,000 (PhD課程)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">industry_support</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;$1,000,000 (企業スポンサー)&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<h2 id="1130">午前11時30分　教育への影響<a class="headerlink" href="#1130" title="Permanent link">&para;</a></h2>
+<p>WinterLangが日本の教育に与えた影響を振り返る。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 教育現場での導入実績</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">educationalImpact</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">primary_schools</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">adopting_schools</span><span class="o">:</span><span class="w"> </span><span class="mf">45</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">students_learning</span><span class="o">:</span><span class="w"> </span><span class="mf">3456</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">success_rate</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;92%&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">teacher_satisfaction</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;4.8/5.0&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">high_schools</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">adopting_schools</span><span class="o">:</span><span class="w"> </span><span class="mf">78</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">students_learning</span><span class="o">:</span><span class="w"> </span><span class="mf">8901</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">programming_club_increase</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;340%&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">university_cs_enrollment</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;+67%&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">universities</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">adopting_institutions</span><span class="o">:</span><span class="w"> </span><span class="mf">23</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">courses_offered</span><span class="o">:</span><span class="w"> </span><span class="mf">34</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">research_projects</span><span class="o">:</span><span class="w"> </span><span class="mf">12</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">thesis_topics</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">teacher_training</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">workshops_held</span><span class="o">:</span><span class="w"> </span><span class="mf">56</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">teachers_trained</span><span class="o">:</span><span class="w"> </span><span class="mf">789</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">certification_program</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;文科省認定&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">textbook_adoption</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;5社から出版&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">student_testimonials</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;英語が苦手だったけど、プログラミングが大好きになりました - 中学2年 田中君&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;日本語で書けるから、家族にもコードを説明できます - 高校1年 山田さん&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;WinterLangがきっかけでコンピュータサイエンスに進学しました - 高校3年 佐藤さん&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「私たちの夢が現実になってる」</p>
+<p>涙が出そうになる。</p>
+<p>「プログラミングが本当に身近になった」</p>
+<p>◇◇◇◇</p>
+<h2 id="12">午後12時　コミュニティの成熟<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<p>世界中のWinterLangコミュニティを確認。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// グローバルコミュニティの現状</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">globalCommunity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">regional_chapters</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">japan</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="mf">4567</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">meetups</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;月2回&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">projects</span><span class="o">:</span><span class="w"> </span><span class="mf">234</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">maintainers</span><span class="o">:</span><span class="w"> </span><span class="mf">12</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">korea</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="mf">1234</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">hangul_variant</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;HangulScript&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">meetups</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;月1回&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">projects</span><span class="o">:</span><span class="w"> </span><span class="mf">67</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">china</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="mf">2345</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">chinese_variant</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ZhongScript&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">universities</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">projects</span><span class="o">:</span><span class="w"> </span><span class="mf">89</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nb">global</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="mf">1890</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">languages</span><span class="o">:</span><span class="w"> </span><span class="mf">12</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">research_groups</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">conferences</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">community_projects</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;WinterLang for Kids (小学生向け)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;WinterLang Web IDE (ブラウザー版)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;Visual WinterLang (ビジュアルプログラミング)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;WinterLang Mobile (スマートフォンアプリ)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;WinterLang Cloud (クラウド実行環境)&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">governance</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">foundation</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;WinterLang Foundation (非営利法人)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">board_members</span><span class="o">:</span><span class="w"> </span><span class="mf">7</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">technical_committee</span><span class="o">:</span><span class="w"> </span><span class="mf">12</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">code_of_conduct</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;全言語対応&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">decision_process</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;コミュニティ投票制&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">sustainability</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">funding_sources</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;寄付&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;企業スポンサー&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;研究グラント&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">annual_budget</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;$2,000,000&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">full_time_developers</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">part_time_contributors</span><span class="o">:</span><span class="w"> </span><span class="mf">156</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<h2 id="1">午後1時　次世代への継承<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>後輩たちがWinterLangプロジェクトを引き継いでくれている。</p>
+<p>大学のプログラミング部で、新しいメンバーとミーティング。</p>
+<p>「先輩方、次のv5.0はAI機能を統合したいです」</p>
+<p>1年生の田中くんが提案する。</p>
+<p>「日本語でAIと対話しながらプログラミングできる機能」</p>
+<p>「面白いアイデアだね」</p>
+<p>隆弘くんが評価する。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 次世代による WinterLang v5.0 計画</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">nextGenPlan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ai_integration</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">feature</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;AI Programming Assistant&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;日本語でAIと対話しながらコーディング&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">example</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">        AIアシスタント: &quot;どのような機能を作りたいですか？&quot;</span>
+<span class="sb">        ユーザー: &quot;学生の成績を管理するシステム&quot;</span>
+<span class="sb">        AIアシスタント: &quot;それでしたら、以下のような構造はいかがでしょうか...&quot;</span>
+<span class="sb">        `</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">junior_developers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;田中智也 (1年生)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">specialty</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;AI/機械学習&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">contribution</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;自然言語処理エンジン&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;鈴木花音 (2年生)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">specialty</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;UI/UX デザイン&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">contribution</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;学習者向けインターフェース&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;山田太郎 (1年生)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">specialty</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;教育工学&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">contribution</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;カリキュラム設計支援&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">mentorship_program</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">structure</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&amp;隆弘 → 上級生 → 下級生&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">meeting_frequency</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;週1回&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">project_duration</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1年間&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">graduation_requirement</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;WinterLangへの貢献&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<h2 id="2">午後2時　企業化の検討<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>WinterLangの将来について、真剣な議論。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 事業化の選択肢</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">businessOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">option_a</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">model</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;完全オープンソース継続&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">pros</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;教育価値最優先&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;コミュニティ主導&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;自由な発展&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">cons</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;資金調達限界&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;フルタイム開発困難&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;商用サポート不足&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">supporters</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;教育機関&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;オープンソース愛好者&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;学術研究者&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">option_b</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">model</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;オープンコア + 商用サービス&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">pros</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;持続可能な資金調達&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;プロサポート提供&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;エンタープライズ対応&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">cons</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;一部機能有料化&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;コミュニティ分裂リスク&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;商業化圧力&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">supporters</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;企業ユーザー&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;投資家&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;商用利用者&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">option_c</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">model</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;非営利財団 + 寄付モデル&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">pros</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;教育使命保持&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;透明性確保&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;税制優遇&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">cons</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;資金の不安定性&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;運営の複雑化&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;成長速度制限&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">supporters</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;教育関係者&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;慈善団体&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;政府機関&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">our_preference</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;option_c&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">reasoning</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;教育への貢献という初心を貫きたい&quot;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「お金よりも、教育価値を大切にしたい」</p>
+<p>私が信念を伝える。</p>
+<p>「同感。でも、持続可能性も考えないと」</p>
+<p>隆弘くんが現実的な視点を加える。</p>
+<p>◇◇◇◇</p>
+<h2 id="3">午後3時　将来への計画<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">// 5年後のビジョン</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">fiveYearVision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">technology</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">winterlang_usage</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;世界50カ国、100万ユーザー&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">supported_languages</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20の自然言語に対応&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">ai_integration</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;完全な対話型プログラミング&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">platform_coverage</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web, Mobile, IoT, VR/AR&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">education</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">curriculum_integration</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;各国の標準カリキュラムに採用&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">teacher_training</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;10万人の教員がWinterLang認定&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">student_impact</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1000万人の学生が学習&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">accessibility</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;障害者支援機能完備&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">research</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">academic_recognition</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Programming Language分野の定番ツール&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">phd_programs</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;WinterLang専門の博士課程&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">conference_track</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Cultural Programming専用トラック&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">publications</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;100本以上の学術論文&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">personal</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">takahiro</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;PhD取得 → MIT助教授候補&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">miku</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;教育工学博士 → 教育政策アドバイザー&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">relationship</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;結婚 → 家族 → 次世代への継承&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">life_mission</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;技術で教育を民主化する&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<h2 id="4">午後4時　プロポーズの準備<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>隆弘くんが何かソワソワしている。</p>
+<p>「美久、ちょっと外に出ない？」</p>
+<p>「うん、もちろん」</p>
+<p>大学のキャンパス、私たちが初めてデートした場所へ。</p>
+<p>桜並木の下で、隆弘くんが立ち止まる。</p>
+<p>「美久」</p>
+<p>真剣な表情。</p>
+<p>「僕たち、WinterLangと一緒に成長してきた」</p>
+<p>「高校生の恋人から、大学生のパートナーになって」</p>
+<p>「今度は、人生のパートナーになってほしい」</p>
+<p>◇◇◇◇</p>
+<h2 id="415">午後4時15分　永遠の約束<a class="headerlink" href="#415" title="Permanent link">&para;</a></h2>
+<p>隆弘くんが小さな箱を取り出す。</p>
+<p>「美久、結婚してください」</p>
+<p>指輪のデザインが特別。</p>
+<p>小さなキーボードをモチーフにした、私たちらしいリング。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// プロポーズの瞬間</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">proposalMoment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;大学キャンパス 桜並木&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;午後4時15分&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">weather</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;晴れ、桜吹雪&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nx">ring_design</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">base</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プラチナ&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">motif</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ミニチュアキーボード&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">engraving</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;while(true) { love(); }&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">meaning</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;永遠に続く愛のループ&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">words_exchanged</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;隆弘: 美久、結婚してください&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;美久: はい...はい！&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;隆弘: 僕の最高のペアプログラマー&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;美久: あなたの隣で、ずっとコードを書きたい&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">emotions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">joy</span><span class="o">:</span><span class="w"> </span><span class="kc">Infinity</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">love</span><span class="o">:</span><span class="w"> </span><span class="kc">Infinity</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">gratitude</span><span class="o">:</span><span class="w"> </span><span class="kc">Infinity</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">excitement</span><span class="o">:</span><span class="w"> </span><span class="kc">Infinity</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nx">witnesses</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;桜の花びら&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;夕日&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;キャンパスの学生たち&quot;</span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">first_commit_as_engaged</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;feat: Add eternal love module 💍&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">files</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;heart.js&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;future.js&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;forever.js&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「はい！」</p>
+<p>涙で答えが見えないけれど、全身で「はい」を伝える。</p>
+<p>◇◇◇◇</p>
+<h2 id="5">午後5時　完結へのプログラム<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>指輪をつけてもらって、二人で将来を語り合う。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 私たちの完結とすべての始まり</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ourEternalLoop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// これまでの物語</span>
+<span class="w">    </span><span class="nx">chapter_1</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プログラミング初心者の出会い&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">chapter_2</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;WinterLang誕生の瞬間&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">chapter_3</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;高校生カップルの成長&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">chapter_4</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;世界への挑戦と成功&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">chapter_5</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;永遠への約束&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">// これからの物語</span>
+<span class="w">    </span><span class="nx">next_chapters</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;結婚とハネムーン&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;大学院進学と研究深化&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;WinterLang世界普及&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;家族の誕生と子育て&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;次世代への技術継承&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="c1">// 変わらない価値観</span>
+<span class="w">    </span><span class="nx">eternal_values</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">love</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;お互いへの無条件の愛&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">technology</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;人を幸せにする技術&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">education</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;すべての人に学習機会を&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">community</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;世界中の仲間との絆&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">growth</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;常に学び続ける姿勢&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="c1">// 最終的なミッション</span>
+<span class="w">    </span><span class="nx">life_mission</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;愛と技術で世界をより良い場所にする&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">// プログラムは続く</span>
+<span class="w">    </span><span class="nx">while_true</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">love_each_other</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">develop_winterlang</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">help_education</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">grow_together</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">enjoy_life</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 実行開始</span>
+<span class="nx">execute</span><span class="p">(</span><span class="nx">ourEternalLoop</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Forever and always ❤️&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<h2 id="6">午後6時　コミュニティへの報告<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>婚約をDiscordで報告すると、お祝いメッセージが止まらない。</p>
+<div class="highlight"><pre><span></span><code>🎉 CONGRATULATIONS! 🎉
+The WinterLang power couple is getting married!
+
+veteran_dev: &quot;あなたたちの愛から生まれたWinterLangで、私の人生が変わりました&quot;
+teacher_mom: &quot;お二人の幸せが、子供たちにも伝わっています&quot;
+student_coder: &quot;最高のプログラマーカップル！末永くお幸せに！&quot;
+global_contributor: &quot;Love and code forever! 🇯🇵❤️🌍&quot;
+</code></pre></div>
+<p>世界中から祝福される幸せ。</p>
+<p>WinterLangが繋いでくれた絆。</p>
+<p>◇◇◇◇</p>
+<h2 id="7">午後7時　物語の終わりと始まり<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p>夕日の中、二人で歩く。</p>
+<p>「ねえ、隆弘くん」</p>
+<p>「ん？」</p>
+<p>「私たちの物語、これで終わりじゃないよね」</p>
+<p>「もちろん。これは始まりだよ」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// エピローグ：永遠の始まり</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">epilogue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">today</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024年6月1日&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;婚約&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nx">achievements_unlocked</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;❤️ 永遠の愛を約束&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;🚀 WinterLang 10万ユーザー達成&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="s2">&quot;🎓 大学1年生修了&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;🌍 世界34カ国での利用&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;📚 128校での教育導入&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;🏆 PLDI 2024 論文採択&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;💍 人生パートナー決定&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">next_quest</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;🎓 大学院進学&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;👨‍👩‍👧‍👦 家族を築く&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;🌏 WinterLang世界標準化&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;🏫 プログラミング教育革命&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;💝 愛と技術で世界を変える&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nx">final_code</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">        // 私たちの永遠のプログラム</span>
+<span class="sb">        クラス 人生:</span>
+<span class="sb">            初期化(愛, 夢, 技術):</span>
+<span class="sb">                この.愛 = 愛</span>
+<span class="sb">                この.夢 = 夢</span>
+<span class="sb">                この.技術 = 技術</span>
+
+<span class="sb">            メソッド 永遠に実行():</span>
+<span class="sb">                繰り返し 永遠に:</span>
+<span class="sb">                    この.愛し合う()</span>
+<span class="sb">                    この.夢を追いかける()</span>
+<span class="sb">                    この.技術で貢献する()</span>
+<span class="sb">                    この.一緒に成長する()</span>
+
+<span class="sb">        美久と隆弘 = 人生(</span>
+<span class="sb">            無限大の愛,</span>
+<span class="sb">            世界を変える夢,</span>
+<span class="sb">            WinterLang</span>
+<span class="sb">        )</span>
+
+<span class="sb">        美久と隆弘.永遠に実行()</span>
+
+<span class="sb">        // 出力: 幸せな人生が続く...</span>
+<span class="sb">        // Status: 実行中 (永続的)</span>
+<span class="sb">        // エラー: 見つかりません</span>
+<span class="sb">        // 愛: オーバーフロー（良い意味で）</span>
+<span class="sb">    `</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nx">the_end</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">new_beginning</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">to_be_continued</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Forever ♡&quot;</span>
+<span class="p">};</span>
+
+<span class="c1">// 保存して実行</span>
+<span class="nx">saveOurStory</span><span class="p">(</span><span class="nx">epilogue</span><span class="p">);</span>
+<span class="nx">runForever</span><span class="p">();</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<h2 id="_1">物語の終わりに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>高校の部室で始まった小さな恋。</p>
+<p>プログラミングの先生と生徒から、恋人へ。</p>
+<p>そして今日、永遠のパートナーへ。</p>
+<p>WinterLangという子供を一緒に育て、世界中に愛を届けた。</p>
+<p>私たちの物語は、これで終わりじゃない。</p>
+<p>これからも、愛と技術で、素晴らしい世界を作っていく。</p>
+<div class="highlight"><pre><span></span><code>// 最終出力
+console.log(&quot;――――――――――――――――――――――――&quot;);
+console.log(&quot;「後輩にプログラミングを教わってから」&quot;);
+console.log(&quot;第1巻　完&quot;);
+console.log(&quot;&quot;);
+console.log(&quot;美久と隆弘の物語は続く...&quot;);
+console.log(&quot;WinterLangの冒険も続く...&quot;);
+console.log(&quot;愛も、永遠に続く...&quot;);
+console.log(&quot;&quot;);
+console.log(&quot;第2巻「結婚とWinterLangの世界展開」に続く&quot;);
+console.log(&quot;――――――――――――――――――――――――&quot;);
+console.log(&quot;&quot;);
+console.log(&quot;❤️ ありがとうございました ❤️&quot;);
+</code></pre></div>
+<p>// END OF VOLUME 1</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 久野真一
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -524,19 +524,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    第3話 はじめてのHello World
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -548,70 +535,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#105730" class="md-nav__link">
-    <span class="md-ellipsis">
-      10月5日（水）午前7時30分
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1220" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後12時20分 屋上
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#430" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後4時30分 プログラミング部室
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後6時 プログラミング部室
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#730" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後7時30分 自室
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1247,173 +1170,236 @@
   
 
 
-<h1 id="3">第3話 バレたブックマーク<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
-<h2 id="105730">10月5日（水）午前7時30分<a class="headerlink" href="#105730" title="Permanent link">&para;</a></h2>
-<p>「隆弘くん、今日もプログラミング教えてくれる？」</p>
-<p>マンションのロビーで、美久が期待に満ちた瞳で聞いてくる。</p>
-<p>「もちろん。今日はHTMLの実践編だ」</p>
-<p>僕は胸を張って答えた。プログラミングを教えることが、こんなに楽しいなんて思わなかった。</p>
-<p>（でも、昨日のlovePointの件があるからな……）</p>
-<p>ちょっと気まずい雰囲気が残っているかもしれない。でも、美久は何事もなかったかのように振る舞っている。</p>
-<p>「楽しみ！昨日の夜、ずっと復習してたんだ」</p>
-<p>「え、本当に？」</p>
-<p>「うん。変数の宣言とか、if文の書き方とか。完璧！」</p>
-<p>得意げに胸を張る美久。その姿が可愛くて、つい笑ってしまう。</p>
-<p>「テストしてみようか？」</p>
-<p>「望むところです！」</p>
-<p>こんな風に、プログラミングの話で盛り上がれる相手がいるなんて。しかも、それが美久だなんて。</p>
+<h1 id="3">第3話 最初の一歩：数字を表示しよう<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
+<p>四月二十二日、月曜日。放課後。</p>
+<p>僕は情報処理室で美久を待っていた。今日から本格的にプログラミング言語の実装に入る予定だ。</p>
+<p>「隆弘先輩、お待たせ！」</p>
+<p>美久が駆け込んできた。今日も制服姿だけど、なんだか昨日より表情が明るい。</p>
+<p>「走らなくてもいいよ」</p>
+<p>「だって、楽しみで」</p>
+<p>美久が僕の隣に座る。また近い。もうこの距離感に慣れるしかないのかもしれない。</p>
+<p>「昨日の復習、してきた？」</p>
+<p>「もちろん！」</p>
+<p>美久がノートを広げる。昨日教えたASTの概念が、カラフルなペンで丁寧にまとめられている。</p>
+<p>「すごいね。美術の授業みたい」</p>
+<p>「えへへ。分かりやすくしたくて」</p>
+<p>ノートには、ASTの木構造が実際の木のイラストで描かれていた。葉っぱが数値、枝が演算子。なるほど、視覚的に理解しているんだ。</p>
+<p>「じゃあ、今日は実際にコードを書いていこう」</p>
+<p>「はい！」</p>
+<p>僕は新しいファイルを作成した。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// miku-lang.js</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;MikuLang インタープリタ v0.0.1&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>「わあ、私の名前！」</p>
+<p>美久が嬉しそうに声を上げる。</p>
+<p>「昨日、言語の名前はMikuLangにするって決めたでしょ」</p>
+<p>「覚えててくれたんだ……」</p>
+<p>美久の頬がほんのり赤く染まる。</p>
+<p>（そりゃ、覚えてるよ）</p>
+<p>僕は続けてコードを書き始めた。</p>
+<p>「まずは、一番簡単なことから始めよう。数字を表示するだけのプログラム」</p>
+<p>「数字を表示？」</p>
+<p>「うん。プログラミング言語として最小限の機能」</p>
+<p>僕は説明しながらコードを書いていく。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 数値リテラルのAST</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">numberNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">42</span>
+<span class="p">};</span>
+
+<span class="c1">// 評価関数</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown node type: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 実行</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">numberNode</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// 42</span>
+</code></pre></div>
+<p>「動いた！」</p>
+<p>美久が歓声を上げる。</p>
+<p>「でも、これだけ？」</p>
+<p>「これだけ。でも、これがすべての始まり」</p>
+<p>僕は美久に向き直った。</p>
+<p>「どんなに複雑なプログラムも、結局は小さな部品の組み合わせなんだ」</p>
+<p>「小さな部品……」</p>
+<p>美久が考え込む。</p>
+<p>「あ、レゴブロックみたい？」</p>
+<p>「まさにその通り」</p>
+<p>美久の例えの上手さに、また感心する。</p>
 <p>◇◇◇◇</p>
-<h2 id="1220">午後12時20分　屋上<a class="headerlink" href="#1220" title="Permanent link">&para;</a></h2>
-<p>「嵐山、最近楽しそうだな」</p>
-<p>昼休み、屋上でパンを食べていると、プログラミング部の同期、田中が話しかけてきた。</p>
-<p>「そうか？」</p>
-<p>「だって、文芸部の河内さんと一緒にゲーム作ってるんだろ？羨ましいな〜」</p>
-<p>田中がニヤニヤしながら肘で小突いてくる。</p>
-<p>「別に、ただの合同企画だよ」</p>
-<p>「へー、じゃあなんで顔が赤いんだ？」</p>
-<p>（バレバレか……）</p>
-<p>僕は咳払いをして、話題を変えようとした。</p>
-<p>「それより、今日の部活どうする？」</p>
-<p>「お、逃げたな。まあいいや。今日は新入部員の勧誘ポスター作らないと」</p>
-<p>そうだった。文化祭の展示があるから、もっと部員が欲しいところだ。</p>
-<p>「ゲーム制作の実演とかどう？」</p>
-<p>「それいいな！河内さんも一緒に？」</p>
-<p>「……考えておく」</p>
-<p>田中の提案は悪くない。でも、美久と一緒に実演となると、また違った緊張感がありそうだ。</p>
-<p>◇◇◇◇</p>
-<h2 id="430">午後4時30分　プログラミング部室<a class="headerlink" href="#430" title="Permanent link">&para;</a></h2>
-<p>「さて、今日はHTMLでゲーム画面を作ってみよう」</p>
-<p>僕はパソコンを起動し、Visual Studio Codeを立ち上げた。</p>
-<p>「わあ、本格的！」</p>
+<p>「ねえ、隆弘先輩」</p>
+<p>コードを見つめていた美久が、ふと顔を上げた。</p>
+<p>「なんで42なの？」</p>
+<p>「え？」</p>
+<p>「さっきのvalue: 42って。なんで42？」</p>
+<p>鋭い質問だ。普通は気にしないところに気づくのが美久らしい。</p>
+<p>「実は、プログラマーの間では有名な数字なんだ」</p>
+<p>「有名？」</p>
+<p>「『銀河ヒッチハイク・ガイド』っていうSF小説でね、『生命、宇宙、そして万物についての究極の疑問の答え』が42だって」</p>
+<p>美久が目を丸くする。</p>
+<p>「なにそれ、深い！」</p>
+<p>「深いというか、ジョークなんだけどね」</p>
+<p>僕は苦笑した。</p>
+<p>「でも、プログラミングの世界では、こういう小ネタが文化として根付いてるんだ」</p>
+<p>「へー。じゃあ、私も何か入れたい！」</p>
 <p>美久が目を輝かせる。</p>
-<p>「まずは、ゲームの基本的なレイアウトから」</p>
-<p>僕は慣れた手つきでコードを打ち始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;ja&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>私たちのノベルゲーム<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;game-container&quot;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;character-area&quot;</span><span class="p">&gt;</span>
-            <span class="cm">&lt;!-- キャラクターの立ち絵 --&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;text-box&quot;</span><span class="p">&gt;</span>
-            <span class="cm">&lt;!-- セリフ表示エリア --&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;choices&quot;</span><span class="p">&gt;</span>
-            <span class="cm">&lt;!-- 選択肢 --&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+<p>「何がいい？」</p>
+<p>「うーん……」</p>
+<p>美久が考え込む。その真剣な表情が、なんだか可愛い。</p>
+<p>（って、何考えてるんだ、僕は）</p>
+<p>「あ、316！」</p>
+<p>「316？」</p>
+<p>「3月16日。隆弘先輩の誕生日」</p>
+<p>僕は言葉を失った。</p>
+<p>（覚えてたのか……）</p>
+<p>「だ、だめ？」</p>
+<p>美久が上目遣いで見てくる。</p>
+<p>「いや、別にいいけど……」</p>
+<p>僕は照れ隠しに、コードを修正した。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">numberNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">316</span>
+<span class="p">};</span>
 </code></pre></div>
-<p>「これが基本構造。divタグで画面を区切って……」</p>
-<p>説明しながら、僕は画面を分割していく。そして、実際のゲーム画面に近づけるために、もう少し詳細を追加していく。</p>
-<p>「キャラクターの立ち絵はimg タグで表示して、テキストボックスは……」</p>
-<p>その時だった。</p>
-<p>ブラウザを開こうとして、誤ってブックマークバーを表示してしまった。</p>
-<p>そこには――</p>
-<p>『夏色の約束 -Summer Promise-』
-『月光のセレナーデ』
-『桜舞う頃に、君と』</p>
-<p>明らかにギャルゲーのタイトルが並んでいる。</p>
-<p>時間が止まった。</p>
-<p>美久の視線が、画面に釘付けになっている。</p>
-<p>（終わった……）</p>
-<p>顔から血の気が引いていくのを感じる。慌ててブックマークバーを閉じようとするが、もう遅い。</p>
-<p>「あの……先輩？」</p>
-<p>美久の声が、妙に落ち着いている。</p>
-<p>「こ、これは、その……ゲーム制作の参考資料として……」</p>
-<p>苦しい言い訳だと自分でも分かっている。</p>
-<p>美久がゆっくりと口を開いた。</p>
-<p>「『夏色の約束』って……」</p>
-<p>（知ってるの！？）</p>
-<p>「去年の夏に発売された、学園恋愛ものですよね」</p>
-<p>僕は凍りついた。まさか美久がギャルゲーのタイトルを知っているなんて。</p>
-<p>「い、いや、ただの偶然……」</p>
-<p>「私、そのゲーム……」</p>
-<p>美久が何か言いかけて、急に口をつぐんだ。頬が赤くなっている。</p>
-<p>重い沈黙が部室を包む。</p>
-<p>お互いに目を合わせられない。</p>
-<p>でも、なんだろう。この気まずさの中に、不思議な共犯意識みたいなものを感じる。</p>
-<p>「あの、先輩」</p>
-<p>「な、なんだ？」</p>
-<p>「実は私も……いえ、なんでもないです」</p>
-<p>美久は首を振って、また画面に視線を戻した。</p>
-<p>「それより、このレイアウト、すごく本格的ですね」</p>
-<p>話題を変えてくれた美久に、僕は心の中で感謝した。</p>
-<p>「あ、ああ。テキストボックスの配置は大事だからね」</p>
-<p>僕は震える手でコードを打ち続ける。</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;text-box&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;character-name&quot;</span><span class="p">&gt;</span>？？？<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;dialogue&quot;</span><span class="p">&gt;</span>ここにセリフが表示されます。<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>「キャラクター名と、セリフを分けて表示するんだ」</p>
-<p>「なるほど……」</p>
-<p>美久は真剣にメモを取っている。でも、その頬はまだ少し赤い。</p>
-<p>（もしかして、美久も……？）</p>
-<p>いや、考えすぎだ。でも、さっきの反応は明らかに――</p>
-<p>「先輩、選択肢のボタンはどうやって作るんですか？」</p>
-<p>美久の質問で、僕は我に返った。</p>
-<p>「ああ、buttonタグを使うんだ」</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;choices&quot;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;choice-btn&quot;</span><span class="p">&gt;</span>選択肢1<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;choice-btn&quot;</span><span class="p">&gt;</span>選択肢2<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>「これで、クリックできる選択肢が作れる」</p>
-<p>「すごい！本当にゲームみたい！」</p>
-<p>美久の素直な反応に、少しずつ緊張が解けていく。</p>
+<p>「やった！」</p>
+<p>美久が小さくガッツポーズをする。</p>
 <p>◇◇◇◇</p>
-<h2 id="6">午後6時　プログラミング部室<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p>「今日はここまでにしようか」</p>
-<p>2時間近く集中して作業をして、基本的なHTMLの構造が完成した。</p>
-<p>「はい……あの、先輩」</p>
-<p>片付けをしながら、美久が声をかけてきた。</p>
-<p>「さっきのブックマークの件ですけど」</p>
-<p>（やっぱり触れるのか……）</p>
-<p>「私、何も見てませんから」</p>
-<p>美久は優しく微笑んだ。</p>
-<p>「それに、ゲーム制作の参考資料は大事ですよね」</p>
-<p>その言葉に、なぜか違和感を覚える。まるで、自分に言い聞かせているような……</p>
-<p>「美久？」</p>
-<p>「なんでもないです！それより、明日はCSSですよね？」</p>
-<p>話題を逸らす美久。でも、その表情には、昨日のlovePointの時と同じような、何か隠しているような雰囲気がある。</p>
-<p>「ああ、そうだね。画面を綺麗にする方法を教えるよ」</p>
-<p>「楽しみです！」</p>
+<p>「次は、もう少し複雑にしてみよう」</p>
+<p>僕は新しいコードを書き始めた。</p>
+<p>「さっきは数値だけだったけど、今度は文字列も扱えるようにする」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 文字列リテラルのAST</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">stringNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Hello, MikuLang!&#39;</span>
+<span class="p">};</span>
+
+<span class="c1">// 評価関数を拡張</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown node type: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「あ、if文が増えた！」</p>
+<p>「そう。新しい種類のノードを扱うたびに、条件分岐を増やしていく」</p>
+<p>「なるほど。さっきのレゴブロックの話みたい」</p>
+<p>美久の理解の速さに驚く。プログラミング未経験とは思えない。</p>
+<p>「美久、もしかして本当は経験者？」</p>
+<p>「ううん、本当に初めて」</p>
+<p>美久が首を振る。</p>
+<p>「でも、隆弘先輩の説明が分かりやすいから」</p>
+<p>そう言って、美久は僕を見つめた。</p>
+<p>（また、その眼差し……）</p>
+<p>なんだか照れくさくなって、僕は視線を逸らした。</p>
+<p>「それより、実際に動かしてみよう」</p>
+<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">stringNode</span><span class="p">));</span><span class="w"> </span><span class="c1">// Hello, MikuLang!</span>
+</code></pre></div>
+<p>「わあ、文字も表示できた！」</p>
+<p>美久の喜ぶ姿を見ていると、こちらまで嬉しくなる。</p>
 <p>◇◇◇◇</p>
-<h2 id="730">午後7時30分　自室<a class="headerlink" href="#730" title="Permanent link">&para;</a></h2>
-<p>部屋に戻って、僕は今日の出来事を振り返っていた。</p>
-<p>ギャルゲーのブックマークがバレた。これは相当恥ずかしい。</p>
-<p>でも、美久の反応が気になる。</p>
-<p>『夏色の約束』のことを知っていた。それも、発売時期まで正確に。</p>
-<p>普通の女子高生が知っているような情報じゃない。</p>
-<p>まさか……</p>
-<p>僕はスマホを手に取り、『夏色の約束』の公式サイトを開いた。</p>
-<p>そして、ふと思い出す。このゲーム、男性向けだけじゃなくて、女性ファンも多いことで有名だった。シナリオの評価が高くて、恋愛描写が丁寧で……</p>
-<p>（もしかして、美久も？）</p>
-<p>いや、でも、決めつけるのは良くない。</p>
-<p>でも、もし、本当に美久もゲームが好きだとしたら……</p>
-<p>窓の外を見ると、隣の部屋の明かりがついている。</p>
-<p>美久は今、何をしているんだろう。</p>
-<p>もしかして、僕と同じように、今日のことを考えているのかもしれない。</p>
-<p>明日、さりげなく聞いてみようか。</p>
-<p>いや、でも、どう聞けばいいんだ。</p>
-<p>「美久、実はゲーム好き？」なんて直球すぎる。</p>
-<p>でも、このままモヤモヤしているのも……</p>
-<p>僕は、ため息をついた。</p>
-<p>プログラミングを教えるだけのはずだったのに、なんだか関係が複雑になってきている。</p>
-<p>でも、不思議と嫌じゃない。</p>
-<p>むしろ、美久との共通点が見つかるかもしれないという期待の方が大きい。</p>
-<p>明日は、CSSを教える。</p>
-<p>そして、もしチャンスがあれば、ゲームの話も……</p>
-<p>そんなことを考えながら、僕は明日の授業の準備を始めた。</p>
-<p>画面には、今日作ったHTMLが表示されている。</p>
-<p>『私たちのノベルゲーム』</p>
-<p>このタイトルが、なんだか特別な意味を持ち始めている気がした。</p>
+<p>「隆弘先輩」</p>
+<p>休憩中、美久が窓の外を眺めながらつぶやいた。</p>
+<p>「ん？」</p>
+<p>「プログラミング言語を作るって、思ってたより地道なんだね」</p>
+<p>「がっかりした？」</p>
+<p>「ううん、逆」</p>
+<p>美久が振り返る。夕日が彼女の髪を金色に染めている。</p>
+<p>「一つ一つ積み重ねていくのが、なんだか……」</p>
+<p>美久が何か言いかけて、止まる。頬が少し赤い。</p>
+<p>「なんだか？」</p>
+<p>「……達成感がありそう」</p>
+<p>明らかに違うことを言おうとしていた気がする。でも、美久はすぐに笑顔を作った。</p>
+<p>「小さいことから始めるって、大事なんだね」</p>
+<p>「そうだね。いきなり大きなものは作れないから」</p>
+<p>僕も美久の話題転換に乗ることにした。</p>
+<p>「次は何を作るの？」</p>
+<p>「そうだな……」</p>
+<p>僕も気持ちを切り替えて、説明を続けた。</p>
+<p>「今度は、プログラムを実行する仕組みを作ろう」</p>
+<p>「実行する仕組み？」</p>
+<p>「さっきまでは、直接evaluateを呼んでたけど、もっと本格的なインタープリタにする」</p>
+<p>僕は新しい関数を書き始めた。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// インタープリタのメイン関数</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">interpret</span><span class="p">(</span><span class="nx">ast</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">ast</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;=&gt; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「tryとcatchって？」</p>
+<p>「エラーが起きた時の処理。プログラムが急に止まらないようにする」</p>
+<p>「優しい設計だね」</p>
+<p>美久の言葉に、僕は少し驚いた。</p>
+<p>「優しい？」</p>
+<p>「だって、失敗しても大丈夫なようにしてるんでしょ？」</p>
+<p>（そういう見方もあるのか）</p>
+<p>技術的な観点しか考えていなかった僕には、新鮮な視点だった。</p>
+<p>「確かに、そうかもしれない」</p>
+<p>「隆弘先輩らしい」</p>
+<p>美久が微笑む。</p>
+<p>「私も、そんな優しいプログラムが書けるようになりたいな」</p>
+<p>◇◇◇◇</p>
+<p>気がつけば、もう六時を過ぎていた。</p>
+<p>「今日はここまでにしよう」</p>
+<p>「えー、もうちょっと」</p>
+<p>美久が名残惜しそうに言う。</p>
+<p>「明日も学校でしょ」</p>
+<p>「そうだけど……」</p>
+<p>美久がファイルを保存しながら、ぽつりとつぶやいた。</p>
+<p>「プログラミングって、思ってたより楽しい」</p>
+<p>「そう？」</p>
+<p>「うん。特に……」</p>
+<p>美久が言いかけて、止まる。</p>
+<p>「特に？」</p>
+<p>「……隆弘先輩と一緒だから」</p>
+<p>小さな声だったけど、はっきりと聞こえた。</p>
+<p>（美久……）</p>
+<p>僕の頬が熱くなる。どう返事をすればいいのか分からない。</p>
+<p>「じゃ、じゃあ、明日は真偽値も実装しよう」</p>
+<p>僕は慌てて話題を変えた。</p>
+<p>「真偽値？」</p>
+<p>「trueとfalseのこと。これがあると、もっと複雑なプログラムが書けるようになる」</p>
+<p>「楽しみ！」</p>
+<p>美久が立ち上がる。</p>
+<p>「隆弘先輩、今日もありがとう」</p>
+<p>「いや、僕も楽しかった」</p>
+<p>正直な気持ちだった。美久と一緒にコードを書いている時間は、研究とはまた違った楽しさがある。</p>
+<p>「本当？」</p>
+<p>「本当」</p>
+<p>美久の顔が、ぱっと明るくなった。</p>
+<p>「じゃあ、明日も楽しみだね」</p>
+<p>「うん」</p>
+<p>二人で情報処理室を出る。廊下には、もう誰もいない。</p>
+<p>「送っていこうか？」</p>
+<p>「大丈夫。すぐ隣だから」</p>
+<p>確かに、僕たちの家は隣同士だ。でも、なんとなく一緒に帰りたい気分だった。</p>
+<p>「じゃあ、また明日」</p>
+<p>「うん。また明日」</p>
+<p>美久が手を振って、先に歩いていく。その後ろ姿を見送りながら、僕は今日のことを振り返っていた。</p>
+<p>数字を表示するだけの、本当に簡単なプログラム。</p>
+<p>でも、美久の喜ぶ顔を見ていたら、それだけで十分な気がした。</p>
+<p>（明日は、もっと喜んでもらえるかな）</p>
+<p>そんなことを考えながら、僕も帰路についた。</p>
+<p>空には、春の星座が輝き始めていた。</p>
+<p>プログラミング言語MikuLangは、まだ生まれたばかり。</p>
+<p>でも、確実に成長している。</p>
+<p>美久との関係も、きっと——。</p>
 
 
 

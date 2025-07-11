@@ -890,19 +890,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    第13話 非同期という言葉
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -914,97 +901,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1017720" class="md-nav__link">
-    <span class="md-ellipsis">
-      10月17日（月）午前7時20分
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#745" class="md-nav__link">
-    <span class="md-ellipsis">
-      午前7時45分 マンション廊下
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#430" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後4時30分 プログラミング部室
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#515" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後5時15分 実装練習
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後6時 複雑なイベント処理
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#645" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後6時45分 特別な実装
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#730" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後7時30分 今日の成果
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後8時 帰り道
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1274,237 +1170,310 @@
   
 
 
-<h1 id="13">第13話 イベントリスナーと心の距離<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
-<h2 id="1017720">10月17日（月）午前7時20分<a class="headerlink" href="#1017720" title="Permanent link">&para;</a></h2>
-<p>昨日の夜のこと。</p>
-<p>『隆弘くん、大好き』</p>
-<p>私、本当にあんなこと言っちゃった。</p>
-<p>布団の中で、顔を覆う。</p>
-<p>（恥ずかしい……でも、後悔はしてない）</p>
-<p>だって、本当の気持ちだから。</p>
-<p>隆弘くんは、どう思ったかな。</p>
-<p>困ったかな。それとも……。</p>
-<p>スマホを確認するけど、特にメッセージはない。</p>
-<p>いつも通り、ということかな。</p>
+<h1 id="13">第13話 オブジェクト指向<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
+<p>五月二日、木曜日。ゴールデンウィーク四日目。</p>
+<p>美久との日々が、当たり前のようになってきた。でも、それが嬉しい。</p>
+<p>「今日はオブジェクトだね」</p>
+<p>美久が準備万端といった様子で言う。</p>
+<p>「昨日調べてきた？」</p>
+<p>「うん。でも、よく分からなかった……」</p>
+<p>困った顔の美久が可愛い。</p>
+<p>「大丈夫。ゆっくり理解していこう」</p>
 <p>◇◇◇◇</p>
-<h2 id="745">午前7時45分　マンション廊下<a class="headerlink" href="#745" title="Permanent link">&para;</a></h2>
-<p>「おはよう、美久」</p>
-<p>いつものように、隆弘くんが待っていた。</p>
-<p>でも、なんだか照れたような表情。</p>
-<p>「お、おはよう」</p>
-<p>私も緊張してしまう。</p>
-<p>昨日の告白のせいで、空気がぎこちない。</p>
-<p>「今日も一緒に行こう」</p>
+<p>「オブジェクトは、関連するデータをまとめたもの」</p>
+<p>ホワイトボードに例を書く。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// キャラクターのデータ</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">名前</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">レベル</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">HP</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">MP</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">スキル</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;回復魔法&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;攻撃魔法&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「あ、ゲームのステータス画面みたい！」</p>
+<p>「そう。複数の属性を一つにまとめられる」</p>
+<p>◇◇◇◇</p>
+<p>「オブジェクトのASTを設計しよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// オブジェクトリテラルのAST</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ObjectLiteral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ObjectLiteral&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">properties</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;名前&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;美久&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;レベル&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="c1">// プロパティアクセス</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PropertyAccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MemberExpression&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">object</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;キャラクター&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">property</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;名前&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">computed</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「keyとvalueのペアになってるんだ」</p>
+<p>「そう。連想配列とも呼ばれる」</p>
+<p>◇◇◇◇</p>
+<p>実装を始める。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// ASTTypesに追加</span>
+<span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">ObjectLiteral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ObjectLiteral&#39;</span><span class="p">;</span>
+
+<span class="c1">// ヘルパー関数</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">createObject</span><span class="p">(</span><span class="nx">properties</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">ObjectLiteral</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">properties</span><span class="o">:</span><span class="w"> </span><span class="nx">properties</span><span class="p">.</span><span class="nx">map</span><span class="p">(([</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">      </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="nx">key</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">    </span><span class="p">}))</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">createPropertyAccess</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span><span class="w"> </span><span class="nx">property</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">MemberExpression</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">object</span><span class="o">:</span><span class="w"> </span><span class="nx">object</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">property</span><span class="o">:</span><span class="w"> </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="nx">property</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">computed</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「computedって何？」</p>
+<p>「obj.nameかobj['name']かの違い」</p>
+<p>◇◇◇◇</p>
+<p>「評価器も拡張しよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// オブジェクトリテラルの評価</span>
+<span class="nx">evaluateObjectLiteral</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">prop</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">properties</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prop</span><span class="p">.</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">prop</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">obj</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// プロパティアクセスの評価（拡張）</span>
+<span class="nx">evaluateMemberExpression</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">object</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">object</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 配列の場合</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">property</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">object</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;object&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// オブジェクトの場合</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">computed</span><span class="w"> </span>
+<span class="w">      </span><span class="o">?</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">property</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">property</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">object</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;配列またはオブジェクトではありません&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<p>美久が質問してきた。</p>
+<p>「オブジェクトと配列の違いは？」</p>
+<p>「配列は順番、オブジェクトは名前でアクセス」</p>
+<p>具体例を示す。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 配列：インデックスでアクセス</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;剣&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;盾&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;薬草&quot;</span><span class="p">];</span>
+<span class="nx">items</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"> </span><span class="c1">// &quot;剣&quot;</span>
+
+<span class="c1">// オブジェクト：プロパティ名でアクセス</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span><span class="w"> </span><span class="p">};</span>
+<span class="nx">player</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span><span class="w"> </span><span class="c1">// &quot;美久&quot;</span>
+</code></pre></div>
+<p>「なるほど！　用途によって使い分けるんだ」</p>
+<p>◇◇◇◇</p>
+<p>「実際にオブジェクトを使ったプログラムを書いてみよう」</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">characterProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;キャラクター&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">createObject</span><span class="p">([</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;名前&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;美久&#39;</span><span class="p">)],</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;職業&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;魔法使い&#39;</span><span class="p">)],</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;レベル&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">15</span><span class="p">)],</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;HP&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">100</span><span class="p">)],</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;MP&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">50</span><span class="p">)]</span>
+<span class="w">      </span><span class="p">])</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;=== キャラクター情報 ===&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createPropertyAccess</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;キャラクター&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="s1">&#39;名前&#39;</span>
+<span class="w">    </span><span class="p">)),</span>
+<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createPropertyAccess</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;キャラクター&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="s1">&#39;職業&#39;</span>
+<span class="w">    </span><span class="p">)),</span>
+<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;レベル:&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createPropertyAccess</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;キャラクター&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="s1">&#39;レベル&#39;</span>
+<span class="w">    </span><span class="p">))</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+
+<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">characterProgram</span><span class="p">);</span>
+<span class="c1">// 出力:</span>
+<span class="c1">// === キャラクター情報 ===</span>
+<span class="c1">// 美久</span>
+<span class="c1">// 魔法使い</span>
+<span class="c1">// レベル:</span>
+<span class="c1">// 15</span>
+</code></pre></div>
+<p>「わあ、本当にゲームみたい！」</p>
+<p>美久の目が輝く。</p>
+<p>◇◇◇◇</p>
+<p>休憩時間。美久がお茶を飲みながら言った。</p>
+<p>「オブジェクトって、現実世界に似てる」</p>
+<p>「どういうこと？」</p>
+<p>「だって、人にも名前とか年齢とか、いろんな属性があるでしょ？」</p>
+<p>その洞察に感心する。</p>
+<p>「その通り。オブジェクト指向は現実世界をモデル化したもの」</p>
+<p>◇◇◇◇</p>
+<p>「オブジェクトの中にオブジェクトも入れられる」</p>
+<p>新しい例を書く。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">gameData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createObject</span><span class="p">([</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;プレイヤー&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createObject</span><span class="p">([</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;名前&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;隆弘&#39;</span><span class="p">)],</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;レベル&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">20</span><span class="p">)],</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;装備&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createObject</span><span class="p">([</span>
+<span class="w">      </span><span class="p">[</span><span class="s1">&#39;武器&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;光の剣&#39;</span><span class="p">)],</span>
+<span class="w">      </span><span class="p">[</span><span class="s1">&#39;防具&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;勇者の鎧&#39;</span><span class="p">)]</span>
+<span class="w">    </span><span class="p">])]</span>
+<span class="w">  </span><span class="p">])],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;パートナー&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createObject</span><span class="p">([</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;名前&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;美久&#39;</span><span class="p">)],</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;レベル&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">18</span><span class="p">)]</span>
+<span class="w">  </span><span class="p">])]</span>
+<span class="p">]);</span>
+</code></pre></div>
+<p>「入れ子構造！」</p>
+<p>「複雑なデータも表現できる」</p>
+<p>◇◇◇◇</p>
+<p>「メソッドも実装してみよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// メソッド呼び出しのAST</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">MethodCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CallExpression&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">callee</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MemberExpression&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">object</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;キャラクター&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">property</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;レベルアップ&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">arguments</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「オブジェクトの中に関数を入れるの？」</p>
+<p>「そう。データと処理をまとめられる」</p>
+<p>◇◇◇◇</p>
+<p>美久がプログラムを書き始めた。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 美久のオブジェクトプログラム</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mikuObjectProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;ゲーム状態&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">createObject</span><span class="p">([</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)],</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;イベント数&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)],</span>
+<span class="w">        </span><span class="p">[</span><span class="s1">&#39;現在地&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;教室&#39;</span><span class="p">)]</span>
+<span class="w">      </span><span class="p">])</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;イベント発生&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="p">[</span><span class="s1">&#39;場所&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;相手&#39;</span><span class="p">],</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="nx">createAssignment</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;ゲーム状態&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">createObject</span><span class="p">([</span>
+<span class="w">              </span><span class="p">[</span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
+<span class="w">                </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">createPropertyAccess</span><span class="p">(</span>
+<span class="w">                  </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;ゲーム状態&#39;</span><span class="p">),</span>
+<span class="w">                  </span><span class="s1">&#39;好感度&#39;</span>
+<span class="w">                </span><span class="p">),</span>
+<span class="w">                </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
+<span class="w">              </span><span class="p">)],</span>
+<span class="w">              </span><span class="p">[</span><span class="s1">&#39;イベント数&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
+<span class="w">                </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">createPropertyAccess</span><span class="p">(</span>
+<span class="w">                  </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;ゲーム状態&#39;</span><span class="p">),</span>
+<span class="w">                  </span><span class="s1">&#39;イベント数&#39;</span>
+<span class="w">                </span><span class="p">),</span>
+<span class="w">                </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+<span class="w">              </span><span class="p">)],</span>
+<span class="w">              </span><span class="p">[</span><span class="s1">&#39;現在地&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;場所&#39;</span><span class="p">)]</span>
+<span class="w">            </span><span class="p">])</span>
+<span class="w">          </span><span class="p">),</span>
+<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createBinaryExpression</span><span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;場所&#39;</span><span class="p">),</span>
+<span class="w">            </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;でイベント発生！&#39;</span><span class="p">)</span>
+<span class="w">          </span><span class="p">)),</span>
+<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;好感度が上がった！&#39;</span><span class="p">))</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;イベント発生&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;屋上&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;隆弘先輩&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">]),</span>
+<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;現在の好感度:&#39;</span><span class="p">)),</span>
+<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createPropertyAccess</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;ゲーム状態&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="s1">&#39;好感度&#39;</span>
+<span class="w">    </span><span class="p">))</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>「これ、実際のゲームロジックに近い」</p>
+<p>美久の理解力と応用力に驚く。</p>
+<p>◇◇◇◇</p>
+<p>夕方になってきた。今日も充実した一日だった。</p>
+<p>「オブジェクト、難しかったけど面白い」</p>
+<p>美久が満足そうに言う。</p>
+<p>「データをまとめる方法が分かると、プログラムの幅が広がる」</p>
+<p>「うん。ゲームのキャラクターデータとか、これで管理できるんだね」</p>
+<p>◇◇◇◇</p>
+<p>「隆弘先輩」</p>
+<p>片付けながら、美久が言った。</p>
+<p>「MikuLangで、本格的なゲームが作れる気がしてきた」</p>
+<p>「きっと作れるよ」</p>
+<p>「一緒に作ろうね」</p>
+<p>その言葉に、胸が熱くなる。</p>
+<p>「もちろん」</p>
+<p>◇◇◇◇</p>
+<p>美久を見送る時、彼女が言った。</p>
+<p>「明日は何を実装するの？」</p>
+<p>「エラー処理かな。プログラムを安全にする仕組み」</p>
+<p>「また新しいことが学べるんだ」</p>
+<p>美久の向学心が嬉しい。</p>
+<p>「美久の成長が早くて、教えがいがある」</p>
+<p>「隆弘先輩のおかげ」</p>
+<p>また褒め合いになってしまう。</p>
+<p>「じゃあ、また明日」</p>
 <p>「うん」</p>
-<p>エレベーターの中、いつもより距離を感じる。</p>
-<p>（やっぱり、困らせちゃったかな）</p>
-<p>不安になる私。</p>
-<p>でも、隆弘くんがそっと言った。</p>
-<p>「昨日の……ありがとう」</p>
-<p>え？</p>
-<p>「俺も、美久のこと、大好きだよ」</p>
-<p>小さな声だったけど、はっきりと聞こえた。</p>
-<p>私の心臓が、跳ね上がる。</p>
-<p>◇◇◇◇</p>
-<h2 id="430">午後4時30分　プログラミング部室<a class="headerlink" href="#430" title="Permanent link">&para;</a></h2>
-<p>「今日は、イベントリスナーについて教えるね」</p>
-<p>放課後、いつもの部室で。</p>
-<p>隆弘くんとの距離は、なんだか昨日より近い気がする。</p>
-<p>「イベントリスナー？」</p>
-<p>「ユーザーの操作を検知して、それに反応する仕組みだよ」</p>
-<p>隆弘くんが説明を始める。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// ボタンをクリックしたときの処理</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;startButton&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;ゲームスタート！&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">startGame</span><span class="p">();</span>
-<span class="p">});</span>
-
-<span class="c1">// マウスが要素の上に乗ったとき</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;character&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0.8&#39;</span><span class="p">;</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>「なるほど！クリックとか、マウスの動きとかを感知するんですね」</p>
-<p>「そう。これがあるから、インタラクティブなゲームが作れる」</p>
-<p>隆弘くんの説明を聞きながら、ふと思う。</p>
-<p>人の心にも、イベントリスナーがあればいいのに。</p>
-<p>相手の気持ちの変化を、すぐに感知できたら。</p>
-<p>◇◇◇◇</p>
-<h2 id="515">午後5時15分　実装練習<a class="headerlink" href="#515" title="Permanent link">&para;</a></h2>
-<p>「じゃあ、実際に使ってみよう」</p>
-<p>隆弘くんが新しいコードを書き始める。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// キャラクターをクリックしたときの反応</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuCharacter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;miku&#39;</span><span class="p">);</span>
-
-<span class="nx">mikuCharacter</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// クリックされた回数をカウント</span>
-<span class="w">    </span><span class="nx">clickCount</span><span class="o">++</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// クリック数に応じて反応を変える</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">clickCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;えっ、なに？&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">clickCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;もう、しつこいよ〜&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="s1">&#39;...実は嬉しい&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>「わあ、クリックするたびに反応が変わる！」</p>
-<p>私が何度もクリックしていると、隆弘くんが笑った。</p>
-<p>「美久みたいだね、この反応」</p>
-<p>「え？」</p>
-<p>「最初は驚いて、次に困って、でも本当は嬉しいって」</p>
-<p>隆弘くんの言葉に、顔が熱くなる。</p>
-<p>見透かされてる。</p>
-<p>◇◇◇◇</p>
-<h2 id="6">午後6時　複雑なイベント処理<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p>「もっと複雑なイベントも扱えるよ」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// キーボード入力を検知</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;Enter&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">nextMessage</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">key</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">skipAnimation</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">});</span>
-
-<span class="c1">// ドラッグ＆ドロップ</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">draggedItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-
-<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;dragstart&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">draggedItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
-<span class="w">    </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0.5&#39;</span><span class="p">;</span>
-<span class="p">});</span>
-
-<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;dragend&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>「すごい！キーボードやドラッグも検知できるんだ」</p>
-<p>「これで、より直感的な操作ができるゲームが作れる」</p>
-<p>隆弘くんの横顔を見つめる。</p>
-<p>真剣にコードを書く姿が、やっぱりかっこいい。</p>
-<p>（好きだな）</p>
-<p>改めて、そう思う。</p>
-<p>◇◇◇◇</p>
-<h2 id="645">午後6時45分　特別な実装<a class="headerlink" href="#645" title="Permanent link">&para;</a></h2>
-<p>「美久のために、特別な機能を作ってみた」</p>
-<p>隆弘くんが、少し照れながら言う。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// ハートのアニメーション</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">heart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
-<span class="nx">heart</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;heart&#39;</span><span class="p">;</span>
-<span class="nx">heart</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;❤&#39;</span><span class="p">;</span>
-
-<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">newHeart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">heart</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">newHeart</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;px&#39;</span><span class="p">;</span>
-<span class="w">    </span><span class="nx">newHeart</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;px&#39;</span><span class="p">;</span>
-<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newHeart</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// アニメーション後に削除</span>
-<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">newHeart</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
-<span class="p">});</span>
-
-<span class="c1">// CSSアニメーション</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">);</span>
-<span class="nx">style</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">    .heart {</span>
-<span class="sb">        position: absolute;</span>
-<span class="sb">        color: #ff69b4;</span>
-<span class="sb">        font-size: 20px;</span>
-<span class="sb">        animation: float-up 1s ease-out;</span>
-<span class="sb">        pointer-events: none;</span>
-<span class="sb">    }</span>
-
-<span class="sb">    @keyframes float-up {</span>
-<span class="sb">        to {</span>
-<span class="sb">            transform: translateY(-100px);</span>
-<span class="sb">            opacity: 0;</span>
-<span class="sb">        }</span>
-<span class="sb">    }</span>
-<span class="sb">`</span><span class="p">;</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
-</code></pre></div>
-<p>画面をクリックすると、ハートが浮かび上がる。</p>
-<p>「わあ、可愛い！」</p>
-<p>思わず、何度もクリックしてしまう。</p>
-<p>画面中にピンクのハートが舞う。</p>
-<p>「美久が喜ぶと思って」</p>
-<p>隆弘くんの優しさに、胸が温かくなる。</p>
-<p>◇◇◇◇</p>
-<h2 id="730">午後7時30分　今日の成果<a class="headerlink" href="#730" title="Permanent link">&para;</a></h2>
-<p>「イベントリスナーを使えば、こんなこともできる」</p>
-<p>隆弘くんが最後に見せてくれたのは、特別なプログラム。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 特別なメッセージシステム</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">messageCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;プログラミングを教えられて嬉しい&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;美久と一緒に作るゲームは特別&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;毎日が楽しい&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;これからもずっと一緒に&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;大好き&quot;</span>
-<span class="p">];</span>
-
-<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;special-button&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">messageCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">messages</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="nx">messages</span><span class="p">[</span><span class="nx">messageCount</span><span class="p">]);</span>
-<span class="w">        </span><span class="nx">messageCount</span><span class="o">++</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">showMessage</span><span class="p">(</span><span class="s2">&quot;♥&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>ボタンをクリックするたびに、隆弘くんからのメッセージが表示される。</p>
-<p>最後まで読んで、涙が出そうになった。</p>
-<p>「隆弘くん……」</p>
-<p>「昨日の返事、ちゃんとしたくて」</p>
-<p>真っ直ぐな瞳で見つめられる。</p>
-<p>「俺も美久のこと、本当に大好きだ」</p>
-<p>今度は、はっきりと、力強く。</p>
-<p>私の目から、涙がこぼれた。</p>
-<p>嬉しくて、嬉しくて。</p>
-<p>◇◇◇◇</p>
-<h2 id="8">午後8時　帰り道<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
-<p>「泣かせるつもりじゃなかったんだけど」</p>
-<p>隆弘くんが心配そうに言う。</p>
-<p>「嬉し涙だから、大丈夫」</p>
-<p>私は笑顔を見せる。</p>
-<p>二人で並んで歩く帰り道。</p>
-<p>手と手の距離が、今日は特に近い。</p>
-<p>「ねえ、隆弘くん」</p>
-<p>「ん？」</p>
-<p>「イベントリスナーみたいに、お互いの気持ちの変化も感知できたらいいのにね」</p>
-<p>私の言葉に、隆弘くんは優しく笑った。</p>
-<p>「でも、言葉で伝え合えるから、人間なんじゃないかな」</p>
-<p>「そうだね」</p>
-<p>エレベーターで7階に着く。</p>
-<p>今日は、名残惜しさがいつも以上に強い。</p>
-<p>「明日も、よろしくね」</p>
-<p>「うん、明日も」</p>
-<p>それぞれの部屋に入る前、隆弘くんが振り返った。</p>
-<p>「美久」</p>
-<p>「なに？」</p>
-<p>「今日のプログラム、本当の気持ちだから」</p>
-<p>そう言って、照れたように部屋に入っていった。</p>
-<p>私も自分の部屋に入り、ドアにもたれかかる。</p>
-<p>胸がいっぱいで、言葉にならない。</p>
-<p>イベントリスナーが、二人の心の距離を教えてくれた。</p>
-<p>もう、隠す必要はない。</p>
-<p>私たちは、お互いに「大好き」なんだから。</p>
-<p>スマホが震えた。隆弘くんからのLINE。</p>
-<p>『今日のコード、復習用に送るね。特別なやつも含めて』</p>
-<p>『ありがとう。大切にする』</p>
-<p>『おやすみ、美久』</p>
-<p>『おやすみなさい、隆弘くん』</p>
-<p>そして、最後にもう一言。</p>
-<p>『大好き』</p>
-<p>『俺も大好き』</p>
-<p>画面を見つめながら、幸せな気持ちで眠りについた。</p>
-<p>明日も、隆弘くんに会える。</p>
-<p>それだけで、世界が輝いて見える。</p>
+<p>美久が帰った後、今日のコードを振り返る。</p>
+<p>オブジェクト指向の基礎を、美久は見事に理解した。</p>
+<p>MikuLangは、もはや本格的なプログラミング言語に近づいている。</p>
+<p>そして、美久との距離も——</p>
+<p>明日もまた、新しい発見がありそうだ。</p>
 
 
 

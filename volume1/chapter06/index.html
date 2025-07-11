@@ -661,19 +661,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    第6話 オブジェクトという設定集
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -685,97 +672,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#10810" class="md-nav__link">
-    <span class="md-ellipsis">
-      10月8日（土）午前10時
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1015" class="md-nav__link">
-    <span class="md-ellipsis">
-      午前10時15分 隆弘の部屋
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    <span class="md-ellipsis">
-      午前11時 プログラミングレッスン
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1230" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後12時30分 昼食休憩
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後2時 プログラミング再開
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後4時 目覚め
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後6時 今日の成果
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後7時 美久を送る
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1274,196 +1170,257 @@
   
 
 
-<h1 id="6">第6話 変数と好感度システム<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
-<h2 id="10810">10月8日（土）午前10時<a class="headerlink" href="#10810" title="Permanent link">&para;</a></h2>
-<p>「美久、今日は大丈夫？」</p>
-<p>土曜日の朝、僕は美久の部屋のインターホンを鳴らした。</p>
-<p>「あ、隆弘くん！もちろん！」</p>
-<p>ドアが開くと、私服姿の美久が立っていた。白いブラウスにベージュのカーディガン、チェック柄のスカート。</p>
-<p>（かわいい……）</p>
-<p>「どうしたの？じろじろ見て」</p>
-<p>「い、いや、私服も似合うなって」</p>
-<p>美久の頬が赤くなる。</p>
-<p>「ありがとう。隆弘くんも、私服だとちょっと大人っぽいね」</p>
-<p>今度は僕が照れる番だった。</p>
-<p>「それで、今日は僕の部屋でやろうと思うんだけど」</p>
-<p>「え、隆弘くんの部屋？」</p>
-<p>美久が驚いたような顔をする。</p>
-<p>「プログラミング部の部室、土日は使えないから。それに、家の方がリラックスできるし」</p>
-<p>「そ、そうだね。お邪魔します」</p>
+<h1 id="6">第6話 ツリー構造の不思議<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
+<p>四月二十五日、木曜日。放課後。</p>
+<p>今日は美久が珍しく遅刻してきた。</p>
+<p>「ごめんなさい！　委員会が長引いて」</p>
+<p>息を切らせながら駆け込んでくる美久。</p>
+<p>「大丈夫。まだ準備してたところだから」</p>
+<p>「本当？　良かった……」</p>
+<p>美久が安堵の表情を浮かべる。その頬がほんのり赤いのは、走ってきたからだろうか。</p>
+<p>「今日は、昨日の続きでASTのバリエーションを増やすって言ってたよね」</p>
+<p>「覚えててくれたんだ」</p>
+<p>「当たり前でしょ。ちゃんと予習もしてきたよ」</p>
+<p>美久がノートを広げる。単項演算子や真偽値について、自分なりに調べてきたらしい。</p>
 <p>◇◇◇◇</p>
-<h2 id="1015">午前10時15分　隆弘の部屋<a class="headerlink" href="#1015" title="Permanent link">&para;</a></h2>
-<p>「わあ、意外と片付いてる」</p>
-<p>部屋に入った美久が、きょろきょろと見回す。</p>
-<p>「一応、掃除したから」</p>
-<p>本当は朝から必死で片付けたけど、そんなこと言えない。</p>
-<p>「あ、本棚！」</p>
-<p>美久が目を輝かせる。そこには、プログラミングの参考書に混じって、ゲームの攻略本やラノベが並んでいる。</p>
-<p>「『星降る夜のラプソディ』の設定資料集！」</p>
-<p>「あ、それは……」</p>
-<p>慌てて隠そうとするが、もう遅い。</p>
-<p>「いいじゃないですか。私も持ってますよ、For Girls版の」</p>
-<p>美久がにっこり笑う。</p>
-<p>「そ、そうか」</p>
-<p>なんだか、お互いの部屋を見せ合うのも悪くない気がしてきた。</p>
-<p>「じゃあ、始めようか」</p>
-<p>僕はノートPCを開き、美久を隣に座らせた。</p>
-<p>近い。いつもの部室より距離が近い。美久のシャンプーの香りがふわっと漂ってくる。</p>
-<p>（集中、集中）</p>
-<p>「今日は、変数についてもっと詳しくやろう」</p>
-<p>◇◇◇◇</p>
-<h2 id="11">午前11時　プログラミングレッスン<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
-<p>「変数は、データを入れる箱みたいなもの」</p>
-<p>僕はホワイトボードがわりのノートに図を描きながら説明する。</p>
-<p>「例えば、ゲームの好感度システム」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">mikuAffection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 美久の好感度</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">takahiroAffection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 隆弘の好感度</span>
-</code></pre></div>
-<p>「あ、私の名前！」</p>
-<p>美久が嬉しそうに言う。</p>
-<p>「例だから……でも、実際のゲームでもこんな感じで管理するんだ」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 選択肢によって好感度が変化</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">makeChoice</span><span class="p">(</span><span class="nx">choice</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">choice</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;一緒に帰る&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">mikuAffection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;美久の好感度が上がった！&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">choice</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;用事がある&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">mikuAffection</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;美久の好感度が下がった...&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+<p>「じゃあ、まずは真偽値から始めよう」</p>
+<p>僕は新しいコードを書き始めた。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 真偽値リテラルのAST</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">createBooleanLiteral</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BooleanLiteral&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// 評価関数に追加</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;BooleanLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// ... 他の処理</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>「なるほど！選択によって数値が変わるんですね」</p>
-<p>美久が真剣にメモを取る。</p>
-<p>「そう。で、この好感度によってエンディングが変わったり」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">checkEnding</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">mikuAffection</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">80</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ハッピーエンド！&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">mikuAffection</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">50</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ノーマルエンド&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;バッドエンド...&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+<p>「真偽値って、trueとfalseのことだよね」</p>
+<p>「そう。プログラミングでは『真』と『偽』を使って条件を表現するんだ」</p>
+<p>美久がメモを取る。</p>
+<p>「でも、これだけじゃ面白くないよね」</p>
+<p>「え？」</p>
+<p>「だって、ただtrueやfalseを返すだけでしょ？」</p>
+<p>美久の指摘は的確だ。</p>
+<p>「じゃあ、比較演算を実装してみよう」</p>
+<p>◇◇◇◇</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 比較演算のAST</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">comparison</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="nx">createNumberLiteral</span><span class="p">(</span><span class="mf">5</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="nx">createNumberLiteral</span><span class="p">(</span><span class="mf">3</span><span class="p">)</span>
+<span class="p">};</span>
+
+<span class="c1">// 評価関数を拡張</span>
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="o">:</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">right</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Division by zero&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;&lt;&#39;</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;===&#39;</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;!==&#39;</span><span class="o">:</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
+<span class="w">  </span><span class="k">default</span><span class="o">:</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown operator: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>「80以上でハッピーエンド……」</p>
-<p>美久がぽつりとつぶやく。</p>
-<p>「現実にも好感度が見えたらいいのにね」</p>
-<p>冗談のつもりで言った言葉に、美久が真剣な顔で答える。</p>
-<p>「見えない方がいいこともありますよ」</p>
-<p>「どうして？」</p>
-<p>「だって、数値じゃ測れない気持ちもあるから」</p>
-<p>美久の言葉に、僕はドキッとした。</p>
-<p>彼女は一体、誰のことを想って言っているんだろう。</p>
+<p>「おお、比較もできるようになった！」</p>
+<p>実行してみると、ちゃんと true が返ってくる。</p>
+<p>「これで条件分岐が作れるようになるね」</p>
+<p>美久の発言に驚く。まだ教えていないのに、次のステップを予測している。</p>
 <p>◇◇◇◇</p>
-<h2 id="1230">午後12時30分　昼食休憩<a class="headerlink" href="#1230" title="Permanent link">&para;</a></h2>
-<p>「お昼、どうする？」</p>
-<p>「あ、私がお弁当作ってきました！」</p>
-<p>美久が持参した紙袋から、タッパーを取り出す。</p>
-<p>「え、僕の分も？」</p>
-<p>「だって、一緒に食べた方が美味しいでしょ？」</p>
-<p>当たり前のように言う美久。</p>
-<p>「それに、いつも教えてもらってるお礼です」</p>
-<p>タッパーの中身は、唐揚げ、卵焼き、ほうれん草のおひたし。どれも美味しそうだ。</p>
-<p>「すごい、本格的」</p>
-<p>「えへへ、実は料理も趣味なんです」</p>
-<p>意外な一面を知って、また美久のことが好きになる。</p>
-<p>いや、好きって……。</p>
-<p>「どうしたの？固まって」</p>
-<p>「い、いや、美味しそうだなって」</p>
-<p>「召し上がれ！」</p>
-<p>一緒に食べるお弁当は、本当に美味しかった。</p>
-<p>◇◇◇◇</p>
-<h2 id="2">午後2時　プログラミング再開<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<p>「さて、次はif文を使って実際に選択肢を作ってみよう」</p>
-<p>午後の部が始まった。お腹もいっぱいで、少し眠たそうな美久。</p>
-<p>「大丈夫？眠い？」</p>
-<p>「大丈夫です！頑張ります」</p>
-<p>でも、まぶたが重そうだ。</p>
-<p>「少し休憩する？」</p>
-<p>「でも……」</p>
-<p>「15分だけ」</p>
-<p>僕がそう言うと、美久は安心したように目を閉じた。</p>
-<p>そして、そのまま僕の肩にもたれかかってきた。</p>
-<p>「み、美久？」</p>
-<p>返事はない。寝てしまったらしい。</p>
-<p>規則正しい寝息が聞こえる。</p>
-<p>（どうしよう……）</p>
-<p>動けない。動きたくない。</p>
-<p>美久の重さと温もりを感じながら、僕は画面を見つめる。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">currentAffection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w">  </span><span class="c1">// 今の好感度</span>
-</code></pre></div>
-<p>100点満点。</p>
-<p>もし、現実に好感度があるなら、今の僕の美久への好感度は……。</p>
-<p>「ん……」</p>
-<p>美久が小さく声を出して、さらに僕に寄りかかってくる。</p>
-<p>この状況、if文で表すなら。</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">美久が寝ている</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">距離が近い</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">心拍数</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">最大値</span><span class="p">;</span>
-<span class="w">    </span><span class="nx">理性</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">限界</span><span class="p">;</span>
+<p>「次は単項演算子をやってみよう」</p>
+<p>「単項演算子って、値を一つだけ取るやつだよね」</p>
+<p>「そう。例えばマイナス記号とか」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 単項演算のAST</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">createUnaryExpression</span><span class="p">(</span><span class="nx">operator</span><span class="p">,</span><span class="w"> </span><span class="nx">argument</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;UnaryExpression&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="nx">operator</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">argument</span><span class="o">:</span><span class="w"> </span><span class="nx">argument</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// -5 を表現</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">negativeNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createUnaryExpression</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">createNumberLiteral</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 評価関数に追加</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;UnaryExpression&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">argument</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">argument</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="nx">argument</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="o">:</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="nx">argument</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown unary operator: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>なんて、プログラマーらしくない思考だ。</p>
-<p>◇◇◇◇</p>
-<h2 id="4">午後4時　目覚め<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<p>「はっ！」</p>
-<p>美久が急に目を覚ました。</p>
-<p>「ご、ごめんなさい！私、寝ちゃって……」</p>
-<p>顔を真っ赤にして謝る美久。</p>
-<p>「いいよ。疲れてたんだろ」</p>
-<p>「でも、隆弘くんの肩に……」</p>
-<p>「気にしないで」</p>
-<p>本当は、ずっとあのままでもよかったけど。</p>
-<p>「あの、続きをやりましょう！」</p>
-<p>美久が話題を変える。</p>
-<p>「そうだね。じゃあ、実際に選択肢を作ってみよう」</p>
-<p>僕たちは再びプログラミングに集中した。</p>
-<p>でも、さっきまでの距離感が忘れられなくて、なんだかぎこちない。</p>
-<p>◇◇◇◇</p>
-<h2 id="6_1">午後6時　今日の成果<a class="headerlink" href="#6_1" title="Permanent link">&para;</a></h2>
-<p>「できた！」</p>
-<p>画面には、簡単な選択肢ゲームが表示されている。</p>
-<p>『主人公に告白する？』
-［はい］［いいえ］</p>
-<p>「はい」を選ぶと、「告白成功！ハッピーエンド」
-「いいえ」を選ぶと、「また今度……」</p>
-<p>シンプルだけど、ちゃんと動く。</p>
-<p>「すごい！私が作ったゲームだ！」</p>
-<p>美久が子供のように喜ぶ。</p>
-<p>「まだ始まりだけどね」</p>
-<p>「でも、嬉しい。隆弘くんのおかげです」</p>
-<p>美久の笑顔を見て、僕も嬉しくなる。</p>
-<p>「じゃあ、今日はここまで」</p>
-<p>「はい。ありがとうございました」</p>
-<p>片付けをしながら、美久が言う。</p>
-<p>「あの、明日も……いいですか？」</p>
-<p>「もちろん」</p>
-<p>即答する僕。</p>
-<p>「やった！じゃあ、明日はもっと複雑な分岐を作りましょう」</p>
-<p>「楽しみだな」</p>
-<p>◇◇◇◇</p>
-<h2 id="7">午後7時　美久を送る<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<p>「送るよ」</p>
-<p>「え、でも隣の部屋……」</p>
-<p>「いいから」</p>
-<p>僕は美久を部屋の前まで送った。</p>
-<p>「今日は楽しかったです」</p>
-<p>「俺も」</p>
-<p>「それじゃ、おやすみなさい」</p>
-<p>「おやすみ」</p>
-<p>ドアが閉まる前に、美久が振り返った。</p>
-<p>「隆弘くん」</p>
+<p>「なるほど、二項演算と似てるけど、引数が一つなんだ」</p>
+<p>「その通り。構造は似てるけど、微妙に違う」</p>
+<p>美久がコードを見つめながら考え込む。</p>
+<p>「ねえ、隆弘先輩」</p>
 <p>「ん？」</p>
-<p>「私の好感度、上がりましたか？」</p>
-<p>いたずらっぽく笑う美久。</p>
-<p>「……カンストしそう」</p>
-<p>僕の答えに、美久は真っ赤になって部屋に入っていった。</p>
-<p>一人になった廊下で、僕は頭を抱えた。</p>
-<p>（なんて答えてるんだ、俺は）</p>
-<p>でも、嘘じゃない。</p>
-<p>美久への好感度は、もう変数の最大値を超えそうだ。</p>
-<p>明日も一緒にプログラミング。</p>
-<p>このままいくと、僕たちの関係も、新しい分岐に進みそうな予感がした。</p>
+<p>「ASTって、どんどん複雑になっていくけど、基本的な考え方は同じだよね」</p>
+<p>◇◇◇◇</p>
+<p>「いい気づきだね」</p>
+<p>僕は美久の洞察力に感心する。</p>
+<p>「実は、それがASTの美しさなんだ。どんな複雑な式も、シンプルなルールの組み合わせで表現できる」</p>
+<p>「レゴブロックみたい」</p>
+<p>美久がまた的確な例えを出す。</p>
+<p>「そう。小さな部品を組み合わせて、大きな構造を作る」</p>
+<p>僕はホワイトボードに新しい図を描き始めた。</p>
+<div class="highlight"><pre><span></span><code>        !
+        |
+        &gt;
+       / \
+      x   0
+</code></pre></div>
+<p>「これは !（x &gt; 0）のAST」</p>
+<p>「わあ、入れ子になってる！」</p>
+<p>「単項演算子の中に二項演算子が入ってる。こうやって組み合わせることで、複雑な式も表現できるんだ」</p>
+<p>◇◇◇◇</p>
+<p>しばらく作業を続けていると、美久が突然声を上げた。</p>
+<p>「あ、分かった！」</p>
+<p>「何が？」</p>
+<p>「ASTって、入れ子人形みたい」</p>
+<p>また面白い例えだ。</p>
+<p>「マトリョーシカ？」</p>
+<p>「そう！　大きな人形の中に小さな人形が入ってて、その中にまた……」</p>
+<p>美久が手でジェスチャーをしながら説明する。</p>
+<p>「確かに、再帰的な構造という意味では似てるかも」</p>
+<p>「再帰的？」</p>
+<p>「自分の中に自分と同じ構造が含まれること」</p>
+<p>美久が首を傾げる。</p>
+<p>「うーん、難しい」</p>
+<p>「じゃあ、実際に見てみよう」</p>
+<p>◇◇◇◇</p>
+<p>僕は printAst 関数を改良して、もっと視覚的に分かりやすくした。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">printAstVisual</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span><span class="w"> </span><span class="nx">indent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">isLast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">indent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nx">isLast</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;└── &#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;├── &#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`Number: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;BooleanLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`Boolean: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`Binary: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">newIndent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">indent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nx">isLast</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;    &#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;│   &#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">printAstVisual</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span><span class="w"> </span><span class="nx">newIndent</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">printAstVisual</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span><span class="w"> </span><span class="nx">newIndent</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;UnaryExpression&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sb">`Unary: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">newIndent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">indent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nx">isLast</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;    &#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;│   &#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">printAstVisual</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">argument</span><span class="p">,</span><span class="w"> </span><span class="nx">newIndent</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>複雑な式を表示してみる。</p>
+<div class="highlight"><pre><span></span><code>└── Binary: &amp;&amp;
+    ├── Binary: &gt;
+    │   ├── Number: 10
+    │   └── Number: 5
+    └── Binary: &lt;
+        ├── Number: 20
+        └── Number: 30
+</code></pre></div>
+<p>「すごい！　本当に木みたい！」</p>
+<p>美久が目を輝かせる。</p>
+<p>◇◇◇◇</p>
+<p>「ねえ、隆弘先輩」</p>
+<p>休憩中、美久が窓の外を眺めながら言った。</p>
+<p>「プログラミング言語を作るって、思ってたより創造的なんだね」</p>
+<p>「どういうこと？」</p>
+<p>「だって、新しい表現方法を作ってるわけでしょ？　芸術みたい」</p>
+<p>その発想は新鮮だった。</p>
+<p>「確かに、言語設計にはセンスが必要かもしれない」</p>
+<p>「隆弘先輩のセンス、好きだよ」</p>
+<p>さらりと言われた言葉に、心臓が跳ねる。</p>
+<p>「え？」</p>
+<p>「あ、いや、プログラミングのセンスが！」</p>
+<p>美久が慌てて言い直す。その顔が真っ赤だ。</p>
+<p>（今のは……）</p>
+<p>気まずい沈黙が流れる。</p>
+<p>◇◇◇◇</p>
+<p>「そ、それより」</p>
+<p>僕は咳払いをして話題を変えた。</p>
+<p>「明日はもっと面白いことをやろうと思うんだ」</p>
+<p>「面白いこと？」</p>
+<p>「パーサーは作らないって言ったけど、簡単な構文を定義してみようかなって」</p>
+<p>美久の目が輝く。</p>
+<p>「構文？」</p>
+<p>「MikuLangの見た目を決めるんだ。どんな風に書くか」</p>
+<p>「わあ、楽しみ！」</p>
+<p>美久の反応に、僕も楽しくなってくる。</p>
+<p>「例えば、日本語を使えるようにするとか」</p>
+<p>「本当に？」</p>
+<p>「美久が言ってたでしょ。日本語で書けるプログラミング言語って」</p>
+<p>美久が嬉しそうに頷く。</p>
+<p>「覚えててくれたんだ」</p>
+<p>「もちろん」</p>
+<p>◇◇◇◇</p>
+<p>夕方六時。今日も時間があっという間に過ぎた。</p>
+<p>「明日が楽しみで眠れないかも」</p>
+<p>荷物をまとめながら美久が言う。</p>
+<p>「大げさだよ」</p>
+<p>「だって、私たちの言語に形ができるんでしょ？」</p>
+<p>『私たちの言語』という表現に、胸が温かくなる。</p>
+<p>いつの間にか、これは二人のプロジェクトになっていた。</p>
+<p>「じゃあ、今晩は構文のアイデアを考えてきて」</p>
+<p>「はい！」</p>
+<p>教室を出て、廊下を歩く。</p>
+<p>「隆弘先輩」</p>
+<p>「ん？」</p>
+<p>「今日も、ありがとう」</p>
+<p>美久の素直な感謝の言葉に、照れくさくなる。</p>
+<p>「こちらこそ。美久の発想、いつも面白いから」</p>
+<p>「本当？」</p>
+<p>「うん。マトリョーシカとか、芸術とか。新しい視点をくれる」</p>
+<p>美久が照れたように微笑む。</p>
+<p>「それは、隆弘先輩が優しく聞いてくれるから」</p>
+<p>また『優しい』という言葉。美久はよくそう言う。</p>
+<p>◇◇◇◇</p>
+<p>帰り道、僕は今日のことを振り返っていた。</p>
+<p>ASTのバリエーションが増えて、MikuLangは着実に成長している。</p>
+<p>そして、美久との関係も——</p>
+<p>（『好きだよ』って言ったよな、確かに）</p>
+<p>プログラミングのセンスのことだと訂正されたけど、あの一瞬の表情は……。</p>
+<p>考えても仕方ない。でも、考えずにはいられない。</p>
+<p>明日は構文を決める。MikuLangに、初めて「顔」ができる日だ。</p>
+<p>美久はどんなアイデアを持ってくるだろう。</p>
+<p>きっと、また驚かされるに違いない。</p>
+<p>そんな期待を胸に、僕は家路を急いだ。</p>
 
 
 

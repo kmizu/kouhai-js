@@ -1073,19 +1073,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    第18話 隠されたルート
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1097,106 +1084,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#10267" class="md-nav__link">
-    <span class="md-ellipsis">
-      10月26日（木）午前7時
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#745" class="md-nav__link">
-    <span class="md-ellipsis">
-      午前7時45分 いつもの廊下
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#430" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後4時30分 プログラミング部室
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#515" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後5時15分 ゲームへの実装
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後6時 メソッドの追加
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#645" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後6時45分 複雑なオブジェクト
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#730" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後7時30分 オブジェクトの応用
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#815" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後8時15分 今日のまとめ
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#845" class="md-nav__link">
-    <span class="md-ellipsis">
-      午後8時45分 帰り道
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1283,352 +1170,364 @@
   
 
 
-<h1 id="18">第18話 オブジェクトで繋がる想い<a class="headerlink" href="#18" title="Permanent link">&para;</a></h1>
-<h2 id="10267">10月26日（木）午前7時<a class="headerlink" href="#10267" title="Permanent link">&para;</a></h2>
-<p>昨夜のキス。</p>
-<p>頬に触れた美久の柔らかい唇の感触が、まだ残っている。</p>
-<p>（嬉しかった）</p>
-<p>素直にそう思う。</p>
-<p>美久の気持ちが、確実に僕に向いている。</p>
-<p>それが分かって、世界が違って見える。</p>
-<p>今日も美久に会える。</p>
-<p>それだけで、朝から幸せな気分だ。</p>
+<h1 id="18">第18話 パーサーの実装<a class="headerlink" href="#18" title="Permanent link">&para;</a></h1>
+<p>五月七日、火曜日。</p>
+<p>ゴールデンウィーク明けの学校。久しぶりの授業を終えて、放課後の空き教室で美久と開発を続ける。</p>
+<p>「今日はパーサーだね」</p>
+<p>美久が期待に満ちた顔で言う。</p>
+<p>「文字列からASTを作る。これで本物のプログラミング言語になる」</p>
+<p>「ついに最後のピース？」</p>
+<p>「そう。今まではASTを手動で作ってたけど、これからはコードを書けるようになる」</p>
 <p>◇◇◇◇</p>
-<h2 id="745">午前7時45分　いつもの廊下<a class="headerlink" href="#745" title="Permanent link">&para;</a></h2>
-<p>「おはよう、美久」</p>
-<p>いつもより少し早く出て、美久を待っていた。</p>
-<p>「お、おはよう」</p>
-<p>美久の顔が真っ赤だ。</p>
-<p>昨夜のことを思い出しているのかな。</p>
-<p>「よく眠れた？」</p>
-<p>「う、うん。隆弘くんは？」</p>
-<p>「最高の夢を見た」</p>
-<p>僕の言葉に、美久の顔がさらに赤くなる。</p>
-<p>可愛い。</p>
-<p>「今日も一緒に頑張ろう」</p>
-<p>「うん！」</p>
-<p>エレベーターで降りながら、美久がそっと言った。</p>
-<p>「昨日は、ありがとう」</p>
-<p>「こちらこそ」</p>
-<p>二人で顔を見合わせて、照れ笑いを浮かべる。</p>
-<p>新しい朝が、始まった。</p>
-<p>◇◇◇◇</p>
-<h2 id="430">午後4時30分　プログラミング部室<a class="headerlink" href="#430" title="Permanent link">&para;</a></h2>
-<p>「今日は、オブジェクトについて教えるよ」</p>
-<p>放課後の部室。</p>
-<p>他の部員たちは、それぞれの作業に没頭している。</p>
-<p>「オブジェクト？」</p>
-<p>「複数のデータをまとめて管理する仕組みだよ」</p>
-<p>僕はホワイトボードに図を描きながら説明する。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// キャラクターのデータをオブジェクトで表現</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">miku</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;河内美久&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">16</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">grade</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;childhood_friend&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">personality</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;明るい&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;素直&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;一途&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="nx">likes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;プログラミング&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;イラスト&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;隆弘くん&quot;</span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">miku</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;河内美久&quot;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">miku</span><span class="p">.</span><span class="nx">likes</span><span class="p">[</span><span class="mf">2</span><span class="p">]);</span><span class="w"> </span><span class="c1">// &quot;隆弘くん&quot;</span>
+<p>「パーサーの基本から始めよう」</p>
+<p>ホワイトボードに流れを書く。</p>
+<div class="highlight"><pre><span></span><code>ソースコード（文字列）
+    ↓
+字句解析（トークン化）
+    ↓
+構文解析（パース）
+    ↓
+AST（抽象構文木）
 </code></pre></div>
-<p>「わあ、私のデータだ！」</p>
-<p>美久が嬉しそうに画面を見つめる。</p>
-<p>「でも、好きなものに隆弘くんって……」</p>
-<p>「事実でしょ？」</p>
-<p>僕がニヤリと笑うと、美久は真っ赤になった。</p>
-<p>「もう、隆弘くんのいじわる」</p>
-<p>でも、否定はしない。</p>
-<p>それが嬉しい。</p>
+<p>「字句解析って？」</p>
+<p>「文字列を意味のある単位に分解すること」</p>
+<p>具体例を示す。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 入力: &quot;x = 10 + 20&quot;</span>
+<span class="c1">// 字句解析の結果（トークン）:</span>
+<span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IDENTIFIER&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ASSIGN&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NUMBER&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;10&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PLUS&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NUMBER&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;20&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <p>◇◇◇◇</p>
-<h2 id="515">午後5時15分　ゲームへの実装<a class="headerlink" href="#515" title="Permanent link">&para;</a></h2>
-<p>「オブジェクトを使えば、ゲームのデータ管理が楽になる」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// ゲーム全体の状態管理</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">gameData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">player</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;主人公&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">characters</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">miku</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nx">yui</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ゆい&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nx">sakura</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;さくら&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">scene</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">current</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">background</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;classroom.jpg&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">bgm</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;daily.mp3&quot;</span>
-<span class="w">    </span><span class="p">}</span>
+<p>「まず、トークナイザーを作ろう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// トークンの種類</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">TokenType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">NUMBER</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NUMBER&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">STRING</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;STRING&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">IDENTIFIER</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IDENTIFIER&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">PLUS</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PLUS&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">MINUS</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MINUS&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">STAR</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;STAR&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">SLASH</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SLASH&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ASSIGN</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ASSIGN&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">LPAREN</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;LPAREN&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">RPAREN</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;RPAREN&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">LBRACE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;LBRACE&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">RBRACE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;RBRACE&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">SEMICOLON</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SEMICOLON&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">IF</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IF&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ELSE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ELSE&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">WHILE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;WHILE&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">FUNCTION</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;FUNCTION&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">RETURN</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;RETURN&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">EOF</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;EOF&#39;</span>
 <span class="p">};</span>
 
-<span class="c1">// 好感度を上げる関数</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">increaseAffection</span><span class="p">(</span><span class="nx">character</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">gameData</span><span class="p">.</span><span class="nx">characters</span><span class="p">[</span><span class="nx">character</span><span class="p">].</span><span class="nx">affection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">amount</span><span class="p">;</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">gameData</span><span class="p">.</span><span class="nx">characters</span><span class="p">[</span><span class="nx">character</span><span class="p">].</span><span class="nx">name</span><span class="si">}</span><span class="sb">の好感度が</span><span class="si">${</span><span class="nx">amount</span><span class="si">}</span><span class="sb">上がった！`</span><span class="p">);</span>
+<span class="c1">// トークナイザークラス</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Tokenizer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 次の文字を見る（消費しない）</span>
+<span class="w">  </span><span class="nx">peek</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 次の文字を消費</span>
+<span class="w">  </span><span class="nx">advance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 空白をスキップ</span>
+<span class="w">  </span><span class="nx">skipWhitespace</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="sr">/\s/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>「なるほど！全部のデータが整理されてる」</p>
-<p>美久が理解した様子で頷く。</p>
-<p>「これなら、どのキャラクターがどんな状態か、すぐ分かるね」</p>
-<p>「そう。プログラミングは、整理整頓が大事なんだ」</p>
-<p>僕の言葉に、美久が微笑む。</p>
-<p>「隆弘くんの部屋みたいに？」</p>
-<p>「あ、あれは……」</p>
-<p>確かに、僕の部屋は整理整頓が行き届いている。</p>
-<p>美久に褒められて、ちょっと照れる。</p>
+<p>「文字を一つずつ見ていくんだ」</p>
+<p>「そう。パターンを認識してトークンに変換する」</p>
 <p>◇◇◇◇</p>
-<h2 id="6">午後6時　メソッドの追加<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p>「オブジェクトには、関数も入れられるんだ」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// キャラクターオブジェクトに機能を追加</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuCharacter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;河内美久&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">mood</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;happy&quot;</span><span class="p">,</span>
-
-<span class="w">    </span><span class="c1">// メソッド（オブジェクトの関数）</span>
-<span class="w">    </span><span class="nx">speak</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">text</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">changeMode</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">newMood</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">mood</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newMood</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">の気分が</span><span class="si">${</span><span class="nx">newMood</span><span class="si">}</span><span class="sb">になった`</span><span class="p">);</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">confess</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">affection</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">80</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="s2">&quot;あの……実は、ずっと好きでした！&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="s2">&quot;え、えっと……&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
+<p>美久が質問してきた。</p>
+<p>「日本語も扱えるの？」</p>
+<p>「もちろん。識別子に日本語を使えるようにしよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 数値トークンの読み取り</span>
+<span class="nx">readNumber</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// 使用例</span>
-<span class="nx">mikuCharacter</span><span class="p">.</span><span class="nx">affection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">85</span><span class="p">;</span>
-<span class="nx">mikuCharacter</span><span class="p">.</span><span class="nx">confess</span><span class="p">();</span><span class="w"> </span><span class="c1">// &quot;河内美久: あの……実は、ずっと好きでした！&quot;</span>
-</code></pre></div>
-<p>「告白機能まで！？」</p>
-<p>美久が顔を真っ赤にする。</p>
-<p>「ゲームには必要でしょ？」</p>
-<p>「そ、そうだけど……」</p>
-<p>画面を見つめる美久の横顔。</p>
-<p>昨夜のキスを思い出してしまう。</p>
-<p>「実際の告白は、もっとドキドキするけどね」</p>
-<p>つい、そんなことを言ってしまった。</p>
-<p>美久が僕を見つめる。</p>
-<p>その瞳に、期待のような何かが宿っている。</p>
-<p>◇◇◇◇</p>
-<h2 id="645">午後6時45分　複雑なオブジェクト<a class="headerlink" href="#645" title="Permanent link">&para;</a></h2>
-<p>「もっと複雑な構造も作れるよ」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// シーンデータの管理</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">sceneDatabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">opening</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;運命の出会い&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;教室&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;放課後&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">characters</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;miku&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">dialogue</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;miku&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;先輩、プログラミング教えてください！&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">expression</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;smile&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;え？どうして急に？&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                    </span><span class="p">{</span>
-<span class="w">                        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;もちろん教えるよ&quot;</span><span class="p">,</span>
-<span class="w">                        </span><span class="nx">effect</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">increaseAffection</span><span class="p">(</span><span class="s2">&quot;miku&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">},</span>
-<span class="w">                    </span><span class="p">{</span>
-<span class="w">                        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ちょっと忙しいかな&quot;</span><span class="p">,</span>
-<span class="w">                        </span><span class="nx">effect</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">increaseAffection</span><span class="p">(</span><span class="s2">&quot;miku&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">5</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">confession</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">99</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;想いを伝える時&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;屋上&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;夕暮れ&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">required</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">miku</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;completed_game&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nx">dialogue</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;miku&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ゲーム、完成したね&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">expression</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;happy&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久のおかげだよ&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;miku&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;違う。二人で作ったから&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">expression</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blush&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久、伝えたいことがあるんだ&quot;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「すごい……物語の全てがデータになってる」</p>
-<p>美久が感心したように呟く。</p>
-<p>「告白シーンまで用意されてる」</p>
-<p>「実装するかは別として、ね」</p>
-<p>僕が言うと、美久が小さく呟いた。</p>
-<p>「実装して欲しいな」</p>
-<p>聞こえたような、聞こえなかったような。</p>
-<p>でも、美久の頬が赤いのは確かだ。</p>
-<p>◇◇◇◇</p>
-<h2 id="730">午後7時30分　オブジェクトの応用<a class="headerlink" href="#730" title="Permanent link">&para;</a></h2>
-<p>「オブジェクトを使えば、セーブデータも簡単に作れる」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// セーブデータの構造</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">saveData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span>
-<span class="w">    </span><span class="nx">playerName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;嵐山隆弘&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">currentScene</span><span class="o">:</span><span class="w"> </span><span class="mf">42</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">gameProgress</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">completedScenes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">15</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="mf">35</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">,</span><span class="w"> </span><span class="mf">42</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">unlockedCGs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;opening&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;first_lesson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;debugging_night&quot;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">unlockedBGMs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;main_theme&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;love_theme&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">characterStatus</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">miku</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">affection</span><span class="o">:</span><span class="w"> </span><span class="mf">95</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">route</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;true_end&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">memories</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="s2">&quot;初めてのプログラミングレッスン&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;一緒に作ったゲーム&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;深夜のデバッグ&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;頬へのキス&quot;</span>
-<span class="w">            </span><span class="p">]</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// セーブ機能</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">saveGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;gameData&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">saveData</span><span class="p">));</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ゲームを保存しました&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">NUMBER</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+<span class="w">  </span><span class="p">};</span>
 <span class="p">}</span>
 
-<span class="c1">// ロード機能</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">loadGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">saved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;gameData&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">saved</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">saved</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="c1">// 識別子の読み取り（日本語対応）</span>
+<span class="nx">readIdentifier</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// 日本語、英数字、アンダースコアを許可</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="sr">/[\p{L}\p{N}_]/u</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// キーワードチェック</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;if&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IF</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;もし&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IF</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;else&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">ELSE</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;でなければ&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">ELSE</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;while&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">WHILE</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;の間&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">WHILE</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;function&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">FUNCTION</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;関数&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">FUNCTION</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;return&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">RETURN</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;返す&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">RETURN</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">keywords</span><span class="p">[</span><span class="nx">value</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IDENTIFIER</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">};</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>「思い出まで保存されてる……」</p>
-<p>美久が画面を見つめる。</p>
-<p>「頬へのキスって」</p>
-<p>「昨日の夜のことも、大切な思い出だから」</p>
-<p>僕の言葉に、美久の目が潤む。</p>
-<p>「隆弘くん……」</p>
-<p>「美久との思い出は、全部大切に保存したい」</p>
-<p>今度は僕が照れる番だった。</p>
-<p>でも、本心だ。</p>
+<p>「日本語でプログラミングできる！」</p>
+<p>美久の目が輝く。</p>
 <p>◇◇◇◇</p>
-<h2 id="815">午後8時15分　今日のまとめ<a class="headerlink" href="#815" title="Permanent link">&para;</a></h2>
-<p>「オブジェクトを使えば、複雑なデータも整理できる」</p>
-<p>部室には、僕と美久だけになっていた。</p>
-<p>他の部員は、みんな帰ってしまった。</p>
-<p>「人の気持ちも、オブジェクトみたいに整理できたらいいのに」</p>
-<p>美久がぽつりと呟く。</p>
+<p>休憩時間。美久がお茶を飲みながら言った。</p>
+<p>「パーサーって、人の話を理解するのに似てるね」</p>
 <p>「どういうこと？」</p>
-<p>「だって、好きとか、嬉しいとか、数値化できないじゃない」</p>
-<p>美久の言葉に、僕は少し考えた。</p>
-<p>「でも、それがいいんじゃないかな」</p>
-<p>「え？」</p>
-<p>「数値化できないから、言葉で伝える必要がある」</p>
-<p>僕は美久を見つめる。</p>
-<p>「昨日の夜みたいに、行動で示すこともできる」</p>
-<p>美久の顔が、また赤くなった。</p>
-<p>「そ、そうだね」</p>
+<p>「単語を認識して、文法を理解して、意味を把握する」</p>
+<p>鋭い洞察だ。</p>
+<p>「確かに。自然言語処理とプログラミング言語処理は似てる」</p>
 <p>◇◇◇◇</p>
-<h2 id="845">午後8時45分　帰り道<a class="headerlink" href="#845" title="Permanent link">&para;</a></h2>
-<p>「今日もありがとう」</p>
-<p>マンションへの帰り道。</p>
-<p>夜風が心地いい。</p>
-<p>「オブジェクト、難しかった？」</p>
-<p>「ううん。隆弘くんの説明、分かりやすかった」</p>
-<p>「良かった」</p>
-<p>しばらく無言で歩く。</p>
-<p>でも、昨日とは違う。</p>
-<p>もっと近い距離で、もっと自然に。</p>
-<p>「ねえ、隆弘くん」</p>
-<p>「ん？」</p>
-<p>「私たちの関係も、オブジェクトで表現できる？」</p>
-<p>突然の質問に、僕は考える。</p>
-<p>そして、答えた。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">ourRelationship</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;幼馴染から恋人へ&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">startDate</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">currentStatus</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;相思相愛&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">sharedMemories</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;countless&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="nx">futurePromise</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ずっと一緒&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">love</span><span class="o">:</span><span class="w"> </span><span class="kc">Infinity</span>
-<span class="p">};</span>
+<p>「次は構文解析器を作ろう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// パーサークラス</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Parser</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">tokens</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tokens</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 現在のトークンを見る</span>
+<span class="w">  </span><span class="nx">peek</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">tokens</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">current</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">EOF</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// トークンを消費</span>
+<span class="w">  </span><span class="nx">consume</span><span class="p">(</span><span class="nx">expectedType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">token</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">expectedType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`期待: </span><span class="si">${</span><span class="nx">expectedType</span><span class="si">}</span><span class="sb">, 実際: </span><span class="si">${</span><span class="nx">token</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">current</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">token</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// プログラムのパース</span>
+<span class="w">  </span><span class="nx">parseProgram</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">statements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">EOF</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">statements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parseStatement</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">statements</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>頭の中で組み立てたコードを、そのまま言葉にする。</p>
-<p>美久が立ち止まった。</p>
-<p>「Infinityって……」</p>
-<p>「無限大。測定不能なくらい大きい」</p>
-<p>僕も立ち止まり、美久を見つめる。</p>
-<p>「僕の美久への想いは、数値化できないから」</p>
-<p>美久の瞳から、涙がこぼれた。</p>
-<p>「ずるい……そんな言い方」</p>
-<p>でも、笑っている。</p>
-<p>「私も、Infinityだよ」</p>
-<p>エレベーターで7階に着く。</p>
-<p>今日は、部屋の前で少し話をした。</p>
-<p>明日のこと、ゲームのこと、これからのこと。</p>
-<p>「じゃあ、おやすみ」</p>
-<p>「おやすみなさい」</p>
-<p>それぞれの部屋に入る直前、美久が振り返った。</p>
-<p>「隆弘くん」</p>
-<p>「なに？」</p>
-<p>「大好き」</p>
-<p>昨日と同じ言葉。</p>
-<p>でも、重みが違う。</p>
-<p>「僕も大好きだよ、美久」</p>
-<p>今度は、はっきりと伝えた。</p>
-<p>オブジェクトで整理された想いは、確実に、正確に、相手に届く。</p>
-<p>プログラミングが教えてくれた、大切なこと。</p>
-<p>それは、想いを形にする方法。</p>
-<p>そして、それを伝える勇気。</p>
+<p>◇◇◇◇</p>
+<p>「式のパースは再帰下降法を使う」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 式のパース（優先順位を考慮）</span>
+<span class="nx">parseExpression</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseAssignment</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">parseAssignment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseAdditive</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">ASSIGN</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">ASSIGN</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseAssignment</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">AssignmentExpression</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">left</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">right</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">parseAdditive</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseMultiplicative</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">PLUS</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>
+<span class="w">         </span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">MINUS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">op</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseMultiplicative</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">BinaryExpression</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="nx">op</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">left</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">right</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「なんで関数が関数を呼んでるの？」</p>
+<p>「演算子の優先順位を表現するため。掛け算は足し算より先に計算される」</p>
+<p>◇◇◇◇</p>
+<p>美久がプログラムを書き始めた。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 美久の最初のMikuLangプログラム（文字列）</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mikuFirstCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">  好感度 = 0</span>
+
+<span class="sb">  関数 デート() {</span>
+<span class="sb">    好感度 = 好感度 + 10</span>
+<span class="sb">    返す 好感度</span>
+<span class="sb">  }</span>
+
+<span class="sb">  関数 告白() {</span>
+<span class="sb">    もし (好感度 &gt;= 80) {</span>
+<span class="sb">      返す &quot;告白成功！&quot;</span>
+<span class="sb">    } でなければ {</span>
+<span class="sb">      返す &quot;もう少し仲良くなってから...&quot;</span>
+<span class="sb">    }</span>
+<span class="sb">  }</span>
+
+<span class="sb">  // デートを繰り返す</span>
+<span class="sb">  の間 (好感度 &lt; 80) {</span>
+<span class="sb">    デート()</span>
+<span class="sb">  }</span>
+
+<span class="sb">  結果 = 告白()</span>
+<span class="sb">  表示(結果)</span>
+<span class="sb">`</span><span class="p">;</span>
+
+<span class="c1">// パースして実行</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">tokenizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Tokenizer</span><span class="p">(</span><span class="nx">mikuFirstCode</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tokenizer</span><span class="p">.</span><span class="nx">tokenize</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">parser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parser</span><span class="p">(</span><span class="nx">tokens</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parser</span><span class="p">.</span><span class="nx">parseProgram</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">evaluator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MikuLangEvaluator</span><span class="p">();</span>
+<span class="nx">evaluator</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">ast</span><span class="p">);</span>
+</code></pre></div>
+<p>「日本語でプログラムが書けた！」</p>
+<p>美久が感動している。</p>
+<p>◇◇◇◇</p>
+<p>「文字列リテラルのパースも追加しよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 文字列トークンの読み取り</span>
+<span class="nx">readString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">quote</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span><span class="w"> </span><span class="c1">// 開始のクォート</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">escaped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="kr">char</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">escaped</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// エスケープシーケンス</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">escapeMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s1">&#39;n&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;t&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\t&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;\\&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;&quot;&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;&#39;&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&#39;&quot;</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">      </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">escapeMap</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="kr">char</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">escaped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kr">char</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;\\&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">escaped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kr">char</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">quote</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span><span class="w"> </span><span class="c1">// 終了のクォート</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">value</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<p>「関数定義のパースも実装しよう」</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 関数定義のパース</span>
+<span class="nx">parseFunctionDeclaration</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">FUNCTION</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IDENTIFIER</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">LPAREN</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">RPAREN</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">params</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IDENTIFIER</span><span class="p">).</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">COMMA</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">COMMA</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">RPAREN</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseBlockStatement</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">FunctionDeclaration</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Identifier</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">p</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Identifier</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">p</span><span class="w"> </span><span class="p">})),</span>
+<span class="w">    </span><span class="nx">body</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>◇◇◇◇</p>
+<p>夕方になってきた。パーサーの実装も順調に進んだ。</p>
+<p>「これで、MikuLangが本物のプログラミング言語になった」</p>
+<p>美久が感慨深そうに言う。</p>
+<p>「文字列でプログラムを書けるようになった」</p>
+<p>「しかも日本語で」</p>
+<p>美久の達成感に満ちた表情が嬉しい。</p>
+<p>◇◇◇◇</p>
+<p>「隆弘先輩」</p>
+<p>片付けながら、美久が言った。</p>
+<p>「私たち、本当に言語を作っちゃったんだね」</p>
+<p>「そうだね。ゼロから作り上げた」</p>
+<p>「すごい。信じられない」</p>
+<p>美久の目が潤んでいる。</p>
+<p>「美久がいたからできた」</p>
+<p>「隆弘先輩こそ」</p>
+<p>◇◇◇◇</p>
+<p>教室を出る時、美久が振り返った。</p>
+<p>「隆弘先輩」</p>
+<p>「ん？」</p>
+<p>「明日、何をする？」</p>
+<p>「日本語の構文をもっと自然にしたい。それと——」</p>
+<p>僕は少し躊躇してから続けた。</p>
+<p>「MikuLangの完成を祝おう」</p>
+<p>美久の顔が明るくなる。</p>
+<p>「うん！楽しみ！」</p>
+<p>二人で廊下を歩く。</p>
+<p>夕日が窓から差し込んで、美久の髪を金色に染める。</p>
+<p>（明日こそ）</p>
+<p>MikuLangの完成と同時に、美久に伝えよう。</p>
+<p>ずっと心に秘めていた、本当の気持ちを。</p>
 
 
 
