@@ -1,380 +1,461 @@
-# 第14話 プログラミング合宿
+# 第14話 エラー処理
 
-## 10月18日（火）午後5時
+　五月三日、金曜日。憲法記念日。
 
-「みんな、聞いてくれ」
+　ゴールデンウィークも後半に入った。美久との日々は、もはや生活の一部になっている。
 
-部活終了後、僕は部員たちを集めた。
+「今日はエラー処理だね」
 
-「今週末、プログラミング合宿をやろうと思う」
+　美久がノートを開きながら言う。
 
-部員たちがざわめく。
+「プログラムを安全にする大事な機能」
 
-「文化祭まであと3週間。ゲームを完成させるには、集中して作業する時間が必要だ」
+「エラーって、悪いものじゃないの？」
 
-田中が手を挙げる。
-
-「どこでやるんだ？」
-
-「学校の宿泊研修施設を借りられることになった。土日の1泊2日」
-
-美久が不安そうな顔をする。
-
-「私たち文芸部も参加していいんですか？」
-
-「もちろん。むしろ来てくれないと困る」
-
-僕の言葉に、美久の表情が明るくなった。
+「エラーは情報。何が間違っているかを教えてくれる」
 
 ◇◇◇◇
 
-## 10月21日（土）午前9時　学校集合
+「まず、try-catch の仕組みを実装しよう」
 
-「おはよう、隆弘くん」
+　ホワイトボードに構造を描く。
 
-美久が大きなリュックを背負って現れた。
-
-「重そうだね」
-
-「イラストの道具とか、お菓子とか……」
-
-「お菓子？」
-
-「みんなで食べようと思って」
-
-相変わらず気が利く美久。
-
-文芸部と合わせて、総勢12名が集まった。
-
-「じゃあ、出発しよう」
-
-学校のマイクロバスに乗り込む。
-
-美久が隣に座ってきた。
-
-「隣、いい？」
-
-「もちろん」
-
-バスが動き出す。
-
-美久との距離が近くて、ドキドキする。
-
-◇◇◇◇
-
-## 午前10時　宿泊研修施設
-
-「わあ、広い！」
-
-施設に着いた美久が歓声を上げる。
-
-研修室、宿泊室、食堂、浴場。
-
-プログラミング合宿には十分な環境だ。
-
-「まず、部屋割りを決めよう」
-
-男子部屋と女子部屋に分かれる。
-
-「研修室で作業して、疲れたら休憩。基本的に自由行動で」
-
-みんなが荷物を置いて、研修室に集まってきた。
-
-「じゃあ、現在の進捗を確認しよう」
-
-◇◇◇◇
-
-## 午前11時　作業開始
-
-ホワイトボードに、残りのタスクを書き出す。
-
-- シナリオ執筆（70%完了）
-- キャラクターイラスト（60%完了）
-- 背景イラスト（40%完了）
-- プログラム実装（50%完了）
-- BGM・効果音選定（20%完了）
-- デバッグ・テスト（未着手）
-
-「結構やることあるな……」
-
-田中が頭を抱える。
-
-「だから合宿なんだ。集中すれば終わる」
-
-僕は自信を持って言った。
-
-美久が手を挙げる。
-
-「私、残りのイラスト頑張ります！」
-
-「俺たちはプログラムの実装を進める」
-
-それぞれが作業を始めた。
-
-◇◇◇◇
-
-## 午後2時　昼食後
-
-「隆弘先輩、ちょっといいですか？」
-
-美久が僕のところにやってきた。
-
-「どうした？」
-
-「このシーンの演出なんですけど……」
-
-美久のノートPCを覗き込む。
-
-告白シーンの絵コンテだった。
-
-「ここで、花びらを舞わせたいんです」
-
-「CSSアニメーションとJavaScriptを組み合わせれば実装できるよ」
-
-僕は実装方法を説明し始めた。
-
-```javascript
-// 桜の花びらアニメーション
-function createPetal() {
-    const petal = document.createElement('div');
-    petal.className = 'petal';
-    petal.style.left = Math.random() * window.innerWidth + 'px';
-    petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    petal.style.opacity = Math.random() * 0.5 + 0.5;
-    document.body.appendChild(petal);
-    
-    setTimeout(() => {
-        petal.remove();
-    }, 5000);
-}
-
-// 定期的に花びらを生成
-setInterval(createPetal, 300);
 ```
-
-「素敵！まるで本物の桜みたい」
-
-美久の笑顔を見て、疲れが吹き飛ぶ。
-
-◇◇◇◇
-
-## 午後6時　夕食
-
-「みんな、お疲れ様！」
-
-食堂に集まって、夕食を取る。
-
-「進捗どう？」
-
-「シナリオ、あと3ルート分書けました」
-
-「背景も2枚完成」
-
-「バグを5個潰した」
-
-みんなの報告を聞いて、手応えを感じる。
-
-美久が僕の隣に座る。
-
-「隆弘くん、すごいね」
-
-「何が？」
-
-「みんなをまとめて、ゲームを作り上げていく姿」
-
-美久の言葉に照れる。
-
-「みんなのおかげだよ」
-
-「ううん、隆弘くんがいるから、みんな頑張れるんだよ」
-
-そんな風に言われると、嬉しくて仕方ない。
-
-◇◇◇◇
-
-## 午後8時　夜の作業
-
-夕食後も作業は続く。
-
-僕は、ゲームのコア部分の実装に集中していた。
-
-```javascript
-// ゲームの状態管理
-class GameState {
-    constructor() {
-        this.currentScene = 0;
-        this.flags = {};
-        this.affection = {
-            miku: 0,
-            yui: 0,
-            sakura: 0
-        };
-        this.choices = [];
-    }
-    
-    // シーン遷移
-    changeScene(sceneId) {
-        this.currentScene = sceneId;
-        this.displayScene();
-    }
-    
-    // フラグ管理
-    setFlag(flagName, value = true) {
-        this.flags[flagName] = value;
-    }
-    
-    // 好感度変更
-    changeAffection(character, amount) {
-        this.affection[character] += amount;
-        this.checkRouteCondition();
-    }
+try {
+    // エラーが起きるかもしれない処理
+} catch (エラー) {
+    // エラーが起きた時の処理
 }
 ```
 
-真剣にコードを書いていると、美久がそっと近づいてきた。
+「あ、昨日まで使ってたやつ」
 
-「コーヒー、入れてきたよ」
-
-「ありがとう」
-
-温かいコーヒーを受け取る。
-
-「無理しないでね」
-
-「大丈夫。楽しいから」
-
-本当に楽しい。
-
-美久と一緒に作るゲーム。
-
-仲間たちとの共同作業。
-
-プログラミングへの情熱。
-
-すべてが合わさって、最高の時間になっている。
+「そう。今日はこれをMikuLangに実装する」
 
 ◇◇◇◇
 
-## 午後11時　深夜の休憩
+「try-catch のASTを設計しよう」
 
-「そろそろ休憩しよう」
+```javascript
+// try-catch文のAST
+const TryStatement = {
+  type: 'TryStatement',
+  block: {
+    type: 'BlockStatement',
+    body: []  // tryブロックの中身
+  },
+  handler: {
+    type: 'CatchClause',
+    param: { type: 'Identifier', name: 'error' },
+    body: {
+      type: 'BlockStatement',
+      body: []  // catchブロックの中身
+    }
+  },
+  finalizer: null  // finallyブロック（今回は実装しない）
+};
+```
 
-さすがに疲れが見え始めた部員たち。
+「handlerがcatchの部分？」
 
-でも、みんな充実した表情をしている。
-
-「今日はここまでにして、明日また頑張ろう」
-
-部員たちが部屋に戻っていく中、美久が残った。
-
-「隆弘くん、ちょっと外に出ない？」
-
-「いいよ」
-
-施設の外に出ると、満天の星空が広がっていた。
-
-「きれい……」
-
-美久が夜空を見上げる。
-
-「京都でも、こんなに星が見えるんだね」
-
-「山の中だからね」
-
-二人で並んで、星を眺める。
-
-「ねえ、隆弘くん」
-
-「ん？」
-
-「ゲームが完成したら、どうなるのかな」
-
-美久の問いに、少し考える。
-
-「文化祭で発表して、みんなに遊んでもらって……」
-
-「それで、終わり？」
-
-美久の声に、寂しさが滲む。
-
-「終わりじゃないよ」
-
-僕は美久を見つめた。
-
-「これは始まりだ。僕たちの」
-
-「始まり？」
-
-「うん。一緒にもっといろんなものを作っていきたい」
-
-美久の瞳が潤む。
-
-「私も、隆弘くんと一緒に作り続けたい」
-
-星空の下、二人の距離が縮まる。
-
-もう少しで、唇が触れそうな距離。
-
-「美久……」
-
-その時、施設のドアが開いた。
-
-「おーい、二人とも！お風呂の時間だぞー」
-
-田中の声で我に返る。
-
-「は、はい！今行きます！」
-
-慌てて離れる僕たち。
-
-でも、お互いの気持ちは、もう隠せない。
+「正解。エラーを捕まえる処理」
 
 ◇◇◇◇
 
-## 10月22日（日）午前6時
+　実装を始める。
 
-早朝、誰よりも早く起きた。
+```javascript
+// ASTTypesに追加
+ASTTypes.TryStatement = 'TryStatement';
+ASTTypes.CatchClause = 'CatchClause';
+ASTTypes.ThrowStatement = 'ThrowStatement';
 
-外に出ると、朝靄が立ち込めている。
+// ヘルパー関数
+function createTry(tryBlock, catchParam, catchBlock) {
+  return {
+    type: ASTTypes.TryStatement,
+    block: tryBlock,
+    handler: {
+      type: ASTTypes.CatchClause,
+      param: createIdentifier(catchParam),
+      body: catchBlock
+    },
+    finalizer: null
+  };
+}
 
-「隆弘くん」
+function createThrow(argument) {
+  return {
+    type: ASTTypes.ThrowStatement,
+    argument: argument
+  };
+}
+```
 
-振り返ると、美久がいた。
+◇◇◇◇
 
-「早いね」
+「評価器も拡張しよう」
 
-「隆弘くんも」
+```javascript
+// try-catch文の評価
+evaluateTryStatement(node) {
+  try {
+    // tryブロックを実行
+    return this.evaluate(node.block);
+  } catch (error) {
+    if (node.handler) {
+      // エラーを変数として設定
+      const catchEnv = new Environment(this.env);
+      catchEnv.set(node.handler.param.name, error);
+      
+      // catchブロックを実行
+      const prevEnv = this.env;
+      this.env = catchEnv;
+      
+      try {
+        return this.evaluate(node.handler.body);
+      } finally {
+        this.env = prevEnv;
+      }
+    }
+    // catchがない場合は再スロー
+    throw error;
+  }
+}
 
-二人で朝の散歩をする。
+// throw文の評価
+evaluateThrowStatement(node) {
+  const value = this.evaluate(node.argument);
+  throw value;
+}
+```
 
-「昨日は、ごめん」
+「環境を切り替えてる」
 
-「何が？」
+「catchブロック内でエラー変数を使えるようにするため」
 
-「いいところで邪魔が入って」
+◇◇◇◇
 
-美久の顔が赤くなる。
+　美久が質問してきた。
 
-「べ、別に……」
+「どんな時にエラーを投げるの？」
 
-でも、嬉しそうな表情。
+「例えば、不正な入力があった時とか」
 
-「合宿が終わったら、ちゃんと話したいことがある」
+　具体例を書く。
 
-僕の言葉に、美久は小さく頷いた。
+```javascript
+const errorProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createFunction(
+      '年齢チェック',
+      ['年齢'],
+      {
+        type: 'BlockStatement',
+        body: [
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '<',
+              createIdentifier('年齢'),
+              createNumber(0)
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [
+                createThrow(createString('年齢は0以上である必要があります'))
+              ]
+            }
+          },
+          createReturn(createString('年齢OK'))
+        ]
+      }
+    ),
+    createTry(
+      {
+        type: 'BlockStatement',
+        body: [
+          createCall('年齢チェック', [createNumber(-5)])
+        ]
+      },
+      'エラー',
+      {
+        type: 'BlockStatement',
+        body: [
+          createPrint(createString('エラーが発生:')),
+          createPrint(createIdentifier('エラー'))
+        ]
+      }
+    )
+  ]
+};
+```
 
-「うん、待ってる」
+◇◇◇◇
 
-朝日が昇り始める。
+　実行してみる。
 
-新しい一日の始まり。
+```
+エラーが発生:
+年齢は0以上である必要があります
+```
 
-そして、僕たちの新しい関係の始まりも、もうすぐそこまで来ている。
+「エラーがちゃんと捕まえられた！」
 
-プログラミング合宿は、技術だけでなく、僕たちの絆も深めてくれた。
+　美久が感動している。
 
-ゲームの完成まで、あと少し。
+「プログラムがクラッシュせずに、エラーを処理できる」
 
-そして、美久との関係も、あと少しで次のステージへ。
+◇◇◇◇
 
-すべてが、順調に進んでいる。
+　休憩時間。美久がお茶を飲みながら言った。
+
+「エラー処理って、人生にも必要だよね」
+
+「どういうこと？」
+
+「失敗した時の対処法を用意しておくって意味で」
+
+　その洞察に感心する。
+
+「確かに。予期しないことは必ず起きるから」
+
+◇◇◇◇
+
+「カスタムエラー型も作ってみよう」
+
+　新しい機能を追加する。
+
+```javascript
+// エラーオブジェクトの作成
+function createError(type, message) {
+  return createObject([
+    ['type', createString(type)],
+    ['message', createString(message)],
+    ['timestamp', createNumber(Date.now())]
+  ]);
+}
+
+// 使用例
+const customErrorProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createFunction(
+      'ゲームロード',
+      ['セーブデータ'],
+      {
+        type: 'BlockStatement',
+        body: [
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '===',
+              createIdentifier('セーブデータ'),
+              createString('')
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [
+                createThrow(createError(
+                  'LoadError',
+                  'セーブデータが見つかりません'
+                ))
+              ]
+            }
+          },
+          createReturn(createString('ロード成功'))
+        ]
+      }
+    )
+  ]
+};
+```
+
+「エラーにも種類があるんだ」
+
+「エラーの種類によって、対処法を変えられる」
+
+◇◇◇◇
+
+　美久がプログラムを書き始めた。
+
+```javascript
+// 美久のエラー処理プログラム
+const mikuErrorProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createFunction(
+      '告白',
+      ['好感度'],
+      {
+        type: 'BlockStatement',
+        body: [
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '<',
+              createIdentifier('好感度'),
+              createNumber(80)
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [
+                createThrow(createError(
+                  'LoveError',
+                  'まだ好感度が足りません'
+                ))
+              ]
+            }
+          },
+          createReturn(createString('告白成功！おめでとう！'))
+        ]
+      }
+    ),
+    createAssignment('現在の好感度', createNumber(70)),
+    createTry(
+      {
+        type: 'BlockStatement',
+        body: [
+          createAssignment(
+            '結果',
+            createCall('告白', [createIdentifier('現在の好感度')])
+          ),
+          createPrint(createIdentifier('結果'))
+        ]
+      },
+      'e',
+      {
+        type: 'BlockStatement',
+        body: [
+          createPrint(createString('告白失敗...')),
+          createPrint(createPropertyAccess(
+            createIdentifier('e'),
+            'message'
+          )),
+          createPrint(createString('もっと頑張ろう！'))
+        ]
+      }
+    )
+  ]
+};
+```
+
+「実行してみよう」
+
+```
+告白失敗...
+まだ好感度が足りません
+もっと頑張ろう！
+```
+
+「ゲームっぽい！」
+
+　美久の発想力はいつも面白い。
+
+◇◇◇◇
+
+「複数のcatchも実装できる」
+
+　より高度な例を示す。
+
+```javascript
+// 複数のエラータイプを処理
+const multiCatchProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createFunction(
+      'ゲーム進行',
+      ['コマンド'],
+      {
+        type: 'BlockStatement',
+        body: [
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '===',
+              createIdentifier('コマンド'),
+              createString('save')
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [
+                createThrow(createError('SaveError', 'セーブに失敗しました'))
+              ]
+            }
+          },
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '===',
+              createIdentifier('コマンド'),
+              createString('load')
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [
+                createThrow(createError('LoadError', 'ロードに失敗しました'))
+              ]
+            }
+          },
+          createReturn(createString('コマンド実行成功'))
+        ]
+      }
+    )
+  ]
+};
+```
+
+◇◇◇◇
+
+　夕方になってきた。エラー処理の実装も順調に進んだ。
+
+「エラー処理、思ったより奥が深い」
+
+　美久が感想を述べる。
+
+「プログラムの品質を上げる重要な要素だから」
+
+「失敗を想定して、対策を用意する。人生の教訓みたい」
+
+　美久の言葉に、また感心する。
+
+◇◇◇◇
+
+「隆弘先輩」
+
+　片付けながら、美久が言った。
+
+「MikuLangが、どんどん実用的になってきた」
+
+「そうだね。エラー処理があれば、安全なプログラムが書ける」
+
+「私たちの言語で、本当にゲームが作れそう」
+
+　美久の期待に満ちた表情が嬉しい。
+
+「明日は何を実装する？」
+
+「文字列処理かな。テキストを扱う機能」
+
+「楽しみ！」
+
+◇◇◇◇
+
+　美久を見送った後、今日のコードを振り返る。
+
+　エラー処理の実装で、MikuLangはより堅牢な言語になった。
+
+　美久の理解も、日に日に深まっている。
+
+　そして、二人の距離も——
+
+（そろそろ、ちゃんと伝えないと）
+
+　ゴールデンウィークも残りわずか。
+
+　この特別な時間の中で、美久に気持ちを伝えたい。
+
+　プログラミング言語の完成と同時に、僕たちの関係も新しいステージに進めたら——
+
+　そんなことを考えながら、明日の準備を始めた。

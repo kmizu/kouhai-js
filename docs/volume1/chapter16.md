@@ -1,301 +1,393 @@
-# 第16話 文化祭実行委員との交渉
+# 第16話 標準ライブラリ
 
-## 10月24日（火）午後4時
+　五月五日、日曜日。こどもの日。
 
-「嵐山、ちょっといいか」
+　ゴールデンウィークも残り二日。MikuLangの完成が近づいている。そして、美久との関係も——
 
-文化祭実行委員長の3年生、山田先輩が部室に入ってきた。
+「今日は標準ライブラリだね」
 
-「どうしました？」
+　美久が期待に満ちた表情で言う。
 
-「展示場所の件なんだが」
+「便利な機能をまとめたもの。これがあれば実用的な言語になる」
 
-山田先輩の表情が険しい。
+「どんな機能を入れるの？」
 
-嫌な予感がする。
-
-「実は、体育館の展示スペースが予定より狭くなってな」
-
-「え？」
-
-「設備の関係で、各団体のスペースを縮小せざるを得ない」
-
-まさかの事態に、頭が真っ白になる。
-
-「でも、僕たちはゲームの展示で、PCを複数台設置する必要が……」
-
-「分かってる。だが、他の団体も同じ状況だ」
-
-山田先輩も困った顔をしている。
-
-「何か、解決策はありませんか？」
-
-僕は必死に食い下がった。
+「数学関数、日付処理、乱数生成……ゲーム作りに必要なものを」
 
 ◇◇◇◇
 
-## 午後4時30分　緊急ミーティング
+「まず、数学関数から始めよう」
 
-「大変なことになった」
-
-部員たちを集めて、状況を説明する。
-
-「スペースが狭くなるって、どれくらい？」
-
-田中が心配そうに聞く。
-
-「半分以下になるかもしれない」
-
-その言葉に、みんなの顔が青ざめた。
-
-「そんな……せっかくここまで作ったのに」
-
-美久が肩を落とす。
-
-「諦めるのは早い。何か方法があるはずだ」
-
-僕は部員たちを励ました。
-
-でも、正直、僕も不安でいっぱいだった。
-
-◇◇◇◇
-
-## 午後5時　美久との作戦会議
-
-「隆弘くん、何かいい案はない？」
-
-美久が心配そうに聞いてくる。
-
-「考えているんだけど……」
-
-頭を抱える僕。
-
-「そうだ！」
-
-美久が突然声を上げた。
-
-「どうした？」
-
-「展示方法を工夫すればいいんじゃない？」
-
-「展示方法？」
-
-「例えば、Webブラウザで動くようにすれば、来場者のスマホでも遊べる」
-
-美久の提案に、目から鱗が落ちた。
-
-「それだ！」
-
-◇◇◇◇
-
-## 午後5時30分　技術的検証
-
-「Webアプリとして公開すれば、展示スペースは最小限で済む」
-
-僕はすぐに実装方法を検討し始めた。
+　ホワイトボードに一覧を書く。
 
 ```javascript
-// PWA（Progressive Web App）として実装
-const serviceWorkerRegistration = async () => {
-    if ('serviceWorker' in navigator) {
-        try {
-            const registration = await navigator.serviceWorker.register('/sw.js');
-            console.log('Service Worker登録成功:', registration);
-        } catch (error) {
-            console.error('Service Worker登録失敗:', error);
-        }
-    }
+// 数学関数の標準ライブラリ
+const mathLib = {
+  abs: (x) => Math.abs(x),        // 絶対値
+  floor: (x) => Math.floor(x),    // 切り捨て
+  ceil: (x) => Math.ceil(x),      // 切り上げ
+  round: (x) => Math.round(x),    // 四捨五入
+  max: (a, b) => Math.max(a, b),  // 最大値
+  min: (a, b) => Math.min(a, b),  // 最小値
+  pow: (a, b) => Math.pow(a, b),  // べき乗
+  sqrt: (x) => Math.sqrt(x),      // 平方根
+  random: () => Math.random()      // 乱数（0-1）
 };
+```
 
-// QRコードでアクセスできるようにする
-const generateQRCode = (url) => {
-    const qr = new QRious({
-        element: document.getElementById('qrcode'),
-        value: url,
-        size: 200
+「randomってゲームでよく使うよね」
+
+「そう。敵の出現とか、アイテムのドロップとか」
+
+◇◇◇◇
+
+「標準ライブラリの実装方法を考えよう」
+
+```javascript
+// グローバル環境に標準ライブラリを登録
+class StandardLibrary {
+  static initialize(env) {
+    // 数学関数
+    Object.entries(mathLib).forEach(([name, func]) => {
+      env.setFunction(name, {
+        params: func.length === 1 ? ['x'] : ['a', 'b'],
+        body: null,  // ネイティブ関数
+        native: func
+      });
     });
-    return qr;
+    
+    // 配列操作関数
+    env.setFunction('push', {
+      params: ['array', 'item'],
+      native: (array, item) => {
+        array.push(item);
+        return array;
+      }
+    });
+    
+    env.setFunction('pop', {
+      params: ['array'],
+      native: (array) => array.pop()
+    });
+    
+    // 文字列操作関数
+    env.setFunction('concat', {
+      params: ['str1', 'str2'],
+      native: (str1, str2) => str1 + str2
+    });
+  }
+}
+```
+
+「nativeって？」
+
+「JavaScript側で実装された組み込み関数」
+
+◇◇◇◇
+
+　美久が質問してきた。
+
+「乱数を使った例を見せて」
+
+「じゃあ、サイコロゲームを作ってみよう」
+
+```javascript
+const diceGame = {
+  type: ASTTypes.Program,
+  body: [
+    // 1-6のサイコロを振る関数
+    createFunction(
+      'サイコロ',
+      [],
+      {
+        type: 'BlockStatement',
+        body: [
+          createReturn(
+            createBinaryExpression(
+              '+',
+              createCall('floor', [
+                createBinaryExpression(
+                  '*',
+                  createCall('random', []),
+                  createNumber(6)
+                )
+              ]),
+              createNumber(1)
+            )
+          )
+        ]
+      }
+    ),
+    
+    // ゲーム本体
+    createAssignment('プレイヤー', createCall('サイコロ', [])),
+    createAssignment('コンピュータ', createCall('サイコロ', [])),
+    
+    createPrint(createString('プレイヤー:')),
+    createPrint(createIdentifier('プレイヤー')),
+    createPrint(createString('コンピュータ:')),
+    createPrint(createIdentifier('コンピュータ')),
+    
+    {
+      type: ASTTypes.IfStatement,
+      condition: createComparison(
+        '>',
+        createIdentifier('プレイヤー'),
+        createIdentifier('コンピュータ')
+      ),
+      then: {
+        type: 'BlockStatement',
+        body: [createPrint(createString('あなたの勝ち！'))]
+      },
+      else: {
+        type: ASTTypes.IfStatement,
+        condition: createComparison(
+          '<',
+          createIdentifier('プレイヤー'),
+          createIdentifier('コンピュータ')
+        ),
+        then: {
+          type: 'BlockStatement',
+          body: [createPrint(createString('あなたの負け...'))]
+        },
+        else: {
+          type: 'BlockStatement',
+          body: [createPrint(createString('引き分け！'))]
+        }
+      }
+    }
+  ]
 };
 ```
 
-「これなら、QRコードを掲示して、来場者が自分のスマホでプレイできる」
+「実行するたびに結果が変わる！」
 
-「すごい！これなら省スペースで大勢が遊べる！」
-
-美久が興奮した声を上げる。
+　美久が何度も実行して楽しんでいる。
 
 ◇◇◇◇
 
-## 午後6時　実行委員会への再提案
+　休憩時間。美久がお茶を飲みながら言った。
 
-「山田先輩、提案があります」
+「標準ライブラリって、先人の知恵の結晶だね」
 
-僕は実行委員会室を訪れた。
+「どういうこと？」
 
-美久も一緒だ。
+「みんなが必要とする機能を、使いやすくまとめてある」
 
-「なんだ？」
+　その視点に感心する。
 
-「展示方法を変更することで、スペース問題を解決できます」
-
-僕は準備した資料を見せながら説明した。
-
-- Webアプリとして公開
-- QRコード掲示で来場者がアクセス
-- 必要なのは説明パネルとデモ機1〜2台のみ
-- 同時に多数がプレイ可能
-
-「これは面白い」
-
-山田先輩の表情が和らぐ。
-
-「技術的に可能なのか？」
-
-「はい。すでにプロトタイプも作りました」
-
-美久がタブレットでデモを見せる。
-
-「素晴らしい。これなら他の団体の参考にもなる」
+「確かに。車輪の再発明を避けられる」
 
 ◇◇◇◇
 
-## 午後6時45分　新たな課題
-
-「でも、一つ問題が」
-
-山田先輩が指摘する。
-
-「ネットワーク環境だ。当日、大勢がアクセスしたら……」
-
-確かに、それは盲点だった。
-
-「学校のWi-Fiでは対応しきれないかもしれません」
-
-「そうだな」
-
-また壁にぶつかった。
-
-でも、美久が言った。
-
-「オフラインでも動くようにすればいいんです」
-
-「オフライン？」
-
-「PWAの機能を使えば、一度アクセスしたらオフラインでも動きます」
-
-美久の知識に驚く。
-
-いつの間に、そんなことまで勉強したんだ。
-
-◇◇◇◇
-
-## 午後7時30分　実装作業
+「日付処理も追加しよう」
 
 ```javascript
-// Service Workerでオフライン対応
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        caches.open('game-v1').then((cache) => {
-            return cache.addAll([
-                '/',
-                '/index.html',
-                '/game.js',
-                '/style.css',
-                '/images/characters/',
-                '/images/backgrounds/',
-                '/sounds/'
-            ]);
-        })
-    );
-});
+// 日付関連の標準ライブラリ
+const dateLib = {
+  now: () => Date.now(),
+  year: () => new Date().getFullYear(),
+  month: () => new Date().getMonth() + 1,
+  day: () => new Date().getDate(),
+  hour: () => new Date().getHours(),
+  minute: () => new Date().getMinutes(),
+  second: () => new Date().getSeconds(),
+  dayOfWeek: () => new Date().getDay()
+};
 
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request).then((response) => {
-            return response || fetch(event.request);
-        })
-    );
-});
+// 曜日を日本語で返す関数
+createFunction(
+  '曜日',
+  [],
+  {
+    type: 'BlockStatement',
+    body: [
+      createAssignment(
+        '曜日配列',
+        createArray([
+          createString('日'),
+          createString('月'),
+          createString('火'),
+          createString('水'),
+          createString('木'),
+          createString('金'),
+          createString('土')
+        ])
+      ),
+      createReturn(
+        createArrayAccess(
+          createIdentifier('曜日配列'),
+          createCall('dayOfWeek', [])
+        )
+      )
+    ]
+  }
+)
 ```
 
-「これで、一度読み込めばオフラインでも動く」
+◇◇◇◇
 
-「隆弘くん、天才！」
+　美久がプログラムを書き始めた。
 
-美久が目を輝かせる。
+```javascript
+// 美久の記念日プログラム
+const anniversaryProgram = {
+  type: ASTTypes.Program,
+  body: [
+    // 記念日リスト
+    createAssignment(
+      '記念日',
+      createObject([
+        ['初めて会った日', createString('2023-04-22')],
+        ['プログラミングを始めた日', createString('2023-04-23')],
+        ['手を繋いだ日', createString('2023-05-01')],
+        ['告白した日', createString('????-??-??')]
+      ])
+    ),
+    
+    createFunction(
+      '今日の日付',
+      [],
+      {
+        type: 'BlockStatement',
+        body: [
+          createReturn(
+            createBinaryExpression(
+              '+',
+              createBinaryExpression(
+                '+',
+                createBinaryExpression(
+                  '+',
+                  createBinaryExpression(
+                    '+',
+                    createCall('year', []),
+                    createString('年')
+                  ),
+                  createCall('month', [])
+                ),
+                createString('月')
+              ),
+              createCall('day', [])
+            ),
+            createString('日')
+          )
+        ]
+      }
+    ),
+    
+    createPrint(createString('今日は')),
+    createPrint(createCall('今日の日付', [])),
+    createPrint(createString('大切な記念日がまた増えますように...'))
+  ]
+};
+```
 
-「美久のアイデアのおかげだよ」
+「告白した日が????になってる」
 
-二人で顔を見合わせて笑う。
+　美久の顔が赤くなる。
 
-ピンチがチャンスに変わった瞬間だった。
+「だって、まだ……」
+
+「そうだね。でも、きっと近いうちに」
+
+　僕の言葉に、美久の瞳が潤む。
 
 ◇◇◇◇
 
-## 午後8時　承認
+「ゲーム用の便利関数も作ろう」
 
-「嵐山、河内、素晴らしい提案だ」
+```javascript
+// ゲーム開発用ライブラリ
+const gameLib = {
+  // 範囲内の整数乱数
+  randomInt: (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+  
+  // 配列からランダムに選択
+  randomChoice: (array) => {
+    return array[Math.floor(Math.random() * array.length)];
+  },
+  
+  // 配列をシャッフル
+  shuffle: (array) => {
+    const result = [...array];
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+  },
+  
+  // 確率判定
+  chance: (probability) => {
+    return Math.random() < probability;
+  }
+};
+```
 
-山田先輩から正式な承認が下りた。
+「chanceって面白い」
 
-「むしろ、特別展示枠として、入り口近くのスペースを用意しよう」
-
-「本当ですか！」
-
-思わぬ好条件に、美久と顔を見合わせる。
-
-「最新技術を使った展示として、注目を集めるだろう」
-
-「ありがとうございます！」
-
-二人で深々と頭を下げた。
+「50%の確率で成功、みたいな処理に使える」
 
 ◇◇◇◇
 
-## 午後8時30分　帰り道
+　夕方になってきた。標準ライブラリの実装も大部分が完成した。
 
-「やったね、隆弘くん！」
+「標準ライブラリがあると、プログラミングが楽になるね」
 
-美久が飛び跳ねるように喜ぶ。
+　美久が満足そうに言う。
 
-「美久のおかげだよ」
+「そう。よく使う機能を再利用できる」
 
-「ううん、二人で解決したんだよ」
+「MikuLangが、本当の言語みたいになってきた」
 
-そう言って、美久は僕の腕に手を回してきた。
+◇◇◇◇
 
-「美久？」
+「隆弘先輩」
 
-「嬉しくて」
+　片付けながら、美久が言った。
 
-僕も美久の手を握り返す。
+「明日で、MikuLangは完成？」
 
-「文化祭、成功させよう」
+「基本的な部分はね。でも、言語は永遠に成長し続ける」
 
-「うん！」
+「私たちみたいに？」
 
-月明かりの下、手を繋いで歩く。
+　美久の言葉にドキッとする。
 
-困難を二人で乗り越えたことで、絆がより深まった気がする。
+「そうだね。一緒に成長していく」
 
-「ねえ、隆弘くん」
+◇◇◇◇
+
+　美久を見送る時、彼女が振り返った。
+
+「明日は何を実装するの？」
+
+「デバッグツール。プログラムの問題を見つけやすくする機能」
+
+「最後の仕上げだね」
+
+　美久が深呼吸をして言った。
+
+「隆弘先輩」
 
 「ん？」
 
-「完成まで、あと少しだね」
+「明日、MikuLangが完成したら……」
 
-美久の言葉に、約束を思い出す。
+　言いかけて、美久は首を振った。
 
-ゲームが完成したら、伝えたいことがある。
+「ううん、なんでもない。明日のお楽しみ」
 
-その時が、もうすぐそこまで来ている。
+　そう言って、美久は部屋に入っていった。
 
-「うん、あと少しだ」
+　明日。MikuLangの完成の日。
 
-プログラミングの技術だけでなく、問題解決能力も身についた。
+　そして、僕が美久に告白する日。
 
-そして何より、美久との絆が、どんな困難も乗り越える力になることを知った。
+　胸の高鳴りを抑えながら、僕は明日の準備を始めた。
 
-文化祭まで、あと2週間。
+　標準ライブラリの実装で、MikuLangは実用的な言語になった。
 
-最高の展示にしよう。
+　あとは、最後の仕上げ。そして——

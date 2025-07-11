@@ -1,412 +1,499 @@
-# 第12話 CSSで彩る世界
+# 第12話 配列とループ
 
-## 10月16日（日）午後2時
+　五月一日、水曜日。ゴールデンウィーク真っ只中。
 
-昨日の聖地巡礼デートの余韻がまだ残っている。
+　今日も美久がやってきた。連日のプログラミング三昧だけど、全く飽きない。むしろ、毎日が楽しみで仕方ない。
 
-鴨川での、あの瞬間。
+「今日は配列だよね」
 
-美久を抱きしめた時の、彼女の温もり。
+　美久が期待に満ちた顔で言う。
 
-（キスしそうになったな……）
+「そう。データをまとめて扱うための重要な機能」
 
-顔が熱くなる。
+「配列って、数学で習ったやつとは違うの？」
 
-結局、子供の声で我に返ったけど、あのままだったら――
-
-スマホが震えた。美久からのLINEだ。
-
-『今日も一緒に作業しない？CSS教えて欲しい！』
-
-いつもの美久らしい元気なメッセージ。
-
-でも、昨日の後だと、なんだか違って見える。
-
-『いいよ。3時に部屋に来て』
-
-『やった！お菓子持っていく〜』
-
-可愛い。
-
-素直にそう思う自分に驚く。
+「基本的な考え方は同じ。複数の値を順番に並べたもの」
 
 ◇◇◇◇
 
-## 午後3時　隆弘の部屋
+「まず、配列のASTから設計しよう」
 
-「お邪魔します！」
+```javascript
+// 配列リテラルのAST
+const ArrayLiteral = {
+  type: 'ArrayLiteral',
+  elements: [
+    { type: 'NumberLiteral', value: 1 },
+    { type: 'NumberLiteral', value: 2 },
+    { type: 'NumberLiteral', value: 3 }
+  ]
+};
 
-美久が、いつものように明るく入ってきた。
+// 配列アクセスのAST
+const ArrayAccess = {
+  type: 'MemberExpression',
+  object: { type: 'Identifier', name: 'numbers' },
+  property: { type: 'NumberLiteral', value: 0 }
+};
+```
 
-今日は、薄いピンクのニットに白いスカート。
+「elements に要素が入ってるんだ」
 
-昨日とはまた違った可愛さがある。
-
-「今日もよろしくお願いします、先生」
-
-わざとらしく頭を下げる美久。
-
-「はいはい、生徒さん」
-
-僕も調子を合わせる。
-
-こういうやり取りが、心地いい。
-
-「それで、CSSって何ですか？」
-
-美久がノートを広げながら聞いてくる。
-
-「Cascading Style Sheetsの略で、HTMLで作った構造に、デザインを加えるための言語だよ」
+「そう。JavaScriptの配列と同じ構造」
 
 ◇◇◇◇
 
-## 午後3時30分　CSSレッスン開始
+　実装を始める。
 
-「HTMLが家の骨組みだとしたら、CSSは内装や外装みたいなもの」
+```javascript
+// ASTTypesに追加
+ASTTypes.ArrayLiteral = 'ArrayLiteral';
+ASTTypes.MemberExpression = 'MemberExpression';
 
-僕はエディタを開きながら説明する。
-
-「例えば、さっき作ったゲームの画面も、CSSを使えばもっと綺麗にできる」
-
-```css
-/* ゲーム画面の基本スタイル */
-.game-container {
-    width: 800px;
-    height: 600px;
-    margin: 0 auto;
-    background-color: #2c3e50;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+// ヘルパー関数
+function createArray(elements) {
+  return {
+    type: ASTTypes.ArrayLiteral,
+    elements: elements
+  };
 }
 
-/* テキストボックス */
-.text-box {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    margin: 20px;
-    border-radius: 5px;
-    font-size: 18px;
-    line-height: 1.6;
+function createArrayAccess(array, index) {
+  return {
+    type: ASTTypes.MemberExpression,
+    object: array,
+    property: index
+  };
 }
 ```
 
-「わあ、色とか影とか、一気におしゃれになった！」
+「MemberExpressionって？」
 
-美久の目が輝く。
-
-「これが、CSSの力だよ」
-
-「まるで魔法みたい」
-
-美久が画面に見入る。
-
-その横顔を見ていて、昨日のことを思い出してしまう。
+「メンバーにアクセスする式。配列の要素取得に使う」
 
 ◇◇◇◇
 
-## 午後4時　カラーデザイン
+「評価器も拡張しよう」
 
-「色の指定方法もいろいろあるんだ」
-
-```css
-/* 色の指定方法 */
-.miku-favorite {
-    color: #ff69b4;        /* 16進数 */
-    background-color: rgb(255, 192, 203);  /* RGB */
-    border-color: hsl(350, 100%, 88%);     /* HSL */
-}
-```
-
-「みく・ふぇいばりっと？」
-
-美久が首を傾げる。
-
-「あ、これは例として美久の好きそうな色を……」
-
-慌てて説明する僕。
-
-でも、美久は嬉しそうに笑った。
-
-「ピンク好きなの、バレてる？」
-
-「だって、いつもピンク系の服着てるし」
-
-「隆弘くん、意外と見てるんだね」
-
-美久の言葉に、またドキッとする。
-
-見てる。
-
-いつも見てる。
-
-美久のことばかり。
-
-◇◇◇◇
-
-## 午後4時45分　レイアウトデザイン
-
-「次は、要素の配置を整えよう」
-
-```css
-/* 選択肢ボタンのデザイン */
-.choice-button {
-    display: block;
-    width: 600px;
-    margin: 10px auto;
-    padding: 15px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+```javascript
+// 配列リテラルの評価
+evaluateArrayLiteral(node) {
+  return node.elements.map(element => this.evaluate(element));
 }
 
-.choice-button:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-```
-
-「すごい！マウスを乗せると浮き上がる！」
-
-美久がマウスを動かしながら歓声を上げる。
-
-「これをホバーエフェクトって言うんだ」
-
-「プロのゲームみたい」
-
-美久の素直な感動が嬉しい。
-
-「美久のセンスがあれば、もっとすごいデザインができるよ」
-
-「本当？」
-
-「うん。美久の描いたキャラクターデザイン、すごく良かったし」
-
-昨日見せてもらったスケッチブックを思い出す。
-
-美久の才能は、本物だ。
-
-◇◇◇◇
-
-## 午後5時30分　キャラクター表示
-
-「じゃあ、キャラクターの表示も綺麗にしてみよう」
-
-```css
-/* キャラクター画像の表示 */
-.character-image {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 400px;
-    transition: all 0.5s ease;
-}
-
-/* キャラクターのフェードイン */
-.character-image.fade-in {
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
+// 配列アクセスの評価
+evaluateMemberExpression(node) {
+  const object = this.evaluate(node.object);
+  const property = this.evaluate(node.property);
+  
+  if (Array.isArray(object)) {
+    if (property < 0 || property >= object.length) {
+      throw new Error(`配列の範囲外: ${property}`);
     }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
+    return object[property];
+  }
+  
+  throw new Error('配列ではありません');
+}
+```
+
+「配列の範囲外エラーも考慮してるんだ」
+
+「エラー処理は大事。プログラムを安全に保つため」
+
+◇◇◇◇
+
+　美久が質問してきた。
+
+「配列って、どんな時に使うの？」
+
+「例えば、ゲームのアイテムリストとか」
+
+　具体的な例を書く。
+
+```javascript
+// アイテムリストの例
+const itemProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment(
+      'アイテム',
+      createArray([
+        createString('ポーション'),
+        createString('エリクサー'),
+        createString('フェニックスの尾')
+      ])
+    ),
+    createPrint(createString('所持アイテム:')),
+    createPrint(createArrayAccess(
+      createIdentifier('アイテム'),
+      createNumber(0)
+    )),
+    createPrint(createArrayAccess(
+      createIdentifier('アイテム'),
+      createNumber(1)
+    ))
+  ]
+};
+
+mikuLang.run(itemProgram);
+// 出力:
+// 所持アイテム:
+// ポーション
+// エリクサー
+```
+
+「わあ、RPGっぽい！」
+
+　美久の反応が可愛い。
+
+◇◇◇◇
+
+「配列の長さを取得する機能も追加しよう」
+
+```javascript
+// 組み込み関数として長さを追加
+function createLength(array) {
+  return {
+    type: 'LengthExpression',
+    array: array
+  };
+}
+
+// 評価器に追加
+evaluateLengthExpression(node) {
+  const array = this.evaluate(node.array);
+  if (!Array.isArray(array)) {
+    throw new Error('配列ではありません');
+  }
+  return array.length;
+}
+```
+
+「これで配列の要素数が分かるんだ」
+
+「そう。ループと組み合わせると便利」
+
+◇◇◇◇
+
+　休憩時間。美久がソファで考え込んでいる。
+
+「どうした？」
+
+「配列って、入れ子にできる？」
+
+　また鋭い質問だ。
+
+「できるよ。多次元配列って言うんだ」
+
+```javascript
+// 2次元配列の例
+const matrix = createArray([
+  createArray([createNumber(1), createNumber(2), createNumber(3)]),
+  createArray([createNumber(4), createNumber(5), createNumber(6)]),
+  createArray([createNumber(7), createNumber(8), createNumber(9)])
+]);
+```
+
+「行列みたい！」
+
+「まさにそう。ゲームのマップデータとかに使える」
+
+◇◇◇◇
+
+「次は、forループを実装しよう」
+
+　新しいASTを設計する。
+
+```javascript
+// forループのAST
+const ForStatement = {
+  type: 'ForStatement',
+  init: {
+    type: 'AssignmentExpression',
+    left: { type: 'Identifier', name: 'i' },
+    right: { type: 'NumberLiteral', value: 0 }
+  },
+  test: {
+    type: 'BinaryExpression',
+    operator: '<',
+    left: { type: 'Identifier', name: 'i' },
+    right: { type: 'NumberLiteral', value: 10 }
+  },
+  update: {
+    type: 'AssignmentExpression',
+    left: { type: 'Identifier', name: 'i' },
+    right: {
+      type: 'BinaryExpression',
+      operator: '+',
+      left: { type: 'Identifier', name: 'i' },
+      right: { type: 'NumberLiteral', value: 1 }
     }
+  },
+  body: {
+    type: 'BlockStatement',
+    body: []
+  }
+};
+```
+
+「複雑……」
+
+「一つずつ見ていけば大丈夫」
+
+◇◇◇◇
+
+　forループの評価器を実装する。
+
+```javascript
+evaluateForStatement(node) {
+  // 初期化
+  if (node.init) {
+    this.evaluate(node.init);
+  }
+  
+  let result = null;
+  
+  // ループ
+  while (true) {
+    // 条件チェック
+    if (node.test && !this.evaluate(node.test)) {
+      break;
+    }
+    
+    // 本体実行
+    result = this.evaluate(node.body);
+    
+    // 更新
+    if (node.update) {
+      this.evaluate(node.update);
+    }
+  }
+  
+  return result;
 }
 ```
 
-「アニメーション！」
+「whileループを使ってforループを実装してるんだ」
 
-美久が興奮する。
-
-「キャラクターがふわっと現れる」
-
-「これで、美久の描いたキャラクターを魅力的に見せられる」
-
-「嬉しい……私の絵が、隆弘くんのプログラムで動くなんて」
-
-美久の瞳が潤んでいるように見えた。
-
-「二人で作るゲームだからね」
-
-僕の言葉に、美久は大きく頷いた。
+「そう。forはwhileの便利な書き方とも言える」
 
 ◇◇◇◇
 
-## 午後6時30分　完成した画面
+「配列とループを組み合わせてみよう」
 
-「これで、基本的なスタイリングは完成」
+```javascript
+// 配列の全要素を表示
+const arrayLoopProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment(
+      '名前リスト',
+      createArray([
+        createString('隆弘'),
+        createString('美久'),
+        createString('太郎'),
+        createString('花子')
+      ])
+    ),
+    {
+      type: 'ForStatement',
+      init: createAssignment('i', createNumber(0)),
+      test: createComparison(
+        '<',
+        createIdentifier('i'),
+        createLength(createIdentifier('名前リスト'))
+      ),
+      update: createAssignment(
+        'i',
+        createBinaryExpression(
+          '+',
+          createIdentifier('i'),
+          createNumber(1)
+        )
+      ),
+      body: {
+        type: 'BlockStatement',
+        body: [
+          createPrint(
+            createArrayAccess(
+              createIdentifier('名前リスト'),
+              createIdentifier('i')
+            )
+          )
+        ]
+      }
+    }
+  ]
+};
 
-画面には、見違えるように美しくなったゲーム画面が表示されている。
-
-ダークブルーの背景に、半透明のテキストボックス。
-
-選択肢ボタンは、マウスオーバーで優雅に浮き上がる。
-
-「すごい……本当にプロのゲームみたい」
-
-美久が感動の声を上げる。
-
-「でも、まだ始まりだよ。美久のアイデアを全部実現するには」
-
-「一緒に頑張ろう」
-
-美久が僕を見つめる。
-
-その真剣な眼差しに、胸が高鳴る。
-
-「うん、一緒に」
-
-◇◇◇◇
-
-## 午後7時　夕食休憩
-
-「今日もお弁当作ってきた！」
-
-美久が嬉しそうにタッパーを取り出す。
-
-「また？悪いよ」
-
-「だって、一緒に食べたいから」
-
-素直な言葉に、顔が熱くなる。
-
-今日のメニューは、ハンバーグ、ポテトサラダ、ブロッコリー。
-
-「美味しそう」
-
-「えへへ、腕によりをかけました」
-
-一緒に食べる夕食。
-
-これが日常になってきている。
-
-幸せだ、と素直に思う。
-
-◇◇◇◇
-
-## 午後8時　追加のスタイリング
-
-「せっかくだから、もう少し凝ったデザインも教えるよ」
-
-食後、僕たちは再びPCの前に座った。
-
-```css
-/* 背景のグラデーション */
-.game-container {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-/* テキストの影 */
-.game-title {
-    font-size: 48px;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    font-family: 'Noto Serif JP', serif;
-}
-
-/* 選択肢ボタンのネオン効果 */
-.choice-button.special {
-    background-color: #e74c3c;
-    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
-}
+mikuLang.run(arrayLoopProgram);
+// 出力:
+// 隆弘
+// 美久
+// 太郎
+// 花子
 ```
 
-「グラデーションって綺麗」
+「すごい！　全部表示された！」
 
-「このネオン効果は、重要な選択肢に使えるね」
-
-「隆弘くん、センスあるね」
-
-美久の褒め言葉が嬉しい。
-
-「美久に褒められると、もっと頑張りたくなる」
-
-つい本音が出てしまった。
-
-美久の頬が赤くなる。
-
-「私も、隆弘くんに褒められると嬉しい」
-
-お互いに照れて、視線を逸らす。
-
-でも、この空気が心地いい。
+　美久が興奮している。
 
 ◇◇◇◇
 
-## 午後9時　今日の締めくくり
+「私も配列を使ったプログラムを書いてみたい」
 
-「今日はここまでにしよう」
+　美久がキーボードに向かう。
 
-「はい。CSSって奥が深いんですね」
+```javascript
+// 美久のプログラム：好感度の推移
+const mikuArrayProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment(
+      '好感度推移',
+      createArray([
+        createNumber(10),
+        createNumber(25),
+        createNumber(40),
+        createNumber(65),
+        createNumber(80),
+        createNumber(95)
+      ])
+    ),
+    createAssignment('月', createNumber(1)),
+    {
+      type: 'ForStatement',
+      init: createAssignment('i', createNumber(0)),
+      test: createComparison(
+        '<',
+        createIdentifier('i'),
+        createLength(createIdentifier('好感度推移'))
+      ),
+      update: createAssignment(
+        'i',
+        createBinaryExpression(
+          '+',
+          createIdentifier('i'),
+          createNumber(1)
+        )
+      ),
+      body: {
+        type: 'BlockStatement',
+        body: [
+          createPrint(createBinaryExpression(
+            '+',
+            createBinaryExpression(
+              '+',
+              createString(''),
+              createIdentifier('月')
+            ),
+            createString('月目の好感度:')
+          )),
+          createPrint(
+            createArrayAccess(
+              createIdentifier('好感度推移'),
+              createIdentifier('i')
+            )
+          ),
+          createAssignment(
+            '月',
+            createBinaryExpression(
+              '+',
+              createIdentifier('月'),
+              createNumber(1)
+            )
+          )
+        ]
+      }
+    }
+  ]
+};
+```
 
-美久がノートを閉じながら言う。
+「実行してみよう」
 
-「でも、美久の飲み込みが早いから、教えがいがある」
+```
+1月目の好感度:
+10
+2月目の好感度:
+25
+3月目の好感度:
+40
+4月目の好感度:
+65
+5月目の好感度:
+80
+6月目の好感度:
+95
+```
 
-「隆弘くんの教え方が上手だから」
+「やった！　グラフみたいに推移が分かる」
 
-また褒め合いになってしまう。
+　美久の発想力に感心する。
 
-「明日は、もっと高度なCSSテクニックを教えるよ」
+◇◇◇◇
 
-「楽しみ！」
+　夕方になってきた。窓の外は夕焼けに染まっている。
 
-片付けをしながら、ふと美久が言った。
+「配列とループがあると、できることが一気に増えるね」
 
-「ねえ、隆弘くん」
+　美久が満足そうに言う。
 
-「ん？」
+「そう。プログラミングの基本中の基本」
 
-「昨日の聖地巡礼、本当に楽しかった」
+「でも、難しかった」
 
-急な話題転換に、心臓が跳ねる。
+「美久は十分理解してるよ」
 
-「俺も楽しかった」
+　褒めると、美久が照れる。
 
-「また行きたいな」
+◇◇◇◇
 
-「うん、また行こう」
+「隆弘先輩」
 
-美久が帰り支度をする。
+　片付けながら、美久が言った。
 
-玄関まで送っていく。
+「MikuLangが、どんどん本格的になってきた」
 
-「じゃあ、おやすみなさい」
+「そうだね」
 
-「おやすみ」
+「私たちが作った言語で、本当にゲームが作れそう」
 
-ドアが閉まる直前、美久が振り返った。
+　美久の目が輝いている。
 
-「隆弘くん、大好き」
+「きっと作れるよ」
 
-小さな声で、でもはっきりと。
+「楽しみ」
 
-ドアが閉まる。
+◇◇◇◇
 
-僕は、しばらくその場に立ち尽くしていた。
+　美久を見送る時、玄関で彼女が振り返った。
 
-（大好きって、言われた）
+「明日は何を実装するの？」
 
-顔が熱い。
+「オブジェクトかな。データをまとめる、もう一つの方法」
 
-心臓がうるさい。
+「難しそう」
 
-でも、すごく幸せだ。
+「大丈夫。美久なら理解できる」
 
-僕も、美久のことが大好きだ。
+　美久が嬉しそうに微笑む。
 
-次は、僕から伝える番かもしれない。
+「隆弘先輩がそう言ってくれるなら、頑張れる」
 
-CSSで画面を彩るように、僕たちの関係も、少しずつ色づいていく。
+　その笑顔に、胸が熱くなる。
 
-そんな予感がした。
+「じゃあ、また明日」
+
+「うん、また明日」
+
+　ドアが閉まった後も、美久の笑顔が頭から離れない。
+
+　配列とループ。プログラミングの基本を、美久は見事に理解した。
+
+　MikuLangも、美久も、そして僕たちの関係も、着実に成長している。
+
+　明日はオブジェクト。さらに高度な概念だけど、美久となら乗り越えられる。
+
+　そんな確信を胸に、僕は明日の準備を始めた。

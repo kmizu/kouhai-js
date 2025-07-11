@@ -1,366 +1,405 @@
-# 第13話 イベントリスナーと心の距離
+# 第13話 オブジェクト指向
 
-## 10月17日（月）午前7時20分
+　五月二日、木曜日。ゴールデンウィーク四日目。
 
-昨日の夜のこと。
+　美久との日々が、当たり前のようになってきた。でも、それが嬉しい。
 
-『隆弘くん、大好き』
+「今日はオブジェクトだね」
 
-私、本当にあんなこと言っちゃった。
+　美久が準備万端といった様子で言う。
 
-布団の中で、顔を覆う。
+「昨日調べてきた？」
 
-（恥ずかしい……でも、後悔はしてない）
+「うん。でも、よく分からなかった……」
 
-だって、本当の気持ちだから。
+　困った顔の美久が可愛い。
 
-隆弘くんは、どう思ったかな。
-
-困ったかな。それとも……。
-
-スマホを確認するけど、特にメッセージはない。
-
-いつも通り、ということかな。
+「大丈夫。ゆっくり理解していこう」
 
 ◇◇◇◇
 
-## 午前7時45分　マンション廊下
+「オブジェクトは、関連するデータをまとめたもの」
 
-「おはよう、美久」
+　ホワイトボードに例を書く。
 
-いつものように、隆弘くんが待っていた。
+```javascript
+// キャラクターのデータ
+{
+  名前: "美久",
+  レベル: 15,
+  HP: 100,
+  MP: 50,
+  スキル: ["回復魔法", "攻撃魔法"]
+}
+```
 
-でも、なんだか照れたような表情。
+「あ、ゲームのステータス画面みたい！」
 
-「お、おはよう」
+「そう。複数の属性を一つにまとめられる」
 
-私も緊張してしまう。
+◇◇◇◇
 
-昨日の告白のせいで、空気がぎこちない。
+「オブジェクトのASTを設計しよう」
 
-「今日も一緒に行こう」
+```javascript
+// オブジェクトリテラルのAST
+const ObjectLiteral = {
+  type: 'ObjectLiteral',
+  properties: [
+    {
+      key: { type: 'Identifier', name: '名前' },
+      value: { type: 'StringLiteral', value: '美久' }
+    },
+    {
+      key: { type: 'Identifier', name: 'レベル' },
+      value: { type: 'NumberLiteral', value: 15 }
+    }
+  ]
+};
+
+// プロパティアクセス
+const PropertyAccess = {
+  type: 'MemberExpression',
+  object: { type: 'Identifier', name: 'キャラクター' },
+  property: { type: 'Identifier', name: '名前' },
+  computed: false
+};
+```
+
+「keyとvalueのペアになってるんだ」
+
+「そう。連想配列とも呼ばれる」
+
+◇◇◇◇
+
+　実装を始める。
+
+```javascript
+// ASTTypesに追加
+ASTTypes.ObjectLiteral = 'ObjectLiteral';
+
+// ヘルパー関数
+function createObject(properties) {
+  return {
+    type: ASTTypes.ObjectLiteral,
+    properties: properties.map(([key, value]) => ({
+      key: createIdentifier(key),
+      value: value
+    }))
+  };
+}
+
+function createPropertyAccess(object, property) {
+  return {
+    type: ASTTypes.MemberExpression,
+    object: object,
+    property: createIdentifier(property),
+    computed: false
+  };
+}
+```
+
+「computedって何？」
+
+「obj.nameかobj['name']かの違い」
+
+◇◇◇◇
+
+「評価器も拡張しよう」
+
+```javascript
+// オブジェクトリテラルの評価
+evaluateObjectLiteral(node) {
+  const obj = {};
+  
+  for (const prop of node.properties) {
+    const key = prop.key.name;
+    const value = this.evaluate(prop.value);
+    obj[key] = value;
+  }
+  
+  return obj;
+}
+
+// プロパティアクセスの評価（拡張）
+evaluateMemberExpression(node) {
+  const object = this.evaluate(node.object);
+  
+  if (Array.isArray(object)) {
+    // 配列の場合
+    const index = this.evaluate(node.property);
+    return object[index];
+  } else if (typeof object === 'object' && object !== null) {
+    // オブジェクトの場合
+    const key = node.computed 
+      ? this.evaluate(node.property)
+      : node.property.name;
+    return object[key];
+  }
+  
+  throw new Error('配列またはオブジェクトではありません');
+}
+```
+
+◇◇◇◇
+
+　美久が質問してきた。
+
+「オブジェクトと配列の違いは？」
+
+「配列は順番、オブジェクトは名前でアクセス」
+
+　具体例を示す。
+
+```javascript
+// 配列：インデックスでアクセス
+const items = ["剣", "盾", "薬草"];
+items[0]; // "剣"
+
+// オブジェクト：プロパティ名でアクセス
+const player = { name: "美久", level: 15 };
+player.name; // "美久"
+```
+
+「なるほど！　用途によって使い分けるんだ」
+
+◇◇◇◇
+
+「実際にオブジェクトを使ったプログラムを書いてみよう」
+
+```javascript
+const characterProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment(
+      'キャラクター',
+      createObject([
+        ['名前', createString('美久')],
+        ['職業', createString('魔法使い')],
+        ['レベル', createNumber(15)],
+        ['HP', createNumber(100)],
+        ['MP', createNumber(50)]
+      ])
+    ),
+    createPrint(createString('=== キャラクター情報 ===')),
+    createPrint(createPropertyAccess(
+      createIdentifier('キャラクター'),
+      '名前'
+    )),
+    createPrint(createPropertyAccess(
+      createIdentifier('キャラクター'),
+      '職業'
+    )),
+    createPrint(createString('レベル:')),
+    createPrint(createPropertyAccess(
+      createIdentifier('キャラクター'),
+      'レベル'
+    ))
+  ]
+};
+
+mikuLang.run(characterProgram);
+// 出力:
+// === キャラクター情報 ===
+// 美久
+// 魔法使い
+// レベル:
+// 15
+```
+
+「わあ、本当にゲームみたい！」
+
+　美久の目が輝く。
+
+◇◇◇◇
+
+　休憩時間。美久がお茶を飲みながら言った。
+
+「オブジェクトって、現実世界に似てる」
+
+「どういうこと？」
+
+「だって、人にも名前とか年齢とか、いろんな属性があるでしょ？」
+
+　その洞察に感心する。
+
+「その通り。オブジェクト指向は現実世界をモデル化したもの」
+
+◇◇◇◇
+
+「オブジェクトの中にオブジェクトも入れられる」
+
+　新しい例を書く。
+
+```javascript
+const gameData = createObject([
+  ['プレイヤー', createObject([
+    ['名前', createString('隆弘')],
+    ['レベル', createNumber(20)],
+    ['装備', createObject([
+      ['武器', createString('光の剣')],
+      ['防具', createString('勇者の鎧')]
+    ])]
+  ])],
+  ['パートナー', createObject([
+    ['名前', createString('美久')],
+    ['レベル', createNumber(18)]
+  ])]
+]);
+```
+
+「入れ子構造！」
+
+「複雑なデータも表現できる」
+
+◇◇◇◇
+
+「メソッドも実装してみよう」
+
+```javascript
+// メソッド呼び出しのAST
+const MethodCall = {
+  type: 'CallExpression',
+  callee: {
+    type: 'MemberExpression',
+    object: { type: 'Identifier', name: 'キャラクター' },
+    property: { type: 'Identifier', name: 'レベルアップ' }
+  },
+  arguments: []
+};
+```
+
+「オブジェクトの中に関数を入れるの？」
+
+「そう。データと処理をまとめられる」
+
+◇◇◇◇
+
+　美久がプログラムを書き始めた。
+
+```javascript
+// 美久のオブジェクトプログラム
+const mikuObjectProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment(
+      'ゲーム状態',
+      createObject([
+        ['好感度', createNumber(0)],
+        ['イベント数', createNumber(0)],
+        ['現在地', createString('教室')]
+      ])
+    ),
+    createFunction(
+      'イベント発生',
+      ['場所', '相手'],
+      {
+        type: 'BlockStatement',
+        body: [
+          createAssignment(
+            'ゲーム状態',
+            createObject([
+              ['好感度', createBinaryExpression(
+                '+',
+                createPropertyAccess(
+                  createIdentifier('ゲーム状態'),
+                  '好感度'
+                ),
+                createNumber(10)
+              )],
+              ['イベント数', createBinaryExpression(
+                '+',
+                createPropertyAccess(
+                  createIdentifier('ゲーム状態'),
+                  'イベント数'
+                ),
+                createNumber(1)
+              )],
+              ['現在地', createIdentifier('場所')]
+            ])
+          ),
+          createPrint(createBinaryExpression(
+            '+',
+            createIdentifier('場所'),
+            createString('でイベント発生！')
+          )),
+          createPrint(createString('好感度が上がった！'))
+        ]
+      }
+    ),
+    createCall('イベント発生', [
+      createString('屋上'),
+      createString('隆弘先輩')
+    ]),
+    createPrint(createString('現在の好感度:')),
+    createPrint(createPropertyAccess(
+      createIdentifier('ゲーム状態'),
+      '好感度'
+    ))
+  ]
+};
+```
+
+「これ、実際のゲームロジックに近い」
+
+　美久の理解力と応用力に驚く。
+
+◇◇◇◇
+
+　夕方になってきた。今日も充実した一日だった。
+
+「オブジェクト、難しかったけど面白い」
+
+　美久が満足そうに言う。
+
+「データをまとめる方法が分かると、プログラムの幅が広がる」
+
+「うん。ゲームのキャラクターデータとか、これで管理できるんだね」
+
+◇◇◇◇
+
+「隆弘先輩」
+
+　片付けながら、美久が言った。
+
+「MikuLangで、本格的なゲームが作れる気がしてきた」
+
+「きっと作れるよ」
+
+「一緒に作ろうね」
+
+　その言葉に、胸が熱くなる。
+
+「もちろん」
+
+◇◇◇◇
+
+　美久を見送る時、彼女が言った。
+
+「明日は何を実装するの？」
+
+「エラー処理かな。プログラムを安全にする仕組み」
+
+「また新しいことが学べるんだ」
+
+　美久の向学心が嬉しい。
+
+「美久の成長が早くて、教えがいがある」
+
+「隆弘先輩のおかげ」
+
+　また褒め合いになってしまう。
+
+「じゃあ、また明日」
 
 「うん」
 
-エレベーターの中、いつもより距離を感じる。
+　美久が帰った後、今日のコードを振り返る。
 
-（やっぱり、困らせちゃったかな）
+　オブジェクト指向の基礎を、美久は見事に理解した。
 
-不安になる私。
+　MikuLangは、もはや本格的なプログラミング言語に近づいている。
 
-でも、隆弘くんがそっと言った。
+　そして、美久との距離も——
 
-「昨日の……ありがとう」
-
-え？
-
-「俺も、美久のこと、大好きだよ」
-
-小さな声だったけど、はっきりと聞こえた。
-
-私の心臓が、跳ね上がる。
-
-◇◇◇◇
-
-## 午後4時30分　プログラミング部室
-
-「今日は、イベントリスナーについて教えるね」
-
-放課後、いつもの部室で。
-
-隆弘くんとの距離は、なんだか昨日より近い気がする。
-
-「イベントリスナー？」
-
-「ユーザーの操作を検知して、それに反応する仕組みだよ」
-
-隆弘くんが説明を始める。
-
-```javascript
-// ボタンをクリックしたときの処理
-document.getElementById('startButton').addEventListener('click', function() {
-    console.log('ゲームスタート！');
-    startGame();
-});
-
-// マウスが要素の上に乗ったとき
-document.getElementById('character').addEventListener('mouseover', function() {
-    this.style.opacity = '0.8';
-});
-```
-
-「なるほど！クリックとか、マウスの動きとかを感知するんですね」
-
-「そう。これがあるから、インタラクティブなゲームが作れる」
-
-隆弘くんの説明を聞きながら、ふと思う。
-
-人の心にも、イベントリスナーがあればいいのに。
-
-相手の気持ちの変化を、すぐに感知できたら。
-
-◇◇◇◇
-
-## 午後5時15分　実装練習
-
-「じゃあ、実際に使ってみよう」
-
-隆弘くんが新しいコードを書き始める。
-
-```javascript
-// キャラクターをクリックしたときの反応
-const mikuCharacter = document.getElementById('miku');
-
-mikuCharacter.addEventListener('click', function() {
-    // クリックされた回数をカウント
-    clickCount++;
-    
-    // クリック数に応じて反応を変える
-    if (clickCount < 3) {
-        showMessage('えっ、なに？');
-    } else if (clickCount < 5) {
-        showMessage('もう、しつこいよ〜');
-    } else {
-        showMessage('...実は嬉しい');
-    }
-});
-```
-
-「わあ、クリックするたびに反応が変わる！」
-
-私が何度もクリックしていると、隆弘くんが笑った。
-
-「美久みたいだね、この反応」
-
-「え？」
-
-「最初は驚いて、次に困って、でも本当は嬉しいって」
-
-隆弘くんの言葉に、顔が熱くなる。
-
-見透かされてる。
-
-◇◇◇◇
-
-## 午後6時　複雑なイベント処理
-
-「もっと複雑なイベントも扱えるよ」
-
-```javascript
-// キーボード入力を検知
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        nextMessage();
-    } else if (event.key === ' ') {
-        skipAnimation();
-    }
-});
-
-// ドラッグ＆ドロップ
-let draggedItem = null;
-
-document.addEventListener('dragstart', function(e) {
-    draggedItem = e.target;
-    e.target.style.opacity = '0.5';
-});
-
-document.addEventListener('dragend', function(e) {
-    e.target.style.opacity = '';
-});
-```
-
-「すごい！キーボードやドラッグも検知できるんだ」
-
-「これで、より直感的な操作ができるゲームが作れる」
-
-隆弘くんの横顔を見つめる。
-
-真剣にコードを書く姿が、やっぱりかっこいい。
-
-（好きだな）
-
-改めて、そう思う。
-
-◇◇◇◇
-
-## 午後6時45分　特別な実装
-
-「美久のために、特別な機能を作ってみた」
-
-隆弘くんが、少し照れながら言う。
-
-```javascript
-// ハートのアニメーション
-const heart = document.createElement('div');
-heart.className = 'heart';
-heart.innerHTML = '❤';
-
-document.addEventListener('click', function(e) {
-    const newHeart = heart.cloneNode(true);
-    newHeart.style.left = e.clientX + 'px';
-    newHeart.style.top = e.clientY + 'px';
-    document.body.appendChild(newHeart);
-    
-    // アニメーション後に削除
-    setTimeout(() => {
-        newHeart.remove();
-    }, 1000);
-});
-
-// CSSアニメーション
-const style = document.createElement('style');
-style.textContent = `
-    .heart {
-        position: absolute;
-        color: #ff69b4;
-        font-size: 20px;
-        animation: float-up 1s ease-out;
-        pointer-events: none;
-    }
-    
-    @keyframes float-up {
-        to {
-            transform: translateY(-100px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-```
-
-画面をクリックすると、ハートが浮かび上がる。
-
-「わあ、可愛い！」
-
-思わず、何度もクリックしてしまう。
-
-画面中にピンクのハートが舞う。
-
-「美久が喜ぶと思って」
-
-隆弘くんの優しさに、胸が温かくなる。
-
-◇◇◇◇
-
-## 午後7時30分　今日の成果
-
-「イベントリスナーを使えば、こんなこともできる」
-
-隆弘くんが最後に見せてくれたのは、特別なプログラム。
-
-```javascript
-// 特別なメッセージシステム
-let messageCount = 0;
-const messages = [
-    "プログラミングを教えられて嬉しい",
-    "美久と一緒に作るゲームは特別",
-    "毎日が楽しい",
-    "これからもずっと一緒に",
-    "大好き"
-];
-
-document.getElementById('special-button').addEventListener('click', function() {
-    if (messageCount < messages.length) {
-        showMessage(messages[messageCount]);
-        messageCount++;
-    } else {
-        showMessage("♥");
-    }
-});
-```
-
-ボタンをクリックするたびに、隆弘くんからのメッセージが表示される。
-
-最後まで読んで、涙が出そうになった。
-
-「隆弘くん……」
-
-「昨日の返事、ちゃんとしたくて」
-
-真っ直ぐな瞳で見つめられる。
-
-「俺も美久のこと、本当に大好きだ」
-
-今度は、はっきりと、力強く。
-
-私の目から、涙がこぼれた。
-
-嬉しくて、嬉しくて。
-
-◇◇◇◇
-
-## 午後8時　帰り道
-
-「泣かせるつもりじゃなかったんだけど」
-
-隆弘くんが心配そうに言う。
-
-「嬉し涙だから、大丈夫」
-
-私は笑顔を見せる。
-
-二人で並んで歩く帰り道。
-
-手と手の距離が、今日は特に近い。
-
-「ねえ、隆弘くん」
-
-「ん？」
-
-「イベントリスナーみたいに、お互いの気持ちの変化も感知できたらいいのにね」
-
-私の言葉に、隆弘くんは優しく笑った。
-
-「でも、言葉で伝え合えるから、人間なんじゃないかな」
-
-「そうだね」
-
-エレベーターで7階に着く。
-
-今日は、名残惜しさがいつも以上に強い。
-
-「明日も、よろしくね」
-
-「うん、明日も」
-
-それぞれの部屋に入る前、隆弘くんが振り返った。
-
-「美久」
-
-「なに？」
-
-「今日のプログラム、本当の気持ちだから」
-
-そう言って、照れたように部屋に入っていった。
-
-私も自分の部屋に入り、ドアにもたれかかる。
-
-胸がいっぱいで、言葉にならない。
-
-イベントリスナーが、二人の心の距離を教えてくれた。
-
-もう、隠す必要はない。
-
-私たちは、お互いに「大好き」なんだから。
-
-スマホが震えた。隆弘くんからのLINE。
-
-『今日のコード、復習用に送るね。特別なやつも含めて』
-
-『ありがとう。大切にする』
-
-『おやすみ、美久』
-
-『おやすみなさい、隆弘くん』
-
-そして、最後にもう一言。
-
-『大好き』
-
-『俺も大好き』
-
-画面を見つめながら、幸せな気持ちで眠りについた。
-
-明日も、隆弘くんに会える。
-
-それだけで、世界が輝いて見える。
+　明日もまた、新しい発見がありそうだ。

@@ -1,280 +1,414 @@
-# 第10話 選択肢システムの実装
+# 第10話 初めての言語実行
 
-## 10月13日（木）午前7時30分
+　四月二十九日、月曜日。昭和の日。
 
-「隆弘くん、今日も一緒に行こう」
+　祝日だけど、美久と会う約束をしていた。もはや、週末の恒例行事になりつつある。
 
-いつものように美久が待っている。でも、今朝はなんだか様子が違う。
+「今日はいよいよMikuLangを動かすんだよね」
 
-「どうかした？」
+　部屋に入るなり、美久が興奮気味に言った。
 
-「ううん、なんでもない」
+「そう。初めての実行」
 
-そう言いながらも、美久の頬がほんのり赤い。
+「ドキドキする」
 
-（もしかして、昨日のフラグの話を考えてる？）
-
-エレベーターの中、いつもより距離が近い気がする。
-
-「あのね、隆弘くん」
-
-「ん？」
-
-「今日は、選択肢の実装でしょ？」
-
-「ああ、DOM操作を使ってね」
-
-「楽しみ！」
-
-美久の笑顔を見て、僕も自然と笑顔になる。
+　美久の期待に満ちた表情を見て、僕も気が引き締まる。
 
 ◇◇◇◇
 
-## 午後4時30分　プログラミング部室
+「まず、昨日作った評価器をもう一度確認しよう」
 
-「今日は、いよいよ選択肢をクリックできるようにする」
+　画面にコードを表示する。
 
-僕はエディタを開き、説明を始めた。
-
-「DOM操作って何ですか？」
-
-「Document Object Modelの略で、HTMLの要素をJavaScriptで操作する仕組みだよ」
-
-美久が真剣にメモを取る。
-
-「例えば、こんな感じ」
+「これまでに作ったものを整理すると……」
 
 ```javascript
-// HTML要素を取得
-const textBox = document.getElementById('text-box');
-const choicesContainer = document.getElementById('choices');
-
-// テキストを表示する関数
-function displayText(text) {
-    textBox.innerText = text;
-}
-
-// 選択肢を表示する関数
-function displayChoices(choices) {
-    // 既存の選択肢をクリア
-    choicesContainer.innerHTML = '';
-    
-    // 新しい選択肢を作成
-    choices.forEach((choice, index) => {
-        const button = document.createElement('button');
-        button.innerText = choice.text;
-        button.onclick = () => selectChoice(index);
-        choicesContainer.appendChild(button);
-    });
-}
-```
-
-「わあ、本格的！」
-
-美久の目が輝く。
-
-「これで、画面に選択肢ボタンが表示される」
-
-「クリックしたら、どうなるんですか？」
-
-「selectChoice関数が呼ばれて、次のシーンに進む」
-
-```javascript
-function selectChoice(choiceIndex) {
-    const currentScene = scenes[player.currentScene];
-    const selectedChoice = currentScene.choices[choiceIndex];
-    
-    // アクションがあれば実行
-    if (selectedChoice.action) {
-        selectedChoice.action();
+// MikuLang インタープリタ
+class MikuLang {
+  constructor() {
+    this.evaluator = new Evaluator();
+  }
+  
+  run(program) {
+    try {
+      return this.evaluator.evaluate(program);
+    } catch (error) {
+      console.error('実行エラー:', error.message);
+      return null;
     }
-    
-    // 次のシーンへ
-    player.currentScene = selectedChoice.next;
-    displayScene(player.currentScene);
+  }
 }
 ```
 
-「なるほど！これで運命の分岐点が作れるんですね」
+「わあ、MikuLangクラス！」
 
-美久の言葉に、僕はドキッとした。
-
-運命の分岐点。確かに、ゲームでも現実でも、選択は運命を変える。
+「これが僕たちの言語の入り口」
 
 ◇◇◇◇
 
-## 午後5時30分　実装作業
+「じゃあ、最初のプログラムを実行してみよう」
 
-「じゃあ、実際に動かしてみよう」
-
-画面に、最初のシーンが表示される。
-
-『4月、新学期。私の物語が始まる――』
-
-その下に、二つの選択肢ボタン。
-
-［教室に入る］［少し待つ］
-
-「美久、クリックしてみて」
-
-「え、私が？」
-
-「うん。最初の選択は美久に」
-
-美久は緊張した面持ちで、マウスを握る。
-
-そして、［教室に入る］をクリック。
-
-画面が切り替わり、次のテキストが表示された。
-
-『教室に入ると、そこには見覚えのある後ろ姿が――』
-
-「動いた！本当に動いた！」
-
-美久が歓声を上げる。
-
-「これが、DOM操作の力だよ」
-
-「すごい……まるで本物のゲームみたい」
-
-いや、これは本物のゲームだ。
-
-僕たちが作っている、正真正銘のノベルゲーム。
-
-◇◇◇◇
-
-## 午後6時　選択肢の追加
-
-「もっと選択肢を増やしてみよう」
-
-僕たちは、シーンデータにどんどん選択肢を追加していく。
+　僕は簡単なプログラムを書いた。
 
 ```javascript
-{
-    id: 5,
-    background: "corridor.jpg",
-    character: "none",
-    text: "廊下で先輩とすれ違った。",
-    choices: [
-        { text: "おはようございます！", next: 6, action: () => affection.senpai += 5 },
-        { text: "会釈だけする", next: 7, action: () => affection.senpai += 2 },
-        { text: "気づかないふり", next: 8, action: () => affection.senpai -= 3 }
-    ]
-}
+// 最初のMikuLangプログラム
+const firstProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createPrint(createString('こんにちは、MikuLang！'))
+  ]
+};
+
+const mikuLang = new MikuLang();
+mikuLang.run(firstProgram);
+// 出力: こんにちは、MikuLang！
 ```
 
-「3択！」
+「動いた！」
 
-「現実でもこんな選択肢が見えたらいいのに」
+　美久が歓声を上げる。
 
-美久の呟きに、僕は苦笑する。
+「私たちの言語が、本当に動いてる！」
 
-「でも、見えたら逆に選べなくなりそう」
-
-「確かに。どれが正解か分からないから面白いんですよね」
-
-そう言いながら、美久は画面を見つめる。
-
-「隆弘先輩」
-
-「ん？」
-
-「もし、現実で『告白する』っていう選択肢があったら、選びますか？」
-
-突然の質問に、心臓が跳ねる。
-
-「それは……相手による、かな」
-
-「じゃあ、相手が……」
-
-美久が何か言いかけて、でも首を振った。
-
-「なんでもないです。続けましょう」
-
-モヤモヤした気持ちを抱えながら、作業を続ける。
+　その感動が伝わってきて、僕も嬉しくなる。
 
 ◇◇◇◇
 
-## 午後7時30分　デバッグとテスト
+「もっと複雑なプログラムも書いてみよう」
 
-「一通り実装できたね」
+```javascript
+// 変数を使った計算
+const calcProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment('x', createNumber(10)),
+    createAssignment('y', createNumber(20)),
+    createAssignment(
+      'sum',
+      createBinaryExpression(
+        '+',
+        createIdentifier('x'),
+        createIdentifier('y')
+      )
+    ),
+    createPrint(createString('計算結果:')),
+    createPrint(createIdentifier('sum'))
+  ]
+};
 
-画面には、複数のシーンと選択肢が実装されたゲームが動いている。
+mikuLang.run(calcProgram);
+// 出力:
+// 計算結果:
+// 30
+```
 
-「本当に私たちが作ったんですね」
+「計算もできてる！」
 
-美久が感慨深げに言う。
-
-「まだまだ改良の余地はあるけどね」
-
-「でも、すごいです。選択肢をクリックして、物語が進んで」
-
-美久は何度も選択肢を選び直して、異なるルートを確認している。
-
-その姿を見ていて、ふと思う。
-
-僕たちの関係も、いくつもの選択肢の結果なのかもしれない。
-
-あの日、美久がプログラミングを教えて欲しいと言ってくれた選択。
-
-僕が快諾した選択。
-
-お互いの趣味を打ち明けた選択。
-
-すべての選択が、今につながっている。
+「変数も正しく動作してるね」
 
 ◇◇◇◇
 
-## 午後8時　帰り道
+　美久が突然立ち上がった。
 
-「今日もありがとうございました」
+「私も書いてみたい！」
 
-マンションへの道を歩きながら、美久が言う。
+「いいよ。何を書く？」
 
-「DOM操作、難しかったけど面白かったです」
+　美久は少し考えて、キーボードに向かった。
 
-「美久の飲み込みが早くて助かるよ」
+```javascript
+// 美久の最初のプログラム
+const mikuProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment('メッセージ', createString('隆弘先輩、ありがとう')),
+    createPrint(createIdentifier('メッセージ')),
+    createAssignment('気持ち', createNumber(100)),
+    createPrint(createString('感謝の気持ち:')),
+    createPrint(createIdentifier('気持ち'))
+  ]
+};
+```
 
-「だって、隆弘先輩の教え方が上手だから」
+「実行してみる？」
 
-褒められて、照れてしまう。
+「うん」
+
+　緊張した面持ちで、美久が実行ボタンを押す。
+
+```
+隆弘先輩、ありがとう
+感謝の気持ち:
+100
+```
+
+「できた！」
+
+　美久が満面の笑みを浮かべる。
+
+（なんか照れるな……）
+
+◇◇◇◇
+
+「次は、条件分岐を使ったプログラムを書いてみよう」
+
+　僕は新しい例を作り始めた。
+
+```javascript
+// 成績判定プログラム
+const gradeProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment('点数', createNumber(85)),
+    {
+      type: ASTTypes.IfStatement,
+      condition: createComparison(
+        '>=',
+        createIdentifier('点数'),
+        createNumber(90)
+      ),
+      then: {
+        type: 'BlockStatement',
+        body: [createPrint(createString('優'))]
+      },
+      else: {
+        type: ASTTypes.IfStatement,
+        condition: createComparison(
+          '>=',
+          createIdentifier('点数'),
+          createNumber(80)
+        ),
+        then: {
+          type: 'BlockStatement',
+          body: [createPrint(createString('良'))]
+        },
+        else: {
+          type: 'BlockStatement',
+          body: [createPrint(createString('可'))]
+        }
+      }
+    }
+  ]
+};
+
+mikuLang.run(gradeProgram);
+// 出力: 良
+```
+
+「else if みたいな構造も作れるんだ」
+
+「そう。入れ子にすることで実現できる」
+
+◇◇◇◇
+
+　休憩時間。お茶を飲みながら、美久が言った。
 
 「ねえ、隆弘先輩」
 
 「ん？」
 
-「もし、今、選択肢が出たら何て書いてあると思います？」
+「MikuLangで、ゲームとか作れるかな」
 
-美久が立ち止まって、僕を見上げる。
+　意外な質問だった。
 
-月明かりに照らされた彼女の顔は、いつもより大人っぽく見えた。
+「ゲーム？」
 
-「そうだな……」
+「うん。簡単な文字だけのゲームとか」
 
-［手を繋ぐ］
-［気持ちを伝える］
-［このまま歩き続ける］
+　美久の発想に感心する。
 
-頭の中に、そんな選択肢が浮かぶ。
+「作れると思う。ループと配列があれば、簡単なゲームなら」
 
-でも、現実には選択肢は見えない。
+「楽しみ！」
 
-「分からないな。でも……」
+◇◇◇◇
 
-「でも？」
+「そうだ、エラー処理も確認しておこう」
 
-「どの選択肢を選んでも、美久と一緒ならハッピーエンドな気がする」
+　わざとエラーになるプログラムを書く。
 
-僕の言葉に、美久の顔が真っ赤になった。
+```javascript
+// エラーになるプログラム
+const errorProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createPrint(createIdentifier('未定義の変数'))
+  ]
+};
 
-「ず、ずるいです、そんな言い方」
+mikuLang.run(errorProgram);
+// 実行エラー: 変数 '未定義の変数' が見つかりません
+```
 
-でも、嬉しそうに微笑む美久。
+「ちゃんとエラーメッセージが出る」
 
-その笑顔を見て、僕は確信した。
+「エラー処理も大事な機能だからね」
 
-これは、正しい選択肢を選んだ結果なんだと。
+◇◇◇◇
 
-明日も、美久と一緒にゲームを作る。
+　夕方になってきた。今日は祝日なので、いつもより長く作業できる。
 
-その選択に、後悔はない。
+「MikuLangに、もっと機能を追加したい」
+
+　美久が意欲的に言う。
+
+「どんな機能？」
+
+「うーん、繰り返しとか」
+
+「じゃあ、簡単なwhileループを実装してみようか」
+
+```javascript
+// while文の評価
+evaluateWhileStatement(node) {
+  let result = null;
+  while (this.evaluate(node.condition)) {
+    result = this.evaluate(node.body);
+  }
+  return result;
+}
+
+// ヘルパー関数
+function createWhile(condition, body) {
+  return {
+    type: ASTTypes.WhileStatement,
+    condition: condition,
+    body: body
+  };
+}
+```
+
+◇◇◇◇
+
+「while文を使ったプログラムを書いてみよう」
+
+```javascript
+// カウントダウンプログラム
+const countdownProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment('カウント', createNumber(5)),
+    createWhile(
+      createComparison(
+        '>',
+        createIdentifier('カウント'),
+        createNumber(0)
+      ),
+      {
+        type: 'BlockStatement',
+        body: [
+          createPrint(createIdentifier('カウント')),
+          createAssignment(
+            'カウント',
+            createBinaryExpression(
+              '-',
+              createIdentifier('カウント'),
+              createNumber(1)
+            )
+          )
+        ]
+      }
+    ),
+    createPrint(createString('発射！'))
+  ]
+};
+
+mikuLang.run(countdownProgram);
+// 出力:
+// 5
+// 4
+// 3
+// 2
+// 1
+// 発射！
+```
+
+「すごい！　ループも動いてる！」
+
+　美久の興奮が最高潮に達している。
+
+◇◇◇◇
+
+「隆弘先輩」
+
+　作業の合間に、美久が真剣な顔で言った。
+
+「私、プログラミング言語を作るのが、こんなに楽しいなんて思わなかった」
+
+「僕も」
+
+　正直な気持ちを伝える。
+
+「研究では作ったことあるけど、誰かと一緒に作るのは初めてで」
+
+「私も初めて」
+
+　美久が微笑む。
+
+「でも、隆弘先輩となら、もっと難しいことにも挑戦できそう」
+
+　その言葉に、胸が熱くなる。
+
+◇◇◇◇
+
+　夜七時。外はすっかり暗くなった。
+
+「今日は本当に充実してた」
+
+　美久が満足そうに言う。
+
+「MikuLangが動いて、感動した」
+
+「まだまだこれから」
+
+　僕は今後の計画を話す。
+
+「関数、配列、オブジェクト……追加したい機能はたくさんある」
+
+「全部やりたい！」
+
+　美久の意欲に笑ってしまう。
+
+「少しずつね」
+
+「はい」
+
+◇◇◇◇
+
+　美久を送り出す時、玄関で彼女が振り返った。
+
+「隆弘先輩」
+
+「ん？」
+
+「今日、MikuLangが初めて動いた日」
+
+「そうだね」
+
+「記念日みたい」
+
+　美久の言葉に、僕も同じことを考えていたことに気づく。
+
+「確かに、記念日かも」
+
+「じゃあ、来年の今日は、MikuLangの誕生日」
+
+　来年も一緒に——そんな未来を当然のように語る美久。
+
+「そうだね。一周年には、もっとすごい言語になってるよ」
+
+「楽しみ」
+
+　美久が嬉しそうに帰っていく。
+
+　一人になった部屋で、今日のコードを見返す。
+
+　MikuLangが動いた。僕たちが作った言語が、確かに生きている。
+
+　そして、美久との関係も、また一歩前進した気がする。
+
+　明日からは、もっと高度な機能に挑戦だ。
+
+　美久と一緒なら、どんな困難も乗り越えられる。
+
+　そんな確信を胸に、僕は明日の準備を始めた。

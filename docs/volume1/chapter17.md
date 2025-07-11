@@ -1,327 +1,453 @@
-# 第17話 深夜のデバッグ作業
+# 第17話 デバッグツール
 
-## 10月25日（水）午後11時
+　五月六日、月曜日。振替休日。
 
-『隆弘くん、大変！』
+　ゴールデンウィークも最後の一日。学校は休みだが、美久との開発は続く。
 
-LINEが来たのは、もう寝ようかと思っていた頃だった。
+「今日はデバッグツールだね」
 
-『どうした？』
+　美久が期待に満ちた顔で言う。
 
-『ゲームが動かなくなっちゃった……』
+「プログラムの問題を見つけて直すための道具」
 
-慌てた様子が文面から伝わってくる。
+「デバッグって、虫を取り除くって意味？」
 
-『今から見に行くよ』
-
-『え、でももう遅いし……』
-
-『大丈夫。すぐ行く』
-
-私は急いで着替えて、708号室へ向かった。
+「そう。昔、コンピュータに本物の虫が入って故障したことから」
 
 ◇◇◇◇
 
-## 午後11時15分　隆弘の部屋
+「まず、実行トレース機能から作ろう」
 
-「ごめんね、こんな時間に」
-
-ドアを開けた隆弘くんは、まだ起きていたみたい。
-
-パソコンの前には、飲みかけのコーヒー。
-
-「全然。それより、どうしたの？」
-
-「これ見て」
-
-私のノートPCを開いて、ゲームを起動してみせる。
-
-最初の画面は表示されるけど、選択肢をクリックしても何も反応しない。
-
-「さっきまで動いてたのに……」
-
-泣きそうな声になってしまう。
-
-「大丈夫、一緒に直そう」
-
-隆弘くんの優しい声に、少し落ち着いた。
-
-◇◇◇◇
-
-## 午後11時30分　エラーの確認
-
-「まず、開発者ツールでエラーを確認してみよう」
-
-隆弘くんがF12キーを押して、コンソールを開く。
-
-```
-Uncaught TypeError: Cannot read property 'addEventListener' of null
-    at game.js:45
-    at game.js:102
-```
-
-「これだ。要素が見つからないエラー」
-
-「要素が見つからない？」
-
-「HTMLの要素を取得しようとしたけど、まだ存在しないってこと」
-
-隆弘くんがコードを確認し始める。
-
-その真剣な横顔を見ていると、不安が少し和らぐ。
-
-◇◇◇◇
-
-## 深夜0時　原因の特定
-
-「あった！」
+　ホワイトボードに設計を書く。
 
 ```javascript
-// 問題のコード
-const startButton = document.getElementById('start-button');
-startButton.addEventListener('click', startGame);
-
-// HTMLはこうなっていた
-<button id="startButton">ゲームスタート</button>
+// デバッグ情報を保持するクラス
+class DebugContext {
+  constructor() {
+    this.enabled = false;
+    this.trace = [];
+    this.breakpoints = new Set();
+    this.stepMode = false;
+    this.callStack = [];
+  }
+  
+  log(type, info) {
+    if (this.enabled) {
+      this.trace.push({
+        type,
+        info,
+        timestamp: Date.now(),
+        callStack: [...this.callStack]
+      });
+    }
+  }
+  
+  enterFunction(name) {
+    this.callStack.push(name);
+    this.log('function_enter', { name });
+  }
+  
+  exitFunction(name) {
+    this.callStack.pop();
+    this.log('function_exit', { name });
+  }
+}
 ```
 
-「IDが違ってる！」
+「トレースって何を記録するの？」
 
-「start-buttonじゃなくて、startButtonになってる」
-
-私のミスだった。
-
-HTMLを修正した時に、IDを変えてしまったみたい。
-
-「ごめんなさい、私のせいで……」
-
-「謝らないで。こういうのはよくあることだから」
-
-隆弘くんが優しく微笑む。
+「どの順番で何が実行されたか。プログラムの足跡みたいなもの」
 
 ◇◇◇◇
 
-## 深夜0時30分　デバッグの続き
-
-「せっかくだから、他にもバグがないか確認しよう」
-
-隆弘くんが提案する。
+「評価器にデバッグ機能を組み込もう」
 
 ```javascript
-// デバッグ用のログを追加
-console.log('ゲーム開始');
-console.log('現在のシーン:', currentScene);
-console.log('選択肢:', choices);
+// デバッグ機能付き評価器
+class DebugEvaluator extends MikuLangEvaluator {
+  constructor() {
+    super();
+    this.debug = new DebugContext();
+  }
+  
+  evaluate(node) {
+    // デバッグ情報を記録
+    if (this.debug.enabled) {
+      this.debug.log('evaluate', {
+        type: node.type,
+        location: node.location
+      });
+    }
+    
+    // ブレークポイントチェック
+    if (this.debug.breakpoints.has(node.location?.line)) {
+      this.handleBreakpoint(node);
+    }
+    
+    // 通常の評価
+    return super.evaluate(node);
+  }
+  
+  handleBreakpoint(node) {
+    console.log('ブレークポイント:', node.location);
+    console.log('現在の変数:', this.env.getAll());
+    // 実際の実装では、ここで実行を一時停止
+  }
+}
+```
 
-// エラーハンドリングも追加
+「ブレークポイントって？」
+
+「プログラムを一時停止したい場所。その時点での状態を確認できる」
+
+◇◇◇◇
+
+　美久が質問してきた。
+
+「どんな時にデバッグツールを使うの？」
+
+「プログラムが思った通りに動かない時」
+
+　具体例を示す。
+
+```javascript
+// バグのあるプログラム例
+const buggyProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createFunction(
+      '階乗',
+      ['n'],
+      {
+        type: 'BlockStatement',
+        body: [
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '<=',
+              createIdentifier('n'),
+              createNumber(1)
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [createReturn(createNumber(1))]
+            }
+          },
+          // バグ: n * 階乗(n) となっている（正しくは n-1）
+          createReturn(
+            createBinaryExpression(
+              '*',
+              createIdentifier('n'),
+              createCall('階乗', [createIdentifier('n')])
+            )
+          )
+        ]
+      }
+    ),
+    createPrint(createCall('階乗', [createNumber(5)]))
+  ]
+};
+```
+
+◇◇◇◇
+
+「実行トレースを見てみよう」
+
+```javascript
+// デバッグ実行
+const debugEval = new DebugEvaluator();
+debugEval.debug.enabled = true;
+
 try {
-    displayScene(currentScene);
-} catch (error) {
-    console.error('シーン表示エラー:', error);
-    alert('エラーが発生しました。ページを更新してください。');
+  debugEval.run(buggyProgram);
+} catch (e) {
+  console.log('エラー発生:', e.message);
 }
+
+// トレースを表示
+console.log('実行トレース:');
+debugEval.debug.trace.forEach((entry, i) => {
+  console.log(`${i}: ${entry.type} - ${JSON.stringify(entry.info)}`);
+});
 ```
 
-「こうしておけば、問題が起きてもすぐ分かる」
+「無限ループになってる！」
 
-「なるほど！」
+　美久が気づいた。
 
-隆弘くんの隣で、一つ一つ理解していく。
-
-肩が触れそうな距離。
-
-ドキドキするけど、今は集中しなきゃ。
+「そう。階乗(n)が階乗(n)を呼び続けてる」
 
 ◇◇◇◇
 
-## 深夜1時　新たな問題
+　休憩時間。美久がお茶を飲みながら言った。
 
-「あれ？このルート、おかしくない？」
+「デバッグって、探偵みたいだね」
 
-隆弘くんが気づいた。
+「どういうこと？」
 
-ゆいルートに入るはずが、さくらルートに飛んでしまう。
+「証拠を集めて、犯人（バグ）を見つける」
 
-「条件分岐を確認してみよう」
+　面白い例えだ。
+
+「確かに。推理力が必要」
+
+◇◇◇◇
+
+「変数ウォッチ機能も作ろう」
 
 ```javascript
-// バグのあるコード
-if (affection.yui > affection.miku && affection.yui > affection.sakura) {
-    changeRoute('yui');
-} else if (affection.sakura > affection.miku && affection.sakura > affection.yui) {
-    changeRoute('sakura');
-} else {
-    changeRoute('miku');
+// 変数の変化を監視
+class VariableWatcher {
+  constructor() {
+    this.watches = new Map();
+  }
+  
+  watch(varName, callback) {
+    if (!this.watches.has(varName)) {
+      this.watches.set(varName, []);
+    }
+    this.watches.get(varName).push(callback);
+  }
+  
+  notify(varName, oldValue, newValue) {
+    const callbacks = this.watches.get(varName) || [];
+    callbacks.forEach(cb => cb(varName, oldValue, newValue));
+  }
+}
+
+// 環境クラスを拡張
+class WatchableEnvironment extends Environment {
+  constructor(parent, watcher) {
+    super(parent);
+    this.watcher = watcher;
+  }
+  
+  set(name, value) {
+    const oldValue = this.get(name);
+    super.set(name, value);
+    
+    if (this.watcher) {
+      this.watcher.notify(name, oldValue, value);
+    }
+  }
 }
 ```
 
-「あ！同点の時の処理がない」
-
-「そう。好感度が同じ時の優先順位を決めてないんだ」
-
-私たち、二人で見つめ合う。
-
-まるで、私たちの関係みたい。
-
-どっちが先に好きになったとか、関係ないのに。
-
 ◇◇◇◇
 
-## 深夜1時30分　修正作業
+　美久がプログラムを書き始めた。
 
 ```javascript
-// 修正後のコード
-function determineRoute() {
-    const routes = [
-        { name: 'miku', points: affection.miku },
-        { name: 'yui', points: affection.yui },
-        { name: 'sakura', points: affection.sakura }
-    ];
+// 美久のデバッグ練習プログラム
+const mikuDebugProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createFunction(
+      '好感度計算',
+      ['現在値', 'イベント'],
+      {
+        type: 'BlockStatement',
+        body: [
+          createAssignment('増加量', createNumber(0)),
+          
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '===',
+              createIdentifier('イベント'),
+              createString('デート')
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [
+                createAssignment('増加量', createNumber(10))
+              ]
+            }
+          },
+          
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '===',
+              createIdentifier('イベント'),
+              createString('プレゼント')
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [
+                createAssignment('増加量', createNumber(5))
+              ]
+            }
+          },
+          
+          createAssignment(
+            '新しい値',
+            createBinaryExpression(
+              '+',
+              createIdentifier('現在値'),
+              createIdentifier('増加量')
+            )
+          ),
+          
+          // デバッグ出力
+          createCall('debug', [
+            createString('好感度変化:'),
+            createIdentifier('現在値'),
+            createString('→'),
+            createIdentifier('新しい値')
+          ]),
+          
+          createReturn(createIdentifier('新しい値'))
+        ]
+      }
+    ),
     
-    // 好感度でソート（同点の場合は配列の順番を維持）
-    routes.sort((a, b) => b.points - a.points);
-    
-    // 最高好感度のキャラのルートへ
-    changeRoute(routes[0].name);
+    // テスト実行
+    createAssignment('好感度', createNumber(50)),
+    createAssignment(
+      '好感度',
+      createCall('好感度計算', [
+        createIdentifier('好感度'),
+        createString('デート')
+      ])
+    ),
+    createPrint(createIdentifier('好感度'))
+  ]
+};
+```
+
+◇◇◇◇
+
+「プロファイリング機能も追加しよう」
+
+```javascript
+// 実行時間を計測
+class Profiler {
+  constructor() {
+    this.timings = new Map();
+  }
+  
+  start(label) {
+    this.timings.set(label, {
+      start: performance.now(),
+      count: (this.timings.get(label)?.count || 0) + 1
+    });
+  }
+  
+  end(label) {
+    const timing = this.timings.get(label);
+    if (timing && timing.start) {
+      const duration = performance.now() - timing.start;
+      timing.total = (timing.total || 0) + duration;
+      timing.start = null;
+    }
+  }
+  
+  report() {
+    console.log('=== プロファイリング結果 ===');
+    this.timings.forEach((timing, label) => {
+      console.log(`${label}:`);
+      console.log(`  呼び出し回数: ${timing.count}`);
+      console.log(`  合計時間: ${timing.total?.toFixed(2)}ms`);
+      console.log(`  平均時間: ${(timing.total / timing.count).toFixed(2)}ms`);
+    });
+  }
 }
 ```
 
-「これで完璧」
+◇◇◇◇
 
-隆弘くんが満足そうに頷く。
+「エラーの詳細情報も表示できるようにしよう」
 
-「すごい……配列とソート、こんな風に使えるんだ」
-
-「美久も随分詳しくなったね」
-
-褒められて嬉しい。
-
-でも、それ以上に嬉しいのは、一緒に問題を解決できたこと。
+```javascript
+// エラー情報の拡張
+class MikuLangError extends Error {
+  constructor(message, node, context) {
+    super(message);
+    this.name = 'MikuLangError';
+    this.node = node;
+    this.context = context;
+  }
+  
+  getDetailedMessage() {
+    let details = this.message;
+    
+    if (this.node?.location) {
+      details += `\n場所: ${this.node.location.line}行目`;
+    }
+    
+    if (this.context?.callStack.length > 0) {
+      details += '\nコールスタック:';
+      this.context.callStack.forEach((func, i) => {
+        details += `\n  ${i}: ${func}`;
+      });
+    }
+    
+    return details;
+  }
+}
+```
 
 ◇◇◇◇
 
-## 深夜2時　コーヒーブレイク
+　夕方になってきた。デバッグツールの実装も順調に進んだ。
 
-「ちょっと休憩しよう」
+「デバッグツールがあると、プログラミングが楽になるね」
 
-隆弘くんが新しいコーヒーを入れてくれる。
+　美久が感想を述べる。
 
-「ごめんね、こんな遅くまで」
+「バグは必ず発生するから、見つけやすくすることが大事」
 
-「いいよ。楽しいし」
+「人間関係のデバッグツールもあればいいのに」
 
-「楽しい？」
-
-「うん。美久と一緒にデバッグするの、楽しい」
-
-その言葉に、胸が温かくなる。
-
-「私も。隆弘くんといると、難しいことも楽しく感じる」
-
-二人でコーヒーを飲みながら、静かな時間を過ごす。
-
-深夜の、特別な時間。
+　美久の冗談に笑ってしまう。
 
 ◇◇◇◇
 
-## 深夜2時30分　最後の仕上げ
+「隆弘先輩」
 
-「もう少しで完成だね」
+　片付けながら、美久が言った。
 
-画面には、バグが修正されたゲームが動いている。
+「今日で連休も終わりか」
 
-選択肢も正しく動作し、ルート分岐も完璧。
+「そうだね。でも、開発は続く」
 
-「隆弘くんのおかげ」
+「学校でも続けられる？」
 
-「美久が頑張ったからだよ」
+「もちろん。放課後に」
 
-ふと、時計を見る。
+　美久の顔が明るくなる。
 
-もうこんな時間。
-
-「帰らなきゃ」
-
-立ち上がろうとした時、隆弘くんが言った。
-
-「美久」
-
-「なに？」
-
-「今日みたいに、これからも一緒に問題を解決していきたい」
-
-真剣な眼差し。
-
-「プログラミングだけじゃなくて、いろんなことを」
-
-私の心臓が、早鐘を打つ。
-
-「私も……隆弘くんと一緒なら、どんな問題も乗り越えられる気がする」
+「よかった。まだまだ一緒に作りたいものがあるから」
 
 ◇◇◇◇
 
-## 深夜3時　別れ際
+　美久を見送る時、彼女が振り返った。
 
-部屋を出る前に、隆弘くんが言った。
-
-「明日……いや、もう今日か。ちゃんと寝てね」
-
-「隆弘くんも」
-
-ドアの前で、少し躊躇う。
-
-何か言いたいことがあるような、そんな雰囲気。
-
-「美久」
-
-「うん？」
-
-「ありがとう。こんな時間でも、頼ってくれて」
-
-その言葉に、涙が出そうになった。
-
-「私の方こそ、ありがとう」
-
-そして、勇気を出して。
-
-「隆弘くん」
+「隆弘先輩」
 
 「ん？」
 
-私は一歩近づいて、隆弘くんの頬に軽くキスをした。
+「この一週間、本当に充実してた」
 
-「お礼」
+「僕もだよ」
 
-そう言って、慌てて自分の部屋に戻る。
+「明日からも、よろしくお願いします」
 
-ドアを閉めて、背中にもたれかかる。
+　美久が深々と頭を下げる。
 
-（やっちゃった……）
+「こちらこそ」
 
-でも、後悔はない。
+　僕も頭を下げる。
 
-隆弘くんとなら、どんなバグも、どんな問題も、一緒に解決していける。
+　明日から、また日常が始まる。
 
-プログラミングも、恋も、きっと。
+　でも、美久との開発は続いていく。
 
-スマホが震えた。
+　そして、MikuLangの完成も、もうすぐそこまで来ている。
 
-『おやすみ、美久。いい夢を』
+（次はパーサーか）
 
-そして、もう一通。
+　本物のプログラミング言語への、最後のピース。
 
-『さっきのお礼、嬉しかった』
-
-顔が真っ赤になる。
-
-でも、幸せ。
-
-『おやすみなさい、隆弘くん』
-
-『また明日』
-
-深夜のデバッグは、私たちの距離を確実に縮めてくれた。
-
-エラーを直すように、お互いの気持ちの行き違いも、きっと解決できる。
-
-そう信じて、眠りについた。
+　美久と一緒なら、きっと作れる。

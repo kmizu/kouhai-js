@@ -1,510 +1,451 @@
-# 第18話 オブジェクトで繋がる想い
+# 第18話 パーサーの実装
 
-## 10月26日（木）午前7時
+　五月七日、火曜日。
 
-昨夜のキス。
+　ゴールデンウィーク明けの学校。久しぶりの授業を終えて、放課後の空き教室で美久と開発を続ける。
 
-頬に触れた美久の柔らかい唇の感触が、まだ残っている。
+「今日はパーサーだね」
 
-（嬉しかった）
+　美久が期待に満ちた顔で言う。
 
-素直にそう思う。
+「文字列からASTを作る。これで本物のプログラミング言語になる」
 
-美久の気持ちが、確実に僕に向いている。
+「ついに最後のピース？」
 
-それが分かって、世界が違って見える。
-
-今日も美久に会える。
-
-それだけで、朝から幸せな気分だ。
+「そう。今まではASTを手動で作ってたけど、これからはコードを書けるようになる」
 
 ◇◇◇◇
 
-## 午前7時45分　いつもの廊下
+「パーサーの基本から始めよう」
 
-「おはよう、美久」
+　ホワイトボードに流れを書く。
 
-いつもより少し早く出て、美久を待っていた。
-
-「お、おはよう」
-
-美久の顔が真っ赤だ。
-
-昨夜のことを思い出しているのかな。
-
-「よく眠れた？」
-
-「う、うん。隆弘くんは？」
-
-「最高の夢を見た」
-
-僕の言葉に、美久の顔がさらに赤くなる。
-
-可愛い。
-
-「今日も一緒に頑張ろう」
-
-「うん！」
-
-エレベーターで降りながら、美久がそっと言った。
-
-「昨日は、ありがとう」
-
-「こちらこそ」
-
-二人で顔を見合わせて、照れ笑いを浮かべる。
-
-新しい朝が、始まった。
-
-◇◇◇◇
-
-## 午後4時30分　プログラミング部室
-
-「今日は、オブジェクトについて教えるよ」
-
-放課後の部室。
-
-他の部員たちは、それぞれの作業に没頭している。
-
-「オブジェクト？」
-
-「複数のデータをまとめて管理する仕組みだよ」
-
-僕はホワイトボードに図を描きながら説明する。
-
-```javascript
-// キャラクターのデータをオブジェクトで表現
-const miku = {
-    name: "河内美久",
-    age: 16,
-    grade: 1,
-    affection: 0,
-    route: "childhood_friend",
-    personality: ["明るい", "素直", "一途"],
-    likes: ["プログラミング", "イラスト", "隆弘くん"]
-};
-
-console.log(miku.name); // "河内美久"
-console.log(miku.likes[2]); // "隆弘くん"
+```
+ソースコード（文字列）
+    ↓
+字句解析（トークン化）
+    ↓
+構文解析（パース）
+    ↓
+AST（抽象構文木）
 ```
 
-「わあ、私のデータだ！」
+「字句解析って？」
 
-美久が嬉しそうに画面を見つめる。
+「文字列を意味のある単位に分解すること」
 
-「でも、好きなものに隆弘くんって……」
+　具体例を示す。
 
-「事実でしょ？」
-
-僕がニヤリと笑うと、美久は真っ赤になった。
-
-「もう、隆弘くんのいじわる」
-
-でも、否定はしない。
-
-それが嬉しい。
+```javascript
+// 入力: "x = 10 + 20"
+// 字句解析の結果（トークン）:
+[
+  { type: 'IDENTIFIER', value: 'x' },
+  { type: 'ASSIGN', value: '=' },
+  { type: 'NUMBER', value: '10' },
+  { type: 'PLUS', value: '+' },
+  { type: 'NUMBER', value: '20' }
+]
+```
 
 ◇◇◇◇
 
-## 午後5時15分　ゲームへの実装
-
-「オブジェクトを使えば、ゲームのデータ管理が楽になる」
+「まず、トークナイザーを作ろう」
 
 ```javascript
-// ゲーム全体の状態管理
-const gameData = {
-    player: {
-        name: "主人公",
-        choices: []
-    },
-    characters: {
-        miku: {
-            name: "美久",
-            affection: 0,
-            flags: {}
-        },
-        yui: {
-            name: "ゆい",
-            affection: 0,
-            flags: {}
-        },
-        sakura: {
-            name: "さくら",
-            affection: 0,
-            flags: {}
-        }
-    },
-    scene: {
-        current: 1,
-        background: "classroom.jpg",
-        bgm: "daily.mp3"
-    }
+// トークンの種類
+const TokenType = {
+  NUMBER: 'NUMBER',
+  STRING: 'STRING',
+  IDENTIFIER: 'IDENTIFIER',
+  PLUS: 'PLUS',
+  MINUS: 'MINUS',
+  STAR: 'STAR',
+  SLASH: 'SLASH',
+  ASSIGN: 'ASSIGN',
+  LPAREN: 'LPAREN',
+  RPAREN: 'RPAREN',
+  LBRACE: 'LBRACE',
+  RBRACE: 'RBRACE',
+  SEMICOLON: 'SEMICOLON',
+  IF: 'IF',
+  ELSE: 'ELSE',
+  WHILE: 'WHILE',
+  FUNCTION: 'FUNCTION',
+  RETURN: 'RETURN',
+  EOF: 'EOF'
 };
 
-// 好感度を上げる関数
-function increaseAffection(character, amount) {
-    gameData.characters[character].affection += amount;
-    console.log(`${gameData.characters[character].name}の好感度が${amount}上がった！`);
+// トークナイザークラス
+class Tokenizer {
+  constructor(input) {
+    this.input = input;
+    this.position = 0;
+  }
+  
+  // 次の文字を見る（消費しない）
+  peek() {
+    return this.input[this.position] || '';
+  }
+  
+  // 次の文字を消費
+  advance() {
+    return this.input[this.position++] || '';
+  }
+  
+  // 空白をスキップ
+  skipWhitespace() {
+    while (/\s/.test(this.peek())) {
+      this.advance();
+    }
+  }
 }
 ```
 
-「なるほど！全部のデータが整理されてる」
+「文字を一つずつ見ていくんだ」
 
-美久が理解した様子で頷く。
-
-「これなら、どのキャラクターがどんな状態か、すぐ分かるね」
-
-「そう。プログラミングは、整理整頓が大事なんだ」
-
-僕の言葉に、美久が微笑む。
-
-「隆弘くんの部屋みたいに？」
-
-「あ、あれは……」
-
-確かに、僕の部屋は整理整頓が行き届いている。
-
-美久に褒められて、ちょっと照れる。
+「そう。パターンを認識してトークンに変換する」
 
 ◇◇◇◇
 
-## 午後6時　メソッドの追加
+　美久が質問してきた。
 
-「オブジェクトには、関数も入れられるんだ」
+「日本語も扱えるの？」
 
-```javascript
-// キャラクターオブジェクトに機能を追加
-const mikuCharacter = {
-    name: "河内美久",
-    affection: 50,
-    mood: "happy",
-    
-    // メソッド（オブジェクトの関数）
-    speak: function(text) {
-        console.log(`${this.name}: ${text}`);
-    },
-    
-    changeMode: function(newMood) {
-        this.mood = newMood;
-        console.log(`${this.name}の気分が${newMood}になった`);
-    },
-    
-    confess: function() {
-        if (this.affection >= 80) {
-            this.speak("あの……実は、ずっと好きでした！");
-            return true;
-        } else {
-            this.speak("え、えっと……");
-            return false;
-        }
-    }
-};
-
-// 使用例
-mikuCharacter.affection = 85;
-mikuCharacter.confess(); // "河内美久: あの……実は、ずっと好きでした！"
-```
-
-「告白機能まで！？」
-
-美久が顔を真っ赤にする。
-
-「ゲームには必要でしょ？」
-
-「そ、そうだけど……」
-
-画面を見つめる美久の横顔。
-
-昨夜のキスを思い出してしまう。
-
-「実際の告白は、もっとドキドキするけどね」
-
-つい、そんなことを言ってしまった。
-
-美久が僕を見つめる。
-
-その瞳に、期待のような何かが宿っている。
-
-◇◇◇◇
-
-## 午後6時45分　複雑なオブジェクト
-
-「もっと複雑な構造も作れるよ」
+「もちろん。識別子に日本語を使えるようにしよう」
 
 ```javascript
-// シーンデータの管理
-const sceneDatabase = {
-    opening: {
-        id: 1,
-        title: "運命の出会い",
-        location: "教室",
-        time: "放課後",
-        characters: ["miku"],
-        dialogue: [
-            {
-                speaker: "miku",
-                text: "先輩、プログラミング教えてください！",
-                expression: "smile"
-            },
-            {
-                speaker: "player",
-                text: "え？どうして急に？",
-                choices: [
-                    {
-                        text: "もちろん教えるよ",
-                        effect: () => increaseAffection("miku", 10)
-                    },
-                    {
-                        text: "ちょっと忙しいかな",
-                        effect: () => increaseAffection("miku", -5)
-                    }
-                ]
-            }
-        ]
-    },
-    
-    confession: {
-        id: 99,
-        title: "想いを伝える時",
-        location: "屋上",
-        time: "夕暮れ",
-        required: {
-            affection: { miku: 80 },
-            flags: { "completed_game": true }
-        },
-        dialogue: [
-            {
-                speaker: "miku",
-                text: "ゲーム、完成したね",
-                expression: "happy"
-            },
-            {
-                speaker: "player",
-                text: "美久のおかげだよ"
-            },
-            {
-                speaker: "miku",
-                text: "違う。二人で作ったから",
-                expression: "blush"
-            },
-            {
-                speaker: "player",
-                text: "美久、伝えたいことがあるんだ"
-            }
-        ]
+// 数値トークンの読み取り
+readNumber() {
+  let value = '';
+  while (/[0-9]/.test(this.peek())) {
+    value += this.advance();
+  }
+  if (this.peek() === '.') {
+    value += this.advance();
+    while (/[0-9]/.test(this.peek())) {
+      value += this.advance();
     }
-};
-```
-
-「すごい……物語の全てがデータになってる」
-
-美久が感心したように呟く。
-
-「告白シーンまで用意されてる」
-
-「実装するかは別として、ね」
-
-僕が言うと、美久が小さく呟いた。
-
-「実装して欲しいな」
-
-聞こえたような、聞こえなかったような。
-
-でも、美久の頬が赤いのは確かだ。
-
-◇◇◇◇
-
-## 午後7時30分　オブジェクトの応用
-
-「オブジェクトを使えば、セーブデータも簡単に作れる」
-
-```javascript
-// セーブデータの構造
-const saveData = {
-    version: "1.0.0",
-    timestamp: new Date().toISOString(),
-    playerName: "嵐山隆弘",
-    currentScene: 42,
-    gameProgress: {
-        completedScenes: [1, 2, 3, 5, 7, 10, 15, 20, 25, 30, 35, 40, 42],
-        unlockedCGs: ["opening", "first_lesson", "debugging_night"],
-        unlockedBGMs: ["main_theme", "love_theme"]
-    },
-    characterStatus: {
-        miku: {
-            affection: 95,
-            route: "true_end",
-            memories: [
-                "初めてのプログラミングレッスン",
-                "一緒に作ったゲーム",
-                "深夜のデバッグ",
-                "頬へのキス"
-            ]
-        }
-    }
-};
-
-// セーブ機能
-function saveGame() {
-    localStorage.setItem('gameData', JSON.stringify(saveData));
-    console.log("ゲームを保存しました");
+  }
+  return {
+    type: TokenType.NUMBER,
+    value: parseFloat(value)
+  };
 }
 
-// ロード機能
-function loadGame() {
-    const saved = localStorage.getItem('gameData');
-    if (saved) {
-        return JSON.parse(saved);
-    }
-    return null;
+// 識別子の読み取り（日本語対応）
+readIdentifier() {
+  let value = '';
+  // 日本語、英数字、アンダースコアを許可
+  while (/[\p{L}\p{N}_]/u.test(this.peek())) {
+    value += this.advance();
+  }
+  
+  // キーワードチェック
+  const keywords = {
+    'if': TokenType.IF,
+    'もし': TokenType.IF,
+    'else': TokenType.ELSE,
+    'でなければ': TokenType.ELSE,
+    'while': TokenType.WHILE,
+    'の間': TokenType.WHILE,
+    'function': TokenType.FUNCTION,
+    '関数': TokenType.FUNCTION,
+    'return': TokenType.RETURN,
+    '返す': TokenType.RETURN
+  };
+  
+  const type = keywords[value] || TokenType.IDENTIFIER;
+  return { type, value };
 }
 ```
 
-「思い出まで保存されてる……」
+「日本語でプログラミングできる！」
 
-美久が画面を見つめる。
-
-「頬へのキスって」
-
-「昨日の夜のことも、大切な思い出だから」
-
-僕の言葉に、美久の目が潤む。
-
-「隆弘くん……」
-
-「美久との思い出は、全部大切に保存したい」
-
-今度は僕が照れる番だった。
-
-でも、本心だ。
+　美久の目が輝く。
 
 ◇◇◇◇
 
-## 午後8時15分　今日のまとめ
+　休憩時間。美久がお茶を飲みながら言った。
 
-「オブジェクトを使えば、複雑なデータも整理できる」
-
-部室には、僕と美久だけになっていた。
-
-他の部員は、みんな帰ってしまった。
-
-「人の気持ちも、オブジェクトみたいに整理できたらいいのに」
-
-美久がぽつりと呟く。
+「パーサーって、人の話を理解するのに似てるね」
 
 「どういうこと？」
 
-「だって、好きとか、嬉しいとか、数値化できないじゃない」
+「単語を認識して、文法を理解して、意味を把握する」
 
-美久の言葉に、僕は少し考えた。
+　鋭い洞察だ。
 
-「でも、それがいいんじゃないかな」
-
-「え？」
-
-「数値化できないから、言葉で伝える必要がある」
-
-僕は美久を見つめる。
-
-「昨日の夜みたいに、行動で示すこともできる」
-
-美久の顔が、また赤くなった。
-
-「そ、そうだね」
+「確かに。自然言語処理とプログラミング言語処理は似てる」
 
 ◇◇◇◇
 
-## 午後8時45分　帰り道
+「次は構文解析器を作ろう」
 
-「今日もありがとう」
+```javascript
+// パーサークラス
+class Parser {
+  constructor(tokens) {
+    this.tokens = tokens;
+    this.current = 0;
+  }
+  
+  // 現在のトークンを見る
+  peek() {
+    return this.tokens[this.current] || { type: TokenType.EOF };
+  }
+  
+  // トークンを消費
+  consume(expectedType) {
+    const token = this.peek();
+    if (token.type !== expectedType) {
+      throw new Error(`期待: ${expectedType}, 実際: ${token.type}`);
+    }
+    this.current++;
+    return token;
+  }
+  
+  // プログラムのパース
+  parseProgram() {
+    const statements = [];
+    while (this.peek().type !== TokenType.EOF) {
+      statements.push(this.parseStatement());
+    }
+    return {
+      type: ASTTypes.Program,
+      body: statements
+    };
+  }
+}
+```
 
-マンションへの帰り道。
+◇◇◇◇
 
-夜風が心地いい。
+「式のパースは再帰下降法を使う」
 
-「オブジェクト、難しかった？」
+```javascript
+// 式のパース（優先順位を考慮）
+parseExpression() {
+  return this.parseAssignment();
+}
 
-「ううん。隆弘くんの説明、分かりやすかった」
+parseAssignment() {
+  let left = this.parseAdditive();
+  
+  if (this.peek().type === TokenType.ASSIGN) {
+    this.consume(TokenType.ASSIGN);
+    const right = this.parseAssignment();
+    return {
+      type: ASTTypes.AssignmentExpression,
+      left,
+      right
+    };
+  }
+  
+  return left;
+}
 
-「良かった」
+parseAdditive() {
+  let left = this.parseMultiplicative();
+  
+  while (this.peek().type === TokenType.PLUS || 
+         this.peek().type === TokenType.MINUS) {
+    const op = this.consume(this.peek().type).value;
+    const right = this.parseMultiplicative();
+    left = {
+      type: ASTTypes.BinaryExpression,
+      operator: op,
+      left,
+      right
+    };
+  }
+  
+  return left;
+}
+```
 
-しばらく無言で歩く。
+「なんで関数が関数を呼んでるの？」
 
-でも、昨日とは違う。
+「演算子の優先順位を表現するため。掛け算は足し算より先に計算される」
 
-もっと近い距離で、もっと自然に。
+◇◇◇◇
 
-「ねえ、隆弘くん」
+　美久がプログラムを書き始めた。
+
+```javascript
+// 美久の最初のMikuLangプログラム（文字列）
+const mikuFirstCode = `
+  好感度 = 0
+  
+  関数 デート() {
+    好感度 = 好感度 + 10
+    返す 好感度
+  }
+  
+  関数 告白() {
+    もし (好感度 >= 80) {
+      返す "告白成功！"
+    } でなければ {
+      返す "もう少し仲良くなってから..."
+    }
+  }
+  
+  // デートを繰り返す
+  の間 (好感度 < 80) {
+    デート()
+  }
+  
+  結果 = 告白()
+  表示(結果)
+`;
+
+// パースして実行
+const tokenizer = new Tokenizer(mikuFirstCode);
+const tokens = tokenizer.tokenize();
+const parser = new Parser(tokens);
+const ast = parser.parseProgram();
+const evaluator = new MikuLangEvaluator();
+evaluator.run(ast);
+```
+
+「日本語でプログラムが書けた！」
+
+　美久が感動している。
+
+◇◇◇◇
+
+「文字列リテラルのパースも追加しよう」
+
+```javascript
+// 文字列トークンの読み取り
+readString() {
+  const quote = this.advance(); // 開始のクォート
+  let value = '';
+  let escaped = false;
+  
+  while (this.position < this.input.length) {
+    const char = this.peek();
+    
+    if (escaped) {
+      // エスケープシーケンス
+      const escapeMap = {
+        'n': '\n',
+        't': '\t',
+        '\\': '\\',
+        '"': '"',
+        "'": "'"
+      };
+      value += escapeMap[char] || char;
+      escaped = false;
+      this.advance();
+    } else if (char === '\\') {
+      escaped = true;
+      this.advance();
+    } else if (char === quote) {
+      this.advance(); // 終了のクォート
+      break;
+    } else {
+      value += this.advance();
+    }
+  }
+  
+  return {
+    type: TokenType.STRING,
+    value
+  };
+}
+```
+
+◇◇◇◇
+
+「関数定義のパースも実装しよう」
+
+```javascript
+// 関数定義のパース
+parseFunctionDeclaration() {
+  this.consume(TokenType.FUNCTION);
+  const name = this.consume(TokenType.IDENTIFIER).value;
+  
+  this.consume(TokenType.LPAREN);
+  const params = [];
+  
+  while (this.peek().type !== TokenType.RPAREN) {
+    params.push(this.consume(TokenType.IDENTIFIER).value);
+    if (this.peek().type === TokenType.COMMA) {
+      this.consume(TokenType.COMMA);
+    }
+  }
+  
+  this.consume(TokenType.RPAREN);
+  const body = this.parseBlockStatement();
+  
+  return {
+    type: ASTTypes.FunctionDeclaration,
+    id: { type: ASTTypes.Identifier, name },
+    params: params.map(p => ({ type: ASTTypes.Identifier, name: p })),
+    body
+  };
+}
+```
+
+◇◇◇◇
+
+　夕方になってきた。パーサーの実装も順調に進んだ。
+
+「これで、MikuLangが本物のプログラミング言語になった」
+
+　美久が感慨深そうに言う。
+
+「文字列でプログラムを書けるようになった」
+
+「しかも日本語で」
+
+　美久の達成感に満ちた表情が嬉しい。
+
+◇◇◇◇
+
+「隆弘先輩」
+
+　片付けながら、美久が言った。
+
+「私たち、本当に言語を作っちゃったんだね」
+
+「そうだね。ゼロから作り上げた」
+
+「すごい。信じられない」
+
+　美久の目が潤んでいる。
+
+「美久がいたからできた」
+
+「隆弘先輩こそ」
+
+◇◇◇◇
+
+　教室を出る時、美久が振り返った。
+
+「隆弘先輩」
 
 「ん？」
 
-「私たちの関係も、オブジェクトで表現できる？」
+「明日、何をする？」
 
-突然の質問に、僕は考える。
+「日本語の構文をもっと自然にしたい。それと——」
 
-そして、答えた。
+　僕は少し躊躇してから続けた。
 
-```javascript
-const ourRelationship = {
-    type: "幼馴染から恋人へ",
-    startDate: "unknown",
-    currentStatus: "相思相愛",
-    sharedMemories: ["countless"],
-    futurePromise: "ずっと一緒",
-    love: Infinity
-};
-```
+「MikuLangの完成を祝おう」
 
-頭の中で組み立てたコードを、そのまま言葉にする。
+　美久の顔が明るくなる。
 
-美久が立ち止まった。
+「うん！楽しみ！」
 
-「Infinityって……」
+　二人で廊下を歩く。
 
-「無限大。測定不能なくらい大きい」
+　夕日が窓から差し込んで、美久の髪を金色に染める。
 
-僕も立ち止まり、美久を見つめる。
+（明日こそ）
 
-「僕の美久への想いは、数値化できないから」
+　MikuLangの完成と同時に、美久に伝えよう。
 
-美久の瞳から、涙がこぼれた。
-
-「ずるい……そんな言い方」
-
-でも、笑っている。
-
-「私も、Infinityだよ」
-
-エレベーターで7階に着く。
-
-今日は、部屋の前で少し話をした。
-
-明日のこと、ゲームのこと、これからのこと。
-
-「じゃあ、おやすみ」
-
-「おやすみなさい」
-
-それぞれの部屋に入る直前、美久が振り返った。
-
-「隆弘くん」
-
-「なに？」
-
-「大好き」
-
-昨日と同じ言葉。
-
-でも、重みが違う。
-
-「僕も大好きだよ、美久」
-
-今度は、はっきりと伝えた。
-
-オブジェクトで整理された想いは、確実に、正確に、相手に届く。
-
-プログラミングが教えてくれた、大切なこと。
-
-それは、想いを形にする方法。
-
-そして、それを伝える勇気。
+　ずっと心に秘めていた、本当の気持ちを。

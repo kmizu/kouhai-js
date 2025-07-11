@@ -1,357 +1,426 @@
-# 第15話 配列に込めた想い
+# 第15話 文字列処理
 
-## 10月23日（月）午前7時30分
+　五月四日、土曜日。みどりの日。
 
-プログラミング合宿から帰ってきて、初めての月曜日。
+　ゴールデンウィークも残すところあと三日。美久との時間が、かけがえのないものになっている。
 
-隆弘くんとの距離が、確実に縮まった気がする。
+「今日は文字列処理だね」
 
-（合宿が終わったら、話したいことがあるって言ってたな）
+　美久がいつものように準備万端で言う。
 
-ドキドキしながら、いつもの待ち合わせ場所へ。
+「テキストを扱う機能。ゲーム作りには必須」
 
-「おはよう、美久」
+「文字列って、今まで使ってたStringLiteralとは違うの？」
 
-「おはよう、隆弘くん」
-
-いつもと変わらない朝の挨拶。
-
-でも、お互いの視線に、特別な何かが宿っている。
-
-「今日も頑張ろう」
-
-「うん」
-
-エレベーターで一緒に降りる。
-
-隆弘くんの横顔を見ながら、昨日の星空を思い出す。
-
-あの時、もう少しで……。
+「基本は同じ。今日はその操作方法を増やす」
 
 ◇◇◇◇
 
-## 午後4時30分　プログラミング部室
+「文字列の基本操作から始めよう」
 
-「今日は配列について教えるね」
-
-放課後、いつものレッスンが始まった。
-
-「配列？」
-
-「複数のデータをまとめて管理する仕組みだよ」
-
-隆弘くんがホワイトボードに図を描く。
+　ホワイトボードに例を書く。
 
 ```javascript
-// 配列の基本
-let characters = ["美久", "ゆい", "さくら"];
-let affectionPoints = [80, 65, 45];
+// 文字列の連結
+"Hello, " + "World!"
 
-// 配列の要素にアクセス
-console.log(characters[0]); // "美久"
-console.log(affectionPoints[0]); // 80
+// 文字列の長さ
+"美久".length // 2
+
+// 文字列の一部を取得
+"プログラミング".substring(0, 4) // "プログ"
 ```
 
-「なるほど！キャラクターの名前とか好感度とか、まとめて管理できるんですね」
+「JavaScriptの機能をMikuLangにも実装するんだ」
 
-「そう。ゲームでは必須の仕組みだよ」
-
-隆弘くんの説明を聞きながら、ノートを取る。
-
-でも、正直、集中できない。
-
-合宿の時の、隆弘くんの真剣な眼差しが忘れられなくて。
+「そう。便利な機能は取り入れていく」
 
 ◇◇◇◇
 
-## 午後5時15分　シナリオデータの管理
-
-「じゃあ、実際にゲームで使ってみよう」
-
-隆弘くんが新しいコードを書き始める。
+「文字列操作のASTを設計しよう」
 
 ```javascript
-// シナリオデータを配列で管理
-const scenarios = [
-    {
-        id: 1,
-        text: "春の日差しが教室に差し込む。新学期が始まった。",
-        background: "classroom_spring.jpg",
-        bgm: "peaceful_days.mp3"
-    },
-    {
-        id: 2,
-        text: "「おはよう」幼馴染の声が聞こえる。",
-        character: "osananajimi_smile.png",
-        voice: "ohayou_01.wav"
-    },
-    {
-        id: 3,
-        text: "いつもと変わらない朝。でも、何かが違う気がした。",
-        choices: ["挨拶を返す", "照れて黙る", "からかう"]
-    }
-];
+// 文字列メソッド呼び出しのAST
+const StringMethod = {
+  type: 'CallExpression',
+  callee: {
+    type: 'MemberExpression',
+    object: { type: 'StringLiteral', value: 'こんにちは' },
+    property: { type: 'Identifier', name: 'length' },
+    computed: false
+  },
+  arguments: []
+};
 
-// 現在のシーン番号
-let currentScene = 0;
+// 文字列の連結
+const StringConcat = {
+  type: 'BinaryExpression',
+  operator: '+',
+  left: { type: 'StringLiteral', value: 'Hello, ' },
+  right: { type: 'StringLiteral', value: 'World!' }
+};
+```
 
-// 次のシーンへ
-function nextScene() {
-    currentScene++;
-    if (currentScene < scenarios.length) {
-        displayScene(scenarios[currentScene]);
+「メソッド呼び出しは関数と似てる」
+
+「オブジェクトのメソッドと同じ仕組み」
+
+◇◇◇◇
+
+　実装を始める。
+
+```javascript
+// 組み込み文字列メソッド
+const stringMethods = {
+  length: (str) => str.length,
+  toUpperCase: (str) => str.toUpperCase(),
+  toLowerCase: (str) => str.toLowerCase(),
+  substring: (str, start, end) => str.substring(start, end),
+  indexOf: (str, search) => str.indexOf(search),
+  replace: (str, search, replace) => str.replace(search, replace)
+};
+
+// 評価器の拡張
+evaluateMemberExpression(node) {
+  const object = this.evaluate(node.object);
+  
+  // 文字列の場合
+  if (typeof object === 'string') {
+    const methodName = node.property.name;
+    if (methodName in stringMethods) {
+      return (args) => {
+        const evaluatedArgs = args.map(arg => this.evaluate(arg));
+        return stringMethods[methodName](object, ...evaluatedArgs);
+      };
     }
+    // lengthプロパティ
+    if (methodName === 'length') {
+      return object.length;
+    }
+  }
+  
+  // 既存の処理...
 }
 ```
 
-「すごい！シナリオが順番に管理されてる」
-
-「配列を使えば、どんなに長い物語でも整理できる」
-
-隆弘くんの言葉を聞いて、ふと思う。
-
-私たちの思い出も、配列みたいに一つずつ積み重なっているのかな。
-
 ◇◇◇◇
 
-## 午後6時　選択肢の記録
+　美久が質問してきた。
 
-「選択肢の履歴も配列で管理できるよ」
+「どんな時に文字列処理を使うの？」
+
+「例えば、プレイヤーの名前を入力してもらって、それを使うとか」
+
+　具体例を書く。
 
 ```javascript
-// プレイヤーの選択履歴
-let playerChoices = [];
-
-// 選択を記録する関数
-function recordChoice(sceneId, choiceIndex, choiceText) {
-    playerChoices.push({
-        scene: sceneId,
-        choice: choiceIndex,
-        text: choiceText,
-        timestamp: new Date()
-    });
+const nameProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment('プレイヤー名', createString('美久')),
+    createAssignment(
+      '挨拶',
+      createBinaryExpression(
+        '+',
+        createString('こんにちは、'),
+        createBinaryExpression(
+          '+',
+          createIdentifier('プレイヤー名'),
+          createString('さん！')
+        )
+      )
+    ),
+    createPrint(createIdentifier('挨拶')),
     
-    console.log("選択を記録しました:", choiceText);
-}
+    // 名前の長さをチェック
+    createAssignment(
+      '名前の長さ',
+      createPropertyAccess(
+        createIdentifier('プレイヤー名'),
+        'length'
+      )
+    ),
+    createPrint(createString('名前の文字数:')),
+    createPrint(createIdentifier('名前の長さ'))
+  ]
+};
 
-// 特定の選択をしたかチェック
-function hasChosen(sceneId, choiceIndex) {
-    return playerChoices.some(choice => 
-        choice.scene === sceneId && choice.choice === choiceIndex
-    );
-}
+mikuLang.run(nameProgram);
+// 出力:
+// こんにちは、美久さん！
+// 名前の文字数:
+// 2
 ```
 
-「これで、プレイヤーがどんな選択をしたか追跡できる」
-
-「まるで人生の記録みたい」
-
-つい、そんなことを口にしてしまった。
-
-隆弘くんが優しく微笑む。
-
-「確かに。僕たちの選択も、きっとどこかに記録されてるのかもね」
-
-その言葉に、胸がきゅっとなる。
-
-私が隆弘くんを好きになった瞬間も、きっと私の心の配列に刻まれている。
+「名前を組み込んで、カスタマイズされたメッセージが作れる！」
 
 ◇◇◇◇
 
-## 午後6時45分　特別な実装
+　休憩時間。美久がお茶を飲みながら言った。
 
-「美久のために、特別な機能を作ってみた」
+「文字列って、コミュニケーションの基本だよね」
 
-隆弘くんが少し照れながら言う。
+「どういうこと？」
+
+「言葉で気持ちを伝えるのも、文字列の組み合わせ」
+
+　その発想に感心する。
+
+「確かに。プログラムも人とのコミュニケーション」
+
+◇◇◇◇
+
+「文字列の検索と置換も実装しよう」
 
 ```javascript
-// 思い出アルバム機能
-class MemoryAlbum {
-    constructor() {
-        this.memories = [];
-    }
+// 文字列検索と置換の例
+const textProcessProgram = {
+  type: ASTTypes.Program,
+  body: [
+    createAssignment(
+      'メッセージ',
+      createString('隆弘先輩が大好きです')
+    ),
     
-    // 思い出を追加
-    addMemory(title, description, date, image) {
-        this.memories.push({
-            id: this.memories.length + 1,
-            title: title,
-            description: description,
-            date: date,
-            image: image,
-            special: false
-        });
-    }
+    // 文字列に特定の単語が含まれているかチェック
+    createFunction(
+      '含まれているか',
+      ['文字列', '検索語'],
+      {
+        type: 'BlockStatement',
+        body: [
+          createReturn(
+            createComparison(
+              '>=',
+              createCall('indexOf', [
+                createIdentifier('文字列'),
+                createIdentifier('検索語')
+              ]),
+              createNumber(0)
+            )
+          )
+        ]
+      }
+    ),
     
-    // 特別な思い出にマーク
-    markAsSpecial(id) {
-        const memory = this.memories.find(m => m.id === id);
-        if (memory) {
-            memory.special = true;
+    // チェック
+    createAssignment(
+      '結果',
+      createCall('含まれているか', [
+        createIdentifier('メッセージ'),
+        createString('好き')
+      ])
+    ),
+    
+    createPrint(createIdentifier('結果')) // true
+  ]
+};
+```
+
+「メッセージに『好き』が含まれてるかチェックしてる」
+
+「そう。テキストアドベンチャーゲームで、キーワード検索に使える」
+
+◇◇◇◇
+
+　美久がプログラムを書き始めた。
+
+```javascript
+// 美久の文字列処理プログラム
+const mikuStringProgram = {
+  type: ASTTypes.Program,
+  body: [
+    // テンプレート機能
+    createFunction(
+      'メッセージ生成',
+      ['名前', '好感度'],
+      {
+        type: 'BlockStatement',
+        body: [
+          createAssignment('基本メッセージ', createString('')),
+          
+          {
+            type: ASTTypes.IfStatement,
+            condition: createComparison(
+              '>=',
+              createIdentifier('好感度'),
+              createNumber(80)
+            ),
+            then: {
+              type: 'BlockStatement',
+              body: [
+                createAssignment(
+                  '基本メッセージ',
+                  createBinaryExpression(
+                    '+',
+                    createIdentifier('名前'),
+                    createString('先輩、ずっと一緒にいたいです...')
+                  )
+                )
+              ]
+            },
+            else: {
+              type: ASTTypes.IfStatement,
+              condition: createComparison(
+                '>=',
+                createIdentifier('好感度'),
+                createNumber(50)
+              ),
+              then: {
+                type: 'BlockStatement',
+                body: [
+                  createAssignment(
+                    '基本メッセージ',
+                    createBinaryExpression(
+                      '+',
+                      createIdentifier('名前'),
+                      createString('先輩といると楽しいです')
+                    )
+                  )
+                ]
+              },
+              else: {
+                type: 'BlockStatement',
+                body: [
+                  createAssignment(
+                    '基本メッセージ',
+                    createBinaryExpression(
+                      '+',
+                      createIdentifier('名前'),
+                      createString('先輩、よろしくお願いします')
+                    )
+                  )
+                ]
+              }
+            }
+          },
+          
+          createReturn(createIdentifier('基本メッセージ'))
+        ]
+      }
+    ),
+    
+    // 使用例
+    createPrint(createCall('メッセージ生成', [
+      createString('隆弘'),
+      createNumber(85)
+    ]))
+  ]
+};
+
+mikuLang.run(mikuStringProgram);
+// 出力: 隆弘先輩、ずっと一緒にいたいです...
+```
+
+「好感度によってメッセージが変わる！」
+
+　美久の顔が赤くなる。
+
+「実際のゲームみたいでしょ？」
+
+◇◇◇◇
+
+「文字列の分割と結合も便利」
+
+```javascript
+// split と join の実装
+createFunction(
+  'セリフ分割',
+  ['長文'],
+  {
+    type: 'BlockStatement',
+    body: [
+      // 「。」で分割
+      createAssignment(
+        '文リスト',
+        createCall('split', [
+          createIdentifier('長文'),
+          createString('。')
+        ])
+      ),
+      
+      // 各文を処理
+      {
+        type: 'ForStatement',
+        init: createAssignment('i', createNumber(0)),
+        test: createComparison(
+          '<',
+          createIdentifier('i'),
+          createLength(createIdentifier('文リスト'))
+        ),
+        update: createAssignment(
+          'i',
+          createBinaryExpression('+', createIdentifier('i'), createNumber(1))
+        ),
+        body: {
+          type: 'BlockStatement',
+          body: [
+            createPrint(createArrayAccess(
+              createIdentifier('文リスト'),
+              createIdentifier('i')
+            ))
+          ]
         }
-    }
-    
-    // 特別な思い出だけを取得
-    getSpecialMemories() {
-        return this.memories.filter(m => m.special);
-    }
-}
-
-// 使用例
-const ourMemories = new MemoryAlbum();
-
-ourMemories.addMemory(
-    "プログラミングを教え始めた日",
-    "美久にHTMLを教えた最初の日",
-    "2023-10-03",
-    "first_lesson.jpg"
-);
-
-ourMemories.addMemory(
-    "ゲーム制作を決めた日",
-    "二人でノベルゲームを作ることを決めた",
-    "2023-10-05",
-    "game_planning.jpg"
-);
-
-ourMemories.addMemory(
-    "聖地巡礼デート",
-    "京都のゲーム聖地を巡った特別な日",
-    "2023-10-15",
-    "kyoto_date.jpg"
-);
-
-// 特別な思い出にマーク
-ourMemories.markAsSpecial(3);
+      }
+    ]
+  }
+)
 ```
-
-「これって……」
-
-画面に表示される思い出の配列を見て、涙が出そうになった。
-
-隆弘くんが、私たちの思い出を大切に記録してくれている。
-
-「まだ途中だけど、これからもっと増やしていきたい」
-
-隆弘くんの優しい声。
-
-「私も、隆弘くんとの思い出、たくさん作りたい」
-
-素直な気持ちを伝える。
-
-隆弘くんの頬が、少し赤くなった。
 
 ◇◇◇◇
 
-## 午後7時30分　配列の応用
+　夕方になってきた。文字列処理の実装も順調に進んだ。
 
-「配列には便利なメソッドがたくさんあるんだ」
+「文字列処理、ゲーム作りには欠かせないね」
 
-```javascript
-// 好きなものリスト
-let mikuLikes = [
-    "プログラミング",
-    "ゲーム",
-    "イラスト",
-    "隆弘くんの笑顔",
-    "一緒に過ごす時間"
-];
+　美久が満足そうに言う。
 
-// 配列の操作
-mikuLikes.push("完成したゲーム"); // 最後に追加
-mikuLikes.unshift("朝の挨拶"); // 最初に追加
+「テキストはゲームの命。特にノベルゲームでは」
 
-// 検索
-let hasSpecialItem = mikuLikes.includes("隆弘くんの笑顔");
-console.log("特別なものが含まれている:", hasSpecialItem); // true
-
-// フィルタリング
-let specialThings = mikuLikes.filter(item => 
-    item.includes("隆弘") || item.includes("一緒")
-);
-console.log("特別なもの:", specialThings);
-```
-
-「ちょ、ちょっと！なんで私の好きなものリストに……」
-
-顔が真っ赤になる。
-
-「え？違うの？」
-
-隆弘くんがいたずらっぽく笑う。
-
-「そ、そんなことない……けど」
-
-恥ずかしくて、まともに顔が見られない。
-
-でも、嬉しい。
-
-隆弘くんが、私の気持ちを分かってくれている。
+「物語を紡ぐのも、プログラミングなんだね」
 
 ◇◇◇◇
 
-## 午後8時15分　帰り道
+「隆弘先輩」
 
-「今日もありがとう」
+　片付けながら、美久が言った。
 
-マンションへの帰り道を歩く。
+「MikuLangで、本当に物語が書けるようになってきた」
 
-「配列、難しかった？」
+「そうだね。文字列処理があれば、複雑なテキスト処理もできる」
 
-「ううん。隆弘くんの説明、分かりやすかったよ」
+「私たちの物語も、きっと素敵なものになる」
 
-「良かった」
+　美久の言葉の意味を考える。
 
-しばらく無言で歩く。
+　ゲームの物語？　それとも——
 
-でも、心地いい沈黙。
+◇◇◇◇
 
-「ねえ、隆弘くん」
+　美久を見送る時、彼女が振り返った。
+
+「明日は何を実装するの？」
+
+「標準ライブラリかな。便利な機能をまとめたもの」
+
+「楽しみ」
+
+　美久が少し躊躇してから言った。
+
+「隆弘先輩」
 
 「ん？」
 
-「合宿の時、話したいことがあるって言ってたよね」
+「好感度85のメッセージ、本当の気持ちです」
 
-私の言葉に、隆弘くんの足が止まる。
+　そう言って、美久は急いで部屋に入っていった。
 
-「うん」
+　僕は、しばらくその場に立ち尽くした。
 
-「今じゃ、ダメ？」
+（ずっと一緒にいたい、か）
 
-勇気を出して聞いてみる。
+　僕も同じ気持ちだ。
 
-隆弘くんは少し考えてから、私の方を向いた。
+　明日、いや、ゴールデンウィークが終わる前に、ちゃんと伝えよう。
 
-「美久」
-
-真剣な眼差し。
-
-私の心臓が、早鐘を打つ。
-
-「ゲームが完成したら、ちゃんと伝えたいことがある」
-
-「完成したら？」
-
-「うん。だから、一緒に頑張ろう」
-
-隆弘くんが手を差し出す。
-
-私は、その手を握った。
-
-温かい。
-
-「約束」
-
-「約束」
-
-手を繋いだまま、マンションまで歩く。
-
-私たちの気持ちも、きっと配列みたいに、一つずつ積み重なって、特別なものになっていく。
-
-ゲームの完成が、今まで以上に楽しみになった。
-
-だって、その時、隆弘くんが何を伝えてくれるのか。
-
-きっと、私が一番聞きたい言葉だから。
-
-配列に込められた想いは、確実に私たちを結びつけている。
+　文字列では表現しきれない、本当の気持ちを。

@@ -1,467 +1,341 @@
-# 第21話 関数で整理する想い
+# 第21話 文化祭準備開始
 
-## 10月30日（月）午前7時30分
+　九月十日、火曜日。
 
-月曜日の朝。
+　夏休みが終わり、二学期が始まって一週間。美久との関係も、恋人として新しいステージに入った。
 
-週末は隆弘くんと過ごして、幸せだった。
+「文化祭の準備、そろそろ始めないと」
 
-でも、学校では気をつけなきゃ。
+　放課後のプログラミング部室。部長の田中先輩が切り出した。
 
-付き合ってることは、まだ内緒にしてる。
+「今年は何をするんですか？」
 
-「おはよう」
+　美久が興味深そうに聞く。
 
-教室に入ると、友達が話しかけてきた。
+「MikuLangを使ったゲーム展示はどうだろう」
 
-「なんか最近、幸せそうだね」
-
-「え、そ、そうかな？」
-
-バレてる？
+　僕の提案に、部員たちが注目する。
 
 ◇◇◇◇
 
-## 午後4時　プログラミング部室
+「MikuLangって、美久と作った言語？」
 
-「今日は関数について、もっと詳しく教えるよ」
+　副部長の佐藤先輩が確認する。
 
-放課後、いつもの部室。
+「はい。日本語でプログラミングできる言語です」
 
-隆弘くんが新しい概念を説明し始める。
+　美久が誇らしげに答える。
 
-「関数って、前にも習ったよね？」
+「面白そう！」
 
-「うん。でも今日は、もっと実践的な使い方」
+「初心者でも書けるの？」
 
-```javascript
-// 基本的な関数の定義
-function greet(name) {
-    return `こんにちは、${name}さん！`;
-}
+　部員たちが興味を示す。
 
-// アロー関数（新しい書き方）
-const greetArrow = (name) => {
-    return `こんにちは、${name}さん！`;
-};
+「デモを見せてもらえる？」
 
-// もっと短く書ける
-const greetShort = name => `こんにちは、${name}さん！`;
+◇◇◇◇
 
-console.log(greet("美久")); // こんにちは、美久さん！
+　ホワイトボードにMikuLangのコードを書く。
+
+```
+ゲームを開始する
+
+プレイヤーの名前を入力してもらう
+「ようこそ、」とプレイヤーの名前と「さん」を表示する
+
+質問リストを[
+  "プログラミングは楽しい？",
+  "MikuLangを使ってみたい？",
+  "文化祭は好き？"
+]に設定する
+
+正解数を0に設定する
+
+質問リストの各要素を質問として｛
+  質問を表示する
+  答えを入力してもらう
+  
+  もし 答えが「はい」なら
+    正解数を1増やす
+    「素晴らしい！」を表示する
+  そうでなければ
+    「そうですか...」を表示する
+｝
+
+もし 正解数が3なら
+  「完璧です！あなたは真のプログラマー！」を表示する
+そうでなければ 正解数が2以上なら
+  「いい感じです！」を表示する
+そうでなければ
+  「プログラミングの楽しさを知ってください」を表示する
 ```
 
-「アロー関数？」
+◇◇◇◇
 
-「新しい関数の書き方。短くて便利なんだ」
+「本当に日本語だ！」
 
-隆弘くんの説明を聞きながら、ノートを取る。
+　1年生の新入部員が驚く。
 
-恋人になっても、真面目に勉強。
+「これなら僕でも書けそう」
 
-でも、時々目が合うと、ドキドキしちゃう。
+「変数も日本語なんだ」
+
+　部員たちの反応が良い。
+
+「これを使って、どんなゲームを作る？」
+
+　田中先輩が本題に入る。
 
 ◇◇◇◇
 
-## 午後4時45分　ゲームシステムの整理
+「恋愛シミュレーションはどうですか？」
 
-「関数を使って、ゲームのコードを整理しよう」
+　美久が提案する。
+
+「プログラミング部が舞台の」
+
+　僕も補足する。
+
+「いいね！来場者が主人公になって、部員たちと交流する」
+
+「プログラミングを学びながら恋愛もできる」
+
+　アイデアがどんどん出てくる。
+
+◇◇◇◇
+
+　企画書を作り始める。
+
+```
+タイトル：「プログラミング部の恋」
+ジャンル：恋愛シミュレーション＋教育
+使用言語：MikuLang
+プレイ時間：約15分
+
+ストーリー：
+主人公は文化祭でプログラミング部を訪れる。
+そこで出会った部員たちと交流しながら、
+プログラミングの基礎を学んでいく。
+選択肢によって、誰と仲良くなるかが変わる。
+
+キャラクター：
+- 優しい先輩（プログラミング上級者）
+- 元気な同級生（プログラミング初心者）
+- クールな後輩（プログラミング中級者）
+```
+
+◇◇◇◇
+
+「役割分担を決めよう」
+
+　田中先輩が仕切る。
+
+- シナリオ：美久、山田
+- プログラミング：隆弘、佐藤
+- イラスト：美久、鈴木
+- 音楽：フリー素材
+- テスト：全員
+
+「美久、イラストとシナリオ両方やれる？」
+
+「頑張ります！」
+
+　美久の意欲的な返事が嬉しい。
+
+◇◇◇◇
+
+　作業を始める。まず、基本システムを作る。
 
 ```javascript
-// ゲームの各機能を関数で分割
-const GameSystem = {
-    // 初期化
-    init: function() {
-        this.loadSettings();
-        this.createUI();
-        this.startBGM();
-        console.log("ゲームを初期化しました");
-    },
+// MikuLangで書くゲームエンジン
+const gameEngineCode = `
+  // ゲームの状態管理
+  現在のシーンを"タイトル"に設定する
+  選択履歴を[]に設定する
+  キャラクター好感度を{
+    先輩: 0,
+    同級生: 0,
+    後輩: 0
+  }に設定する
+  
+  // シーン遷移関数
+  シーンを切り替える関数を定義する（次のシーン）｛
+    現在のシーンを次のシーンに設定する
+    シーンを表示する（）
+  ｝
+  
+  // 好感度を上げる関数
+  好感度を上げる関数を定義する（キャラ、ポイント）｛
+    キャラクター好感度[キャラ]をポイント増やす
+    キャラと「の好感度が」とポイントと「上がった！」を表示する
+  ｝
+  
+  // 選択肢を表示する関数
+  選択肢を表示する関数を定義する（選択肢リスト）｛
+    番号を1に設定する
+    選択肢リストの各要素を選択肢として｛
+      番号と「: 」と選択肢.テキストを表示する
+      番号を1増やす
+    ｝
     
-    // 設定の読み込み
-    loadSettings: function() {
-        const saved = localStorage.getItem('gameSettings');
-        if (saved) {
-            this.settings = JSON.parse(saved);
-        } else {
-            this.settings = this.defaultSettings();
+    選択を入力してもらう
+    選ばれた選択肢を選択肢リスト[選択-1]に設定する
+    選ばれた選択肢.効果（）
+  ｝
+`;
+```
+
+◇◇◇◇
+
+　休憩時間。美久と二人きりになった。
+
+「楽しそうだね」
+
+「うん。みんなでゲーム作るの、初めて」
+
+「MikuLangが役に立ってよかった」
+
+「隆弘先輩と作った言語だから」
+
+　美久が嬉しそうに言う。
+
+◇◇◇◇
+
+「シナリオのアイデアある？」
+
+　美久がノートを開く。
+
+「実体験を基にしたら？」
+
+「え？」
+
+「プログラミングを教わって、恋に落ちる話」
+
+　僕の提案に、美久の顔が赤くなる。
+
+「それって、私たちの話？」
+
+「参考程度に」
+
+◇◇◇◇
+
+　作業を再開する。シーンのデータ構造を設計。
+
+```javascript
+// シーンデータの構造（MikuLang）
+const scenarioData = `
+  シーンデータを{
+    オープニング: {
+      背景: "部室.jpg",
+      テキスト: "文化祭で賑わう校内。あなたはプログラミング部の展示を見つけた。",
+      選択肢: [
+        {
+          テキスト: "入ってみる",
+          効果: 関数（）{ シーンを切り替える（"部室到着"） }
+        },
+        {
+          テキスト: "やめておく",
+          効果: 関数（）{ シーンを切り替える（"バッドエンド"） }
         }
+      ]
     },
     
-    // デフォルト設定
-    defaultSettings: function() {
-        return {
-            volume: 0.7,
-            textSpeed: "normal",
-            autoMode: false,
-            skipRead: true
-        };
-    },
-    
-    // UI作成
-    createUI: function() {
-        this.createTextBox();
-        this.createChoiceButtons();
-        this.createMenuButton();
-    },
-    
-    // テキストボックス作成
-    createTextBox: () => {
-        console.log("テキストボックスを作成");
-    },
-    
-    // 選択肢ボタン作成
-    createChoiceButtons: () => {
-        console.log("選択肢ボタンを作成");
-    },
-    
-    // メニューボタン作成
-    createMenuButton: () => {
-        console.log("メニューボタンを作成");
-    },
-    
-    // BGM開始
-    startBGM: function() {
-        const bgm = new Audio('bgm/title.mp3');
-        bgm.volume = this.settings.volume;
-        bgm.play();
+    部室到着: {
+      背景: "部室内.jpg",
+      テキスト: "部室に入ると、3人の部員が出迎えてくれた。",
+      選択肢: [
+        {
+          テキスト: "優しそうな先輩に話しかける",
+          効果: 関数（）{ 
+            好感度を上げる（"先輩", 10）
+            シーンを切り替える（"先輩ルート1"）
+          }
+        },
+        {
+          テキスト: "元気な同級生に話しかける",
+          効果: 関数（）{ 
+            好感度を上げる（"同級生", 10）
+            シーンを切り替える（"同級生ルート1"）
+          }
+        },
+        {
+          テキスト: "クールな後輩に話しかける",
+          効果: 関数（）{ 
+            好感度を上げる（"後輩", 10）
+            シーンを切り替える（"後輩ルート1"）
+          }
+        }
+      ]
     }
-};
+  }に設定する
+`;
 ```
-
-「すごい！機能ごとに分かれてて、見やすい」
-
-「これが関数の力。複雑なプログラムも整理できる」
-
-確かに、前はごちゃごちゃしてたコードが、すっきりしてる。
 
 ◇◇◇◇
 
-## 午後5時30分　恋愛シミュレーション部分
+　夕方になってきた。今日の進捗を確認する。
 
-「好感度システムも関数で整理しよう」
+「基本システムはできた」
 
-```javascript
-// キャラクター管理システム
-const CharacterManager = {
-    characters: {
-        miku: { name: "美久", affection: 0, route: false },
-        yui: { name: "ゆい", affection: 0, route: false },
-        sakura: { name: "さくら", affection: 0, route: false }
-    },
-    
-    // 好感度を上げる
-    increaseAffection: function(character, amount) {
-        if (this.characters[character]) {
-            this.characters[character].affection += amount;
-            this.checkRouteCondition(character);
-            this.displayAffectionChange(character, amount);
-        }
-    },
-    
-    // ルート条件チェック
-    checkRouteCondition: function(character) {
-        const char = this.characters[character];
-        if (char.affection >= 80 && !char.route) {
-            char.route = true;
-            this.unlockRoute(character);
-        }
-    },
-    
-    // ルート解放
-    unlockRoute: function(character) {
-        console.log(`${this.characters[character].name}ルートが解放されました！`);
-        // 特別なイベントを発生させる
-        EventManager.trigger(`${character}_route_unlocked`);
-    },
-    
-    // 好感度変化の表示
-    displayAffectionChange: function(character, amount) {
-        const message = amount > 0 
-            ? `${this.characters[character].name}の好感度が${amount}上がった！`
-            : `${this.characters[character].name}の好感度が${Math.abs(amount)}下がった...`;
-        
-        this.showFloatingText(message);
-    },
-    
-    // フローティングテキスト表示
-    showFloatingText: function(text) {
-        console.log(`♥ ${text} ♥`);
-    },
-    
-    // 現在の最高好感度キャラを取得
-    getHighestAffection: function() {
-        let highest = null;
-        let maxAffection = -1;
-        
-        for (let char in this.characters) {
-            if (this.characters[char].affection > maxAffection) {
-                maxAffection = this.characters[char].affection;
-                highest = char;
-            }
-        }
-        
-        return highest;
-    }
-};
-```
+「シナリオの骨組みも」
 
-「私の好感度、どれくらい？」
+「イラストのラフも描いた」
 
-美久がいたずらっぽく聞いてくる。
+　美久がスケッチを見せる。可愛いキャラクターたち。
 
-「計測不能」
+「文化祭まであと一ヶ月」
 
-「もう、真面目に答えて」
+　田中先輩がカレンダーを確認する。
 
-「真面目だよ。Infinityだから」
+「間に合うよね？」
 
-顔を赤くする美久が可愛い。
+　不安そうな声も出る。
+
+「大丈夫。みんなで協力すれば」
 
 ◇◇◇◇
 
-## 午後6時15分　イベントシステム
+　部活が終わり、美久と二人で帰る。
 
-「イベント管理も関数で作ろう」
+「初めての共同制作だね」
 
-```javascript
-// イベント管理システム
-const EventManager = {
-    listeners: {},
-    
-    // イベントリスナー登録
-    on: function(eventName, callback) {
-        if (!this.listeners[eventName]) {
-            this.listeners[eventName] = [];
-        }
-        this.listeners[eventName].push(callback);
-    },
-    
-    // イベント発火
-    trigger: function(eventName, data) {
-        if (this.listeners[eventName]) {
-            this.listeners[eventName].forEach(callback => {
-                callback(data);
-            });
-        }
-    },
-    
-    // 一度だけ実行されるイベント
-    once: function(eventName, callback) {
-        const wrapper = (data) => {
-            callback(data);
-            this.off(eventName, wrapper);
-        };
-        this.on(eventName, wrapper);
-    },
-    
-    // イベントリスナー削除
-    off: function(eventName, callback) {
-        if (this.listeners[eventName]) {
-            this.listeners[eventName] = this.listeners[eventName]
-                .filter(cb => cb !== callback);
-        }
-    }
-};
+「そうだね。でも、MikuLangは二人で作った」
 
-// 使用例
-EventManager.on('confession_scene', () => {
-    console.log("告白シーンが始まりました");
-    CharacterManager.showFloatingText("ドキドキ...");
-});
+「あれは特別」
 
-EventManager.on('first_kiss', () => {
-    console.log("初めてのキス...");
-    Achievement.unlock('first_kiss');
-});
-```
+　美久が恥ずかしそうに言う。
 
-「これで、特定のシーンで特別な演出ができるんだ」
-
-隆弘くんの説明を聞きながら、思い出す。
-
-土曜日の夕暮れ、川辺でのキス。
-
-「first_kissイベント、もう発火しちゃったね」
-
-隆弘くんが小声で言う。
-
-「もう！」
-
-でも、嬉しい。
-
-◇◇◇◇
-
-## 午後7時　ユーティリティ関数
-
-「便利な関数もまとめて作っておこう」
-
-```javascript
-// 便利な関数たち
-const Utils = {
-    // ランダムな整数を生成
-    random: (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    },
-    
-    // 配列をシャッフル
-    shuffle: (array) => {
-        const newArray = [...array];
-        for (let i = newArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        }
-        return newArray;
-    },
-    
-    // 文字列を1文字ずつ表示
-    typeWriter: async (text, element, speed = 50) => {
-        element.textContent = '';
-        for (let char of text) {
-            element.textContent += char;
-            await Utils.sleep(speed);
-        }
-    },
-    
-    // 指定時間待機
-    sleep: (ms) => {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    },
-    
-    // 日付をフォーマット
-    formatDate: (date) => {
-        const d = new Date(date);
-        return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
-    },
-    
-    // 愛のメッセージ生成（おまけ）
-    generateLoveMessage: (name) => {
-        const messages = [
-            `${name}、大好きだよ`,
-            `${name}といると幸せ`,
-            `${name}、愛してる`,
-            `ずっと${name}と一緒にいたい`
-        ];
-        return messages[Utils.random(0, messages.length - 1)];
-    }
-};
-
-// テスト
-console.log(Utils.generateLoveMessage("美久"));
-// "美久、愛してる"
-```
-
-「愛のメッセージ生成関数！？」
-
-「実装してみた」
-
-隆弘くんが照れくさそうに笑う。
-
-「もう一回実行して」
-
-```javascript
-console.log(Utils.generateLoveMessage("美久"));
-// "ずっと美久と一緒にいたい"
-```
-
-胸がきゅんとする。
-
-プログラムが言ってるんじゃない。
-
-隆弘くんの気持ちが、コードに込められてる。
-
-◇◇◇◇
-
-## 午後7時45分　今日のまとめ
-
-「関数を使えば、複雑なプログラムも管理しやすくなる」
-
-部室には、また二人きり。
-
-「人の気持ちも、関数で整理できたらいいのに」
-
-私がつぶやく。
-
-「どういうこと？」
-
-「好きって気持ちを、きちんと整理して、伝えたい時に呼び出せたら」
-
-隆弘くんが優しく微笑む。
-
-「でも、整理できないから素敵なんじゃない？」
+「今回のも特別になるよ」
 
 「そうかな」
 
-「予測できない関数があってもいい」
-
-そう言って、隆弘くんが私の手を取る。
-
-「美久のこと考えると、いつも違う気持ちになる」
-
-「どんな？」
-
-「幸せで、切なくて、愛おしくて」
-
-その言葉に、涙が出そうになる。
+「みんなの思いが詰まったゲームだから」
 
 ◇◇◇◇
 
-## 午後8時15分　帰り道
+　マンションに着いて、エレベーターで7階へ。
 
-「文化祭まで、あと4日」
-
-マンションへの帰り道。
-
-手を繋いで歩く。
-
-「緊張する？」
-
-「うん。でも、楽しみ」
-
-「みんなに遊んでもらえるといいね」
-
-「隆弘くんと作ったゲームだから、きっと大丈夫」
-
-信じてる。
-
-二人で作ったものは、きっと誰かの心に届く。
-
-「美久」
-
-「なに？」
-
-「文化祭が終わったら、デートしよう」
+「明日も頑張ろうね」
 
 「うん」
 
-「今度は、遊園地とか」
+　部屋に入る前に、美久が振り返った。
 
-「楽しみ」
+「隆弘先輩」
 
-エレベーターで7階へ。
+「ん？」
 
-今日も名残惜しい。
+「みんなでゲーム作るのも楽しいけど」
 
-「おやすみ」
+「けど？」
 
-「おやすみなさい」
+「二人で作るのが、一番楽しい」
 
-部屋に入る前に、隆弘くんが言った。
+　その言葉が嬉しくて、思わず美久を抱きしめた。
 
-「美久、今日も可愛かった」
+「僕もだよ」
 
-「急に何？」
+　文化祭のゲームが完成したら、また二人だけのプロジェクトを始めよう。
 
-「generateLoveMessage関数の実行結果」
-
-プログラマーらしい愛の伝え方。
-
-でも、それがまた愛おしい。
-
-私たちの恋は、関数では整理できない。
-
-でも、それでいい。
-
-予測不能で、バグだらけで、でも最高に幸せ。
-
-それが、私たちの恋愛プログラム。
+　そう心に決めた。
