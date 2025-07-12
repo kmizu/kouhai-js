@@ -1,461 +1,67 @@
-# 第14話 エラー処理
+# 第14話 クラスメイトが見た「世界の変化」
 
-　五月三日、金曜日。憲法記念日。
+　昼休み。僕は、いつものように自分の席で、分厚い専門書を広げていた。『計算機プログラムの構造と解釈』。僕にとってはバイブルのような本だが、クラスの皆にとっては、ただの難解な古文書にしか見えないだろう。
 
-　ゴールデンウィークも後半に入った。美久との日々は、もはや生活の一部になっている。
+「よお、嵐山。またそんな難しい本読んでんのか」
 
-「今日はエラー処理だね」
+　不意に、隣の席の健太が話しかけてきた。彼は、僕とは正反対の、いわゆる陽キャグループの中心にいる男だ。
 
-　美久がノートを開きながら言う。
+「まあな」
+「てかさ、お前、最近、一年生の河内さんとめちゃくちゃ仲良いよな。ひょっとして、付き合ってんの？」
 
-「プログラムを安全にする大事な機能」
+　ニヤニヤと、からかうような視線。僕は、思わずむせてしまった。
 
-「エラーって、悪いものじゃないの？」
+「なっ……！　いや、そういうのじゃ、なくて……！」
+「あやしいー。まあ、あんな可愛い後輩に懐かれて、羨ましいこった」
 
-「エラーは情報。何が間違っているかを教えてくれる」
+　健太はそう言って笑うと、すぐに友達の輪に戻っていった。僕は、どきどきと早鐘を打つ心臓を抑えながら、ため息をついた。
 
-◇◇◇◇
+（そういう風に、見えてるのか……）
 
-「まず、try-catch の仕組みを実装しよう」
+　でも、と僕は思う。不思議と、健太との今の会話に、以前感じていたような「疎外感」はなかった。むしろ、彼の軽口を、少しだけ心地よく感じてさえいる。
+　美久と話すようになってから、何かが変わったのかもしれない。彼女が楽しそうに話す、僕が全く知らなかった流行りの音楽や、人気のドラマの話。以前なら、どう相槌を打てばいいか分からなかったはずなのに、最近は、「へえ、それはどういうところが面白いんだ？」と、自然に興味が湧いてくるようになっていた。
 
-　ホワイトボードに構造を描く。
-
-```
-try {
-    // エラーが起きるかもしれない処理
-} catch (エラー) {
-    // エラーが起きた時の処理
-}
-```
-
-「あ、昨日まで使ってたやつ」
-
-「そう。今日はこれをMikuLangに実装する」
+　僕の世界が、ほんの少しだけ、広がったような気がした。
 
 ◇◇◇◇
 
-「try-catch のASTを設計しよう」
+　その頃、美久は美久で、中庭のベンチで友人の沙耶とお弁当を広げていた。
 
-```javascript
-// try-catch文のAST
-const TryStatement = {
-  type: 'TryStatement',
-  block: {
-    type: 'BlockStatement',
-    body: []  // tryブロックの中身
-  },
-  handler: {
-    type: 'CatchClause',
-    param: { type: 'Identifier', name: 'error' },
-    body: {
-      type: 'BlockStatement',
-      body: []  // catchブロックの中身
-    }
-  },
-  finalizer: null  // finallyブロック（今回は実装しない）
-};
-```
+「ねえ、美久。最近、嵐山先輩とずっと一緒じゃない？　ぶっちゃけ、どうなのよ。進展は？」
 
-「handlerがcatchの部分？」
+　沙耶の直球な質問に、美久は「もう、沙耶ったら……」と、箸を止め、少し複雑な表情で頬杖をついた。
 
-「正解。エラーを捕まえる処理」
+「すごく、楽しいんだけどね……」
+「なによー、その煮え切らない返事。惚気？」
+「ううん、そうじゃなくて……」
 
-◇◇◇◇
+　美久は、最近の隆弘の変化について、ぽつりぽつりと話し始めた。以前は、プログラミングの話になると、周りが見えなくなるくらい没頭してしまう、少し（かなり）変わった先輩だったこと。でも最近は、学校のこととか、私の好きなアイドルのこととか、色々質問してくれるようになったこと。それが、すごく、すごく嬉しいこと。
 
-　実装を始める。
+「……嬉しい、んだけどね」
 
-```javascript
-// ASTTypesに追加
-ASTTypes.TryStatement = 'TryStatement';
-ASTTypes.CatchClause = 'CatchClause';
-ASTTypes.ThrowStatement = 'ThrowStatement';
+　美久は、言葉を続ける。
 
-// ヘルパー関数
-function createTry(tryBlock, catchParam, catchBlock) {
-  return {
-    type: ASTTypes.TryStatement,
-    block: tryBlock,
-    handler: {
-      type: ASTTypes.CatchClause,
-      param: createIdentifier(catchParam),
-      body: catchBlock
-    },
-    finalizer: null
-  };
-}
+「最近、なんだか、すごく欲張りになってる自分がいるの。ただ、隣にいて、一緒にパソコンの画面を覗いてるだけじゃ、なんだか物足りなくなってきちゃって……」
 
-function createThrow(argument) {
-  return {
-    type: ASTTypes.ThrowStatement,
-    argument: argument
-  };
-}
-```
+　そう。彼の隣は、世界で一番、居心地のいい場所だ。でも、同時に、一番もどかしい場所にもなりつつあった。「共同開発者」という、最高の口実。でも、その口実が、時々、もどかしい壁に感じてしまう。
+
+「なーんだ、やっぱり惚気じゃん」
+
+　沙耶が、呆れたように笑った。
+
+「じゃあさ、今度の週末、どっか遊びに誘ってみれば？　プログラミング、以外でさ」
+「ええーっ！？　む、むむ、無理だよ、そんなの！」
+
+　美久は、顔を真っ赤にしてぶんぶんと首を横に振った。でも、沙耶のその言葉は、彼女の心に、小さな、だけど確かな波紋を広げていた。
 
 ◇◇◇◇
 
-「評価器も拡張しよう」
+　そして、放課後。
+　いつもの空き教室で顔を合わせた僕と美久は、お互いに、どこかぎこちなかった。
 
-```javascript
-// try-catch文の評価
-evaluateTryStatement(node) {
-  try {
-    // tryブロックを実行
-    return this.evaluate(node.block);
-  } catch (error) {
-    if (node.handler) {
-      // エラーを変数として設定
-      const catchEnv = new Environment(this.env);
-      catchEnv.set(node.handler.param.name, error);
-      
-      // catchブロックを実行
-      const prevEnv = this.env;
-      this.env = catchEnv;
-      
-      try {
-        return this.evaluate(node.handler.body);
-      } finally {
-        this.env = prevEnv;
-      }
-    }
-    // catchがない場合は再スロー
-    throw error;
-  }
-}
+「じゃあ、始めようか」
+「は、はい……！」
 
-// throw文の評価
-evaluateThrowStatement(node) {
-  const value = this.evaluate(node.argument);
-  throw value;
-}
-```
+　昼間の、友人たちとの会話が、頭の片隅にこびりついている。僕たちの関係は、もう、ただの「先輩と後輩」でも、ただの「共同開発者」でも、いられなくなりつつあるのかもしれない。
 
-「環境を切り替えてる」
-
-「catchブロック内でエラー変数を使えるようにするため」
-
-◇◇◇◇
-
-　美久が質問してきた。
-
-「どんな時にエラーを投げるの？」
-
-「例えば、不正な入力があった時とか」
-
-　具体例を書く。
-
-```javascript
-const errorProgram = {
-  type: ASTTypes.Program,
-  body: [
-    createFunction(
-      '年齢チェック',
-      ['年齢'],
-      {
-        type: 'BlockStatement',
-        body: [
-          {
-            type: ASTTypes.IfStatement,
-            condition: createComparison(
-              '<',
-              createIdentifier('年齢'),
-              createNumber(0)
-            ),
-            then: {
-              type: 'BlockStatement',
-              body: [
-                createThrow(createString('年齢は0以上である必要があります'))
-              ]
-            }
-          },
-          createReturn(createString('年齢OK'))
-        ]
-      }
-    ),
-    createTry(
-      {
-        type: 'BlockStatement',
-        body: [
-          createCall('年齢チェック', [createNumber(-5)])
-        ]
-      },
-      'エラー',
-      {
-        type: 'BlockStatement',
-        body: [
-          createPrint(createString('エラーが発生:')),
-          createPrint(createIdentifier('エラー'))
-        ]
-      }
-    )
-  ]
-};
-```
-
-◇◇◇◇
-
-　実行してみる。
-
-```
-エラーが発生:
-年齢は0以上である必要があります
-```
-
-「エラーがちゃんと捕まえられた！」
-
-　美久が感動している。
-
-「プログラムがクラッシュせずに、エラーを処理できる」
-
-◇◇◇◇
-
-　休憩時間。美久がお茶を飲みながら言った。
-
-「エラー処理って、人生にも必要だよね」
-
-「どういうこと？」
-
-「失敗した時の対処法を用意しておくって意味で」
-
-　その洞察に感心する。
-
-「確かに。予期しないことは必ず起きるから」
-
-◇◇◇◇
-
-「カスタムエラー型も作ってみよう」
-
-　新しい機能を追加する。
-
-```javascript
-// エラーオブジェクトの作成
-function createError(type, message) {
-  return createObject([
-    ['type', createString(type)],
-    ['message', createString(message)],
-    ['timestamp', createNumber(Date.now())]
-  ]);
-}
-
-// 使用例
-const customErrorProgram = {
-  type: ASTTypes.Program,
-  body: [
-    createFunction(
-      'ゲームロード',
-      ['セーブデータ'],
-      {
-        type: 'BlockStatement',
-        body: [
-          {
-            type: ASTTypes.IfStatement,
-            condition: createComparison(
-              '===',
-              createIdentifier('セーブデータ'),
-              createString('')
-            ),
-            then: {
-              type: 'BlockStatement',
-              body: [
-                createThrow(createError(
-                  'LoadError',
-                  'セーブデータが見つかりません'
-                ))
-              ]
-            }
-          },
-          createReturn(createString('ロード成功'))
-        ]
-      }
-    )
-  ]
-};
-```
-
-「エラーにも種類があるんだ」
-
-「エラーの種類によって、対処法を変えられる」
-
-◇◇◇◇
-
-　美久がプログラムを書き始めた。
-
-```javascript
-// 美久のエラー処理プログラム
-const mikuErrorProgram = {
-  type: ASTTypes.Program,
-  body: [
-    createFunction(
-      '告白',
-      ['好感度'],
-      {
-        type: 'BlockStatement',
-        body: [
-          {
-            type: ASTTypes.IfStatement,
-            condition: createComparison(
-              '<',
-              createIdentifier('好感度'),
-              createNumber(80)
-            ),
-            then: {
-              type: 'BlockStatement',
-              body: [
-                createThrow(createError(
-                  'LoveError',
-                  'まだ好感度が足りません'
-                ))
-              ]
-            }
-          },
-          createReturn(createString('告白成功！おめでとう！'))
-        ]
-      }
-    ),
-    createAssignment('現在の好感度', createNumber(70)),
-    createTry(
-      {
-        type: 'BlockStatement',
-        body: [
-          createAssignment(
-            '結果',
-            createCall('告白', [createIdentifier('現在の好感度')])
-          ),
-          createPrint(createIdentifier('結果'))
-        ]
-      },
-      'e',
-      {
-        type: 'BlockStatement',
-        body: [
-          createPrint(createString('告白失敗...')),
-          createPrint(createPropertyAccess(
-            createIdentifier('e'),
-            'message'
-          )),
-          createPrint(createString('もっと頑張ろう！'))
-        ]
-      }
-    )
-  ]
-};
-```
-
-「実行してみよう」
-
-```
-告白失敗...
-まだ好感度が足りません
-もっと頑張ろう！
-```
-
-「ゲームっぽい！」
-
-　美久の発想力はいつも面白い。
-
-◇◇◇◇
-
-「複数のcatchも実装できる」
-
-　より高度な例を示す。
-
-```javascript
-// 複数のエラータイプを処理
-const multiCatchProgram = {
-  type: ASTTypes.Program,
-  body: [
-    createFunction(
-      'ゲーム進行',
-      ['コマンド'],
-      {
-        type: 'BlockStatement',
-        body: [
-          {
-            type: ASTTypes.IfStatement,
-            condition: createComparison(
-              '===',
-              createIdentifier('コマンド'),
-              createString('save')
-            ),
-            then: {
-              type: 'BlockStatement',
-              body: [
-                createThrow(createError('SaveError', 'セーブに失敗しました'))
-              ]
-            }
-          },
-          {
-            type: ASTTypes.IfStatement,
-            condition: createComparison(
-              '===',
-              createIdentifier('コマンド'),
-              createString('load')
-            ),
-            then: {
-              type: 'BlockStatement',
-              body: [
-                createThrow(createError('LoadError', 'ロードに失敗しました'))
-              ]
-            }
-          },
-          createReturn(createString('コマンド実行成功'))
-        ]
-      }
-    )
-  ]
-};
-```
-
-◇◇◇◇
-
-　夕方になってきた。エラー処理の実装も順調に進んだ。
-
-「エラー処理、思ったより奥が深い」
-
-　美久が感想を述べる。
-
-「プログラムの品質を上げる重要な要素だから」
-
-「失敗を想定して、対策を用意する。人生の教訓みたい」
-
-　美久の言葉に、また感心する。
-
-◇◇◇◇
-
-「隆弘先輩」
-
-　片付けながら、美久が言った。
-
-「MikuLangが、どんどん実用的になってきた」
-
-「そうだね。エラー処理があれば、安全なプログラムが書ける」
-
-「私たちの言語で、本当にゲームが作れそう」
-
-　美久の期待に満ちた表情が嬉しい。
-
-「明日は何を実装する？」
-
-「文字列処理かな。テキストを扱う機能」
-
-「楽しみ！」
-
-◇◇◇◇
-
-　美久を見送った後、今日のコードを振り返る。
-
-　エラー処理の実装で、MikuLangはより堅牢な言語になった。
-
-　美久の理解も、日に日に深まっている。
-
-　そして、二人の距離も——
-
-（そろそろ、ちゃんと伝えないと）
-
-　ゴールデンウィークも残りわずか。
-
-　この特別な時間の中で、美久に気持ちを伝えたい。
-
-　プログラミング言語の完成と同時に、僕たちの関係も新しいステージに進めたら——
-
-　そんなことを考えながら、明日の準備を始めた。
+　そんな、甘酸っぱくて、少しだけ厄介な変化の予兆が、教室の空気を満たしていた。

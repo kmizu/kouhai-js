@@ -1,517 +1,81 @@
-# 第22話 DOMで描く未来
+# 第22話 関数という名の「実行」
 
-## 10月31日（火）午前7時
+「関数を定義するだけじゃ、まだ何も起こらない。次に必要なのは、その関数を『呼び出す』ことだ」
 
-ハロウィンの朝。
+　僕は、エディタに`add`関数を呼び出す例を打ち込んだ。
 
-でも、私たちには文化祭の方が大事。
+`['add', 1, 2]`
 
-あと3日で本番。
+「これは、『`add`という名前の関数に、`1`と`2`という値を与えて、実行してくれ』っていうお願いだ。見た目は、足し算の`['+', 1, 2]`と似てるだろ？」
+「はい！　でも、どうやって区別するんですか？」
 
-ゲームはほぼ完成してるけど、まだやることがある。
+　美久の質問に、僕は頷いた。
 
-「おはよう、美久」
+「いい質問だ。僕たちの`evaluate`関数は、リストの最初の要素が、演算子なのか、それとも関数名なのかを判断する必要がある。もし、それが関数名だったら、その関数オブジェクトを取り出して、実行してやるんだ」
 
-エレベーターで隆弘くんと会った。
-
-「おはよう」
-
-「今日の放課後も、頑張ろうね」
-
-「うん」
-
-二人だけの秘密の時間。
-
-学校では普通の先輩後輩。
-
-でも、心はいつも繋がってる。
-
-◇◇◇◇
-
-## 午後4時　プログラミング部室
-
-「今日は、DOM操作について詳しく教えるよ」
-
-隆弘くんがホワイトボードに大きく「DOM」と書く。
-
-「DOM？」
-
-「Document Object Model。HTMLを操作する仕組みだよ」
+　僕は`evaluate`関数に、新しい処理を追加した。
 
 ```javascript
-// DOM要素の取得方法いろいろ
-const element1 = document.getElementById('game-title');
-const element2 = document.querySelector('.character-name');
-const elements = document.querySelectorAll('.choice-button');
+    // リストの場合の処理（既存の四則演算やif、begin、defineの前に）
+    if (Array.isArray(exp)) {
+      const head = exp[0]; // リストの最初の要素
+      const args = exp.slice(1); // 残りの要素は引数
 
-// 要素の作成
-const newDiv = document.createElement('div');
-newDiv.textContent = '新しい要素';
-newDiv.className = 'message-box';
+      // 最初の要素が文字列（関数名）の場合
+      if (typeof head === 'string') {
+        const func = env.lookup(head); // 環境から関数オブジェクトを探す
 
-// 要素の追加
-document.body.appendChild(newDiv);
+        // もし見つかったのが関数オブジェクトだったら
+        if (func && func.type === 'function') {
+          // ここで関数を実行する
+          // 1. 新しい環境（世界）を作る
+          const funcEnv = new Environment(func.env); // 関数の生まれた世界を親にする！
 
-// 要素の削除
-const oldElement = document.getElementById('old-element');
-if (oldElement) {
-    oldElement.remove();
-}
-```
+          // 2. 引数を新しい環境に定義する
+          for (let i = 0; i < func.params.length; i++) {
+            funcEnv.define(func.params[i], evaluate(args[i], env)); // 引数の値を評価して定義
+          }
 
-「なるほど！HTMLを動的に変えられるんだ」
-
-「そう。これでゲーム画面を自由に操作できる」
-
-◇◇◇◇
-
-## 午後4時45分　ゲーム画面の構築
-
-「実際にゲーム画面を作ってみよう」
-
-```javascript
-// ゲーム画面の基本構造を作る
-class GameScreen {
-    constructor() {
-        this.container = document.getElementById('game-container');
-        this.init();
-    }
-    
-    init() {
-        // ゲーム画面をクリア
-        this.container.innerHTML = '';
-        
-        // 背景レイヤー
-        this.backgroundLayer = this.createElement('div', 'background-layer');
-        
-        // キャラクターレイヤー
-        this.characterLayer = this.createElement('div', 'character-layer');
-        
-        // UIレイヤー
-        this.uiLayer = this.createElement('div', 'ui-layer');
-        
-        // テキストボックス
-        this.textBox = this.createElement('div', 'text-box');
-        this.nameBox = this.createElement('div', 'name-box');
-        this.messageBox = this.createElement('div', 'message-box');
-        
-        // 要素を組み立てる
-        this.textBox.appendChild(this.nameBox);
-        this.textBox.appendChild(this.messageBox);
-        this.uiLayer.appendChild(this.textBox);
-        
-        // コンテナに追加
-        this.container.appendChild(this.backgroundLayer);
-        this.container.appendChild(this.characterLayer);
-        this.container.appendChild(this.uiLayer);
-    }
-    
-    createElement(tag, className) {
-        const element = document.createElement(tag);
-        if (className) {
-            element.className = className;
+          // 3. 関数の本体を新しい環境で評価する
+          return evaluate(func.body, funcEnv);
         }
-        return element;
+      }
+      // ...既存の四則演算、if、begin、defineの処理が続く
     }
-    
-    // 背景を変更
-    setBackground(imagePath) {
-        this.backgroundLayer.style.backgroundImage = `url(${imagePath})`;
-        this.backgroundLayer.style.backgroundSize = 'cover';
-    }
-    
-    // キャラクターを表示
-    showCharacter(imagePath, position = 'center') {
-        const character = this.createElement('img', 'character');
-        character.src = imagePath;
-        character.style.position = 'absolute';
-        
-        // 位置を設定
-        switch(position) {
-            case 'left':
-                character.style.left = '10%';
-                break;
-            case 'right':
-                character.style.right = '10%';
-                break;
-            default:
-                character.style.left = '50%';
-                character.style.transform = 'translateX(-50%)';
-        }
-        
-        this.characterLayer.appendChild(character);
-    }
-    
-    // メッセージを表示
-    showMessage(name, text) {
-        this.nameBox.textContent = name;
-        this.messageBox.textContent = '';
-        
-        // タイプライター効果
-        let index = 0;
-        const typeWriter = () => {
-            if (index < text.length) {
-                this.messageBox.textContent += text[index];
-                index++;
-                setTimeout(typeWriter, 50);
-            }
-        };
-        typeWriter();
-    }
-}
 ```
 
-「すごい！レイヤー構造になってる」
+「リストの最初の要素を`head`、残りを`args`として取り出す。そして、`head`が文字列だったら、それは関数名かもしれないから、まず『世界』の中からその名前を探しに行く」
+「もし、見つかったのが、前に作った『関数オブジェクト』だったら……」
 
-「そう。背景、キャラクター、UIを別々に管理できる」
+　僕は、ここが一番の肝だと強調した。
 
-美久が興奮気味に画面を見つめる。
+「関数を呼び出す時、まず、その関数が生まれた時の『世界（環境）』を親とする、新しい『子どもの世界』を作るんだ。そして、その新しい世界の中で、関数に与えられた引数（`args`）を、関数の引数名（`params`）に対応させて定義してやる」
+「なるほど……！　関数が生まれた時の世界を、ちゃんと覚えてるんですね！」
 
-◇◇◇◇
+　美久が、はっとしたように声を上げた。彼女の瞳が、理解の光で輝いている。
 
-## 午後5時30分　選択肢システム
+「その通りだ。そして、最後に、関数の本体（`body`）を、この新しい世界の中で実行する。これが、関数が『実行される』ということだ」
 
-「選択肢も動的に作ろう」
+　僕は、`add`関数を定義し、呼び出すテストコードを実行した。
 
 ```javascript
-// 選択肢システム
-class ChoiceSystem {
-    constructor(gameScreen) {
-        this.gameScreen = gameScreen;
-        this.choiceContainer = null;
-    }
-    
-    // 選択肢を表示
-    showChoices(choices) {
-        // 既存の選択肢を削除
-        if (this.choiceContainer) {
-            this.choiceContainer.remove();
-        }
-        
-        // 選択肢コンテナを作成
-        this.choiceContainer = document.createElement('div');
-        this.choiceContainer.className = 'choice-container';
-        
-        // 各選択肢を作成
-        choices.forEach((choice, index) => {
-            const button = this.createChoiceButton(choice, index);
-            this.choiceContainer.appendChild(button);
-        });
-        
-        // UIレイヤーに追加
-        this.gameScreen.uiLayer.appendChild(this.choiceContainer);
-        
-        // フェードインアニメーション
-        this.choiceContainer.style.opacity = '0';
-        setTimeout(() => {
-            this.choiceContainer.style.transition = 'opacity 0.5s';
-            this.choiceContainer.style.opacity = '1';
-        }, 100);
-    }
-    
-    // 選択肢ボタンを作成
-    createChoiceButton(choice, index) {
-        const button = document.createElement('button');
-        button.className = 'choice-button';
-        button.textContent = choice.text;
-        
-        // ホバー効果
-        button.addEventListener('mouseenter', () => {
-            button.style.transform = 'scale(1.05)';
-            button.style.backgroundColor = '#ff6b6b';
-        });
-        
-        button.addEventListener('mouseleave', () => {
-            button.style.transform = 'scale(1)';
-            button.style.backgroundColor = '#4ecdc4';
-        });
-        
-        // クリック処理
-        button.addEventListener('click', () => {
-            this.selectChoice(choice, index);
-        });
-        
-        // 遅延表示
-        button.style.opacity = '0';
-        setTimeout(() => {
-            button.style.transition = 'opacity 0.3s';
-            button.style.opacity = '1';
-        }, index * 200);
-        
-        return button;
-    }
-    
-    // 選択肢を選んだ時の処理
-    selectChoice(choice, index) {
-        console.log(`選択: ${choice.text}`);
-        
-        // 選択エフェクト
-        const buttons = this.choiceContainer.querySelectorAll('.choice-button');
-        buttons.forEach((btn, i) => {
-            if (i === index) {
-                btn.style.backgroundColor = '#ff4757';
-                btn.style.transform = 'scale(1.1)';
-            } else {
-                btn.style.opacity = '0.3';
-            }
-        });
-        
-        // 選択肢を消す
-        setTimeout(() => {
-            this.choiceContainer.style.opacity = '0';
-            setTimeout(() => {
-                this.choiceContainer.remove();
-                this.choiceContainer = null;
-                
-                // 選択後の処理を実行
-                if (choice.callback) {
-                    choice.callback();
-                }
-            }, 500);
-        }, 500);
-    }
-}
+const env = new Environment();
+evaluate(['define', 'add', ['lambda', ['x', 'y'], ['+', 'x', 'y']]], env);
+console.log(evaluate(['add', 10, 20], env)); // -> 30
 ```
 
-「選択肢にアニメーションがついてる！」
+　画面に、期待通りの`30`という数字が表示された。
 
-「ユーザー体験を良くするためだよ」
+「やった……！　動いた……！」
 
-隆弘くんの細やかな配慮が嬉しい。
+　美久が、小さく歓声を上げた。その顔は、達成感と喜びに満ちている。
 
-◇◇◇◇
+「これで、僕たちの言語は、自分自身で新しい『お願い』を作り、それを実行できるようになった。これは、プログラミング言語にとって、本当に大きな一歩なんだ」
 
-## 午後6時15分　エフェクトシステム
+　僕の言葉に、美久は力強く頷いた。
 
-「特別な演出も作ろう」
+「先輩！　これって、相沢さんをぎゃふんと言わせる、第一歩ですよね！」
 
-```javascript
-// エフェクトシステム
-class EffectSystem {
-    constructor(gameScreen) {
-        this.gameScreen = gameScreen;
-    }
-    
-    // 画面を揺らす
-    shake(duration = 500, intensity = 10) {
-        const container = this.gameScreen.container;
-        const originalTransform = container.style.transform;
-        
-        const shakeAnimation = () => {
-            const x = (Math.random() - 0.5) * intensity;
-            const y = (Math.random() - 0.5) * intensity;
-            container.style.transform = `translate(${x}px, ${y}px)`;
-        };
-        
-        const interval = setInterval(shakeAnimation, 50);
-        
-        setTimeout(() => {
-            clearInterval(interval);
-            container.style.transform = originalTransform;
-        }, duration);
-    }
-    
-    // フラッシュ効果
-    flash(color = 'white', duration = 200) {
-        const flashDiv = document.createElement('div');
-        flashDiv.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: ${color};
-            opacity: 0;
-            z-index: 9999;
-            pointer-events: none;
-        `;
-        
-        this.gameScreen.container.appendChild(flashDiv);
-        
-        // フラッシュアニメーション
-        flashDiv.style.transition = `opacity ${duration/2}ms`;
-        setTimeout(() => {
-            flashDiv.style.opacity = '1';
-            setTimeout(() => {
-                flashDiv.style.opacity = '0';
-                setTimeout(() => {
-                    flashDiv.remove();
-                }, duration/2);
-            }, duration/2);
-        }, 10);
-    }
-    
-    // ハートエフェクト
-    showHearts(count = 5) {
-        for (let i = 0; i < count; i++) {
-            setTimeout(() => {
-                this.createHeart();
-            }, i * 200);
-        }
-    }
-    
-    createHeart() {
-        const heart = document.createElement('div');
-        heart.className = 'heart-effect';
-        heart.innerHTML = '❤️';
-        heart.style.cssText = `
-            position: absolute;
-            font-size: 30px;
-            z-index: 9999;
-            pointer-events: none;
-            left: ${Math.random() * 80 + 10}%;
-            bottom: -50px;
-            animation: floatUp 3s ease-out forwards;
-        `;
-        
-        this.gameScreen.container.appendChild(heart);
-        
-        setTimeout(() => {
-            heart.remove();
-        }, 3000);
-    }
-    
-    // 暗転
-    fadeToBlack(duration = 1000, callback) {
-        const blackScreen = document.createElement('div');
-        blackScreen.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            opacity: 0;
-            z-index: 9998;
-        `;
-        
-        this.gameScreen.container.appendChild(blackScreen);
-        
-        blackScreen.style.transition = `opacity ${duration}ms`;
-        setTimeout(() => {
-            blackScreen.style.opacity = '1';
-            setTimeout(() => {
-                if (callback) callback();
-            }, duration);
-        }, 10);
-    }
-}
-```
+　その言葉を聞いて、僕は思わず笑ってしまった。彼女のモチベーションが、相沢への対抗心だとしても、こうして一緒に、僕たちの「宝物」を磨き上げていけることが、何よりも嬉しかった。
 
-「ハートエフェクト！」
-
-美久が目を輝かせる。
-
-「告白シーンで使えそうでしょ？」
-
-「うん！絶対使う！」
-
-◇◇◇◇
-
-## 午後7時　統合テスト
-
-「全部組み合わせてテストしてみよう」
-
-```javascript
-// ゲームの初期化
-const gameScreen = new GameScreen();
-const choiceSystem = new ChoiceSystem(gameScreen);
-const effectSystem = new EffectSystem(gameScreen);
-
-// 告白シーンのデモ
-function confessionScene() {
-    // 背景を夕暮れの屋上に
-    gameScreen.setBackground('images/rooftop_sunset.jpg');
-    
-    // キャラクターを表示
-    gameScreen.showCharacter('images/miku_blush.png', 'center');
-    
-    // セリフ
-    gameScreen.showMessage('美久', 'あの……隆弘くん……');
-    
-    // 3秒後に選択肢
-    setTimeout(() => {
-        const choices = [
-            {
-                text: '美久、好きだ',
-                callback: () => {
-                    effectSystem.showHearts(10);
-                    gameScreen.showMessage('美久', '私も……ずっと好きでした！');
-                }
-            },
-            {
-                text: '大切な友達だよ',
-                callback: () => {
-                    effectSystem.shake(300, 5);
-                    gameScreen.showMessage('美久', 'そう……だよね……');
-                }
-            }
-        ];
-        
-        choiceSystem.showChoices(choices);
-    }, 3000);
-}
-
-// デモ実行
-confessionScene();
-```
-
-画面に表示される告白シーン。
-
-ハートが舞い上がる演出。
-
-「きれい……」
-
-美久が呟く。
-
-「これ、私たちの告白シーンみたい」
-
-隆弘くんが照れくさそうに笑う。
-
-◇◇◇◇
-
-## 午後7時45分　最後の調整
-
-「DOM操作、理解できた？」
-
-「うん。HTMLを自由に操れるんだね」
-
-「そう。これで思い通りの画面が作れる」
-
-二人で画面を見つめる。
-
-私たちが作ったゲーム。
-
-もうすぐ完成。
-
-「隆弘くん」
-
-「なに？」
-
-「このゲーム、私たちの思い出だね」
-
-「うん」
-
-「DOMで作った画面に、私たちの気持ちが詰まってる」
-
-隆弘くんが私の手を握る。
-
-「文化祭が終わっても、この思い出は消えない」
-
-「うん」
-
-「次は、もっとすごいゲーム作ろう」
-
-「約束」
-
-小指を絡める。
-
-約束のしるし。
-
-プログラミングが繋いだ私たち。
-
-DOMで描く未来は、きっと明るい。
-
-そう信じて、今日も一緒に帰る。
-
-手を繋いで、同じ未来を見つめながら。
+　僕たちの言語は、また一つ、賢くなった。そして、僕たちの関係もまた、一歩、深く、確かなものへと進んだような気がした。

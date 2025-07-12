@@ -1,453 +1,75 @@
-# 第17話 デバッグツール
+# 第17話 終わらないループと、終わってほしくない時間
 
-　五月六日、月曜日。振替休日。
+　頭を撫でられた、あの事件から数日。僕と美久の間には、まだ少しだけ、甘酸っぱいような、ぎこちない空気が漂っていた。
+　僕は、その照れ臭さを振り払うように、少しだけ早口で、新しいテーマを切り出した。
 
-　ゴールデンウィークも最後の一日。学校は休みだが、美久との開発は続く。
+「きょ、今日は、プログラミングの真髄とも言える機能、『繰り返し』を実装するぞ！」
+「繰り返し、ですか？」
+「ああ。`while`ループだ。『ある条件が満たされている間、ずっと同じ処理を繰り返す』。これができると、人間がやったら何時間もかかるような作業を、コンピュータに一瞬でやらせることができるようになるんだ」
 
-「今日はデバッグツールだね」
+　僕は、新しい構文`['while', condition, body]`をエディタに書き出した。
 
-　美久が期待に満ちた顔で言う。
+「`condition`が`true`である限り、`body`の処理を、何度も、何度も、実行し続ける。そういう『お願い』だ」
 
-「プログラムの問題を見つけて直すための道具」
+　実装は、`if`文の応用だった。`evaluate`関数に`while`の分岐を追加し、条件式を評価し、その結果が`true`なら`body`を評価する。そして、`if`文と違うのは、`body`を評価し終わったら、また最初に戻って、もう一度、条件式を評価するところだ。
 
-「デバッグって、虫を取り除くって意味？」
+「例えば、こんなコードだ」
 
-「そう。昔、コンピュータに本物の虫が入って故障したことから」
-
-◇◇◇◇
-
-「まず、実行トレース機能から作ろう」
-
-　ホワイトボードに設計を書く。
+　僕は、デモ用のコードを書いてみせた。
 
 ```javascript
-// デバッグ情報を保持するクラス
-class DebugContext {
-  constructor() {
-    this.enabled = false;
-    this.trace = [];
-    this.breakpoints = new Set();
-    this.stepMode = false;
-    this.callStack = [];
-  }
-  
-  log(type, info) {
-    if (this.enabled) {
-      this.trace.push({
-        type,
-        info,
-        timestamp: Date.now(),
-        callStack: [...this.callStack]
-      });
-    }
-  }
-  
-  enterFunction(name) {
-    this.callStack.push(name);
-    this.log('function_enter', { name });
-  }
-  
-  exitFunction(name) {
-    this.callStack.pop();
-    this.log('function_exit', { name });
-  }
-}
+['begin',
+  ['define', 'x', 0],
+  ['while', ['<', 'x', 5],
+    ['begin',
+      ['define', 'x', ['+', 'x', 1]],
+      // console.log(x) のような表示機能はまだない
+    ]
+  ],
+  'x' // 最終的なxの値を返す
+]
 ```
 
-「トレースって何を記録するの？」
-
-「どの順番で何が実行されたか。プログラムの足跡みたいなもの」
-
-◇◇◇◇
-
-「評価器にデバッグ機能を組み込もう」
-
-```javascript
-// デバッグ機能付き評価器
-class DebugEvaluator extends MikuLangEvaluator {
-  constructor() {
-    super();
-    this.debug = new DebugContext();
-  }
-  
-  evaluate(node) {
-    // デバッグ情報を記録
-    if (this.debug.enabled) {
-      this.debug.log('evaluate', {
-        type: node.type,
-        location: node.location
-      });
-    }
-    
-    // ブレークポイントチェック
-    if (this.debug.breakpoints.has(node.location?.line)) {
-      this.handleBreakpoint(node);
-    }
-    
-    // 通常の評価
-    return super.evaluate(node);
-  }
-  
-  handleBreakpoint(node) {
-    console.log('ブレークポイント:', node.location);
-    console.log('現在の変数:', this.env.getAll());
-    // 実際の実装では、ここで実行を一時停止
-  }
-}
-```
-
-「ブレークポイントって？」
-
-「プログラムを一時停止したい場所。その時点での状態を確認できる」
-
-◇◇◇◇
-
-　美久が質問してきた。
-
-「どんな時にデバッグツールを使うの？」
-
-「プログラムが思った通りに動かない時」
-
-　具体例を示す。
-
-```javascript
-// バグのあるプログラム例
-const buggyProgram = {
-  type: ASTTypes.Program,
-  body: [
-    createFunction(
-      '階乗',
-      ['n'],
-      {
-        type: 'BlockStatement',
-        body: [
-          {
-            type: ASTTypes.IfStatement,
-            condition: createComparison(
-              '<=',
-              createIdentifier('n'),
-              createNumber(1)
-            ),
-            then: {
-              type: 'BlockStatement',
-              body: [createReturn(createNumber(1))]
-            }
-          },
-          // バグ: n * 階乗(n) となっている（正しくは n-1）
-          createReturn(
-            createBinaryExpression(
-              '*',
-              createIdentifier('n'),
-              createCall('階乗', [createIdentifier('n')])
-            )
-          )
-        ]
-      }
-    ),
-    createPrint(createCall('階乗', [createNumber(5)]))
-  ]
-};
-```
-
-◇◇◇◇
-
-「実行トレースを見てみよう」
-
-```javascript
-// デバッグ実行
-const debugEval = new DebugEvaluator();
-debugEval.debug.enabled = true;
-
-try {
-  debugEval.run(buggyProgram);
-} catch (e) {
-  console.log('エラー発生:', e.message);
-}
-
-// トレースを表示
-console.log('実行トレース:');
-debugEval.debug.trace.forEach((entry, i) => {
-  console.log(`${i}: ${entry.type} - ${JSON.stringify(entry.info)}`);
-});
-```
-
-「無限ループになってる！」
-
-　美久が気づいた。
-
-「そう。階乗(n)が階乗(n)を呼び続けてる」
-
-◇◇◇◇
-
-　休憩時間。美久がお茶を飲みながら言った。
-
-「デバッグって、探偵みたいだね」
-
-「どういうこと？」
-
-「証拠を集めて、犯人（バグ）を見つける」
-
-　面白い例えだ。
-
-「確かに。推理力が必要」
-
-◇◇◇◇
-
-「変数ウォッチ機能も作ろう」
-
-```javascript
-// 変数の変化を監視
-class VariableWatcher {
-  constructor() {
-    this.watches = new Map();
-  }
-  
-  watch(varName, callback) {
-    if (!this.watches.has(varName)) {
-      this.watches.set(varName, []);
-    }
-    this.watches.get(varName).push(callback);
-  }
-  
-  notify(varName, oldValue, newValue) {
-    const callbacks = this.watches.get(varName) || [];
-    callbacks.forEach(cb => cb(varName, oldValue, newValue));
-  }
-}
-
-// 環境クラスを拡張
-class WatchableEnvironment extends Environment {
-  constructor(parent, watcher) {
-    super(parent);
-    this.watcher = watcher;
-  }
-  
-  set(name, value) {
-    const oldValue = this.get(name);
-    super.set(name, value);
-    
-    if (this.watcher) {
-      this.watcher.notify(name, oldValue, value);
-    }
-  }
-}
-```
-
-◇◇◇◇
-
-　美久がプログラムを書き始めた。
-
-```javascript
-// 美久のデバッグ練習プログラム
-const mikuDebugProgram = {
-  type: ASTTypes.Program,
-  body: [
-    createFunction(
-      '好感度計算',
-      ['現在値', 'イベント'],
-      {
-        type: 'BlockStatement',
-        body: [
-          createAssignment('増加量', createNumber(0)),
-          
-          {
-            type: ASTTypes.IfStatement,
-            condition: createComparison(
-              '===',
-              createIdentifier('イベント'),
-              createString('デート')
-            ),
-            then: {
-              type: 'BlockStatement',
-              body: [
-                createAssignment('増加量', createNumber(10))
-              ]
-            }
-          },
-          
-          {
-            type: ASTTypes.IfStatement,
-            condition: createComparison(
-              '===',
-              createIdentifier('イベント'),
-              createString('プレゼント')
-            ),
-            then: {
-              type: 'BlockStatement',
-              body: [
-                createAssignment('増加量', createNumber(5))
-              ]
-            }
-          },
-          
-          createAssignment(
-            '新しい値',
-            createBinaryExpression(
-              '+',
-              createIdentifier('現在値'),
-              createIdentifier('増加量')
-            )
-          ),
-          
-          // デバッグ出力
-          createCall('debug', [
-            createString('好感度変化:'),
-            createIdentifier('現在値'),
-            createString('→'),
-            createIdentifier('新しい値')
-          ]),
-          
-          createReturn(createIdentifier('新しい値'))
-        ]
-      }
-    ),
-    
-    // テスト実行
-    createAssignment('好感度', createNumber(50)),
-    createAssignment(
-      '好感度',
-      createCall('好感度計算', [
-        createIdentifier('好感度'),
-        createString('デート')
-      ])
-    ),
-    createPrint(createIdentifier('好感度'))
-  ]
-};
-```
-
-◇◇◇◇
-
-「プロファイリング機能も追加しよう」
-
-```javascript
-// 実行時間を計測
-class Profiler {
-  constructor() {
-    this.timings = new Map();
-  }
-  
-  start(label) {
-    this.timings.set(label, {
-      start: performance.now(),
-      count: (this.timings.get(label)?.count || 0) + 1
-    });
-  }
-  
-  end(label) {
-    const timing = this.timings.get(label);
-    if (timing && timing.start) {
-      const duration = performance.now() - timing.start;
-      timing.total = (timing.total || 0) + duration;
-      timing.start = null;
-    }
-  }
-  
-  report() {
-    console.log('=== プロファイリング結果 ===');
-    this.timings.forEach((timing, label) => {
-      console.log(`${label}:`);
-      console.log(`  呼び出し回数: ${timing.count}`);
-      console.log(`  合計時間: ${timing.total?.toFixed(2)}ms`);
-      console.log(`  平均時間: ${(timing.total / timing.count).toFixed(2)}ms`);
-    });
-  }
-}
-```
-
-◇◇◇◇
-
-「エラーの詳細情報も表示できるようにしよう」
-
-```javascript
-// エラー情報の拡張
-class MikuLangError extends Error {
-  constructor(message, node, context) {
-    super(message);
-    this.name = 'MikuLangError';
-    this.node = node;
-    this.context = context;
-  }
-  
-  getDetailedMessage() {
-    let details = this.message;
-    
-    if (this.node?.location) {
-      details += `\n場所: ${this.node.location.line}行目`;
-    }
-    
-    if (this.context?.callStack.length > 0) {
-      details += '\nコールスタック:';
-      this.context.callStack.forEach((func, i) => {
-        details += `\n  ${i}: ${func}`;
-      });
-    }
-    
-    return details;
-  }
-}
-```
-
-◇◇◇◇
-
-　夕方になってきた。デバッグツールの実装も順調に進んだ。
-
-「デバッグツールがあると、プログラミングが楽になるね」
-
-　美久が感想を述べる。
-
-「バグは必ず発生するから、見つけやすくすることが大事」
-
-「人間関係のデバッグツールもあればいいのに」
-
-　美久の冗談に笑ってしまう。
-
-◇◇◇◇
-
-「隆弘先輩」
-
-　片付けながら、美久が言った。
-
-「今日で連休も終わりか」
-
-「そうだね。でも、開発は続く」
-
-「学校でも続けられる？」
-
-「もちろん。放課後に」
-
-　美久の顔が明るくなる。
-
-「よかった。まだまだ一緒に作りたいものがあるから」
-
-◇◇◇◇
-
-　美久を見送る時、彼女が振り返った。
-
-「隆弘先輩」
-
-「ん？」
-
-「この一週間、本当に充実してた」
-
-「僕もだよ」
-
-「明日からも、よろしくお願いします」
-
-　美久が深々と頭を下げる。
-
-「こちらこそ」
-
-　僕も頭を下げる。
-
-　明日から、また日常が始まる。
-
-　でも、美久との開発は続いていく。
-
-　そして、MikuLangの完成も、もうすぐそこまで来ている。
-
-（次はパーサーか）
-
-　本物のプログラミング言語への、最後のピース。
-
-　美久と一緒なら、きっと作れる。
+「このコードを実行すると、`x`の値が0から1、2、3、4と変化していって、最終的に`5`が返ってくる。一瞬で、5回の足し算をやってのけるんだ」
+「すごい……！　自動で計算してくれるんですね！」
+
+　美久が感心したように声を上げる。僕は、少しだけ意地悪な笑みを浮かべて、次のコードを見せた。
+
+`['while', true, ['define', 'x', ['+', 'x', 1]]]`
+
+「じゃあ、これはどうなると思う？」
+「え？　`true`ってことは……条件が、ずっと`true`……？　あ……！」
+
+　美久が気づいた瞬間、僕はプログラムを実行した。案の定、プログラムは応答しなくなり、ブラウザのタブがフリーズする。僕は慌ててタブを閉じた。
+
+「こ、こわい……！　暴走しちゃった……」
+「そう。これが『無限ループ』だ。だから、`while`ループを使う時は、いつか必ずループが『終わる』ように、ちゃんと設計してあげないといけないんだ」
+
+　僕がその危険性と重要性を説いている間、美久は、どこか遠くを見つめていた。
+
+（終わらないループ……）
+
+　彼女の頭の中は、別のことでいっぱいだった。
+
+（先輩とこうして過ごす、この時間。この時間が、もし、`while (true)`だったら、いいのに……）
+
+　この、楽しくて、少しだけ胸が苦しくなる、放課後の開発作業。でも、これには、必ず「終わり」が来る。言語が、完成した時に。
+　その事実に、彼女は、今更ながら気づいてしまったのだ。
+
+「……先輩」
+
+　ぽつり、と彼女が呟いた。その声は、いつもの快活さが嘘のように、少しだけ、か細かった。
+
+「この言語が、もし、完成したら……。この、放課後の勉強会も、終わっちゃう、んですよね？」
+
+　その質問は、僕の完全に意表を突くものだった。
+　終わり？　考えたこともなかった。美久とこうして過ごす時間が、僕にとっても、いつの間にか、かけがえのない、大切な日常になっていたから。
+
+　僕は、うまく言葉を返すことができなかった。
+
+「……それは、まあ……そう、だな」
+
+　肯定するのが、精一杯だった。
+　教室に、少しだけ切ない沈黙が流れる。「終わり」を意識させる`while`ループが、皮肉にも、僕たち二人に、この特別な時間の「終わり」を、はっきりと意識させてしまった。
+
+　僕たちのこの心地よいループは、一体、どんな「条件」を満たした時に、終わりを迎えてしまうのだろうか。そんな、新たな不安と感傷の気配が、夕暮れの教室に、静かに漂い始めていた。
