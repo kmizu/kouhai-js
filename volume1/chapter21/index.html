@@ -22,7 +22,7 @@
     
     
       
-        <title>第21話 文化祭準備開始 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+        <title>第21話 関数という名の「箱」 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第21話 文化祭準備開始
+              第21話 関数という名の「箱」
             
           </span>
         </div>
@@ -1139,243 +1139,36 @@
   
 
 
-<h1 id="21">第21話 文化祭準備開始<a class="headerlink" href="#21" title="Permanent link">&para;</a></h1>
-<p>九月十日、火曜日。</p>
-<p>夏休みが終わり、二学期が始まって一週間。美久との関係も、恋人として新しいステージに入った。</p>
-<p>「文化祭の準備、そろそろ始めないと」</p>
-<p>放課後のプログラミング部室。部長の田中先輩が切り出した。</p>
-<p>「今年は何をするんですか？」</p>
-<p>美久が興味深そうに聞く。</p>
-<p>「MikuLangを使ったゲーム展示はどうだろう」</p>
-<p>僕の提案に、部員たちが注目する。</p>
-<p>◇◇◇◇</p>
-<p>「MikuLangって、美久と作った言語？」</p>
-<p>副部長の佐藤先輩が確認する。</p>
-<p>「はい。日本語でプログラミングできる言語です」</p>
-<p>美久が誇らしげに答える。</p>
-<p>「面白そう！」</p>
-<p>「初心者でも書けるの？」</p>
-<p>部員たちが興味を示す。</p>
-<p>「デモを見せてもらえる？」</p>
-<p>◇◇◇◇</p>
-<p>ホワイトボードにMikuLangのコードを書く。</p>
-<div class="highlight"><pre><span></span><code>ゲームを開始する
-
-プレイヤーの名前を入力してもらう
-「ようこそ、」とプレイヤーの名前と「さん」を表示する
-
-質問リストを[
-  &quot;プログラミングは楽しい？&quot;,
-  &quot;MikuLangを使ってみたい？&quot;,
-  &quot;文化祭は好き？&quot;
-]に設定する
-
-正解数を0に設定する
-
-質問リストの各要素を質問として｛
-  質問を表示する
-  答えを入力してもらう
-
-  もし 答えが「はい」なら
-    正解数を1増やす
-    「素晴らしい！」を表示する
-  そうでなければ
-    「そうですか...」を表示する
-｝
-
-もし 正解数が3なら
-  「完璧です！あなたは真のプログラマー！」を表示する
-そうでなければ 正解数が2以上なら
-  「いい感じです！」を表示する
-そうでなければ
-  「プログラミングの楽しさを知ってください」を表示する
+<h1 id="21">第21話 関数という名の「箱」<a class="headerlink" href="#21" title="Permanent link">&para;</a></h1>
+<p>相沢の挑発を受けてから、僕たちの開発作業は、以前にも増して熱を帯びていた。特に美久の目の輝きは、まるで新しいおもちゃを見つけた子どものようだ。</p>
+<p>「先輩！　関数って、どうやって作るんですか？　早く、あの人をぎゃふんと言わせたいです！」</p>
+<p>目を輝かせながら、美久が前のめりになる。その純粋な闘志に、僕も思わず笑みがこぼれた。</p>
+<p>「よし、じゃあ今日は、僕たちの言語に『関数』という概念を導入するぞ。まずは、関数の『定義』からだ」</p>
+<p>僕は、エディタに<code>lambda</code>を使った関数の定義を打ち込んだ。</p>
+<p><code>['lambda', ['x', 'y'], ['+', 'x', 'y']]</code></p>
+<p>「これが、僕たちの言語における関数の形だ。<code>lambda</code>っていうのは、『ここから関数が始まるよ』っていう合図。その次に来るのが、<code>['x', 'y']</code>みたいに、関数が受け取る『引数』（ひきすう）のリスト。そして、最後が、関数が実際にやる『処理』（ボディ）だ」
+「ふむふむ……。なんだか、お弁当箱みたいですね！」</p>
+<p>美久が、また独特の例えを出してきた。</p>
+<p>「引数が、お弁当の中身。ボディが、その中身をどう調理するか、みたいな？」
+「……面白いな。まあ、そんな感じだ。この『お弁当箱』を、僕たちの<code>evaluate</code>関数でどう扱うか、考えてみよう」</p>
+<p>僕は<code>evaluate</code>関数に、<code>lambda</code>を処理するための新しい分岐を追加した。</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">exp</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;lambda&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// 引数のリスト</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">2</span><span class="p">];</span><span class="w">   </span><span class="c1">// 関数の本体（処理）</span>
+<span class="w">      </span><span class="c1">// ここで関数オブジェクトを作る</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;function&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">env</span><span class="o">:</span><span class="w"> </span><span class="nx">env</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>◇◇◇◇</p>
-<p>「本当に日本語だ！」</p>
-<p>1年生の新入部員が驚く。</p>
-<p>「これなら僕でも書けそう」</p>
-<p>「変数も日本語なんだ」</p>
-<p>部員たちの反応が良い。</p>
-<p>「これを使って、どんなゲームを作る？」</p>
-<p>田中先輩が本題に入る。</p>
-<p>◇◇◇◇</p>
-<p>「恋愛シミュレーションはどうですか？」</p>
-<p>美久が提案する。</p>
-<p>「プログラミング部が舞台の」</p>
-<p>僕も補足する。</p>
-<p>「いいね！来場者が主人公になって、部員たちと交流する」</p>
-<p>「プログラミングを学びながら恋愛もできる」</p>
-<p>アイデアがどんどん出てくる。</p>
-<p>◇◇◇◇</p>
-<p>企画書を作り始める。</p>
-<div class="highlight"><pre><span></span><code>タイトル：「プログラミング部の恋」
-ジャンル：恋愛シミュレーション＋教育
-使用言語：MikuLang
-プレイ時間：約15分
-
-ストーリー：
-主人公は文化祭でプログラミング部を訪れる。
-そこで出会った部員たちと交流しながら、
-プログラミングの基礎を学んでいく。
-選択肢によって、誰と仲良くなるかが変わる。
-
-キャラクター：
-- 優しい先輩（プログラミング上級者）
-- 元気な同級生（プログラミング初心者）
-- クールな後輩（プログラミング中級者）
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「役割分担を決めよう」</p>
-<p>田中先輩が仕切る。</p>
-<ul>
-<li>シナリオ：美久、山田</li>
-<li>プログラミング：隆弘、佐藤</li>
-<li>イラスト：美久、鈴木</li>
-<li>音楽：フリー素材</li>
-<li>テスト：全員</li>
-</ul>
-<p>「美久、イラストとシナリオ両方やれる？」</p>
-<p>「頑張ります！」</p>
-<p>美久の意欲的な返事が嬉しい。</p>
-<p>◇◇◇◇</p>
-<p>作業を始める。まず、基本システムを作る。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// MikuLangで書くゲームエンジン</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">gameEngineCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">  // ゲームの状態管理</span>
-<span class="sb">  現在のシーンを&quot;タイトル&quot;に設定する</span>
-<span class="sb">  選択履歴を[]に設定する</span>
-<span class="sb">  キャラクター好感度を{</span>
-<span class="sb">    先輩: 0,</span>
-<span class="sb">    同級生: 0,</span>
-<span class="sb">    後輩: 0</span>
-<span class="sb">  }に設定する</span>
-
-<span class="sb">  // シーン遷移関数</span>
-<span class="sb">  シーンを切り替える関数を定義する（次のシーン）｛</span>
-<span class="sb">    現在のシーンを次のシーンに設定する</span>
-<span class="sb">    シーンを表示する（）</span>
-<span class="sb">  ｝</span>
-
-<span class="sb">  // 好感度を上げる関数</span>
-<span class="sb">  好感度を上げる関数を定義する（キャラ、ポイント）｛</span>
-<span class="sb">    キャラクター好感度[キャラ]をポイント増やす</span>
-<span class="sb">    キャラと「の好感度が」とポイントと「上がった！」を表示する</span>
-<span class="sb">  ｝</span>
-
-<span class="sb">  // 選択肢を表示する関数</span>
-<span class="sb">  選択肢を表示する関数を定義する（選択肢リスト）｛</span>
-<span class="sb">    番号を1に設定する</span>
-<span class="sb">    選択肢リストの各要素を選択肢として｛</span>
-<span class="sb">      番号と「: 」と選択肢.テキストを表示する</span>
-<span class="sb">      番号を1増やす</span>
-<span class="sb">    ｝</span>
-
-<span class="sb">    選択を入力してもらう</span>
-<span class="sb">    選ばれた選択肢を選択肢リスト[選択-1]に設定する</span>
-<span class="sb">    選ばれた選択肢.効果（）</span>
-<span class="sb">  ｝</span>
-<span class="sb">`</span><span class="p">;</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>休憩時間。美久と二人きりになった。</p>
-<p>「楽しそうだね」</p>
-<p>「うん。みんなでゲーム作るの、初めて」</p>
-<p>「MikuLangが役に立ってよかった」</p>
-<p>「隆弘先輩と作った言語だから」</p>
-<p>美久が嬉しそうに言う。</p>
-<p>◇◇◇◇</p>
-<p>「シナリオのアイデアある？」</p>
-<p>美久がノートを開く。</p>
-<p>「実体験を基にしたら？」</p>
-<p>「え？」</p>
-<p>「プログラミングを教わって、恋に落ちる話」</p>
-<p>僕の提案に、美久の顔が赤くなる。</p>
-<p>「それって、私たちの話？」</p>
-<p>「参考程度に」</p>
-<p>◇◇◇◇</p>
-<p>作業を再開する。シーンのデータ構造を設計。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// シーンデータの構造（MikuLang）</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">scenarioData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">  シーンデータを{</span>
-<span class="sb">    オープニング: {</span>
-<span class="sb">      背景: &quot;部室.jpg&quot;,</span>
-<span class="sb">      テキスト: &quot;文化祭で賑わう校内。あなたはプログラミング部の展示を見つけた。&quot;,</span>
-<span class="sb">      選択肢: [</span>
-<span class="sb">        {</span>
-<span class="sb">          テキスト: &quot;入ってみる&quot;,</span>
-<span class="sb">          効果: 関数（）{ シーンを切り替える（&quot;部室到着&quot;） }</span>
-<span class="sb">        },</span>
-<span class="sb">        {</span>
-<span class="sb">          テキスト: &quot;やめておく&quot;,</span>
-<span class="sb">          効果: 関数（）{ シーンを切り替える（&quot;バッドエンド&quot;） }</span>
-<span class="sb">        }</span>
-<span class="sb">      ]</span>
-<span class="sb">    },</span>
-
-<span class="sb">    部室到着: {</span>
-<span class="sb">      背景: &quot;部室内.jpg&quot;,</span>
-<span class="sb">      テキスト: &quot;部室に入ると、3人の部員が出迎えてくれた。&quot;,</span>
-<span class="sb">      選択肢: [</span>
-<span class="sb">        {</span>
-<span class="sb">          テキスト: &quot;優しそうな先輩に話しかける&quot;,</span>
-<span class="sb">          効果: 関数（）{ </span>
-<span class="sb">            好感度を上げる（&quot;先輩&quot;, 10）</span>
-<span class="sb">            シーンを切り替える（&quot;先輩ルート1&quot;）</span>
-<span class="sb">          }</span>
-<span class="sb">        },</span>
-<span class="sb">        {</span>
-<span class="sb">          テキスト: &quot;元気な同級生に話しかける&quot;,</span>
-<span class="sb">          効果: 関数（）{ </span>
-<span class="sb">            好感度を上げる（&quot;同級生&quot;, 10）</span>
-<span class="sb">            シーンを切り替える（&quot;同級生ルート1&quot;）</span>
-<span class="sb">          }</span>
-<span class="sb">        },</span>
-<span class="sb">        {</span>
-<span class="sb">          テキスト: &quot;クールな後輩に話しかける&quot;,</span>
-<span class="sb">          効果: 関数（）{ </span>
-<span class="sb">            好感度を上げる（&quot;後輩&quot;, 10）</span>
-<span class="sb">            シーンを切り替える（&quot;後輩ルート1&quot;）</span>
-<span class="sb">          }</span>
-<span class="sb">        }</span>
-<span class="sb">      ]</span>
-<span class="sb">    }</span>
-<span class="sb">  }に設定する</span>
-<span class="sb">`</span><span class="p">;</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。今日の進捗を確認する。</p>
-<p>「基本システムはできた」</p>
-<p>「シナリオの骨組みも」</p>
-<p>「イラストのラフも描いた」</p>
-<p>美久がスケッチを見せる。可愛いキャラクターたち。</p>
-<p>「文化祭まであと一ヶ月」</p>
-<p>田中先輩がカレンダーを確認する。</p>
-<p>「間に合うよね？」</p>
-<p>不安そうな声も出る。</p>
-<p>「大丈夫。みんなで協力すれば」</p>
-<p>◇◇◇◇</p>
-<p>部活が終わり、美久と二人で帰る。</p>
-<p>「初めての共同制作だね」</p>
-<p>「そうだね。でも、MikuLangは二人で作った」</p>
-<p>「あれは特別」</p>
-<p>美久が恥ずかしそうに言う。</p>
-<p>「今回のも特別になるよ」</p>
-<p>「そうかな」</p>
-<p>「みんなの思いが詰まったゲームだから」</p>
-<p>◇◇◇◇</p>
-<p>マンションに着いて、エレベーターで7階へ。</p>
-<p>「明日も頑張ろうね」</p>
-<p>「うん」</p>
-<p>部屋に入る前に、美久が振り返った。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「みんなでゲーム作るのも楽しいけど」</p>
-<p>「けど？」</p>
-<p>「二人で作るのが、一番楽しい」</p>
-<p>その言葉が嬉しくて、思わず美久を抱きしめた。</p>
-<p>「僕もだよ」</p>
-<p>文化祭のゲームが完成したら、また二人だけのプロジェクトを始めよう。</p>
-<p>そう心に決めた。</p>
+<p>「<code>lambda</code>を見つけたら、僕たちの<code>evaluate</code>関数は、特別な『関数オブジェクト』っていうものを作るんだ。これは、ただの数字や文字列とは違って、<code>type</code>が<code>'function'</code>で、引数と本体、そして、**その関数が作られた時の『世界（環境）』**を記憶している」
+「え、環境もですか？」
+「ああ。これが、後で出てくる『クロージャ』の肝になる部分だ。関数は、自分が生まれた時の世界を、まるで写真に撮るみたいに、まるごと記憶しているんだ」</p>
+<p>美久は「ふーむ」と腕を組み、少し難しい顔をしている。まだピンと来ていないようだが、その真剣な表情は、僕の言葉を一つも聞き漏らすまいとしている証拠だ。</p>
+<p>「じゃあ、この関数オブジェクトを、変数に代入してみよう。例えば、<code>add</code>っていう名前で」</p>
+<p><code>['define', 'add', ['lambda', ['x', 'y'], ['+', 'x', 'y']]]</code></p>
+<p>「これで、僕たちの言語は、<code>add</code>という名前で、二つの数を足し算する関数を『覚えた』ことになる。でも、これだけじゃまだ、関数は動かない。次に必要なのは、その関数を『呼び出す』仕組みだ」</p>
+<p>僕は、関数の定義と呼び出しが、プログラミング言語の根幹をなすことを説明した。そして、美久の顔を見ると、彼女の瞳には、すでに次のステップへの期待が満ち溢れているのが分かった。</p>
+<p>「先輩、なんだか、すごくワクワクします！」</p>
+<p>その言葉に、僕の胸にも、熱いものがこみ上げてきた。僕たちの言語は、ただの計算機から、いよいよ、本物の「言葉」へと進化しようとしている。そして、その進化の過程を、美久と二人で歩めることが、何よりも嬉しかった。</p>
 
 
 

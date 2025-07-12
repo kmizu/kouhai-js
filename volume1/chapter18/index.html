@@ -1170,364 +1170,40 @@
   
 
 
-<h1 id="18">第18話 パーサーの実装<a class="headerlink" href="#18" title="Permanent link">&para;</a></h1>
-<p>五月七日、火曜日。</p>
-<p>ゴールデンウィーク明けの学校。久しぶりの授業を終えて、放課後の空き教室で美久と開発を続ける。</p>
-<p>「今日はパーサーだね」</p>
-<p>美久が期待に満ちた顔で言う。</p>
-<p>「文字列からASTを作る。これで本物のプログラミング言語になる」</p>
-<p>「ついに最後のピース？」</p>
-<p>「そう。今まではASTを手動で作ってたけど、これからはコードを書けるようになる」</p>
-<p>◇◇◇◇</p>
-<p>「パーサーの基本から始めよう」</p>
-<p>ホワイトボードに流れを書く。</p>
-<div class="highlight"><pre><span></span><code>ソースコード（文字列）
-    ↓
-字句解析（トークン化）
-    ↓
-構文解析（パース）
-    ↓
-AST（抽象構文木）
-</code></pre></div>
-<p>「字句解析って？」</p>
-<p>「文字列を意味のある単位に分解すること」</p>
-<p>具体例を示す。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 入力: &quot;x = 10 + 20&quot;</span>
-<span class="c1">// 字句解析の結果（トークン）:</span>
-<span class="p">[</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IDENTIFIER&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ASSIGN&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NUMBER&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;10&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PLUS&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NUMBER&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;20&#39;</span><span class="w"> </span><span class="p">}</span>
-<span class="p">]</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「まず、トークナイザーを作ろう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// トークンの種類</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">TokenType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">NUMBER</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NUMBER&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">STRING</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;STRING&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">IDENTIFIER</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IDENTIFIER&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">PLUS</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PLUS&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">MINUS</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MINUS&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">STAR</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;STAR&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">SLASH</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SLASH&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">ASSIGN</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ASSIGN&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">LPAREN</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;LPAREN&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">RPAREN</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;RPAREN&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">LBRACE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;LBRACE&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">RBRACE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;RBRACE&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">SEMICOLON</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SEMICOLON&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">IF</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IF&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">ELSE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ELSE&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">WHILE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;WHILE&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">FUNCTION</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;FUNCTION&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">RETURN</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;RETURN&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">EOF</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;EOF&#39;</span>
-<span class="p">};</span>
-
-<span class="c1">// トークナイザークラス</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">Tokenizer</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">input</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// 次の文字を見る（消費しない）</span>
-<span class="w">  </span><span class="nx">peek</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// 次の文字を消費</span>
-<span class="w">  </span><span class="nx">advance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// 空白をスキップ</span>
-<span class="w">  </span><span class="nx">skipWhitespace</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="sr">/\s/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「文字を一つずつ見ていくんだ」</p>
-<p>「そう。パターンを認識してトークンに変換する」</p>
-<p>◇◇◇◇</p>
-<p>美久が質問してきた。</p>
-<p>「日本語も扱えるの？」</p>
-<p>「もちろん。識別子に日本語を使えるようにしよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 数値トークンの読み取り</span>
-<span class="nx">readNumber</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">NUMBER</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="c1">// 識別子の読み取り（日本語対応）</span>
-<span class="nx">readIdentifier</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="c1">// 日本語、英数字、アンダースコアを許可</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="sr">/[\p{L}\p{N}_]/u</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// キーワードチェック</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;if&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IF</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;もし&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IF</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;else&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">ELSE</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;でなければ&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">ELSE</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;while&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">WHILE</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;の間&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">WHILE</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;function&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">FUNCTION</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;関数&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">FUNCTION</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;return&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">RETURN</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;返す&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">RETURN</span>
-<span class="w">  </span><span class="p">};</span>
-
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">keywords</span><span class="p">[</span><span class="nx">value</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IDENTIFIER</span><span class="p">;</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">};</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「日本語でプログラミングできる！」</p>
-<p>美久の目が輝く。</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。美久がお茶を飲みながら言った。</p>
-<p>「パーサーって、人の話を理解するのに似てるね」</p>
-<p>「どういうこと？」</p>
-<p>「単語を認識して、文法を理解して、意味を把握する」</p>
-<p>鋭い洞察だ。</p>
-<p>「確かに。自然言語処理とプログラミング言語処理は似てる」</p>
-<p>◇◇◇◇</p>
-<p>「次は構文解析器を作ろう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// パーサークラス</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">Parser</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">tokens</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tokens</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// 現在のトークンを見る</span>
-<span class="w">  </span><span class="nx">peek</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">tokens</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">current</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">EOF</span><span class="w"> </span><span class="p">};</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// トークンを消費</span>
-<span class="w">  </span><span class="nx">consume</span><span class="p">(</span><span class="nx">expectedType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">();</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">token</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">expectedType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`期待: </span><span class="si">${</span><span class="nx">expectedType</span><span class="si">}</span><span class="sb">, 実際: </span><span class="si">${</span><span class="nx">token</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">current</span><span class="o">++</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">token</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// プログラムのパース</span>
-<span class="w">  </span><span class="nx">parseProgram</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">statements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">EOF</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">statements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parseStatement</span><span class="p">());</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">statements</span>
-<span class="w">    </span><span class="p">};</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「式のパースは再帰下降法を使う」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 式のパース（優先順位を考慮）</span>
-<span class="nx">parseExpression</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseAssignment</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="nx">parseAssignment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseAdditive</span><span class="p">();</span>
-
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">ASSIGN</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">ASSIGN</span><span class="p">);</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseAssignment</span><span class="p">();</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">AssignmentExpression</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">left</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">right</span>
-<span class="w">    </span><span class="p">};</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">parseAdditive</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseMultiplicative</span><span class="p">();</span>
-
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">PLUS</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>
-<span class="w">         </span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">MINUS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">op</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseMultiplicative</span><span class="p">();</span>
-<span class="w">    </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">BinaryExpression</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="nx">op</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">left</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">right</span>
-<span class="w">    </span><span class="p">};</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「なんで関数が関数を呼んでるの？」</p>
-<p>「演算子の優先順位を表現するため。掛け算は足し算より先に計算される」</p>
-<p>◇◇◇◇</p>
-<p>美久がプログラムを書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久の最初のMikuLangプログラム（文字列）</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuFirstCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">  好感度 = 0</span>
-
-<span class="sb">  関数 デート() {</span>
-<span class="sb">    好感度 = 好感度 + 10</span>
-<span class="sb">    返す 好感度</span>
-<span class="sb">  }</span>
-
-<span class="sb">  関数 告白() {</span>
-<span class="sb">    もし (好感度 &gt;= 80) {</span>
-<span class="sb">      返す &quot;告白成功！&quot;</span>
-<span class="sb">    } でなければ {</span>
-<span class="sb">      返す &quot;もう少し仲良くなってから...&quot;</span>
-<span class="sb">    }</span>
-<span class="sb">  }</span>
-
-<span class="sb">  // デートを繰り返す</span>
-<span class="sb">  の間 (好感度 &lt; 80) {</span>
-<span class="sb">    デート()</span>
-<span class="sb">  }</span>
-
-<span class="sb">  結果 = 告白()</span>
-<span class="sb">  表示(結果)</span>
-<span class="sb">`</span><span class="p">;</span>
-
-<span class="c1">// パースして実行</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">tokenizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Tokenizer</span><span class="p">(</span><span class="nx">mikuFirstCode</span><span class="p">);</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tokenizer</span><span class="p">.</span><span class="nx">tokenize</span><span class="p">();</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">parser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parser</span><span class="p">(</span><span class="nx">tokens</span><span class="p">);</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parser</span><span class="p">.</span><span class="nx">parseProgram</span><span class="p">();</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">evaluator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MikuLangEvaluator</span><span class="p">();</span>
-<span class="nx">evaluator</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">ast</span><span class="p">);</span>
-</code></pre></div>
-<p>「日本語でプログラムが書けた！」</p>
-<p>美久が感動している。</p>
-<p>◇◇◇◇</p>
-<p>「文字列リテラルのパースも追加しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 文字列トークンの読み取り</span>
-<span class="nx">readString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">quote</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span><span class="w"> </span><span class="c1">// 開始のクォート</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">escaped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="kr">char</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">();</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">escaped</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="c1">// エスケープシーケンス</span>
-<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">escapeMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;n&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;t&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\t&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;\\&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;&quot;&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&#39;&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&#39;&quot;</span>
-<span class="w">      </span><span class="p">};</span>
-<span class="w">      </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">escapeMap</span><span class="p">[</span><span class="kr">char</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="kr">char</span><span class="p">;</span>
-<span class="w">      </span><span class="nx">escaped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kr">char</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;\\&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">escaped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kr">char</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">quote</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span><span class="w"> </span><span class="c1">// 終了のクォート</span>
-<span class="w">      </span><span class="k">break</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「関数定義のパースも実装しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 関数定義のパース</span>
-<span class="nx">parseFunctionDeclaration</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">FUNCTION</span><span class="p">);</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IDENTIFIER</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">LPAREN</span><span class="p">);</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">RPAREN</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">params</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">IDENTIFIER</span><span class="p">).</span><span class="nx">value</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">COMMA</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">COMMA</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="nx">TokenType</span><span class="p">.</span><span class="nx">RPAREN</span><span class="p">);</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseBlockStatement</span><span class="p">();</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">FunctionDeclaration</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Identifier</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="nx">params</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">p</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Identifier</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">p</span><span class="w"> </span><span class="p">})),</span>
-<span class="w">    </span><span class="nx">body</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。パーサーの実装も順調に進んだ。</p>
-<p>「これで、MikuLangが本物のプログラミング言語になった」</p>
-<p>美久が感慨深そうに言う。</p>
-<p>「文字列でプログラムを書けるようになった」</p>
-<p>「しかも日本語で」</p>
-<p>美久の達成感に満ちた表情が嬉しい。</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>片付けながら、美久が言った。</p>
-<p>「私たち、本当に言語を作っちゃったんだね」</p>
-<p>「そうだね。ゼロから作り上げた」</p>
-<p>「すごい。信じられない」</p>
-<p>美久の目が潤んでいる。</p>
-<p>「美久がいたからできた」</p>
-<p>「隆弘先輩こそ」</p>
-<p>◇◇◇◇</p>
-<p>教室を出る時、美久が振り返った。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「明日、何をする？」</p>
-<p>「日本語の構文をもっと自然にしたい。それと——」</p>
-<p>僕は少し躊躇してから続けた。</p>
-<p>「MikuLangの完成を祝おう」</p>
-<p>美久の顔が明るくなる。</p>
-<p>「うん！楽しみ！」</p>
-<p>二人で廊下を歩く。</p>
-<p>夕日が窓から差し込んで、美久の髪を金色に染める。</p>
-<p>（明日こそ）</p>
-<p>MikuLangの完成と同時に、美久に伝えよう。</p>
-<p>ずっと心に秘めていた、本当の気持ちを。</p>
+<h1 id="18">第18話 言葉にならない想い（コメント）<a class="headerlink" href="#18" title="Permanent link">&para;</a></h1>
+<p>あの、切ない沈黙から数日。僕たちの開発作業には、どこか、以前の熱気が少しだけ失われていた。まるで、終わりを意識してしまった<code>while</code>ループのように、僕たちの時間もまた、いつか終わりが来るという事実が、重くのしかかっている。</p>
+<p>そんな空気を、僕も感じていないわけではなかった。何か、話題を変えなければ。</p>
+<p>「なあ、美久」</p>
+<p>僕は、努めて明るい声で話しかけた。</p>
+<p>「プログラミングにはな、コンピュータは完全に無視するのに、人間にとっては、すごく、すごく大事なものがあるんだ。何だと思う？」
+「え……？　コンピュータは無視するのに、人間には大事……？」</p>
+<p>僕の唐突な問いかけに、美久は不思議そうに首を傾げた。</p>
+<p>「答えは、『コメント』だ」
+「コメント？」
+「ああ。プログラムのコードの中に書き残しておく、ただのメモ書きのことだ。コンピュータは、コメントを見つけると、そこには何も書かれていないかのように、綺麗に無視する。でも、人間にとっては、それが宝の山になることがあるんだ」</p>
+<p>僕は、なぜコメントが重要なのかを、三つの理由を挙げて説明した。
+　一つは、未来の自分へのメッセージ。数ヶ月も経てば、どうしてこんなコードを書いたかなんて、綺麗さっぱり忘れてしまうからだ。
+　二つ目は、チームで開発する時の、仲間へのメッセージ。他の人が、コードの意図をすぐに理解できるように。
+　そして三つ目は、自分の頭を整理するため。複雑な処理を書く前に、まず日本語で手順を書き出してみることで、思考がまとまりやすくなる。</p>
+<p>「じゃあ、私たちの言語にも、そのコメント機能をつけましょうよ！」</p>
+<p>美久が、少しだけ、いつもの元気を取り戻したように言った。でも、僕は、少しだけ寂しげに、首を横に振った。</p>
+<p>「……いや、それは、まだやめておこう」
+「どうしてですか？」
+「コメント機能を作るには、『パーサー』っていう、もっと本格的な仕組みが必要になるんだ。文字列を、一文字一文字、細かく解析していく、すごく複雑な処理だ。今の僕たちの言語は、まだ、そこまで難しいことは考えられないんだ」</p>
+<p>僕の言葉に、美久は「そっか……」と、少しだけ残念そうに呟いた。</p>
+<p>（私のこの気持ちも、コメントみたいに残せたらいいのに……）</p>
+<p>彼女は、心の中でそう思っていた。『この<code>if</code>文は、先輩に褒めてほしくて、頑張って考えました』とか。『この<code>while</code>ループは、先輩との時間が、少しでも長く続いてほしくて、書きました』とか。
+　そんな、プログラムの動作には全く関係ない、言葉にならない想い。</p>
+<p>「でもな」と、僕が続けた。「僕たちが今書いている、このJavaScriptのファイルに、普通にコメントを残すことはできる」</p>
+<p>僕は、おもむろに、僕たちの心臓部である<code>evaluate</code>関数の、一番上の行にカーソルを合わせた。そして、そこに、静かに一行の言葉を刻んだ。</p>
+<p><code>// 美久と一緒に作った、最初の評価器</code></p>
+<p>それは、プログラムの実行には、何の影響も与えない、ただの文字列。コンピュータにとっては、存在しないのと同じ一行。</p>
+<p>でも。</p>
+<p>その、何の変哲もないコメントを見た瞬間、美久の胸が、きゅっと、どうしようもなく熱くなった。
+　先輩も、同じ気持ちでいてくれたんだ。この時間を、大切に思ってくれていたんだ。
+　その一行は、どんな饒舌なコードよりも雄弁に、彼の、言葉にならない「想い」を、彼女に伝えてくれていた。</p>
+<p>「……はい」</p>
+<p>涙がこぼれてしまいそうで、彼女は、必死に天井を見上げながら、小さな、小さな声で返事をするのが、精一杯だった。</p>
 
 
 

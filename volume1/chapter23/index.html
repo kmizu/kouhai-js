@@ -22,7 +22,7 @@
     
     
       
-        <title>第23話 非同期処理と待つ心 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+        <title>第23話 記憶する関数、クロージャ - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第23話 非同期処理と待つ心
+              第23話 記憶する関数、クロージャ
             
           </span>
         </div>
@@ -1139,458 +1139,43 @@
   
 
 
-<h1 id="23">第23話 非同期処理と待つ心<a class="headerlink" href="#23" title="Permanent link">&para;</a></h1>
-<h2 id="1117">11月1日（水）午前7時<a class="headerlink" href="#1117" title="Permanent link">&para;</a></h2>
-<p>文化祭まで、あと2日。</p>
-<p>緊張と期待で、昨夜はあまり眠れなかった。</p>
-<p>でも、隆弘くんと一緒なら大丈夫。</p>
-<p>そう思いながら、朝の準備をする。</p>
-<p>スマホが震えた。</p>
-<p>『おはよう。今日も頑張ろう』</p>
-<p>隆弘くんからのメッセージ。</p>
-<p>『おはよう。うん、頑張る！』</p>
-<p>今日も素敵な一日になりそう。</p>
-<p>◇◇◇◇</p>
-<h2 id="4">午後4時　プログラミング部室<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<p>「今日は、非同期処理について教えるよ」</p>
-<p>隆弘くんが新しい概念を説明し始める。</p>
-<p>「非同期処理？」</p>
-<p>「時間のかかる処理を、待たずに実行する仕組み」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 同期処理（順番に実行される）</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;1番目&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;2番目&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;3番目&quot;</span><span class="p">);</span>
-
-<span class="c1">// 非同期処理（順番が変わる）</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;1番目&quot;</span><span class="p">);</span>
-<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;2番目（1秒後）&quot;</span><span class="p">);</span>
-<span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;3番目&quot;</span><span class="p">);</span>
-
-<span class="c1">// 実行結果：</span>
-<span class="c1">// 1番目</span>
-<span class="c1">// 3番目</span>
-<span class="c1">// 2番目（1秒後）</span>
+<h1 id="23">第23話 記憶する関数、クロージャ<a class="headerlink" href="#23" title="Permanent link">&para;</a></h1>
+<p>「関数が、自分が生まれた時の『世界』を記憶しているって言っただろ？　それが、クロージャの正体だ」</p>
+<p>僕は、美久の目の前に、少し複雑なコードを打ち込んだ。</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;define&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;make-adder&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;lambda&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;lambda&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">]]</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">]</span>
 </code></pre></div>
-<p>「えっ、順番が変わっちゃった！」</p>
-<p>「そう。JavaScriptは待ってくれないんだ」</p>
-<p>◇◇◇◇</p>
-<h2 id="430-promise">午後4時30分　Promiseの基本<a class="headerlink" href="#430-promise" title="Permanent link">&para;</a></h2>
-<p>「そこで使うのがPromise」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Promiseの基本</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">myPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 非同期処理</span>
-<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<p>「これは、『<code>make-adder</code>』という名前の関数を定義している。この関数は、<code>n</code>という数字を受け取ると、**新しい関数**を返すんだ」
+「え、関数が関数を返すんですか！？」</p>
+<p>美久が、目を丸くして驚いている。無理もない。初めて聞けば、誰もがそう反応するだろう。</p>
+<p>「ああ。そして、その返された新しい関数は、<code>x</code>という数字を受け取って、<code>x</code>に、最初に<code>make-adder</code>に渡した<code>n</code>を足し算する。つまり、『特定の数を足すだけの関数』を、自由に作れるようになるんだ」</p>
+<p>僕は、さらにコードを書き足した。</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;define&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;add5&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;make-adder&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]]</span>
+<span class="p">[</span><span class="s1">&#39;define&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;add10&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;make-adder&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">]]</span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;成功しました！&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;失敗しました...&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
-<span class="p">});</span>
-
-<span class="c1">// Promiseの使い方</span>
-<span class="nx">myPromise</span>
-<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;成功しました！&quot;</span>
-<span class="w">    </span><span class="p">})</span>
-<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="w">    </span><span class="p">});</span>
+<span class="p">[</span><span class="s1">&#39;add5&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span><span class="w">  </span><span class="c1">// -&gt; 8</span>
+<span class="p">[</span><span class="s1">&#39;add10&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span><span class="w"> </span><span class="c1">// -&gt; 13</span>
 </code></pre></div>
-<p>「約束みたいな名前」</p>
-<p>「そう。『処理が終わったら教えるよ』っていう約束」</p>
-<p>隆弘くんの説明が分かりやすい。</p>
-<p>◇◇◇◇</p>
-<h2 id="5">午後5時　ゲームへの実装<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<p>「ゲームのデータ読み込みに使ってみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 画像読み込みクラス</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">ImageLoader</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">loadImage</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Image</span><span class="p">();</span>
-
-<span class="w">            </span><span class="nx">img</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`画像読み込み成功: </span><span class="si">${</span><span class="nx">src</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">                </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">img</span><span class="p">);</span>
-<span class="w">            </span><span class="p">};</span>
-
-<span class="w">            </span><span class="nx">img</span><span class="p">.</span><span class="nx">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`画像読み込み失敗: </span><span class="si">${</span><span class="nx">src</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">                </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Failed to load image: </span><span class="si">${</span><span class="nx">src</span><span class="si">}</span><span class="sb">`</span><span class="p">));</span>
-<span class="w">            </span><span class="p">};</span>
-
-<span class="w">            </span><span class="nx">img</span><span class="p">.</span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">src</span><span class="p">;</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 複数の画像を読み込む</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">loadImages</span><span class="p">(</span><span class="nx">imageList</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">promises</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">imageList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">src</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">loadImage</span><span class="p">(</span><span class="nx">src</span><span class="p">));</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">promises</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// セーブデータ管理</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">SaveDataManager</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// セーブ</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">save</span><span class="p">(</span><span class="nx">slotNumber</span><span class="p">,</span><span class="w"> </span><span class="nx">gameData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">saveData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nx">slot</span><span class="o">:</span><span class="w"> </span><span class="nx">slotNumber</span><span class="p">,</span>
-<span class="w">                    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="nx">gameData</span><span class="p">,</span>
-<span class="w">                    </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">()</span>
-<span class="w">                </span><span class="p">};</span>
-
-<span class="w">                </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="sb">`save_</span><span class="si">${</span><span class="nx">slotNumber</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">saveData</span><span class="p">));</span>
-<span class="w">                </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;セーブ完了&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// セーブアニメーションの時間</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// ロード</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">load</span><span class="p">(</span><span class="nx">slotNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">savedString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="sb">`save_</span><span class="si">${</span><span class="nx">slotNumber</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">savedString</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">saveData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">savedString</span><span class="p">);</span>
-<span class="w">                    </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">saveData</span><span class="p">);</span>
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;セーブデータが見つかりません&quot;</span><span class="p">));</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="mf">300</span><span class="p">);</span><span class="w"> </span><span class="c1">// ロードアニメーションの時間</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「画像もセーブも、全部Promise！」</p>
-<p>「そう。これで画面が固まらない」</p>
-<p>◇◇◇◇</p>
-<h2 id="545-asyncawait">午後5時45分　async/await<a class="headerlink" href="#545-asyncawait" title="Permanent link">&para;</a></h2>
-<p>「もっと簡単な書き方もあるよ」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// async/awaitを使った書き方</span>
-<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">startGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// ローディング画面を表示</span>
-<span class="w">        </span><span class="nx">showLoadingScreen</span><span class="p">(</span><span class="s2">&quot;ゲームを起動中...&quot;</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// 画像を読み込む</span>
-<span class="w">        </span><span class="nx">updateLoadingText</span><span class="p">(</span><span class="s2">&quot;画像を読み込んでいます...&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">images</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ImageLoader</span><span class="p">.</span><span class="nx">loadImages</span><span class="p">([</span>
-<span class="w">            </span><span class="s1">&#39;images/bg_classroom.jpg&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;images/bg_rooftop.jpg&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;images/character_miku.png&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;images/character_miku_blush.png&#39;</span>
-<span class="w">        </span><span class="p">]);</span>
-
-<span class="w">        </span><span class="c1">// BGMを読み込む</span>
-<span class="w">        </span><span class="nx">updateLoadingText</span><span class="p">(</span><span class="s2">&quot;音楽を読み込んでいます...&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">bgm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">loadBGM</span><span class="p">(</span><span class="s1">&#39;bgm/main_theme.mp3&#39;</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// セーブデータをチェック</span>
-<span class="w">        </span><span class="nx">updateLoadingText</span><span class="p">(</span><span class="s2">&quot;セーブデータを確認中...&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">hasSaveData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">checkSaveData</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// ローディング完了</span>
-<span class="w">        </span><span class="nx">hideLoadingScreen</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// タイトル画面を表示</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">hasSaveData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">showTitleScreen</span><span class="p">({</span><span class="w"> </span><span class="nx">continueEnabled</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">showTitleScreen</span><span class="p">({</span><span class="w"> </span><span class="nx">continueEnabled</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">});</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;ゲームの起動に失敗しました:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
-<span class="w">        </span><span class="nx">showErrorScreen</span><span class="p">(</span><span class="s2">&quot;ゲームの起動に失敗しました&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// BGM読み込み</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">loadBGM</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">audio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Audio</span><span class="p">(</span><span class="nx">src</span><span class="p">);</span>
-
-<span class="w">        </span><span class="nx">audio</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;canplaythrough&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">audio</span><span class="p">);</span>
-<span class="w">        </span><span class="p">});</span>
-
-<span class="w">        </span><span class="nx">audio</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`BGM読み込み失敗: </span><span class="si">${</span><span class="nx">src</span><span class="si">}</span><span class="sb">`</span><span class="p">));</span>
-<span class="w">        </span><span class="p">});</span>
-
-<span class="w">        </span><span class="nx">audio</span><span class="p">.</span><span class="nx">load</span><span class="p">();</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">}</span>
-
-<span class="c1">// セーブデータの存在確認</span>
-<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">checkSaveData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">SaveDataManager</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// セーブデータが見つかった</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// このスロットは空</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// セーブデータなし</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「asyncとawait？」</p>
-<p>「Promiseを同期処理みたいに書ける魔法」</p>
-<p>「すごい！順番通りに見える」</p>
-<p>◇◇◇◇</p>
-<h2 id="630">午後6時30分　実践的な使用例<a class="headerlink" href="#630" title="Permanent link">&para;</a></h2>
-<p>「実際のゲームシーンで使ってみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// シーン遷移システム</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">SceneTransition</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">fadeOut</span><span class="p">(</span><span class="nx">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">overlay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
-<span class="w">        </span><span class="nx">overlay</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;fade-overlay&#39;</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">overlay</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">;</span>
-<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">overlay</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// フェードアウトアニメーション</span>
-<span class="w">        </span><span class="nx">overlay</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`opacity </span><span class="si">${</span><span class="nx">duration</span><span class="si">}</span><span class="sb">ms`</span><span class="p">;</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">overlay</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
-<span class="w">                </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">overlay</span><span class="p">);</span>
-<span class="w">                </span><span class="p">},</span><span class="w"> </span><span class="nx">duration</span><span class="p">);</span>
-<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">fadeIn</span><span class="p">(</span><span class="nx">overlay</span><span class="p">,</span><span class="w"> </span><span class="nx">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">overlay</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`opacity </span><span class="si">${</span><span class="nx">duration</span><span class="si">}</span><span class="sb">ms`</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">overlay</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">;</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">overlay</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-<span class="w">                </span><span class="nx">resolve</span><span class="p">();</span>
-<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="nx">duration</span><span class="p">);</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">changeTo</span><span class="p">(</span><span class="nx">sceneName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// フェードアウト</span>
-<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">overlay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">fadeOut</span><span class="p">();</span>
-
-<span class="w">            </span><span class="c1">// シーンを読み込む</span>
-<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">sceneData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">loadScene</span><span class="p">(</span><span class="nx">sceneName</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">// 背景を変更</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">changeBackground</span><span class="p">(</span><span class="nx">sceneData</span><span class="p">.</span><span class="nx">background</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">// キャラクターを配置</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">sceneData</span><span class="p">.</span><span class="nx">characters</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">placeCharacters</span><span class="p">(</span><span class="nx">sceneData</span><span class="p">.</span><span class="nx">characters</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-
-<span class="w">            </span><span class="c1">// BGMを変更</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">sceneData</span><span class="p">.</span><span class="nx">bgm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">changeBGM</span><span class="p">(</span><span class="nx">sceneData</span><span class="p">.</span><span class="nx">bgm</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-
-<span class="w">            </span><span class="c1">// フェードイン</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">fadeIn</span><span class="p">(</span><span class="nx">overlay</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">// シーンの開始</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">sceneData</span><span class="p">;</span>
-
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;シーン遷移エラー:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
-<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">loadScene</span><span class="p">(</span><span class="nx">sceneName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 実際はサーバーから読み込んだりする</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">scenes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nx">confession</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;告白シーン&quot;</span><span class="p">,</span>
-<span class="w">                        </span><span class="nx">background</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;images/bg_rooftop_sunset.jpg&quot;</span><span class="p">,</span>
-<span class="w">                        </span><span class="nx">characters</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                            </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;miku&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;miku_blush.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">position</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;center&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">                        </span><span class="p">],</span>
-<span class="w">                        </span><span class="nx">bgm</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;bgm/love_theme.mp3&quot;</span>
-<span class="w">                    </span><span class="p">}</span>
-<span class="w">                </span><span class="p">};</span>
-<span class="w">                </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">scenes</span><span class="p">[</span><span class="nx">sceneName</span><span class="p">]);</span>
-<span class="w">            </span><span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// 告白シーンの実行</span>
-<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">playConfessionScene</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// シーン遷移</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">SceneTransition</span><span class="p">.</span><span class="nx">changeTo</span><span class="p">(</span><span class="s1">&#39;confession&#39;</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// セリフを表示</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">showDialogue</span><span class="p">(</span><span class="s2">&quot;美久&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;あの……ずっと言いたかったことがあるの&quot;</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// 少し間を置く</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">wait</span><span class="p">(</span><span class="mf">1000</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// 続きのセリフ</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">showDialogue</span><span class="p">(</span><span class="s2">&quot;美久&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;隆弘くん……好き&quot;</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// ハートエフェクト</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">showHeartEffect</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// 選択肢</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">showChoices</span><span class="p">([</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;僕も好きだよ&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;accept&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ごめん…&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;reject&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">        </span><span class="p">]);</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">choice</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;accept&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">showDialogue</span><span class="p">(</span><span class="s2">&quot;隆弘&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;僕もずっと美久のことが好きだった&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">unlockAchievement</span><span class="p">(</span><span class="s2">&quot;true_love&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;シーンエラー:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// ユーティリティ関数</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">wait</span><span class="p">(</span><span class="nx">ms</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span>
-<span class="p">}</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">showDialogue</span><span class="p">(</span><span class="nx">speaker</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">gameScreen</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">(</span><span class="nx">speaker</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// クリック待ち</span>
-<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">clickHandler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">clickHandler</span><span class="p">);</span>
-<span class="w">            </span><span class="nx">resolve</span><span class="p">();</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「全部がPromiseで繋がってる！」</p>
-<p>「そう。これで複雑な演出も簡単に書ける」</p>
-<p>◇◇◇◇</p>
-<h2 id="715">午後7時15分　エラーハンドリング<a class="headerlink" href="#715" title="Permanent link">&para;</a></h2>
-<p>「エラーの処理も大事」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// エラーハンドリングの例</span>
-<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">robustGameStart</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">maxRetries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">retryCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">retryCount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">maxRetries</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">startGame</span><span class="p">();</span>
-<span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="c1">// 成功したらループを抜ける</span>
-
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">retryCount</span><span class="o">++</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`起動失敗 (</span><span class="si">${</span><span class="nx">retryCount</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">maxRetries</span><span class="si">}</span><span class="sb">):`</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
-
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">retryCount</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">maxRetries</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="c1">// リトライ上限に達した</span>
-<span class="w">                </span><span class="nx">showFatalError</span><span class="p">(</span><span class="s2">&quot;ゲームの起動に失敗しました。ページを更新してください。&quot;</span><span class="p">);</span>
-<span class="w">                </span><span class="k">return</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-
-<span class="w">            </span><span class="c1">// リトライ前に少し待つ</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">wait</span><span class="p">(</span><span class="mf">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">retryCount</span><span class="p">);</span>
-
-<span class="w">            </span><span class="nx">showRetryMessage</span><span class="p">(</span><span class="sb">`再試行中... (</span><span class="si">${</span><span class="nx">retryCount</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">maxRetries</span><span class="si">}</span><span class="sb">)`</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Promise.allの活用</span>
-<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">preloadAllAssets</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">images</span><span class="p">,</span><span class="w"> </span><span class="nx">sounds</span><span class="p">,</span><span class="w"> </span><span class="nx">scripts</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
-<span class="w">            </span><span class="nx">loadAllImages</span><span class="p">(),</span>
-<span class="w">            </span><span class="nx">loadAllSounds</span><span class="p">(),</span>
-<span class="w">            </span><span class="nx">loadAllScripts</span><span class="p">()</span>
-<span class="w">        </span><span class="p">]);</span>
-
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;全リソース読み込み完了&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">images</span><span class="p">,</span><span class="w"> </span><span class="nx">sounds</span><span class="p">,</span><span class="w"> </span><span class="nx">scripts</span><span class="w"> </span><span class="p">};</span>
-
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// どれか1つでも失敗したらここに来る</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;リソース読み込みエラー:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// 部分的な読み込みを試みる</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">loadEssentialAssetsOnly</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「失敗しても諦めない！」</p>
-<p>「そう。ユーザーのために最善を尽くす」</p>
-<p>◇◇◇◇</p>
-<h2 id="745">午後7時45分　約束の意味<a class="headerlink" href="#745" title="Permanent link">&para;</a></h2>
-<p>「Promise、理解できた？」</p>
-<p>「うん。約束を守るプログラム」</p>
-<p>部室には、また二人きり。</p>
-<p>外はもう暗い。</p>
-<p>「ねえ、隆弘くん」</p>
-<p>「なに？」</p>
-<p>「私たちも、Promise作ろう」</p>
-<p>「え？」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 私たちのPromise</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ourPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">promise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;隆弘&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ずっと一緒にゲームを作り続ける&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">date</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(),</span>
-<span class="w">        </span><span class="nx">forever</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">};</span>
-
-<span class="w">    </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">promise</span><span class="p">);</span>
-<span class="p">});</span>
-
-<span class="nx">ourPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">promise</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;約束:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">promise</span><span class="p">.</span><span class="nx">content</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;期限:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">promise</span><span class="p">.</span><span class="nx">forever</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;永遠&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">promise</span><span class="p">.</span><span class="nx">date</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>隆弘くんが優しく微笑む。</p>
-<p>「いいね。僕からも」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">myPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">resolve</span><span class="p">({</span>
-<span class="w">        </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;隆弘&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久の夢を全力でサポートする&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">feelings</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;愛してる&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="k">async</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="c1">// 同期的に、ずっと</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>涙が出そうになる。</p>
-<p>「ありがとう」</p>
-<p>「こちらこそ」</p>
-<p>手を繋いで、誓い合う。</p>
-<p>プログラムの約束も、私たちの約束も、きっと守られる。</p>
-<p>そう信じて、明日を迎える。</p>
-<p>文化祭まで、あと2日。</p>
-<p>でも、私たちの未来は、もっとずっと先まで続いていく。</p>
-<p>Promiseのように、確実に。</p>
+<p>「<code>make-adder</code>に<code>5</code>を渡して作られた関数は、いつでも<code>5</code>を足してくれる。<code>10</code>を渡して作られた関数は、いつでも<code>10</code>を足してくれる。この<code>add5</code>や<code>add10</code>が、まさに『クロージャ』なんだ」</p>
+<p>美久は、画面のコードと僕の顔を交互に見ながら、真剣な表情で考え込んでいる。</p>
+<p>「つまり……<code>add5</code>っていう関数は、自分が作られた時に『<code>n</code>は<code>5</code>だった』っていうのを、ずっと覚えてるってことですか？」
+「その通りだ！　すごいな、美久！」</p>
+<p>僕は、思わず声を上げた。彼女は、この複雑な概念の核心を、見事に捉えたのだ。</p>
+<p>「<code>add5</code>が呼び出された時、その関数は、自分が生まれた時の『世界』を親とする新しい世界を作る。その『生まれた時の世界』には、<code>n</code>が<code>5</code>だという情報が記憶されているから、<code>add5</code>は、いつでも<code>5</code>を足すことができるんだ」</p>
+<p>僕は、この仕組みが、プログラミングにおける「状態の保持」や「プライベートなデータ」を扱う上で、いかに強力なツールであるかを説明した。</p>
+<p>「相沢のヤツが言ってた『クロージャ』は、まさにこれだ。関数が、自分が生まれた時の環境を『閉じて（close）』記憶しているから、クロージャって呼ばれるんだ」</p>
+<p>美久は、しばらく黙って画面を見つめていたが、やがて、ゆっくりと顔を上げた。その瞳には、深い理解と、そして、ある種の感動が宿っていた。</p>
+<p>「先輩……なんだか、すごく、ロマンチックですね」
+「ロマンチック？」</p>
+<p>僕が聞き返すと、彼女は少し照れたように、でも、はっきりと頷いた。</p>
+<p>「だって、関数が、自分が生まれた時のことを、ずっと覚えてるなんて……。まるで、大切な思い出を、ずっと心の中にしまっておくみたいで」</p>
+<p>その言葉に、僕ははっとした。僕にとっては、ただの技術的な概念だった「クロージャ」が、彼女の感性を通して、全く別の、温かい意味を帯びて見えたのだ。</p>
+<p>「そうか……。ロマンチック、か」</p>
+<p>僕たちの言語は、ただの計算機から、記憶を持ち、感情すら宿すかのような、不思議な存在へと進化していた。そして、その進化の過程で、僕たちの間にも、言葉では言い表せない、確かな「記憶」が、積み重なっていく。</p>
+<p>僕たちの「クロージャ」は、これからも、たくさんの思い出を、心の中に「閉じて」いくのだろう。そんな予感が、僕の胸を温かく満たした。</p>
 
 
 

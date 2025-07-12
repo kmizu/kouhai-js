@@ -1170,315 +1170,35 @@
   
 
 
-<h1 id="19">第19話 日本語構文の設計<a class="headerlink" href="#19" title="Permanent link">&para;</a></h1>
-<p>五月八日、水曜日。</p>
-<p>放課後の空き教室。美久との開発も、いよいよ最終段階に入った。</p>
-<p>「今日は日本語構文をもっと自然にしよう」</p>
-<p>美久が興味深そうに聞く。</p>
-<p>「どういうこと？」</p>
-<p>「MikuLangを、より日本語らしく書けるようにする」</p>
-<p>ホワイトボードに例を書く。</p>
-<div class="highlight"><pre><span></span><code>// 現在の構文
-もし (好感度 &gt;= 80) {
-  返す &quot;告白成功&quot;
-}
-
-// より自然な日本語構文
-もし 好感度が80以上なら
-  「告白成功」を返す
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「助詞を使った構文を設計しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 日本語の助詞をトークンとして追加</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">JapaneseTokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">GA</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;が&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// 主語</span>
-<span class="w">  </span><span class="nx">WO</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;を&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// 目的語</span>
-<span class="w">  </span><span class="nx">NI</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;に&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// 対象</span>
-<span class="w">  </span><span class="nx">DE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;で&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// 手段・場所</span>
-<span class="w">  </span><span class="nx">TO</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;と&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// 並列・引用</span>
-<span class="w">  </span><span class="nx">KARA</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;から&#39;</span><span class="p">,</span><span class="w">   </span><span class="c1">// 起点</span>
-<span class="w">  </span><span class="nx">MADE</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;まで&#39;</span><span class="p">,</span><span class="w">   </span><span class="c1">// 終点</span>
-<span class="w">  </span><span class="nx">NO</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;の&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// 所有</span>
-<span class="w">  </span><span class="nx">WA</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;は&#39;</span><span class="p">,</span><span class="w">      </span><span class="c1">// 主題</span>
-<span class="w">  </span><span class="nx">NARA</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;なら&#39;</span><span class="p">,</span><span class="w">   </span><span class="c1">// 条件</span>
-<span class="w">  </span><span class="nx">TOKI</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;とき&#39;</span><span class="w">    </span><span class="c1">// 時</span>
-<span class="p">};</span>
-
-<span class="c1">// 比較演算子の日本語版</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">JapaneseComparison</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="s1">&#39;以上&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;以下&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;=&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;より大きい&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;より小さい&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;等しい&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;===&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;等しくない&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;!==&#39;</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「助詞があると、本当に日本語みたい！」</p>
-<p>美久が感心している。</p>
-<p>◇◇◇◇</p>
-<p>「文法規則を拡張しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 日本語構文のパーサー拡張</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">JapaneseParser</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Parser</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// 条件文のパース</span>
-<span class="w">  </span><span class="nx">parseJapaneseIf</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="s1">&#39;もし&#39;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 条件式（日本語スタイル）</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseJapaneseCondition</span><span class="p">();</span>
-
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="s1">&#39;なら&#39;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// then節</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">then</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseJapaneseBlock</span><span class="p">();</span>
-
-<span class="w">    </span><span class="c1">// else節（オプション）</span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">elsePart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">value</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;そうでなければ&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="s1">&#39;そうでなければ&#39;</span><span class="p">);</span>
-<span class="w">      </span><span class="nx">elsePart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseJapaneseBlock</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">condition</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">then</span><span class="p">,</span>
-<span class="w">      </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="nx">elsePart</span>
-<span class="w">    </span><span class="p">};</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// 日本語スタイルの条件式</span>
-<span class="w">  </span><span class="nx">parseJapaneseCondition</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseExpression</span><span class="p">();</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">value</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;が&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">consume</span><span class="p">(</span><span class="s1">&#39;が&#39;</span><span class="p">);</span>
-
-<span class="w">      </span><span class="c1">// 数値との比較</span>
-<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseExpression</span><span class="p">();</span>
-<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">comparison</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">peek</span><span class="p">().</span><span class="nx">value</span><span class="p">;</span>
-
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">JapaneseComparison</span><span class="p">[</span><span class="nx">comparison</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">advance</span><span class="p">();</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">BinaryExpression</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="nx">JapaneseComparison</span><span class="p">[</span><span class="nx">comparison</span><span class="p">],</span>
-<span class="w">          </span><span class="nx">left</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span>
-<span class="w">        </span><span class="p">};</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>美久が質問してきた。</p>
-<p>「動詞も日本語にできる？」</p>
-<p>「もちろん。動詞活用も実装しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 日本語の動詞活用</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">JapaneseVerbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// 基本動詞</span>
-<span class="w">  </span><span class="s1">&#39;表示する&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;print&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;追加する&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;push&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;削除する&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;計算する&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;calculate&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;保存する&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;save&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;読み込む&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;load&#39;</span><span class="p">,</span>
-
-<span class="w">  </span><span class="c1">// 状態動詞</span>
-<span class="w">  </span><span class="s1">&#39;である&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;is&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;になる&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;become&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;を含む&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;includes&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;で始まる&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;startsWith&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;で終わる&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;endsWith&#39;</span>
-<span class="p">};</span>
-
-<span class="c1">// 活用形の処理</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">parseVerbConjugation</span><span class="p">(</span><span class="nx">verb</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// 「〜して」形（連用形）</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">verb</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;して&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">stem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">verb</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">JapaneseVerbs</span><span class="p">[</span><span class="nx">stem</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;する&#39;</span><span class="p">];</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// 「〜した」形（過去形）</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">verb</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;した&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">stem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">verb</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">JapaneseVerbs</span><span class="p">[</span><span class="nx">stem</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;する&#39;</span><span class="p">];</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">JapaneseVerbs</span><span class="p">[</span><span class="nx">verb</span><span class="p">];</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>休憩時間。美久がお茶を飲みながら言った。</p>
-<p>「日本語でプログラミングって、新鮮だね」</p>
-<p>「プログラミングを身近に感じてもらえるかもしれない」</p>
-<p>「お年寄りや子供にも優しいかも」</p>
-<p>美久の発想が素晴らしい。</p>
-<p>◇◇◇◇</p>
-<p>「より自然な日本語プログラムを書いてみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久の日本語プログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">japaneseProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">  美久の好感度を0にする</span>
-
-<span class="sb">  デートの関数を定義する（）｛</span>
-<span class="sb">    美久の好感度を10増やす</span>
-<span class="sb">    「デートで好感度が上がりました」を表示する</span>
-<span class="sb">  ｝</span>
-
-<span class="sb">  プレゼントをあげる関数を定義する（アイテム）｛</span>
-<span class="sb">    もし アイテムが「花」なら</span>
-<span class="sb">      美久の好感度を5増やす</span>
-<span class="sb">    そうでなければ アイテムが「本」なら</span>
-<span class="sb">      美久の好感度を8増やす</span>
-<span class="sb">    そうでなければ</span>
-<span class="sb">      美久の好感度を3増やす</span>
-<span class="sb">  ｝</span>
-
-<span class="sb">  美久の好感度が80未満の間｛</span>
-<span class="sb">    デートする</span>
-<span class="sb">    「花」をプレゼントする</span>
-<span class="sb">  ｝</span>
-
-<span class="sb">  もし 美久の好感度が80以上なら</span>
-<span class="sb">    「告白に成功しました！」を表示する</span>
-<span class="sb">    「美久：『はい、お付き合いしてください』」を表示する</span>
-<span class="sb">`</span><span class="p">;</span>
-</code></pre></div>
-<p>「すごい！本当に日本語の文章みたい」</p>
-<p>美久が興奮している。</p>
-<p>◇◇◇◇</p>
-<p>「数え方の単位も実装しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 日本語の助数詞</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">Counters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="s1">&#39;個&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;人&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;回&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;度&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;歳&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;年&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;月&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;日&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;時間&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;分&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="p">,</span>
-<span class="w">  </span><span class="s1">&#39;秒&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span>
-<span class="p">};</span>
-
-<span class="c1">// 使用例のパース</span>
-<span class="c1">// &quot;3回&quot; → { value: 3, unit: &#39;回&#39; }</span>
-<span class="c1">// &quot;18歳&quot; → { value: 18, unit: &#39;歳&#39; }</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">parseNumberWithCounter</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">token</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^(\d+)(.)$/</span><span class="p">);</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">match</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">Counters</span><span class="p">[</span><span class="nx">match</span><span class="p">[</span><span class="mf">2</span><span class="p">]])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberWithCounter&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">match</span><span class="p">[</span><span class="mf">1</span><span class="p">]),</span>
-<span class="w">      </span><span class="nx">counter</span><span class="o">:</span><span class="w"> </span><span class="nx">match</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span>
-<span class="w">    </span><span class="p">};</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>美久が実践的なプログラムを書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久の恋愛シミュレーション（完全日本語版）</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">loveSimulation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">  隆弘との出会いから1年が経過した</span>
-
-<span class="sb">  私の気持ちを「好き」に設定する</span>
-<span class="sb">  隆弘の気持ちを「不明」に設定する</span>
-
-<span class="sb">  告白する勇気の関数を定義する（）｛</span>
-<span class="sb">    もし 私の気持ちが「好き」で</span>
-<span class="sb">       かつ 季節が「春」なら</span>
-<span class="sb">      「告白する」を返す</span>
-<span class="sb">    そうでなければ</span>
-<span class="sb">      「もう少し待つ」を返す</span>
-<span class="sb">  ｝</span>
-
-<span class="sb">  隆弘の反応の関数を定義する（告白）｛</span>
-<span class="sb">    もし 告白が「告白する」なら</span>
-<span class="sb">      隆弘の気持ちを「実は前から好きでした」に設定する</span>
-<span class="sb">      「両想い」を返す</span>
-<span class="sb">    ｝</span>
-
-<span class="sb">  季節を「春」に設定する</span>
-<span class="sb">  行動を告白する勇気（）</span>
-
-<span class="sb">  もし 行動が「告白する」なら</span>
-<span class="sb">    結果を隆弘の反応（行動）</span>
-<span class="sb">    「めでたしめでたし」を表示する</span>
-<span class="sb">`</span><span class="p">;</span>
-</code></pre></div>
-<p>「恋愛要素まで入れちゃった」</p>
-<p>美久が照れながら言う。</p>
-<p>◇◇◇◇</p>
-<p>「エラーメッセージも日本語化しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 日本語のエラーメッセージ</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">JapaneseErrors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">SYNTAX_ERROR</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;構文エラー&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">TYPE_ERROR</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;型エラー&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">REFERENCE_ERROR</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;参照エラー&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">RANGE_ERROR</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;範囲エラー&#39;</span>
-<span class="p">};</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nx">JapaneseMikuLangError</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">,</span><span class="w"> </span><span class="nx">location</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">jpType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">JapaneseErrors</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">type</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fullMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">jpType</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">location</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">fullMessage</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="sb">`\n場所: </span><span class="si">${</span><span class="nx">location</span><span class="p">.</span><span class="nx">line</span><span class="si">}</span><span class="sb">行目`</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">super</span><span class="p">(</span><span class="nx">fullMessage</span><span class="p">);</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MikuLangエラー&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// 使用例</span>
-<span class="c1">// throw new JapaneseMikuLangError(</span>
-<span class="c1">//   &#39;SYNTAX_ERROR&#39;,</span>
-<span class="c1">//   &#39;「なら」が見つかりません&#39;,</span>
-<span class="c1">//   { line: 10 }</span>
-<span class="c1">// );</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。日本語構文の設計も完成に近づいた。</p>
-<p>「MikuLang、本当に日本語のプログラミング言語になったね」</p>
-<p>美久が感慨深そうに言う。</p>
-<p>「誰でも書けるプログラミング言語」</p>
-<p>「隆弘先輩の夢？」</p>
-<p>「美久と一緒に作った夢」</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>片付けながら、美久が言った。</p>
-<p>「明日で、MikuLang完成？」</p>
-<p>「そうだね。最後の仕上げをすれば」</p>
-<p>美久が少し寂しそうな顔をした。</p>
-<p>「完成したら、開発終わっちゃうの？」</p>
-<p>「そんなことない。完成は始まりだよ」</p>
-<p>「始まり？」</p>
-<p>「これから、MikuLangでいろんなものを作れる」</p>
-<p>美久の顔が明るくなる。</p>
-<p>「そっか。終わりじゃないんだ」</p>
-<p>◇◇◇◇</p>
-<p>教室を出る時、夕日が美しかった。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「明日、大事な日だね」</p>
-<p>美久の言葉に、胸が高鳴る。</p>
-<p>「そうだね」</p>
-<p>「楽しみにしてる」</p>
-<p>何を楽しみにしているのか。</p>
-<p>MikuLangの完成か、それとも——</p>
-<p>明日、すべてが明らかになる。</p>
-<p>僕の気持ちも、美久の気持ちも。</p>
-<p>そして、二人の未来も。</p>
+<h1 id="19">第19話 招かれざる（？）客<a class="headerlink" href="#19" title="Permanent link">&para;</a></h1>
+<p>あの、言葉にならない想いを共有した日から、僕たちの開発作業には、以前よりもずっと穏やかで、互いを思いやるような空気が流れるようになっていた。分からないことがあれば、美久はすぐに「先輩、ここは？」と聞いてくれるし、僕も、彼女の表情を見ながら、言葉を選ぶようになった。</p>
+<p>そんな、心地よい時間が流れていた、ある日の放課後。</p>
+<p>がらり、と。その男は、ノックもなしに、空き教室のドアを開けた。</p>
+<p>「よお、嵐山。可愛い後輩と、言語作りのおままごと、楽しんでるか？」</p>
+<p>そこに立っていたのは、僕のクラスメイトの、相沢 蓮（あいざわ れん）。ニヤニヤと、人の悪い笑みを浮かべて、僕たちのことを見ている。
+　相沢は、僕と同じくらい、プログラミングという病に深く冒された男だ。ただ、そのアプローチは僕とは正反対。僕が理論や構造の美しさを求めるのに対し、彼は、いかにトリッキーで、誰も思いつかないようなハックを編み出すかに喜びを見出すタイプ。正直、あまり得意な相手ではなかった。</p>
+<p>「……相沢。何の用だ」
+「健太から聞いたぜ。お前が、一年生のかわい子ちゃんを捕まえて、マンツーマンで英才教育してるってな」</p>
+<p>その、あまりに失礼な物言いに、美久はびくりと肩を震わせ、僕の背中に隠れるようにして、相沢のことを警戒している。</p>
+<p>相沢は、そんな僕たちの様子を面白そうに眺めながら、ずかずかと近づいてくると、僕たちのノートパソコンの画面を覗き込んだ。</p>
+<p>「へえ、S式ねえ。ずいぶんと古風なことで。で？　クロージャは実装したのか？　末尾再帰の最適化は？　まさか、お前が作る言語が、ただの電卓に毛が生えたレベル、なんてことはないよなあ？」</p>
+<p>彼は、わざと、今の僕たちの言語にはまだ実装されていない、高度な専門用語を並べ立てた。その瞳は、明らかに僕たちを試している。</p>
+<p>「……今は、まだな」</p>
+<p>僕は、冷静に、短く答えた。ここでこいつと技術論で張り合っても、何の意味もない。隣に、美久がいるのだから。</p>
+<p>「今は、一歩ずつ、進めてるんだ」
+「ふーん。まあ、頑張るこったな。お姫様を退屈させないようにな」</p>
+<p>相沢が、嘲るようにそう言った、その時だった。</p>
+<p>「……おままごとじゃ、ありません！」</p>
+<p>僕の背中から、凛とした声が響いた。声の主は、美久だった。彼女は、僕の後ろからひょっこりと顔を出すと、自分よりずっと背の高い相沢を、その大きな瞳で、キッと、真っ直ぐに睨みつけていた。</p>
+<p>「この言語は……！　この言語は、私と先輩が、二人で、一生懸命作ってる、大事な……大事な、宝物なんですから！」</p>
+<p>その、予想外の、あまりに真剣な反論に、意地の悪い笑みを浮かべていた相沢の表情が、一瞬だけ、固まった。僕も、驚いて、隣にいる彼女の顔を見つめてしまった。</p>
+<p>やがて、相沢の表情から、からかいの色が、すっと消えていく。そして、何か、本当に面白いものを見つけたかのように、その口の端を、にやりと吊り上げた。</p>
+<p>「……ほう。宝物、ね」</p>
+<p>彼は、それだけ言うと、僕たちに背を向けた。</p>
+<p>「まあ、いいや。せいぜい、その『宝物』とやらを、ピカピカに磨き上げることだな。じゃあな、お二人さん」</p>
+<p>嵐のように現れ、そして、嵐のように去っていく。相沢が閉めたドアの音が、やけに大きく教室に響いた。</p>
+<p>彼の来訪は、僕たちの穏やかだった世界に、確かに波紋を広げた。でも、それは同時に、僕の隣にいる、この小さな共同開発者の心に、自分たちの作っているものへの「誇り」と、それを守りたいという「強い意志」を、はっきりと芽生えさせたようだった。</p>
+<p>僕たちは、どちらからともなく、顔を見合わせて、ふっと笑みをこぼした。なんだか、新しい目標ができたような、そんな気がした。</p>
 
 
 

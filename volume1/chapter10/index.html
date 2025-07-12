@@ -1170,292 +1170,50 @@
   
 
 
-<h1 id="10">第10話 初めての言語実行<a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
-<p>四月二十九日、月曜日。昭和の日。</p>
-<p>祝日だけど、美久と会う約束をしていた。もはや、週末の恒例行事になりつつある。</p>
-<p>「今日はいよいよMikuLangを動かすんだよね」</p>
-<p>部屋に入るなり、美久が興奮気味に言った。</p>
-<p>「そう。初めての実行」</p>
-<p>「ドキドキする」</p>
-<p>美久の期待に満ちた表情を見て、僕も気が引き締まる。</p>
-<p>◇◇◇◇</p>
-<p>「まず、昨日作った評価器をもう一度確認しよう」</p>
-<p>画面にコードを表示する。</p>
-<p>「これまでに作ったものを整理すると……」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// MikuLang インタープリタ</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">MikuLang</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Evaluator</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">run</span><span class="p">(</span><span class="nx">program</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluator</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">program</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;実行エラー:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「わあ、MikuLangクラス！」</p>
-<p>「これが僕たちの言語の入り口」</p>
-<p>◇◇◇◇</p>
-<p>「じゃあ、最初のプログラムを実行してみよう」</p>
-<p>僕は簡単なプログラムを書いた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 最初のMikuLangプログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">firstProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;こんにちは、MikuLang！&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuLang</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MikuLang</span><span class="p">();</span>
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">firstProgram</span><span class="p">);</span>
-<span class="c1">// 出力: こんにちは、MikuLang！</span>
-</code></pre></div>
-<p>「動いた！」</p>
-<p>美久が歓声を上げる。</p>
-<p>「私たちの言語が、本当に動いてる！」</p>
-<p>その感動が伝わってきて、僕も嬉しくなる。</p>
-<p>◇◇◇◇</p>
-<p>「もっと複雑なプログラムも書いてみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 変数を使った計算</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">calcProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">20</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;sum&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;計算結果:&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">calcProgram</span><span class="p">);</span>
-<span class="c1">// 出力:</span>
-<span class="c1">// 計算結果:</span>
-<span class="c1">// 30</span>
-</code></pre></div>
-<p>「計算もできてる！」</p>
-<p>「変数も正しく動作してるね」</p>
-<p>◇◇◇◇</p>
-<p>美久が突然立ち上がった。</p>
-<p>「私も書いてみたい！」</p>
-<p>「いいよ。何を書く？」</p>
-<p>美久は少し考えて、キーボードに向かった。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久の最初のプログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;メッセージ&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;隆弘先輩、ありがとう&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;メッセージ&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;気持ち&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">100</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;感謝の気持ち:&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;気持ち&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「実行してみる？」</p>
-<p>「うん」</p>
-<p>緊張した面持ちで、美久が実行ボタンを押す。</p>
-<div class="highlight"><pre><span></span><code>隆弘先輩、ありがとう
-感謝の気持ち:
-100
-</code></pre></div>
-<p>「できた！」</p>
-<p>美久が満面の笑みを浮かべる。</p>
-<p>（なんか照れるな……）</p>
-<p>◇◇◇◇</p>
-<p>「次は、条件分岐を使ったプログラムを書いてみよう」</p>
-<p>僕は新しい例を作り始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 成績判定プログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">gradeProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;点数&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">85</span><span class="p">)),</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;点数&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">90</span><span class="p">)</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">      </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;優&#39;</span><span class="p">))]</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">          </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;点数&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">80</span><span class="p">)</span>
-<span class="w">        </span><span class="p">),</span>
-<span class="w">        </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;良&#39;</span><span class="p">))]</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;可&#39;</span><span class="p">))]</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">gradeProgram</span><span class="p">);</span>
-<span class="c1">// 出力: 良</span>
-</code></pre></div>
-<p>「else if みたいな構造も作れるんだ」</p>
-<p>「そう。入れ子にすることで実現できる」</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。お茶を飲みながら、美久が言った。</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「MikuLangで、ゲームとか作れるかな」</p>
-<p>意外な質問だった。</p>
-<p>「ゲーム？」</p>
-<p>「うん。簡単な文字だけのゲームとか」</p>
-<p>美久の発想に感心する。</p>
-<p>「作れると思う。ループと配列があれば、簡単なゲームなら」</p>
-<p>「楽しみ！」</p>
-<p>◇◇◇◇</p>
-<p>「そうだ、エラー処理も確認しておこう」</p>
-<p>わざとエラーになるプログラムを書く。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// エラーになるプログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">errorProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;未定義の変数&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">errorProgram</span><span class="p">);</span>
-<span class="c1">// 実行エラー: 変数 &#39;未定義の変数&#39; が見つかりません</span>
-</code></pre></div>
-<p>「ちゃんとエラーメッセージが出る」</p>
-<p>「エラー処理も大事な機能だからね」</p>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。今日は祝日なので、いつもより長く作業できる。</p>
-<p>「MikuLangに、もっと機能を追加したい」</p>
-<p>美久が意欲的に言う。</p>
-<p>「どんな機能？」</p>
-<p>「うーん、繰り返しとか」</p>
-<p>「じゃあ、簡単なwhileループを実装してみようか」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// while文の評価</span>
-<span class="nx">evaluateWhileStatement</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">condition</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// ヘルパー関数</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createWhile</span><span class="p">(</span><span class="nx">condition</span><span class="p">,</span><span class="w"> </span><span class="nx">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">WhileStatement</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">condition</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">body</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「while文を使ったプログラムを書いてみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// カウントダウンプログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">countdownProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;カウント&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">5</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createWhile</span><span class="p">(</span>
-<span class="w">      </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;カウント&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;カウント&#39;</span><span class="p">)),</span>
-<span class="w">          </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">            </span><span class="s1">&#39;カウント&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;カウント&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;発射！&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">countdownProgram</span><span class="p">);</span>
-<span class="c1">// 出力:</span>
-<span class="c1">// 5</span>
-<span class="c1">// 4</span>
-<span class="c1">// 3</span>
-<span class="c1">// 2</span>
-<span class="c1">// 1</span>
-<span class="c1">// 発射！</span>
-</code></pre></div>
-<p>「すごい！　ループも動いてる！」</p>
-<p>美久の興奮が最高潮に達している。</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>作業の合間に、美久が真剣な顔で言った。</p>
-<p>「私、プログラミング言語を作るのが、こんなに楽しいなんて思わなかった」</p>
-<p>「僕も」</p>
-<p>正直な気持ちを伝える。</p>
-<p>「研究では作ったことあるけど、誰かと一緒に作るのは初めてで」</p>
-<p>「私も初めて」</p>
-<p>美久が微笑む。</p>
-<p>「でも、隆弘先輩となら、もっと難しいことにも挑戦できそう」</p>
-<p>その言葉に、胸が熱くなる。</p>
-<p>◇◇◇◇</p>
-<p>夜七時。外はすっかり暗くなった。</p>
-<p>「今日は本当に充実してた」</p>
-<p>美久が満足そうに言う。</p>
-<p>「MikuLangが動いて、感動した」</p>
-<p>「まだまだこれから」</p>
-<p>僕は今後の計画を話す。</p>
-<p>「関数、配列、オブジェクト……追加したい機能はたくさんある」</p>
-<p>「全部やりたい！」</p>
-<p>美久の意欲に笑ってしまう。</p>
-<p>「少しずつね」</p>
-<p>「はい」</p>
-<p>◇◇◇◇</p>
-<p>美久を送り出す時、玄関で彼女が振り返った。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「今日、MikuLangが初めて動いた日」</p>
-<p>「そうだね」</p>
-<p>「記念日みたい」</p>
-<p>美久の言葉に、僕も同じことを考えていたことに気づく。</p>
-<p>「確かに、記念日かも」</p>
-<p>「じゃあ、来年の今日は、MikuLangの誕生日」</p>
-<p>来年も一緒に——そんな未来を当然のように語る美久。</p>
-<p>「そうだね。一周年には、もっとすごい言語になってるよ」</p>
-<p>「楽しみ」</p>
-<p>美久が嬉しそうに帰っていく。</p>
-<p>一人になった部屋で、今日のコードを見返す。</p>
-<p>MikuLangが動いた。僕たちが作った言語が、確かに生きている。</p>
-<p>そして、美久との関係も、また一歩前進した気がする。</p>
-<p>明日からは、もっと高度な機能に挑戦だ。</p>
-<p>美久と一緒なら、どんな困難も乗り越えられる。</p>
-<p>そんな確信を胸に、僕は明日の準備を始めた。</p>
+<h1 id="10">第10話 解けたバグと、解けない心<a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
+<p>彼女が帰ってから、どれくらいの時間が経っただろうか。
+　僕は、まるで何かに取り憑かれたかのように、ひたすらキーボードを叩き続けていた。静まり返った教室に、カタカタという乾いた音だけが響く。</p>
+<p>そして、ついにその瞬間は訪れた。</p>
+<p>「……これか！」</p>
+<p>原因は、僕が書いた<code>Environment</code>クラスの、ごく初歩的な設計ミスだった。変数を定義する時、常に一番大元の環境に書き込むようになっていたせいで、値の「上書き」が正しく機能していなかったのだ。
+　数行のコードを修正し、改めてテストを実行する。</p>
+<p><code>evaluate(['define', 'x', 20], env);</code>
+<code>console.log(evaluate('x', env));</code></p>
+<p>今度こそ、画面にはっきりと<code>20</code>という数字が表示された。</p>
+<p>「よし……！」</p>
+<p>僕は、思わずガッツポーズをした。脳内に、じわりと達成感が広がっていく。この、難解なパズルが解けた瞬間の全能感こそ、プログラミングの醍醐味だ。
+　僕は、この喜びを分かち合おうと、隣の席に座っているはずの彼女に、勢いよく振り向いた。</p>
+<p>「やったぞ、美久！　やっぱり……」</p>
+<p>言いかけて、言葉が止まる。
+　そこに、彼女の姿はなかった。静まり返った教室で、僕の声だけが、虚しく響いて消えていく。</p>
+<p>（ああ、そうか。あいつ、用事があるって……）</p>
+<p>その時になって、僕は初めて、言いようのない空虚感に襲われた。いつもなら、隣で「すごいですね、先輩！」と、僕以上に喜んでくれる彼女がいない。たったそれだけのことが、解けたはずのパズルのピースを、またバラバラにしてしまったかのように、僕の心を落ち着かなくさせた。</p>
+<p>ふと、彼女が座っていた椅子に目をやる。そこに、大学ノートが一冊、ぽつんと置き忘れられているのが見えた。</p>
+<p>「……忘れ物か」</p>
+<p>僕は、何気なくそのノートを手に取り、ぱらりとページをめくった。
+　そこに書かれていたものを見て、僕は、息を呑んだ。</p>
+<p>ノートには、今までの僕の説明が、彼女なりの言葉で、ぎこちない文字で、必死に書き留められていた。</p>
+<p>『ぷろぐらみんぐげんご = こんぴゅーたへのおねがいのしかた』</p>
+<p><code>evaluate</code>のコードの横には、小さな文字で『ほんやくき！』と書かれ、その隣には、なぜか玉ねぎのへたくそなイラストが添えられている。</p>
+<p>ページをめくるたびに、胸が締め付けられた。彼女が、どれだけ必死に、僕のいる世界についてこようとしてくれていたか。その努力の跡が、痛いほどに伝わってくる。</p>
+<p>そして、最後のページ。</p>
+<p>そこには、<code>Environment</code>の<code>class</code>構文が、何度も書き直された跡と共に記されていた。その周りには、鉛筆で書かれたのであろう、か細い文字が、いくつも並んでいた。</p>
+<p>『むずかしい』
+　『わからない』
+　『どうして？』</p>
+<p>その文字を見た瞬間、僕は、まるで頭を鈍器で殴られたかのような、強い衝撃を受けた。</p>
+<p>彼女が、一人でこんな風に苦しんでいたなんて。SOSを出していたなんて。僕は、そのことに、全く気づいていなかった。</p>
+<p>『集中させてくれ』</p>
+<p>自分の放った、無神経な言葉が、脳内で再生される。バグを解くことに夢中で、僕は、すぐ隣にいた彼女の心を、壊してしまっていたんだ。</p>
+<p>「……馬鹿野郎、俺は……」</p>
+<p>自分自身への罵倒が、かすれた声になって漏れた。さっきまでの達成感なんて、跡形もなく消え去っていた。僕が本当に解かなければならなかった問題は、こんなコードの中じゃなかった。彼女の、あの小さなノートの中に、全部書いてあったじゃないか。</p>
+<p>居ても立ってもいられなかった。
+　僕は、彼女のノートを強く握りしめると、自分の鞄をひったくるように掴み、教室を飛び出した。</p>
+<p>窓の外は、もうとっぷりと日が暮れていた。街の明かりが、滲んで見える。</p>
+<p>彼女は、どこにいる？
+　もしかしたら、一人で泣いているんじゃないだろうか。</p>
+<p>謝らなければ。そして、今度こそ、ちゃんと伝えなければ。</p>
+<p>僕は、僕が本当に向き合うべき問題から、もう決して目を逸らさないと心に誓い、彼女の姿を探して、夜の街へと駆け出した。</p>
 
 
 

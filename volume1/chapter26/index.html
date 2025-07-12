@@ -22,7 +22,7 @@
     
     
       
-        <title>第26話 隠しルートの発見 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+        <title>第26話 「新しい世界」への招待 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第26話 隠しルートの発見
+              第26話 「新しい世界」への招待
             
           </span>
         </div>
@@ -1139,331 +1139,33 @@
   
 
 
-<h1 id="26">第26話 隠しルートの発見<a class="headerlink" href="#26" title="Permanent link">&para;</a></h1>
-<h2 id="1142">11月4日（土）午後2時<a class="headerlink" href="#1142" title="Permanent link">&para;</a></h2>
-<p>文化祭の翌日。</p>
-<p>疲れもあるけど、隆弘くんと会う約束をしてた。</p>
-<p>「隠しルート、見つけた？」</p>
-<p>隆弘くんの部屋で、二人でゲームを起動する。</p>
-<p>「まだ。ヒントちょうだい」</p>
-<p>「それじゃ意味ないでしょ」</p>
-<p>お互いに作った隠し要素。</p>
-<p>ドキドキしながら探す。</p>
-<p>◇◇◇◇</p>
-<h2 id="230">午後2時30分　隆弘の隠しルート発見<a class="headerlink" href="#230" title="Permanent link">&para;</a></h2>
-<p>「あ！これかな？」</p>
-<p>タイトル画面でコナミコマンドを入力。</p>
-<p>すると、画面が変わった。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 隠しルート発動</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">checkKonamiCommand</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;隠しルート解放！&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">playSecretBGM</span><span class="p">();</span>
-<span class="w">    </span><span class="nx">showSpecialMessage</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">showSpecialMessage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">        美久へ</span>
-
-<span class="sb">        このメッセージを見つけてくれてありがとう。</span>
-
-<span class="sb">        君と出会えて、本当に良かった。</span>
-<span class="sb">        プログラミングを通じて、君と繋がれたこと。</span>
-<span class="sb">        一緒にゲームを作れたこと。</span>
-<span class="sb">        全てが、僕の宝物だ。</span>
-
-<span class="sb">        これは、ゲームの中の告白じゃない。</span>
-<span class="sb">        現実の僕から、現実の君への想い。</span>
-
-<span class="sb">        愛してる、美久。</span>
-
-<span class="sb">        これからも、ずっと一緒に。</span>
-<span class="sb">        新しいゲームを、新しい未来を、作っていこう。</span>
-
-<span class="sb">        隆弘より</span>
-<span class="sb">    `</span><span class="p">;</span>
-
-<span class="w">    </span><span class="nx">displayMessageWithEffect</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>画面に表示される隆弘くんからのメッセージ。</p>
-<p>涙が止まらない。</p>
-<p>「隆弘くん……」</p>
-<p>「恥ずかしいな」</p>
-<p>隆弘くんが照れくさそうに言う。</p>
-<p>でも、その頬も赤い。</p>
-<p>◇◇◇◇</p>
-<h2 id="3">午後3時　美久の番<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p>「じゃあ、私のも探して」</p>
-<p>今度は隆弘くんが私の隠しルートを探す番。</p>
-<p>「ヒントは？」</p>
-<p>「私たちの思い出」</p>
-<p>それだけ伝える。</p>
-<p>隆弘くんが真剣にゲームをプレイし始める。</p>
-<p>◇◇◇◇</p>
-<h2 id="345">午後3時45分　ついに発見<a class="headerlink" href="#345" title="Permanent link">&para;</a></h2>
-<p>「これだ！」</p>
-<p>特定の選択肢を選んでいくと、画面が変わった。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久の隠しルート</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuSecretRoute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">trigger</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checkConditions</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">startSecretScene</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">checkConditions</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 私たちの思い出に関する選択肢</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">requiredChoices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="s2">&quot;プログラミングを教えて欲しい&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;一緒に頑張ろう&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;隆弘くんといると楽しい&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">&quot;ずっと一緒にいたい&quot;</span>
-<span class="w">        </span><span class="p">];</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">requiredChoices</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">choice</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span>
-<span class="w">            </span><span class="nx">playerChoices</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">choice</span><span class="p">)</span>
-<span class="w">        </span><span class="p">);</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">startSecretScene</span><span class="o">:</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 特別な演出</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">fadeToWhite</span><span class="p">();</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">showStarryBackground</span><span class="p">();</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">displaySpecialCG</span><span class="p">();</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">showMessage</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// 特別なメッセージ</span>
-<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">showMikuMessage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;隆弘くん、見つけてくれてありがとう。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;最初は、ただプログラミングを教わりたかっただけ。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;でも、一緒に過ごすうちに気づいたの。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;私が本当に欲しかったのは、&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;プログラミングの知識じゃなくて、&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;隆弘くんと一緒にいる時間だった。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;バグに悩んだ夜も、&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;完成を喜んだ瞬間も、&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;全部が宝物。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;これからもずっと、&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;隆弘くんと一緒にいたい。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;プログラミングも、人生も、&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;二人で歩んでいきたい。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;大好き。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;愛してる。&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;美久より&quot;</span>
-<span class="w">    </span><span class="p">];</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">line</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">lines</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">displayLineWithEffect</span><span class="p">(</span><span class="nx">line</span><span class="p">);</span>
-<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">wait</span><span class="p">(</span><span class="mf">1500</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 最後に特別なエフェクト</span>
-<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">showHeartRain</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>画面に表示される私のメッセージ。</p>
-<p>隆弘くんがじっと見つめてる。</p>
-<p>◇◇◇◇</p>
-<h2 id="415">午後4時15分　お互いの想い<a class="headerlink" href="#415" title="Permanent link">&para;</a></h2>
-<p>「美久……」</p>
-<p>隆弘くんが私を見つめる。</p>
-<p>その瞳が潤んでる。</p>
-<p>「ありがとう」</p>
-<p>「私の方こそ」</p>
-<p>自然に抱き合った。</p>
-<p>言葉はいらない。</p>
-<p>お互いの想いは、もう伝わってる。</p>
-<p>◇◇◇◇</p>
-<h2 id="445">午後4時45分　特別なエンディング<a class="headerlink" href="#445" title="Permanent link">&para;</a></h2>
-<p>「実は、もう一つ仕掛けがあるんだ」</p>
-<p>隆弘くんが言う。</p>
-<p>「え？」</p>
-<p>「二人の隠しルートを両方見つけると……」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 真のエンディング</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">foundTakahiroRoute</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">foundMikuRoute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">unlockTrueEnding</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">unlockTrueEnding</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;真のエンディング解放！&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// 特別なシーン</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">trueEndingScene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;永遠のパートナー&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;二人の想いが重なった時、真の物語が始まる&quot;</span><span class="p">,</span>
-
-<span class="w">        </span><span class="nx">dialogue</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;システム&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;二つの想いが一つになりました&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;隆弘&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久、これからもよろしく&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;こちらこそ、よろしくお願いします&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">speaker</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;二人&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ずっと一緒に、プログラミングしていこうね&quot;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">],</span>
-
-<span class="w">        </span><span class="nx">specialEffect</span><span class="o">:</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// 二人の名前を組み合わせたロゴ</span>
-<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">logo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createCombinedLogo</span><span class="p">(</span><span class="s2">&quot;隆弘&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">);</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">displayLogo</span><span class="p">(</span><span class="nx">logo</span><span class="p">);</span>
-
-<span class="w">            </span><span class="c1">// 花火エフェクト</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">showFireworks</span><span class="p">();</span>
-
-<span class="w">            </span><span class="c1">// エンドロール</span>
-<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="nx">showSpecialCredits</span><span class="p">([</span>
-<span class="w">                </span><span class="s2">&quot;この物語を最後まで見てくれて&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;本当にありがとうございました&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;これは、フィクションであり&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;現実でもある物語&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;プログラミングが繋いだ&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;二人の愛の記録&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="s2">&quot;~ Fin ~&quot;</span>
-<span class="w">            </span><span class="p">]);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">};</span>
-
-<span class="w">    </span><span class="nx">playScene</span><span class="p">(</span><span class="nx">trueEndingScene</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>画面に表示される真のエンディング。</p>
-<p>私たちの物語の、本当の終わり。</p>
-<p>いや、始まり。</p>
-<p>◇◇◇◇</p>
-<h2 id="530">午後5時30分　現実に戻って<a class="headerlink" href="#530" title="Permanent link">&para;</a></h2>
-<p>「すごいゲームになったね」</p>
-<p>ゲームを終えて、二人で振り返る。</p>
-<p>「うん。最高の作品」</p>
-<p>「隠しルート、嬉しかった」</p>
-<p>「私も。隆弘くんのメッセージ、永久保存する」</p>
-<p>笑い合う。</p>
-<p>でも、もうゲームの中の話じゃない。</p>
-<p>現実の私たちの話。</p>
-<p>◇◇◇◇</p>
-<h2 id="6">午後6時　新しい約束<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p>「ねえ、次は何作る？」</p>
-<p>私が聞く。</p>
-<p>「そうだな……Webアプリとか？」</p>
-<p>「いいね！何のアプリ？」</p>
-<p>「二人の思い出を記録するアプリとか」</p>
-<p>「素敵！」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 次のプロジェクト構想</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">nextProject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Memory Keeper&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;大切な人との思い出を美しく保存するアプリ&quot;</span><span class="p">,</span>
-
-<span class="w">    </span><span class="nx">features</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;写真とテキストの記録&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;タイムライン表示&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;記念日リマインダー&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;思い出の地図&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;プライベート共有&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">technologies</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;React&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;Node.js&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;MongoDB&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;PWA&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">developers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;嵐山隆弘&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;バックエンド・設計&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;河内美久&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;フロントエンド・デザイン&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">motivation</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;私たちの思い出を、永遠に残したいから&quot;</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;次のプロジェクト:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">nextProject</span><span class="p">);</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="7">午後7時　夕食<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<p>「今日は外で食べよう」</p>
-<p>隆弘くんが提案する。</p>
-<p>「お祝い？」</p>
-<p>「うん。文化祭成功と、隠しルート発見記念」</p>
-<p>近くのレストランへ。</p>
-<p>手を繋いで歩く。</p>
-<p>もう隠す必要はない。</p>
-<p>◇◇◇◇</p>
-<h2 id="830">午後8時30分　告白<a class="headerlink" href="#830" title="Permanent link">&para;</a></h2>
-<p>「美久」</p>
-<p>食事の後、隆弘くんが真剣な顔で言う。</p>
-<p>「なに？」</p>
-<p>「改めて、正式に告白させて」</p>
-<p>え？</p>
-<p>もう付き合ってるのに？</p>
-<p>「河内美久さん」</p>
-<p>隆弘くんが私の手を取る。</p>
-<p>「僕と正式に付き合ってください」</p>
-<p>「プログラミングも、人生も、一緒に歩んでいきたい」</p>
-<p>涙が出そうになる。</p>
-<p>「はい」</p>
-<p>「喜んで」</p>
-<p>◇◇◇◇</p>
-<h2 id="9">午後9時　帰り道<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
-<p>レストランからの帰り道。</p>
-<p>星がきれいに見える。</p>
-<p>「ねえ、隆弘くん」</p>
-<p>「ん？」</p>
-<p>「ゲームの隠しルート、本当は最初から見つけて欲しかった」</p>
-<p>「え？」</p>
-<p>「だって、あれが私の本当の告白だから」</p>
-<p>隆弘くんが立ち止まる。</p>
-<p>「僕も同じ」</p>
-<p>「隠しルートに込めた想いが、僕の全て」</p>
-<p>見つめ合う。</p>
-<p>そして、キス。</p>
-<p>今度は、ゲームの中じゃない。</p>
-<p>現実の、本当のキス。</p>
-<p>◇◇◇◇</p>
-<h2 id="10">午後10時　エピローグ<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
-<p>マンションに帰ってきた。</p>
-<p>今日も素敵な一日だった。</p>
-<p>「じゃあ、また明日」</p>
-<p>「うん、また明日」</p>
-<p>それぞれの部屋に入る前に、もう一度振り返る。</p>
-<p>「美久」</p>
-<p>「なに？」</p>
-<p>「愛してる」</p>
-<p>「私も愛してる」</p>
-<p>ドアを閉めて、一人になる。</p>
-<p>でも、寂しくない。</p>
-<p>だって、隆弘くんとは、プログラムで繋がってるから。</p>
-<p>コードで紡いだ愛は、永遠に残る。</p>
-<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">love</span><span class="o">++</span><span class="p">;</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;愛してる&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>無限ループの愛。</p>
-<p>それが、私たちの関係。</p>
-<p>永遠に、ずっと。</p>
+<h1 id="26">第26話 「新しい世界」への招待<a class="headerlink" href="#26" title="Permanent link">&para;</a></h1>
+<p>相沢を「ぎゃふん」と言わせたあの日から、僕たちの放課後は、以前にも増して穏やかで、そして、どこか甘い空気に包まれるようになった。美久は、僕の隣で、時折、ふっと笑みをこぼす。その笑顔を見るたびに、僕の胸の奥が、きゅっと締め付けられるような、温かい感覚に襲われる。</p>
+<p>（本当に、変わったな、俺）</p>
+<p>以前の僕なら、プログラミング以外のことに興味を持つなんて、考えられなかった。でも、美久と出会ってから、僕の世界は、まるで新しいライブラリをインポートしたかのように、機能が拡張され、彩り豊かになった。彼女が話す流行の音楽やドラマの話にも、自然と耳を傾けるようになったし、彼女の些細な表情の変化にも、気づけるようになった。</p>
+<p>僕たちの言語は、クロージャまで実装できた。相沢の挑発という、一つの大きな目標を達成した今、次に何を実装すべきか、具体的なアイデアはまだない。もちろん、言語の完成には程遠いけれど、このままでは、いつかこの「放課後の勉強会」という名の、僕たちの特別な時間が、終わりを迎えてしまうのではないか。</p>
+<p>以前、美久が「この勉強会も終わっちゃうんですか？」と尋ねた時の、あの切ない表情が、脳裏に焼き付いている。あの時は、うまく言葉を返せなかったけれど、今なら、はっきりと分かる。僕も、この時間が、終わってほしくない。</p>
+<p>僕たちの関係は、もう「先輩と後輩」でも、「共同開発者」でも、収まりきらない。それは、僕が美久に抱いている感情が、もはや「好き」という、シンプルな言葉では表現しきれないほど、複雑で、深く、そして、かけがえのないものになっているからだ。</p>
+<p>夕日が、空き教室の窓から差し込み、美久の横顔をオレンジ色に染める。その光の中で、彼女の笑顔が、僕の目に、今までで一番眩しく映った。</p>
+<p>「……美久」</p>
+<p>僕の口から、自然と、彼女の名前がこぼれた。</p>
+<p>「あのさ……」</p>
+<p>言葉が、喉の奥で詰まる。こんなにも、たった一言を言うのが難しいなんて。まるで、無限ループに陥ったプログラムのように、思考が堂々巡りする。</p>
+<p>（落ち着け、俺。これは、新しい「機能」を実装するのと同じだ。まずは、設計からだ）</p>
+<p>僕は、深呼吸をして、頭の中で言葉を組み立てる。</p>
+<p>「今度の週末、もしよかったら……その、プログラミング抜きで、どこか行かないか？」</p>
+<p>僕の言葉に、美久は、ぱちくりと大きな瞳を瞬かせた。そして、みるみるうちに、その頬が赤く染まっていく。</p>
+<p>「え……？　ぷ、プログラミング、抜きで、ですか？」</p>
+<p>彼女の声は、少しだけ上ずっていた。その反応に、僕の心臓は、早鐘のように鳴り響く。</p>
+<p>「ああ。その……いつも、この教室でばかりだから。たまには、外で、ゆっくり話でも……」</p>
+<p>僕の視線は、美久の顔から、ノートパソコンの画面へと、泳いでしまう。こんなにも、緊張するなんて。まるで、初めてバグのないコードを書き上げた時のような、いや、それ以上の、胸の高鳴りだ。</p>
+<p>美久は、しばらく黙っていたが、やがて、小さく、でも、はっきりと、こくりと頷いた。</p>
+<p>「……はい！　行きたいです！」</p>
+<p>その言葉を聞いた瞬間、僕の胸に、温かい光が満ちた。それは、僕たちの言語が、新しい概念を理解した時のような、静かな感動だった。</p>
+<p>「どこに、行きますか？」</p>
+<p>美久が、少しだけはにかんだ笑顔で、僕を見上げた。その瞳には、まだ見ぬ「新しい世界」への期待が、きらきらと輝いている。</p>
+<p>僕たちの「本当の物語」は、これから始まる。それは、僕たちの言語が、どんなに進化しても、きっと、コードには書き表せない、もっと複雑で、もっと温かい、僕と美久だけの「クロージャ」になるだろう。</p>
+<p>僕たちの「始まりの予感」が、静かに、でも確かに、教室の空気を満たしていた。</p>
 
 
 

@@ -22,7 +22,7 @@
     
     
       
-        <title>第33話 コミュニティの成長 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+        <title>第33話 永遠の「ループ」 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第33話 コミュニティの成長
+              第33話 永遠の「ループ」
             
           </span>
         </div>
@@ -1139,324 +1139,26 @@
   
 
 
-<h1 id="33">第33話 コミュニティの成長<a class="headerlink" href="#33" title="Permanent link">&para;</a></h1>
-<h2 id="214">2月1日（木）午後4時<a class="headerlink" href="#214" title="Permanent link">&para;</a></h2>
-<p>WinterLang公開から2週間。</p>
-<p>想像以上の反響に、毎日が驚きの連続。</p>
-<p>「美久、見て。1000スター超えた！」</p>
-<p>部室で隆弘くんが興奮して画面を見せてくる。</p>
-<p>信じられない。</p>
-<p>私たちの作品が、こんなに愛されてる。</p>
-<p>◇◇◇◇</p>
-<h2 id="430">午後4時30分　コミュニティの様子<a class="headerlink" href="#430" title="Permanent link">&para;</a></h2>
-<p>Discordサーバーは活気に満ちてる。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// コミュニティ統計（2週間後）</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">communityStats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">github</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">stars</span><span class="o">:</span><span class="w"> </span><span class="mf">1024</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">forks</span><span class="o">:</span><span class="w"> </span><span class="mf">89</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">contributors</span><span class="o">:</span><span class="w"> </span><span class="mf">23</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">issues</span><span class="o">:</span><span class="w"> </span><span class="mf">45</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">pull_requests</span><span class="o">:</span><span class="w"> </span><span class="mf">31</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">discord</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="mf">512</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">active_daily</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">channels</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">total_messages</span><span class="o">:</span><span class="w"> </span><span class="mf">10000</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">usage</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">npm_downloads</span><span class="o">:</span><span class="w"> </span><span class="mf">3456</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">active_projects</span><span class="o">:</span><span class="w"> </span><span class="mf">150</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">educational_use</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="w"> </span><span class="c1">// 学校</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">languages</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;日本語&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;英語&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;中国語&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;韓国語&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;スペイン語&quot;</span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;世界中に広がってる！&quot;</span><span class="p">);</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="5">午後5時　感動的な作品<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<p>「#showcase チャンネル見た？」</p>
-<p>「すごい作品がいっぱい」</p>
-<div class="highlight"><pre><span></span><code>// ユーザー作品例1：小学生の作品
-// 作者：たかし君（10歳）
-
-関数 九九の表():
-    繰り返し i を 1 から 9:
-        繰り返し j を 1 から 9:
-            結果 = i * j
-            表示 &quot;{i} × {j} = {結果}&quot;
-        表示 &quot;---&quot;
-
-九九の表()
-
-
-// ユーザー作品例2：お母さんプログラマー
-// 作者：山田さん（35歳）
-
-関数 買い物リスト管理():
-    リスト = []
-
-    繰り返し:
-        表示 &quot;1: 追加, 2: 表示, 3: 終了&quot;
-        選択 = 入力()
-
-        もし 選択 == &quot;1&quot;:
-            商品 = 入力(&quot;商品名: &quot;)
-            リスト.追加(商品)
-        そうでなければ 選択 == &quot;2&quot;:
-            表示 &quot;買い物リスト:&quot;
-            各要素 商品 の リスト:
-                表示 &quot;- {商品}&quot;
-        そうでなければ:
-            終了
-</code></pre></div>
-<p>「みんな楽しんでくれてる」</p>
-<p>「嬉しいね」</p>
-<p>◇◇◇◇</p>
-<h2 id="545">午後5時45分　メジャーアップデート準備<a class="headerlink" href="#545" title="Permanent link">&para;</a></h2>
-<p>「v1.1.0の準備しよう」</p>
-<p>ユーザーからのフィードバックを元に改良。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// v1.1.0 新機能</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">newFeatures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">syntax</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">patternMatching</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;パターンマッチング強化&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">listComprehension</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;リスト内包表記&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">decorators</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;デコレータ機能&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">stdlib</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">webAPI</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Web API アクセス&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">fileSystem</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ファイル操作&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">networking</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ネットワーク機能&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">tools</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">formatter</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;自動フォーマッタ&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">linter</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;文法チェッカー&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">playground</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;オンラインエディタ&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">community</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">packageManager</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;wpm (WinterLang Package Manager)&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">registry</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;パッケージレジストリ&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">templates</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プロジェクトテンプレート&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="630">午後6時30分　企業からの連絡<a class="headerlink" href="#630" title="Permanent link">&para;</a></h2>
-<p>「メール来てる」</p>
-<p>驚きの内容。</p>
-<div class="highlight"><pre><span></span><code>件名: WinterLangの商用利用について
-
-嵐山様、河内様
-
-はじめまして。
-株式会社〇〇でCTOをしております田中と申します。
-
-弊社では、新入社員のプログラミング研修に
-WinterLangの採用を検討しております。
-
-つきましては、以下についてご相談させてください：
-1. 商用利用のライセンス
-2. サポート体制
-3. カスタマイズの可否
-
-お忙しいところ恐縮ですが、
-ご検討いただければ幸いです。
-</code></pre></div>
-<p>「企業が使いたいって！」</p>
-<p>「責任重大だね」</p>
-<p>◇◇◇◇</p>
-<h2 id="7">午後7時　初めてのミートアップ企画<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<p>「オフラインミートアップやろう」</p>
-<p>コミュニティメンバーからの提案。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 第1回 WinterLang Meetup Tokyo</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">meetupPlan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">date</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024年2月17日（土）&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">venue</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;渋谷コワーキングスペース&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">capacity</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span>
-
-<span class="w">    </span><span class="nx">schedule</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;13:00-13:30&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;開場・受付&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;13:30-14:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;WinterLang誕生秘話（美久&amp;隆弘）&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;14:00-15:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ライトニングトーク（参加者）&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;15:00-16:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ハンズオン・もくもく会&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;16:00-17:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;懇親会&quot;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">registration</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;すでに30名申込み！&quot;</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「私たち、登壇するの？」</p>
-<p>「ドキドキする」</p>
-<p>◇◇◇◇</p>
-<h2 id="745">午後7時45分　海外からの注目<a class="headerlink" href="#745" title="Permanent link">&para;</a></h2>
-<p>英語圏のテックメディアに掲載された。</p>
-<div class="highlight"><pre><span></span><code>Tech Today - Featured Article
-
-&quot;Japanese High School Couple Creates 
-Revolutionary Programming Language&quot;
-
-Two Japanese high school students have created
-WinterLang, a programming language that supports
-natural Japanese syntax, making programming
-accessible to millions of Japanese speakers...
-
-The project has gained over 1000 GitHub stars
-in just two weeks and is being adopted by
-schools across Japan...
-</code></pre></div>
-<p>「英語の記事になってる！」</p>
-<p>「世界デビューだね」</p>
-<p>◇◇◇◇</p>
-<h2 id="830">午後8時30分　バージョン管理の悩み<a class="headerlink" href="#830" title="Permanent link">&para;</a></h2>
-<p>「Issue多すぎて追いつかない」</p>
-<p>「優先順位つけないと」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// Issue管理システム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">issueManagement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">priorities</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">P0</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;クリティカル（即対応）&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">P1</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;重要（次バージョン）&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">P2</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;あったらいい（将来）&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">P3</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;検討事項&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">labels</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;bug&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;enhancement&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="s2">&quot;documentation&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;good first issue&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;help wanted&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">workflow</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">triage</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;毎週水曜日&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">assignment</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;貢献者と相談&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">review</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;隆弘がメイン&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">merge</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久も確認&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// 自動化ツール導入</span>
-<span class="nx">setupGitHubActions</span><span class="p">({</span>
-<span class="w">    </span><span class="nx">autoLabel</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">autoAssign</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">ci</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">releaseNotes</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="9">午後9時　将来への不安と希望<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
-<p>「正直、大きくなりすぎて怖い」</p>
-<p>帰り道、本音を話す。</p>
-<p>「分かる。でも」</p>
-<p>隆弘くんが続ける。</p>
-<p>「みんなが喜んでくれてる」</p>
-<p>「それが一番大事」</p>
-<p>そうだね。</p>
-<p>怖さより、嬉しさの方が大きい。</p>
-<p>◇◇◇◇</p>
-<h2 id="930">午後9時30分　サポーターの存在<a class="headerlink" href="#930" title="Permanent link">&para;</a></h2>
-<p>「コントリビューター増えたね」</p>
-<p>特に頼もしい人たち。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 主要コントリビューター</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">contributors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s2">&quot;tanaka_dev&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;コア開発&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">contributions</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;パフォーマンス改善&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">pr_count</span><span class="o">:</span><span class="w"> </span><span class="mf">15</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="s2">&quot;yuki_2024&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ドキュメント&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">contributions</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;チュートリアル作成&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">pr_count</span><span class="o">:</span><span class="w"> </span><span class="mf">8</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="s2">&quot;alex_usa&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;国際化&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">contributions</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;英語版ドキュメント&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">pr_count</span><span class="o">:</span><span class="w"> </span><span class="mf">12</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;みんなのおかげで成長できる&quot;</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="10">午後10時　決意を新たに<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
-<p>家に帰って、隆弘くんとビデオ通話。</p>
-<p>「WinterLang、私たちの子供みたい」</p>
-<p>「大切に育てていこう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// これからの約束</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ourPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">toUsers</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;バグは迅速に修正&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;後方互換性を大切に&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;コミュニティの声を聞く&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">toEachOther</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;無理しない&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;楽しむことを忘れない&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;二人で支え合う&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">vision</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;プログラミングの民主化&quot;</span><span class="p">,</span>
-
-<span class="w">    </span><span class="nx">milestone</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kr">short</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;v2.0リリース&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">medium</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;教育機関での正式採用&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="kr">long</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;世界中で使われる言語に&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">saveCommitment</span><span class="p">(</span><span class="nx">ourPromise</span><span class="p">);</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="1030">午後10時30分　今日の終わりに<a class="headerlink" href="#1030" title="Permanent link">&para;</a></h2>
-<p>ベッドに入る前に、GitHubをもう一度チェック。</p>
-<p>スターは1050個。</p>
-<p>フォークは92個。</p>
-<p>そして、世界中からの「ありがとう」。</p>
-<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;WinterLangを作ってよかった&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;隆弘くんと一緒に作れてよかった&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;これからも、みんなのために&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;そして、私たちの愛のために&quot;</span><span class="p">);</span>
-
-<span class="c1">// 無限ループは続く</span>
-<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">develop</span><span class="p">(</span><span class="nx">WinterLang</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">growCommunity</span><span class="p">();</span>
-<span class="w">    </span><span class="nx">deepenLove</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>コミュニティの成長は、私たちの成長。</p>
-<p>明日も、新しい挑戦が待ってる。</p>
-<p>でも、怖くない。</p>
-<p>だって、隆弘くんがいるから。</p>
-<p>そして、素晴らしいコミュニティがあるから。</p>
-<p>一緒に、もっと素敵な未来を作っていこう。</p>
+<h1 id="33">第33話 永遠の「ループ」<a class="headerlink" href="#33" title="Permanent link">&para;</a></h1>
+<p>僕たちの「未来」の設計図を語り合ってから、僕たちの関係は、さらに深く、確かなものになった。空き教室での勉強会は、もはや、僕たちにとって、かけがえのない「愛の巣」のようだった。</p>
+<p>「先輩、このコード、これで合ってますか？」</p>
+<p>美久が、僕の隣に身を寄せ、ノートパソコンの画面を指差す。その指先が、僕の腕に、そっと触れる。そのたびに、僕の胸の奥が、きゅっと締め付けられるような、甘い痛みが走る。</p>
+<p>「ああ、完璧だ」</p>
+<p>僕は、美久の顔を見つめながら、優しく答える。彼女の瞳は、僕の言葉を、一つも聞き漏らすまいと、真剣に輝いている。</p>
+<p>僕たちの言語は、末尾再帰の最適化まで実装できた。これで、僕たちの言語は、より効率的に、そして、より複雑な処理をこなせるようになった。</p>
+<p>でも、僕たちが今、一番夢中になっているのは、そんな技術的なことだけじゃない。</p>
+<p>僕たちの「永遠のループ」だ。</p>
+<p>放課後、二人で並んで帰る道。美久が、僕の腕に、そっと自分の腕を絡ませる。その温かい感触が、僕の心を、温かいもので満たしてくれる。</p>
+<p>「先輩、私、先輩と、ずっと一緒にいたいです」</p>
+<p>美久が、僕の顔を見上げながら、はっきりと告げる。その瞳には、僕たちの未来への、揺るぎない決意が込められている。</p>
+<p>「俺もだ、美久。ずっと、一緒にいよう」</p>
+<p>僕の言葉に、美久は、はにかんだように笑った。その笑顔は、僕にとって、何よりも大切な「宝物」だ。</p>
+<p>僕たちの言語は、まだ完成には程遠い。これから先も、たくさんの機能を追加し、もっと賢く、もっと使いやすいものにしていく必要があるだろう。</p>
+<p>でも、僕たちが今、一番大切にしたいのは、そんな技術的なことだけじゃない。</p>
+<p>僕たちの「本当の物語」は、まだ始まったばかりだ。</p>
+<p>それは、僕たちの言語が、どんなに進化しても、きっと、コードには書き表せない、もっと複雑で、もっと温かい、僕と美久だけの「クロージャ」になるだろう。</p>
+<p>夕日が、教室の窓から差し込み、美久の横顔をオレンジ色に染める。その光の中で、彼女の笑顔が、僕の目に、今までで一番眩しく映った。</p>
+<p>僕たちの「永遠のループ」は、これからも、ずっと続いていく。プログラミングへの情熱と、美久への愛。その二つが、僕の人生を、無限に彩り続けてくれるだろう。</p>
 
 
 

@@ -1170,314 +1170,56 @@
   
 
 
-<h1 id="16">第16話 標準ライブラリ<a class="headerlink" href="#16" title="Permanent link">&para;</a></h1>
-<p>五月五日、日曜日。こどもの日。</p>
-<p>ゴールデンウィークも残り二日。MikuLangの完成が近づいている。そして、美久との関係も——</p>
-<p>「今日は標準ライブラリだね」</p>
-<p>美久が期待に満ちた表情で言う。</p>
-<p>「便利な機能をまとめたもの。これがあれば実用的な言語になる」</p>
-<p>「どんな機能を入れるの？」</p>
-<p>「数学関数、日付処理、乱数生成……ゲーム作りに必要なものを」</p>
-<p>◇◇◇◇</p>
-<p>「まず、数学関数から始めよう」</p>
-<p>ホワイトボードに一覧を書く。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 数学関数の標準ライブラリ</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mathLib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">abs</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span><span class="w">        </span><span class="c1">// 絶対値</span>
-<span class="w">  </span><span class="nx">floor</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span><span class="w">    </span><span class="c1">// 切り捨て</span>
-<span class="w">  </span><span class="nx">ceil</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span><span class="w">      </span><span class="c1">// 切り上げ</span>
-<span class="w">  </span><span class="nx">round</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span><span class="w">    </span><span class="c1">// 四捨五入</span>
-<span class="w">  </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">),</span><span class="w">  </span><span class="c1">// 最大値</span>
-<span class="w">  </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">),</span><span class="w">  </span><span class="c1">// 最小値</span>
-<span class="w">  </span><span class="nx">pow</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">),</span><span class="w">  </span><span class="c1">// べき乗</span>
-<span class="w">  </span><span class="nx">sqrt</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">x</span><span class="p">),</span><span class="w">      </span><span class="c1">// 平方根</span>
-<span class="w">  </span><span class="nx">random</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w">      </span><span class="c1">// 乱数（0-1）</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「randomってゲームでよく使うよね」</p>
-<p>「そう。敵の出現とか、アイテムのドロップとか」</p>
-<p>◇◇◇◇</p>
-<p>「標準ライブラリの実装方法を考えよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// グローバル環境に標準ライブラリを登録</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">StandardLibrary</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="nx">initialize</span><span class="p">(</span><span class="nx">env</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 数学関数</span>
-<span class="w">    </span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">mathLib</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(([</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">func</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">env</span><span class="p">.</span><span class="nx">setFunction</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="nx">func</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">],</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">  </span><span class="c1">// ネイティブ関数</span>
-<span class="w">        </span><span class="kr">native</span><span class="o">:</span><span class="w"> </span><span class="nx">func</span>
-<span class="w">      </span><span class="p">});</span>
-<span class="w">    </span><span class="p">});</span>
+<h1 id="16">第16話 シンクロする思考と、小さなご褒美<a class="headerlink" href="#16" title="Permanent link">&para;</a></h1>
+<p>「じゃあ、お願いしようかな」</p>
+<p>僕がそう言うと、美久は「はい！」と力強く頷き、キーボードに向き合った。僕たちはまず、<code>&gt;</code>や<code>==</code>といった、比較演算子の実装から取り掛かった。</p>
+<p>「これは、前にやった四則演算の時と同じパターンでいけるな。僕たちの<code>operations</code>っていう『道具箱』に、新しい道具を追加してあげるだけでいい」</p>
+<p>僕の方針説明に、美久はもう迷わなかった。一度経験した作業だ。彼女は、自信を持った手つきで、<code>operations</code>オブジェクトに新しい定義を書き加えていく。</p>
+<p><code>'&gt;': (a, b) =&gt; a &gt; b,</code>
+<code>'&lt;': (a, b) =&gt; a &lt; b,</code>
+<code>'==': (a, b) =&gt; a == b,</code></p>
+<p>そのスムーズなタイピングを見ながら、僕は彼女の確かな成長を実感していた。</p>
+<p>「よし。じゃあ、いよいよ本丸の<code>if</code>文だ」</p>
+<p>僕は<code>evaluate</code>関数の中に、<code>if (exp[0] === 'if')</code>という新しい分岐を追加した。</p>
+<p>「さて、美久。ここからが、少しだけ頭を使う面白いところだ」
+「はい……！」
+「<code>if</code>文には、<code>condition</code>、<code>true-exp</code>、<code>false-exp</code>っていう、三つのパーツがある。こいつらを、全部いきなり評価しちゃっていいと思うか？」</p>
+<p>僕の問いかけに、美久は人差し指を顎に当てて、少し考える素振りを見せた。そして、何か閃いたように、ぱっと顔を上げた。</p>
+<p>「ううん……ダメな気がします。だって、もし<code>condition</code>が<code>true</code>だったら、<code>false-exp</code>の方は、実行する必要がないですもんね？」</p>
+<p>その答えを聞いた瞬間、僕は思わず膝を打った。</p>
+<p>「その通りだ！　すごいな、美久！」</p>
+<p>僕たちの思考が、綺麗にシンクロした。この感覚が、たまらなく心地いい。</p>
+<p>「先に<code>condition</code>だけを評価して、その結果によって、次に何を評価するかを『選択』するんだ。まさに、<code>if</code>文そのものだな」</p>
+<p>僕がロジックを口頭で説明し、美久がそれをコードに翻訳していく。まるで、息の合ったセッションのようだ。</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">exp</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;if&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">trueExp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">2</span><span class="p">];</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">falseExp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">3</span><span class="p">];</span>
 
-<span class="w">    </span><span class="c1">// 配列操作関数</span>
-<span class="w">    </span><span class="nx">env</span><span class="p">.</span><span class="nx">setFunction</span><span class="p">(</span><span class="s1">&#39;push&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;array&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;item&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="kr">native</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">array</span><span class="p">,</span><span class="w"> </span><span class="nx">item</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">});</span>
-
-<span class="w">    </span><span class="nx">env</span><span class="p">.</span><span class="nx">setFunction</span><span class="p">(</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;array&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="kr">native</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
-<span class="w">    </span><span class="p">});</span>
-
-<span class="w">    </span><span class="c1">// 文字列操作関数</span>
-<span class="w">    </span><span class="nx">env</span><span class="p">.</span><span class="nx">setFunction</span><span class="p">(</span><span class="s1">&#39;concat&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;str1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;str2&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="kr">native</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">str1</span><span class="p">,</span><span class="w"> </span><span class="nx">str2</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">str2</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「nativeって？」</p>
-<p>「JavaScript側で実装された組み込み関数」</p>
-<p>◇◇◇◇</p>
-<p>美久が質問してきた。</p>
-<p>「乱数を使った例を見せて」</p>
-<p>「じゃあ、サイコロゲームを作ってみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">diceGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="c1">// 1-6のサイコロを振る関数</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;サイコロ&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span>
-<span class="w">            </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;floor&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                  </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;random&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[]),</span>
-<span class="w">                  </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">6</span><span class="p">)</span>
-<span class="w">                </span><span class="p">)</span>
-<span class="w">              </span><span class="p">]),</span>
-<span class="w">              </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-
-<span class="w">    </span><span class="c1">// ゲーム本体</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;プレイヤー&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;サイコロ&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[])),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;コンピュータ&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;サイコロ&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[])),</span>
-
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;プレイヤー:&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;プレイヤー&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;コンピュータ:&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;コンピュータ&#39;</span><span class="p">)),</span>
-
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;プレイヤー&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;コンピュータ&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">      </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;あなたの勝ち！&#39;</span><span class="p">))]</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">          </span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;プレイヤー&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;コンピュータ&#39;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">),</span>
-<span class="w">        </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;あなたの負け...&#39;</span><span class="p">))]</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;引き分け！&#39;</span><span class="p">))]</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">condition</span><span class="p">,</span><span class="w"> </span><span class="nx">env</span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">result</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">trueExp</span><span class="p">,</span><span class="w"> </span><span class="nx">env</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">falseExp</span><span class="p">,</span><span class="w"> </span><span class="nx">env</span><span class="p">);</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
 </code></pre></div>
-<p>「実行するたびに結果が変わる！」</p>
-<p>美久が何度も実行して楽しんでいる。</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。美久がお茶を飲みながら言った。</p>
-<p>「標準ライブラリって、先人の知恵の結晶だね」</p>
-<p>「どういうこと？」</p>
-<p>「みんなが必要とする機能を、使いやすくまとめてある」</p>
-<p>その視点に感心する。</p>
-<p>「確かに。車輪の再発明を避けられる」</p>
-<p>◇◇◇◇</p>
-<p>「日付処理も追加しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 日付関連の標準ライブラリ</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">dateLib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">now</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">(),</span>
-<span class="w">  </span><span class="nx">year</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">(),</span>
-<span class="w">  </span><span class="nx">month</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">getMonth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">day</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">(),</span>
-<span class="w">  </span><span class="nx">hour</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">getHours</span><span class="p">(),</span>
-<span class="w">  </span><span class="nx">minute</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">getMinutes</span><span class="p">(),</span>
-<span class="w">  </span><span class="nx">second</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">getSeconds</span><span class="p">(),</span>
-<span class="w">  </span><span class="nx">dayOfWeek</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">getDay</span><span class="p">()</span>
-<span class="p">};</span>
-
-<span class="c1">// 曜日を日本語で返す関数</span>
-<span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;曜日&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="p">[],</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;曜日配列&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createArray</span><span class="p">([</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;日&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;月&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;火&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;水&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;木&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;金&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;土&#39;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">])</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">      </span><span class="nx">createReturn</span><span class="p">(</span>
-<span class="w">        </span><span class="nx">createArrayAccess</span><span class="p">(</span>
-<span class="w">          </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;曜日配列&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;dayOfWeek&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[])</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">)</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>美久がプログラムを書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久の記念日プログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">anniversaryProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="c1">// 記念日リスト</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;記念日&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createObject</span><span class="p">([</span>
-<span class="w">        </span><span class="p">[</span><span class="s1">&#39;初めて会った日&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;2023-04-22&#39;</span><span class="p">)],</span>
-<span class="w">        </span><span class="p">[</span><span class="s1">&#39;プログラミングを始めた日&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;2023-04-23&#39;</span><span class="p">)],</span>
-<span class="w">        </span><span class="p">[</span><span class="s1">&#39;手を繋いだ日&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;2023-05-01&#39;</span><span class="p">)],</span>
-<span class="w">        </span><span class="p">[</span><span class="s1">&#39;告白した日&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;????-??-??&#39;</span><span class="p">)]</span>
-<span class="w">      </span><span class="p">])</span>
-<span class="w">    </span><span class="p">),</span>
-
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;今日の日付&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span>
-<span class="w">            </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                  </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                    </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[]),</span>
-<span class="w">                    </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;年&#39;</span><span class="p">)</span>
-<span class="w">                  </span><span class="p">),</span>
-<span class="w">                  </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[])</span>
-<span class="w">                </span><span class="p">),</span>
-<span class="w">                </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;月&#39;</span><span class="p">)</span>
-<span class="w">              </span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[])</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;日&#39;</span><span class="p">)</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;今日は&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;今日の日付&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[])),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;大切な記念日がまた増えますように...&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「告白した日が????になってる」</p>
-<p>美久の顔が赤くなる。</p>
-<p>「だって、まだ……」</p>
-<p>「そうだね。でも、きっと近いうちに」</p>
-<p>僕の言葉に、美久の瞳が潤む。</p>
-<p>◇◇◇◇</p>
-<p>「ゲーム用の便利関数も作ろう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// ゲーム開発用ライブラリ</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">gameLib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// 範囲内の整数乱数</span>
-<span class="w">  </span><span class="nx">randomInt</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">min</span><span class="p">,</span><span class="w"> </span><span class="nx">max</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">min</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">min</span><span class="p">;</span>
-<span class="w">  </span><span class="p">},</span>
-
-<span class="w">  </span><span class="c1">// 配列からランダムに選択</span>
-<span class="w">  </span><span class="nx">randomChoice</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">)];</span>
-<span class="w">  </span><span class="p">},</span>
-
-<span class="w">  </span><span class="c1">// 配列をシャッフル</span>
-<span class="w">  </span><span class="nx">shuffle</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">array</span><span class="p">];</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">));</span>
-<span class="w">      </span><span class="p">[</span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">result</span><span class="p">[</span><span class="nx">j</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">result</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span><span class="w"> </span><span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]];</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
-<span class="w">  </span><span class="p">},</span>
-
-<span class="w">  </span><span class="c1">// 確率判定</span>
-<span class="w">  </span><span class="nx">chance</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">probability</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">probability</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「chanceって面白い」</p>
-<p>「50%の確率で成功、みたいな処理に使える」</p>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。標準ライブラリの実装も大部分が完成した。</p>
-<p>「標準ライブラリがあると、プログラミングが楽になるね」</p>
-<p>美久が満足そうに言う。</p>
-<p>「そう。よく使う機能を再利用できる」</p>
-<p>「MikuLangが、本当の言語みたいになってきた」</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>片付けながら、美久が言った。</p>
-<p>「明日で、MikuLangは完成？」</p>
-<p>「基本的な部分はね。でも、言語は永遠に成長し続ける」</p>
-<p>「私たちみたいに？」</p>
-<p>美久の言葉にドキッとする。</p>
-<p>「そうだね。一緒に成長していく」</p>
-<p>◇◇◇◇</p>
-<p>美久を見送る時、彼女が振り返った。</p>
-<p>「明日は何を実装するの？」</p>
-<p>「デバッグツール。プログラムの問題を見つけやすくする機能」</p>
-<p>「最後の仕上げだね」</p>
-<p>美久が深呼吸をして言った。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「明日、MikuLangが完成したら……」</p>
-<p>言いかけて、美久は首を振った。</p>
-<p>「ううん、なんでもない。明日のお楽しみ」</p>
-<p>そう言って、美久は部屋に入っていった。</p>
-<p>明日。MikuLangの完成の日。</p>
-<p>そして、僕が美久に告白する日。</p>
-<p>胸の高鳴りを抑えながら、僕は明日の準備を始めた。</p>
-<p>標準ライブラリの実装で、MikuLangは実用的な言語になった。</p>
-<p>あとは、最後の仕上げ。そして——</p>
+<p>そして、テストコードを実行する。</p>
+<p><code>console.log(evaluate(['if', ['==', 10, 10], 'Correct!', 'Wrong!'], env));</code></p>
+<p>画面に、はっきりと<code>Correct!</code>の文字が表示された。</p>
+<p>「やった……！　先輩、私たち、天才じゃないですか！？」</p>
+<p>美久が、満面の笑みで僕に振り向いた。その、あまりに無邪気で、嬉しそうな表情に、僕は思わず、手を伸ばしていた。</p>
+<p>くしゃり、と彼女の柔らかい髪を、撫でる。</p>
+<p>「……よく、頑張ったな」</p>
+<p>その言葉は、ほとんど無意識に口から出ていた。</p>
+<p>「え……」</p>
+<p>美久が、大きな瞳をぱちくりさせ、次の瞬間には、顔をみるみるうちに真っ赤にして、固まってしまった。
+　僕もまた、自分のした行動に、はっと我に返る。</p>
+<p>（な、何やってんだ、俺は……！）</p>
+<p>慌てて手を引っ込めると、教室に、甘酸っぱくて、最高に気まずい沈黙が流れた。</p>
+<p>「……あ、いや、その、つい……調子に乗った。すまん」
+「い、いえ！　そ、その……あ、ありがとうございました……！」</p>
+<p>しどろもどろに交わされる、意味不明な会話。プログラミングのロジックは解けても、僕たちの間に流れる、この恋のロジックは、二人にとって、まだ一番の難問のようだった。</p>
 
 
 

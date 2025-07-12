@@ -22,7 +22,7 @@
     
     
       
-        <title>第35話 受験準備の春 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+        <title>第35話 恋の「最適化」 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第35話 受験準備の春
+              第35話 恋の「最適化」
             
           </span>
         </div>
@@ -1139,311 +1139,26 @@
   
 
 
-<h1 id="35">第35話 受験準備の春<a class="headerlink" href="#35" title="Permanent link">&para;</a></h1>
-<h2 id="3102">3月10日（日）午後2時<a class="headerlink" href="#3102" title="Permanent link">&para;</a></h2>
-<p>春の訪れを感じる季節。</p>
-<p>でも、私たちには大きな山が待ってる。</p>
-<p>大学受験。</p>
-<p>「美久、この問題解ける？」</p>
-<p>隆弘くんの部屋で、一緒に勉強中。</p>
-<p>数学の問題集を見つめる。</p>
-<p>◇◇◇◇</p>
-<h2 id="230">午後2時30分　勉強計画<a class="headerlink" href="#230" title="Permanent link">&para;</a></h2>
-<p>「計画的にやろう」</p>
-<p>隆弘くんがホワイトボードに書く。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 受験勉強計画</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">examPreparation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;東京工業大学&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">subjects</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">math</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">priority</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;高&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">dailyHours</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">topics</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;微積分&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;線形代数&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;確率統計&quot;</span><span class="p">]</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nx">physics</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">priority</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;高&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">dailyHours</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">topics</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;力学&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;電磁気&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;波動&quot;</span><span class="p">]</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nx">english</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">priority</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;中&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">dailyHours</span><span class="o">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">topics</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;長文読解&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;文法&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;技術英語&quot;</span><span class="p">]</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nx">programming</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">priority</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;並行して継続&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">dailyHours</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">benefit</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;論理的思考力の維持&quot;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">schedule</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">weekday</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;学校 + 4時間&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">weekend</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;8時間&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">breaks</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1時間ごとに10分&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;一緒に頑張ろう！&quot;</span><span class="p">);</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="3">午後3時　数学の美しさ<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p>「数学って、プログラミングに似てるね」</p>
-<p>問題を解きながら気づく。</p>
-<p>「そうだね。論理の積み重ね」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 数学とプログラミングの類似性</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mathAndProgramming</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">similarities</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;論理的思考&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;段階的な問題解決&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;抽象化の概念&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;パターン認識&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">example</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">math</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;f(x) = x² + 2x + 1&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">programming</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;const f = (x) =&gt; x**2 + 2*x + 1&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">recursion</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">math</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;フィボナッチ数列&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">programming</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">            const fib = (n) =&gt; </span>
-<span class="sb">                n &lt;= 1 ? n : fib(n-1) + fib(n-2)</span>
-<span class="sb">        `</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「プログラミング学んでてよかった」</p>
-<p>「数学の理解も深まる」</p>
-<p>◇◇◇◇</p>
-<h2 id="4">午後4時　休憩タイム<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<p>「ちょっと休憩しよう」</p>
-<p>隆弘くんが紅茶を入れてくれる。</p>
-<p>「疲れた？」</p>
-<p>「ちょっとね。でも楽しい」</p>
-<p>「隆弘くんと一緒だから」</p>
-<p>照れくさそうに笑う隆弘くん。</p>
-<p>◇◇◇◇</p>
-<h2 id="430">午後4時30分　物理の実験<a class="headerlink" href="#430" title="Permanent link">&para;</a></h2>
-<p>「物理の実験、プログラムでシミュレーションしてみる？」</p>
-<p>隆弘くんの提案。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 物理シミュレーション：自由落下</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">FreeFallSimulation</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.8</span><span class="p">;</span><span class="w"> </span><span class="c1">// 重力加速度 (m/s²)</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// 初期高さ (m)</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 初速度 (m/s)</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 経過時間 (s)</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span><span class="w"> </span><span class="c1">// 時間刻み (s)</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">velocity</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">g</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">dt</span><span class="p">;</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">dt</span><span class="p">;</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">time</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">dt</span><span class="p">;</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`着地！ 時間: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">2</span><span class="p">)</span><span class="si">}</span><span class="sb">秒`</span><span class="p">);</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;自由落下シミュレーション開始&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">time</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`時間: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span><span class="si">}</span><span class="sb">s, 高さ: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span><span class="si">}</span><span class="sb">m`</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">sim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">FreeFallSimulation</span><span class="p">();</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
-</code></pre></div>
-<p>「理論が目で見えるって面白い！」</p>
-<p>「勉強も楽しくなるね」</p>
-<p>◇◇◇◇</p>
-<h2 id="530">午後5時30分　英語の勉強<a class="headerlink" href="#530" title="Permanent link">&para;</a></h2>
-<p>「技術文書読むの、いい練習になる」</p>
-<p>GitHubのドキュメントを一緒に読む。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 技術英語の勉強法</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">technicalEnglish</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">resources</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;MDN Web Docs&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;Stack Overflow&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;技術ブログ&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;APIドキュメント&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">vocabulary</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">implementation</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;実装&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">algorithm</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;アルゴリズム&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">optimization</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;最適化&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">abstraction</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;抽象化&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">inheritance</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;継承&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">practice</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">reading</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;毎日1記事&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">writing</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;コミットメッセージは英語で&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">speaking</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;技術用語の発音練習&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「実用的な英語が身につく」</p>
-<p>「受験にも役立つし、将来も使える」</p>
-<p>◇◇◇◇</p>
-<h2 id="6">午後6時　夕食休憩<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p>「お腹すいた」</p>
-<p>一緒にコンビニへ。</p>
-<p>「おにぎりとサンドイッチ」</p>
-<p>「栄養ドリンクも」</p>
-<p>公園のベンチで食べる。</p>
-<p>「受験、不安？」</p>
-<p>隆弘くんが聞いてくる。</p>
-<p>「正直、ある」</p>
-<p>「でも、隆弘くんと同じ大学目指せるなら」</p>
-<p>「頑張れる」</p>
-<p>◇◇◇◇</p>
-<h2 id="7">午後7時　モチベーション管理<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<p>「モチベーション保つの大事だよね」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// モチベーション管理システム</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">MotivationManager</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">couple</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">couple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">couple</span><span class="p">;</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">goals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">achievements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">supportMessages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">setGoal</span><span class="p">(</span><span class="nx">goal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">goals</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">            </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="nx">goal</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">deadline</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(),</span>
-<span class="w">            </span><span class="nx">reward</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;達成したらデート&quot;</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">achieve</span><span class="p">(</span><span class="nx">achievement</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">achievements</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">            </span><span class="nx">date</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(),</span>
-<span class="w">            </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="nx">achievement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">celebratedWith</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ハイタッチ&quot;</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">motivationBoost</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">motivationBoost</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;やったね！次も頑張ろう！&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">couple</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">person</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">person</span><span class="p">.</span><span class="nx">motivation</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">person</span><span class="p">.</span><span class="nx">confidence</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">support</span><span class="p">(</span><span class="kr">from</span><span class="p">,</span><span class="w"> </span><span class="nx">to</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">supportMessages</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">            </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="kr">from</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="nx">to</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">message</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">effect</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;元気100倍&quot;</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">ourMotivation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MotivationManager</span><span class="p">([</span><span class="s2">&quot;美久&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;隆弘&quot;</span><span class="p">]);</span>
-<span class="nx">ourMotivation</span><span class="p">.</span><span class="nx">support</span><span class="p">(</span><span class="s2">&quot;隆弘&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;君ならできる！応援してる！&quot;</span><span class="p">);</span>
-<span class="nx">ourMotivation</span><span class="p">.</span><span class="nx">support</span><span class="p">(</span><span class="s2">&quot;美久&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;隆弘&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;一緒に頑張ろう！大好き！&quot;</span><span class="p">);</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="8">午後8時　将来の夢<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
-<p>勉強の合間に、将来の話。</p>
-<p>「大学入ったら、何したい？」</p>
-<p>「もっと高度なプログラミング学びたい」</p>
-<p>「AI研究とか」</p>
-<p>「私も！」</p>
-<p>「あと、二人で起業もいいな」</p>
-<p>夢が膨らむ。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 大学での目標</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">universityGoals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">academic</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;コンピュータサイエンスの基礎固め&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;AI・機械学習の研究&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;OSやコンパイラの仕組み理解&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;論文執筆&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">projects</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;オープンソース貢献&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;新しいプログラミング言語開発&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;社会問題解決アプリ&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;起業準備&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">together</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;共同研究&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;ペアプログラミング継続&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;技術イベント参加&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;世界を変える何かを作る&quot;</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<h2 id="9">午後9時　今日の締めくくり<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
-<p>「今日も充実してた」</p>
-<p>帰り支度をしながら。</p>
-<p>「うん。勉強も楽しかった」</p>
-<p>「それは隆弘くんと一緒だから」</p>
-<p>駅まで送ってくれる隆弘くん。</p>
-<p>「明日も頑張ろう」</p>
-<p>「うん」</p>
-<p>手を握って歩く。</p>
-<p>春の夜風が心地いい。</p>
-<p>◇◇◇◇</p>
-<h2 id="930">午後9時30分　帰宅後<a class="headerlink" href="#930" title="Permanent link">&para;</a></h2>
-<p>家に帰って、今日の復習。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 今日の学習記録</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">todaysStudy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">date</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024-03-10&quot;</span><span class="p">,</span>
-
-<span class="w">    </span><span class="nx">completed</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">math</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;微分方程式 10問&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">physics</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;力学の演習 15問&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">english</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;技術文書 3ページ&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">programming</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;物理シミュレーション実装&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">insights</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;数学とプログラミングの関連性&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;シミュレーションで理解深まる&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;一緒だと集中力UP&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">tomorrow</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;継続は力なり&quot;</span><span class="p">,</span>
-
-<span class="w">    </span><span class="nx">motivation</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="mf">95</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;隆弘くんの存在&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">studyLog</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">todaysStudy</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;明日も頑張るぞ！&quot;</span><span class="p">);</span>
-</code></pre></div>
-<p>ベッドに入る前に、隆弘くんにメッセージ。</p>
-<p>『今日もありがとう。明日も一緒に頑張ろうね』</p>
-<p>『こちらこそ。一緒に東工大行こう』</p>
-<p>『うん！絶対！』</p>
-<p>受験は大変。</p>
-<p>でも、隆弘くんと一緒なら乗り越えられる。</p>
-<p>プログラミングで培った論理的思考力。</p>
-<p>二人で過ごす充実した時間。</p>
-<p>全てが、私たちの力になる。</p>
-<p>春は、新しい挑戦の季節。</p>
-<p>一緒に、夢に向かって進もう。</p>
+<h1 id="35">第35話 恋の「最適化」<a class="headerlink" href="#35" title="Permanent link">&para;</a></h1>
+<p>僕たちの「恋のデバッグ」は、毎日が、まるで新しい関数を実装するみたいに、新鮮で、発見に満ちていた。空き教室での勉強会は、もはや、僕たちにとって、かけがえのない「愛の巣」のようだった。</p>
+<p>「先輩、このコード、もっと効率的に書けませんか？」</p>
+<p>美久が、僕の隣に身を寄せ、ノートパソコンの画面を指差す。その指先が、僕の腕に、そっと触れる。そのたびに、僕の胸の奥が、きゅっと締め付けられるような、甘い痛みが走る。</p>
+<p>「どれどれ……」</p>
+<p>僕は、美久の顔を見つめながら、優しく答える。彼女の瞳は、僕の言葉を、一つも聞き漏らすまいと、真剣に輝いている。</p>
+<p>僕たちの言語は、末尾再帰の最適化まで実装できた。これで、僕たちの言語は、より効率的に、そして、より複雑な処理をこなせるようになった。</p>
+<p>でも、僕たちが今、一番夢中になっているのは、そんな技術的なことだけじゃない。</p>
+<p>僕たちの「恋の最適化」だ。</p>
+<p>放課後、二人で並んで帰る道。美久が、僕の腕に、そっと自分の腕を絡ませる。その温かい感触が、僕の心を、温かいもので満たしてくれる。</p>
+<p>「先輩、私、先輩と、もっと、色々なことを共有したいです」</p>
+<p>美久が、僕の顔を見上げながら、はっきりと告げる。その瞳には、僕たちの未来への、揺るぎない決意が込められている。</p>
+<p>「俺もだ、美久。ずっと、一緒にいよう」</p>
+<p>僕の言葉に、美久は、はにかんだように笑った。その笑顔は、僕にとって、何よりも大切な「宝物」だ。</p>
+<p>僕たちの言語は、まだ完成には程遠い。これから先も、たくさんの機能を追加し、もっと賢く、もっと使いやすいものにしていく必要があるだろう。</p>
+<p>でも、僕たちが今、一番大切にしたいのは、そんな技術的なことだけじゃない。</p>
+<p>僕たちの「本当の物語」は、まだ始まったばかりだ。</p>
+<p>それは、僕たちの言語が、どんなに進化しても、きっと、コードには書き表せない、もっと複雑で、もっと温かい、僕と美久だけの「クロージャ」になるだろう。</p>
+<p>夕日が、教室の窓から差し込み、美久の横顔をオレンジ色に染める。その光の中で、彼女の笑顔が、僕の目に、今までで一番眩しく映った。</p>
+<p>僕たちの「恋の最適化」は、これからも、ずっと続いていく。プログラミングへの情熱と、美久への愛。その二つが、僕の人生を、無限に彩り続けてくれるだろう。</p>
 
 
 

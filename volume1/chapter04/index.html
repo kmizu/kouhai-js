@@ -1170,280 +1170,61 @@
   
 
 
-<h1 id="4">第4話 計算機を作ろう<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
-<p>四月二十三日、火曜日。放課後。</p>
-<p>情報処理室に入ると、美久がすでに席についていた。ノートを広げて、昨日のコードを写している。</p>
-<p>「早いね」</p>
-<p>「あ、隆弘先輩」</p>
-<p>美久が顔を上げる。その表情が、いつもより真剣だ。</p>
-<p>「昨日のコード、全部書き写してみたんです」</p>
-<p>ノートを覗き込むと、evaluateや interpretの関数が丁寧に書かれている。しかも、自分なりのコメントまで追加されていた。</p>
-<p>「すごい。理解度高いね」</p>
-<p>「えへへ。でも、まだ分からないところもあって」</p>
-<p>美久が困った顔でコードの一部を指差す。</p>
-<p>「このthrowってどういう意味？」</p>
-<p>「エラーを投げるって意味。野球のピッチャーみたいに」</p>
-<p>「なるほど！　エラーを投げて、catchで受け止めるんだ」</p>
-<p>美久の理解の速さに、また驚かされる。</p>
-<p>◇◇◇◇</p>
-<p>「今日は、昨日の続きで計算機を作っていこう」</p>
-<p>僕は新しいファイルを開いて、コードを書き始めた。</p>
-<p>「計算機って、電卓みたいなもの？」</p>
-<p>「そう。でも、ただの電卓じゃなくて、ASTを使った計算機」</p>
-<p>美久が首を傾げる。</p>
-<p>「普通の電卓と何が違うの？」</p>
-<p>「いい質問だね」</p>
-<p>僕はホワイトボードに図を描きながら説明した。</p>
-<p>「普通の電卓は、入力された順番に計算する。でも、僕たちの計算機は、まず式全体を木構造にしてから計算するんだ」</p>
-<p>「あ、だから優先順位とかも扱えるのか」</p>
-<p>「その通り」</p>
-<p>美久の気づきに、つい嬉しくなってしまう。</p>
-<p>◇◇◇◇</p>
-<p>「じゃあ、まずは足し算から実装しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 二項演算のAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">additionNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「BinaryExpressionって？」</p>
-<p>「二項演算って意味。左と右、二つの値を使う演算のこと」</p>
-<p>「なるほど。10 + 20 の 10が left で、20が right なんだ」</p>
-<p>美久がメモを取りながら頷く。</p>
-<p>「じゃあ、このASTを評価する関数を拡張しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">      </span><span class="k">default</span><span class="o">:</span>
-<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown operator: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<h1 id="4">第4話 四則演算と、パターンの発見<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
+<p>「すごい……本当に『3』って出てる……」</p>
+<p>美久は、ディスプレイに表示されたたった一文字の数字を、まるで奇跡でも見るかのように見つめている。その純粋な感動が、僕にも伝わってくるようだった。</p>
+<p>「じゃあ、先輩！　他の計算もできるんですか？　引き算とか、掛け算とか！」
+「ああ、もちろん。一度『翻訳』の仕組みを作ってしまえば、あとは応用だ。新しいルールを、僕たちの評価器に教えてやればいい」</p>
+<p>僕はそう言って、<code>evaluate</code>関数に新しいコードを書き足し始めた。</p>
+<p>「まずは引き算からだ。『もし、リストの最初の言葉が <code>-</code> だったら、引き算をする』っていうルールを追加する」</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">operator</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand2</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown node type: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「わあ、一気に四則演算全部！」</p>
-<p>「基本的な構造は同じだからね」</p>
-<p>実際に実行してみる。</p>
-<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">additionNode</span><span class="p">));</span><span class="w"> </span><span class="c1">// 30</span>
-</code></pre></div>
-<p>「動いた！」</p>
-<p>美久が喜ぶ。その笑顔を見ていると、こちらまで楽しくなってくる。</p>
-<p>◇◇◇◇</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>コードを打ちながら、美久が話しかけてきた。</p>
-<p>「なんで左をleft、右をrightって呼ぶの？」</p>
-<p>「数式を書く時の位置関係からだよ」</p>
-<p>僕は紙に「10 + 20」と書いて見せた。</p>
-<p>「ほら、10は演算子の左側、20は右側にあるでしょ？」</p>
-<p>「あ、本当だ。単純」</p>
-<p>美久が笑う。</p>
-<p>「でも、単純な方が分かりやすいよね」</p>
-<p>「プログラミングの世界では、分かりやすさが正義だから」</p>
-<p>そう言いながら、僕は次のコードを書き始めた。</p>
-<p>「今度は、もう少し複雑な計算をしてみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 1 + 2 * 3 のAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">complexNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">operator</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand2</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">};</span>
 </code></pre></div>
-<p>「うわ、入れ子になってる」</p>
-<p>「そう。これが木構造の威力」</p>
-<p>美久が真剣な顔で構造を追っている。</p>
-<p>「えっと、まず2×3を計算して、その結果と1を足すのか」</p>
-<p>「正解。実行してみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">complexNode</span><span class="p">));</span><span class="w"> </span><span class="c1">// 7</span>
-</code></pre></div>
-<p>「すごい！　ちゃんと優先順位が守られてる」</p>
-<p>◇◇◇◇</p>
-<p>しばらく作業を続けていると、美久がふと手を止めた。</p>
-<p>「隆弘先輩、質問があるんだけど」</p>
-<p>「どうした？」</p>
-<p>「0で割ったらどうなるの？」</p>
-<p>鋭い質問だ。エラー処理のことを考えているとは。</p>
-<p>「試してみようか」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">divisionByZeroNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">divisionByZeroNode</span><span class="p">));</span><span class="w"> </span><span class="c1">// Infinity</span>
-</code></pre></div>
-<p>「Infinity？　無限大？」</p>
-<p>「JavaScriptでは、0で割るとInfinityになるんだ」</p>
-<p>美久が眉をひそめる。</p>
-<p>「でも、数学的にはおかしいよね」</p>
-<p>「そうだね。だから、ちゃんとエラー処理を入れた方がいい」</p>
-<p>僕はコードを修正した。</p>
-<div class="highlight"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="o">:</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">right</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Division by zero&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-</code></pre></div>
-<p>「これで、0で割ろうとするとエラーになる」</p>
-<p>「なるほど。ユーザーに優しい設計」</p>
-<p>また「優しい」という表現を使う美久。技術的な機能を、そういう視点で見るのが面白い。</p>
-<p>◇◇◇◇</p>
-<p>「休憩しようか」</p>
-<p>一時間ほどコードを書いて、僕は伸びをした。</p>
-<p>「うん」</p>
-<p>美久も椅子から立ち上がる。</p>
-<p>「自販機で何か買ってくる？」</p>
-<p>「あ、私も行く」</p>
-<p>二人で廊下に出る。放課後の校舎は静かだ。</p>
-<p>「隆弘先輩」</p>
-<p>自販機の前で、美久が小さな声で言った。</p>
-<p>「ん？」</p>
-<p>「プログラミング、楽しい」</p>
-<p>素直な感想に、僕も嬉しくなる。</p>
-<p>「そう言ってもらえると、教えがいがある」</p>
-<p>「でも……」</p>
-<p>美久がコインを入れながら、言葉を続ける。</p>
-<p>「楽しいのは、プログラミングだけじゃないかも」</p>
-<p>そう言って、缶ジュースのボタンを押す。ガコンという音が、妙に大きく響いた。</p>
-<p>（どういう意味だろう）</p>
-<p>考える間もなく、美久は缶を取り出して振り返った。</p>
-<p>「先輩は何飲む？」</p>
-<p>「あ、コーヒーで」</p>
-<p>いつもの調子に戻った美久。さっきの言葉の真意は、分からないままだ。</p>
-<p>◇◇◇◇</p>
-<p>部屋に戻って、作業を再開する。</p>
-<p>「次は、もっと実用的な機能を追加しよう」</p>
-<p>「実用的？」</p>
-<p>「括弧だよ。(1 + 2) * 3 みたいな」</p>
-<p>美久の目が輝く。</p>
-<p>「あ、それができたら本物の計算機っぽい！」</p>
-<p>「じゃあ、やってみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// (1 + 2) * 3 のAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">parenthesesNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span>
+<p>「あ……！」</p>
+<p>僕がコードを打ち終わるか終わらないかのうちに、美久が声を上げた。</p>
+<p>「さっきの足し算のルールと、ほとんど同じですね！　プラスがマイナスに変わっただけ！」
+「その通り。やることは同じだからな。じゃあ、この調子で掛け算と割り算も追加してしまおう」</p>
+<p>僕は同じように、<code>*</code> と <code>/</code> のルールを書き加えていく。</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">operator</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand2</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">parenthesesNode</span><span class="p">));</span><span class="w"> </span><span class="c1">// 9</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">operator</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>「わあ、本当に括弧の中が先に計算されてる」</p>
-<p>「ASTの構造を変えるだけで、優先順位を制御できるんだ」</p>
-<p>美久が感心したように頷く。</p>
-<p>「プログラミング言語って、思ってたより柔軟なんだね」</p>
-<p>◇◇◇◇</p>
-<p>夕方六時。窓の外はオレンジ色に染まっている。</p>
-<p>「今日はここまでにしようか」</p>
-<p>「もう？」</p>
-<p>美久が残念そうな顔をする。</p>
-<p>「まだやりたいことがあったのに」</p>
-<p>「やりたいこと？」</p>
-<p>「うん。変数とか」</p>
-<p>驚いた。変数の概念を自分から言い出すなんて。</p>
-<p>「変数は明日やろう。楽しみは取っておかないと」</p>
-<p>「むー」</p>
-<p>美久が頬を膨らませる。その仕草が可愛くて、つい笑ってしまう。</p>
-<p>「なに笑ってるの」</p>
-<p>「いや、熱心だなって」</p>
-<p>「当たり前でしょ。せっかく隆弘先輩が教えてくれてるんだから」</p>
-<p>真っ直ぐな言葉に、胸が温かくなる。</p>
-<p>◇◇◇◇</p>
-<p>片付けをしながら、美久がぽつりと言った。</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「私たちが作ってる言語、いつか誰かの役に立つかな」</p>
-<p>予想外の質問に、少し考える。</p>
-<p>「きっと役に立つよ」</p>
-<p>「本当？」</p>
-<p>「うん。少なくとも、美久の役には立ってるでしょ？」</p>
-<p>美久が少し照れたように笑う。</p>
-<p>「それもそうだね」</p>
-<p>鞄を背負って、二人で教室を出る。</p>
-<p>「明日は変数の実装だね」</p>
-<p>「楽しみ」</p>
-<p>廊下を歩きながら、美久が言った。</p>
-<p>「変数って、名前をつけて値を保存するんでしょ？」</p>
-<p>「よく知ってるね」</p>
-<p>「昨日の夜、ちょっと調べたの」</p>
-<p>その向学心に、また感心する。</p>
-<p>「でも、実際に作るのとは違うから」</p>
-<p>「分かってる。だから楽しみなの」</p>
-<p>昇降口で靴を履き替える。</p>
-<p>「じゃあ、また明日」</p>
-<p>「うん、また明日」</p>
-<p>美久が手を振って歩いていく。その後ろ姿を見送りながら、僕は考えていた。</p>
-<p>計算機が動いた。簡単な四則演算だけど、れっきとしたプログラミング言語の機能だ。</p>
-<p>美久の成長速度は、予想以上に速い。このペースなら、本当に言語が完成するかもしれない。</p>
-<p>そして、美久との距離も——</p>
-<p>（いや、考えすぎか）</p>
-<p>でも、さっきの「プログラミングだけじゃない」という言葉が、頭から離れない。</p>
-<p>明日は変数の実装。また一歩、MikuLangが成長する。</p>
-<p>美久との時間も、また一日増える。</p>
-<p>それが嬉しいと思う自分に、少し戸惑いながら、僕も帰路についた。</p>
+<p>「割り算のところ、美久が打ってみるか？」
+「えっ！？　い、いいんですか？」
+「もちろん。僕たちの『共同開発』なんだから」</p>
+<p>僕が少しだけキーボードから離れると、美久はおそるおそる、人差し指でキーを叩き始めた。慣れない手つきで、一文字一文字、確かめるように打ち込んでいく。その真剣な横顔を、僕はなんだか眩しい気持ちで見つめていた。</p>
+<p>「……できました」</p>
+<p>ほっとしたように息をつく美久。これで、僕たちの言語は四則演算すべてに対応できるようになったはずだ。</p>
+<p>「じゃあ、試してみよう」</p>
+<p>僕はテスト用のコードをいくつか実行してみせた。</p>
+<p><code>console.log(evaluate(['-', 10, 3]));</code>  // -&gt; 7
+<code>console.log(evaluate(['*', 5, 6]));</code>   // -&gt; 30
+<code>console.log(evaluate(['/', 20, 4]));</code>  // -&gt; 5</p>
+<p>画面には、次々と正しい計算結果が表示される。美久は「おおーっ」と小さく歓声をあげ、自分の打ったコードが正しく動いていることに、いたく感動している様子だった。
+　しばらく、満足そうに完成したコードを眺めていた彼女だったが、ふと、何かに気づいたように首を傾げた。</p>
+<p>「先輩。こうして見てみると……」
+「ん？」
+「演算子の部分が違うだけで、やってること、全部同じじゃないですか？　『もし〇〇だったら、△△する』っていう、同じ形の繰り返し……」</p>
+<p>僕は、思わず目を見開いた。</p>
+<p>（気づいたか……！）</p>
+<p>「すごいな、美久。その通りだ。プログラミングでは、こういう風に『同じような処理の繰り返し』、つまり**パターン**を見つけることが、すごく重要なんだ」
+「パターン、ですか」
+「ああ。今は一つ一つバラバラにルールを書いているけど、このパターンを利用すれば、もっとずっと賢くて、短いコードで同じことができるようになる。でも、それはまた今度の話だ」</p>
+<p>まずは、自分の力でこのパターンに気づけたことが、何よりの収穫だった。</p>
+<p>「なんだか、プログラミングってパズルみたいですね」</p>
+<p>美久が、ぽつりと言った。</p>
+<p>「ルールを見つけて、それを綺麗に当てはめていく感じが。ちょっと、楽しいです」
+「……そうか」</p>
+<p>その言葉が、なぜだか無性に嬉しかった。
+　僕がずっと一人で楽しんでいたこのパズルの面白さを、共有できる相手がいる。ただそれだけのことが、こんなにも心を温かくするなんて。</p>
+<p>僕たちの間には、もう「教える先輩」と「教わる後輩」というだけじゃない、何か新しい関係が芽生え始めているのかもしれない。そんな予感が、胸をかすめていった。</p>
 
 
 

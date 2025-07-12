@@ -1170,208 +1170,57 @@
   
 
 
-<h1 id="7">第7話 パーサーは後回し<a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
-<p>四月二十六日、金曜日。放課後。</p>
-<p>今日の美久は、なんだかそわそわしている。</p>
-<p>「どうしたの？　落ち着かないみたいだけど」</p>
-<p>「だって、今日はMikuLangの構文を決めるんでしょ？」</p>
-<p>美久が大きなノートを取り出す。付箋がたくさん貼られていて、びっしりとアイデアが書き込まれている。</p>
-<p>「すごい準備……」</p>
-<p>「昨日、眠れなくて。いろいろ考えてたら朝になっちゃった」</p>
-<p>その熱意に圧倒される。でも、目の下にうっすらクマができているのが心配だ。</p>
-<p>「無理しなくていいのに」</p>
-<p>「無理じゃないよ。楽しかったから」</p>
-<p>美久の笑顔を見て、僕も嬉しくなる。</p>
-<p>◇◇◇◇</p>
-<p>「まず、構文を決める前に大事な話がある」</p>
-<p>僕はホワイトボードに「パーサー」と書いた。</p>
-<p>「パーサーって？」</p>
-<p>「文字列をASTに変換するプログラムのこと」</p>
-<p>簡単な図を描いて説明する。</p>
-<div class="highlight"><pre><span></span><code>&quot;1 + 2&quot; → パーサー → AST
-</code></pre></div>
-<p>「なるほど。文字を読んで、木構造を作るんだ」</p>
-<p>「そう。でも、パーサーを作るのはかなり大変なんだ」</p>
-<p>美久が首を傾げる。</p>
-<p>「どのくらい大変？」</p>
-<p>「うーん……」</p>
-<p>僕は考えながら説明を始めた。</p>
-<p>「例えば、『1 + 2 * 3』をパースする時、演算子の優先順位を考慮しないといけない」</p>
-<p>「あ、掛け算が先」</p>
-<p>「そう。それに、括弧とか、エラー処理とか、考えることがたくさんある」</p>
-<p>◇◇◇◇</p>
-<p>「でも」</p>
-<p>僕は美久に向き直った。</p>
-<p>「今回は、パーサーを作らない」</p>
-<p>「え？」</p>
-<p>美久が驚いた顔をする。</p>
-<p>「じゃあ、どうやって……」</p>
-<p>「JavaScriptで直接ASTを書くんだ」</p>
-<p>コードを書いて見せる。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// MikuLangの構文（案）</span>
-<span class="c1">// もしも x が 5 より大きい ならば</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ifStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IfStatement&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 処理</span>
+<h1 id="7">第7話 世界を創るということ<a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
+<p>「じゃあ、まず何から始めるんですか？」</p>
+<p><code>Environment</code>という、まだ空っぽのクラスを前にして、美久が期待と不安の入り混じった声で尋ねた。その横顔は真剣そのものだ。</p>
+<p>「まずは、この『世界』に、変数を記録できるようにしよう。<code>define</code>メソッドの実装からだ」</p>
+<p>僕はそう言って、<code>Environment</code>クラスの中にコードを書き込んだ。</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nx">define</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">variables</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">};</span>
 </code></pre></div>
-<p>「これって、手動でAST作ってるってこと？」</p>
-<p>「その通り。構文解析を飛ばして、意味解析に集中できる」</p>
-<p>◇◇◇◇</p>
-<p>「なるほど！」</p>
-<p>美久が目を輝かせる。</p>
-<p>「料理で言うと、材料の下ごしらえは後回しにして、味付けから始める感じ？」</p>
-<p>また的確な例えだ。</p>
-<p>「そう。本質的な部分から作っていく」</p>
-<p>「でも、最終的にはパーサーも必要なんでしょ？」</p>
-<p>「うん。でも、それは言語の仕様が固まってからでいい」</p>
-<p>美久が納得したように頷く。</p>
-<p>「確かに、何を作るか決まってないのに、作り方を考えても仕方ないもんね」</p>
-<p>◇◇◇◇</p>
-<p>「それじゃあ、構文のアイデアを聞かせて」</p>
-<p>美久がノートを開く。</p>
-<p>「まず、日本語で書けるようにしたい！」</p>
-<p>「いいね。どんな感じ？」</p>
-<p>美久が書いたサンプルコードを見せてくれた。</p>
-<div class="highlight"><pre><span></span><code>もしも 好感度 が 80 以上 ならば
-    「告白成功！」を表示
-そうでなければ
-    「もっと仲良くなろう」を表示
+<p>「たったこれだけ？」
+「ああ。<code>this.variables</code>っていうのが、変数を実際に記録しておくための、ただのオブジェクトだ。そこに、<code>name</code>っていう名前の引き出しを作って、<code>value</code>っていう中身を入れてあげる。やってることは、すごくシンプルだろ？」
+「なるほど……」</p>
+<p>美久は、コードと僕の説明を交互に見比べて、こくりと頷いた。</p>
+<p>「じゃあ、今度はその逆。記録した変数の値を、名前を使って探し出す方をやってみようか。<code>lookup</code>メソッドだ。美久、どうすればいいか分かるか？」</p>
+<p>僕がそう促すと、彼女は少し戸惑ったような顔を見せた。でも、すぐに<code>define</code>のコードに視線を落とし、何かを考えるように指先でテーブルを軽く叩いている。
+　やがて、意を決したように顔を上げると、おそるおそる口を開いた。</p>
+<p>「えっと……<code>return this.variables[name];</code>……ですか？」
+「……完璧だ」</p>
+<p>僕は、素直な称賛の言葉を口にした。彼女は、ちゃんと自分の頭で考えて、答えを導き出したんだ。美久は「良かった……」と、ほっと胸を撫で下ろしている。その表情に、確かな自信の光が灯ったのを、僕は見逃さなかった。</p>
+<p>「さて、これで『世界』の準備はできた。次はこの<code>Environment</code>を、僕たちの心臓部である<code>evaluate</code>関数と繋いであげる必要がある」</p>
+<p>僕は<code>evaluate</code>関数の定義を、<code>function evaluate(exp, env)</code>という形に書き換えた。第二の引数として、今作った<code>env</code>（環境）を受け取れるようにするためだ。</p>
+<p>「そして、<code>evaluate</code>関数の中に、新しいお願い<code>define</code>のルールを追加する」</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">// もし式がリストなら</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">exp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// もし、それがdefine文なら</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">exp</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;define&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">exp</span><span class="p">[</span><span class="mf">2</span><span class="p">],</span><span class="w"> </span><span class="nx">env</span><span class="p">);</span><span class="w"> </span><span class="c1">// 値を先に評価する</span>
+<span class="w">        </span><span class="nx">env</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// define文は何も返さない</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="c1">// ...四則演算の処理は続く</span>
+<span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-<p>「わあ、読みやすい」</p>
-<p>「でしょ？　初心者でも理解しやすいと思うの」</p>
-<p>確かに、英語のif-elseより親しみやすい。</p>
-<p>「これをASTで表現すると……」</p>
-<p>僕はコードを書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">mikuLangIf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IfStatement&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;好感度&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PrintStatement&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;告白成功！&#39;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PrintStatement&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;もっと仲良くなろう&#39;</span><span class="w"> </span><span class="p">}</span>
+<p>「最後に、変数を参照するルールだ。『もし、<code>exp</code>が<code>'x'</code>みたいな文字列だったら、それは変数名だと判断して、<code>env</code>に問い合わせる』」</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">// もし式が文字列なら、変数を探す</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">exp</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;string&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">env</span><span class="p">.</span><span class="nx">lookup</span><span class="p">(</span><span class="nx">exp</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
-<span class="p">};</span>
 </code></pre></div>
-<p>◇◇◇◇</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>作業中、美久が顔を上げた。</p>
-<p>「変数の宣言はどうする？」</p>
-<p>「どんなアイデアがある？」</p>
-<p>美久がノートのページをめくる。</p>
-<div class="highlight"><pre><span></span><code>好感度 を 0 にする
-名前 を 「美久」 にする
-</code></pre></div>
-<p>「『にする』かあ。分かりやすいね」</p>
-<p>「letとかvarとか、初心者には意味不明だもん」</p>
-<p>その通りだ。プログラミング言語の予約語は、英語圏でも分かりにくいことがある。</p>
-<p>「じゃあ、代入もこんな感じ？」</p>
-<div class="highlight"><pre><span></span><code>好感度 に 10 を足す
-好感度 を 2倍 にする
-</code></pre></div>
-<p>「いいね！　自然な日本語だ」</p>
-<p>◇◇◇◇</p>
-<p>しばらく議論を続けていると、美久が突然立ち上がった。</p>
-<p>「あ、そうだ！」</p>
-<p>「どうした？」</p>
-<p>「関数の呼び出しも日本語にしたい」</p>
-<p>美久がホワイトボードに書く。</p>
-<div class="highlight"><pre><span></span><code>美久の好感度を上げる（10）
-隆弘に告白する（）
-</code></pre></div>
-<p>なんだか例が具体的すぎる気がするけど……。</p>
-<p>「括弧はそのまま？」</p>
-<p>「うーん、どうしよう」</p>
-<p>二人で考え込む。</p>
-<p>「『〜に10を渡して実行』とか？」</p>
-<p>「長いなあ」</p>
-<p>試行錯誤を繰り返す。こういう時間が楽しい。</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。自販機でジュースを買って戻ると、美久が窓の外を眺めていた。</p>
-<p>「何考えてるの？」</p>
-<p>「パーサーを作らないって、勇気がいる決断だよね」</p>
-<p>意外な言葉だった。</p>
-<p>「どうして？」</p>
-<p>「だって、普通は最初から順番に作るものでしょ？」</p>
-<p>「確かに」</p>
-<p>美久が振り返る。</p>
-<p>「でも、隆弘先輩は本質を見極めて、必要なところから作る。すごいと思う」</p>
-<p>褒められて照れる。</p>
-<p>「研究でも同じなんだ。完璧を求めすぎると、何も進まない」</p>
-<p>「完璧じゃなくていいんだ」</p>
-<p>「うん。まず動くものを作って、それから改善していく」</p>
-<p>美久が優しく微笑む。</p>
-<p>「なんか、人生みたい」</p>
-<p>◇◇◇◇</p>
-<p>作業を再開して、構文の詳細を詰めていく。</p>
-<p>「ループはどうする？」</p>
-<p>「『〜の間、繰り返す』とか？」</p>
-<div class="highlight"><pre><span></span><code>好感度 が 100 未満 の間、繰り返す
-    デートに誘う（）
-    好感度 に 5 を足す
-繰り返し終わり
-</code></pre></div>
-<p>「ちょっと例が……」</p>
-<p>「あ、いや、これは一般的な例で！」</p>
-<p>美久が慌てて弁解する。顔が真っ赤だ。</p>
-<p>（かわいい）</p>
-<p>そんなことを考えてしまう自分に気づいて、僕も顔が熱くなる。</p>
-<p>◇◇◇◇</p>
-<p>夕方六時。今日も充実した時間だった。</p>
-<p>「構文の基本的な方向性は決まったね」</p>
-<p>「うん！　日本語で書けるプログラミング言語」</p>
-<p>美久が満足そうに頷く。</p>
-<p>「来週は、これをちゃんと動くようにしよう」</p>
-<p>「楽しみ！」</p>
-<p>荷物をまとめながら、美久が言った。</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「パーサーを後回しにしたのは、私のためでもあるの？」</p>
-<p>鋭い質問に、少し戸惑う。</p>
-<p>「どういうこと？」</p>
-<p>「だって、パーサーから作ったら、私にはついていけないでしょ？」</p>
-<p>（バレてたか）</p>
-<p>正直、それも理由の一つだった。美久が楽しく学べるように、順番を工夫したのは事実だ。</p>
-<p>「……そうかもしれない」</p>
-<p>「やっぱり」</p>
-<p>美久が嬉しそうに笑う。</p>
-<p>「隆弘先輩、優しい」</p>
-<p>また『優しい』と言われた。でも、今回は素直に受け取ることにした。</p>
-<p>◇◇◇◇</p>
-<p>帰り道。</p>
-<p>「週末はどうする？」</p>
-<p>僕が聞くと、美久が驚いた顔をした。</p>
-<p>「え？」</p>
-<p>「プログラミングの続き、やる？」</p>
-<p>「もちろん！　でも、隆弘先輩の都合は？」</p>
-<p>「大丈夫。研究も一段落ついたし」</p>
-<p>本当は、美久との時間を優先したいだけなんだけど。</p>
-<p>「じゃあ、明日の午後でもいい？」</p>
-<p>「うん。僕の部屋でいい？」</p>
-<p>美久の顔がまた赤くなる。</p>
-<p>「は、はい」</p>
-<p>なんだか、デートの約束をしているみたいだ。</p>
-<p>（いや、プログラミングの勉強会だから）</p>
-<p>自分に言い聞かせるけど、胸の高鳴りは止まらない。</p>
-<p>明日は土曜日。二人きりで、ゆっくりコードを書ける。</p>
-<p>MikuLangの実装も、美久との関係も、少しずつ前に進んでいる。</p>
-<p>その実感を噛みしめながら、僕は家路についた。</p>
+<p>これで、一通りの実装は完了だ。僕は達成感に浸りながら、キーボードから手を離した。</p>
+<p>「これで、僕たちの言語は『記憶』を手に入れた。<code>['define', 'x', 10]</code>とお願いすれば、<code>x</code>が10だってことを、ちゃんと覚えてくれるようになったんだ」
+「はあ……」</p>
+<p>僕の弾んだ声とは対照的に、美久の返事はどこか上の空だった。彼女の表情が、さっきまでの快活さを失い、少しだけ硬くなっていることに、僕は気づかなかった。</p>
+<p>「……先輩は、すごいですね」</p>
+<p>ぽつりと、彼女が呟いた。</p>
+<p>「こんなこと、全部スラスラと出てくるなんて。まるで、頭の中に完成図が全部入ってるみたい」
+「まあ、何度もやってることだからな」</p>
+<p>僕は、それをただの称賛として、額面通りに受け取ってしまった。その言葉の裏に、自分との圧倒的な差に対する、小さな絶望と焦りが滲んでいることにも気づかずに。</p>
+<p>僕たちの言語は、確かに記憶を手に入れた。でも、その代償のように、僕たちの間には、今までなかったはずの、見えない壁が生まれ始めていたのかもしれない。
+　そんな不穏な予感を、この時の僕は、まだ知る由もなかった。</p>
 
 
 

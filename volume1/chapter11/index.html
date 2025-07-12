@@ -1170,374 +1170,42 @@
   
 
 
-<h1 id="11">第11話 関数を作る<a class="headerlink" href="#11" title="Permanent link">&para;</a></h1>
-<p>四月三十日、火曜日。振替休日。</p>
-<p>ゴールデンウィークの初日も、美久と一緒にプログラミング。もはや日課になりつつある。</p>
-<p>「今日は関数を実装するんだよね」</p>
-<p>美久が期待に満ちた顔で言う。</p>
-<p>「そう。プログラミングの醍醐味の一つ」</p>
-<p>「関数って、数学の関数とは違うの？」</p>
-<p>いい質問だ。</p>
-<p>「基本的な考え方は同じ。入力を受け取って、出力を返す」</p>
-<p>◇◇◇◇</p>
-<p>「まず、関数の定義から始めよう」</p>
-<p>ホワイトボードに図を描く。</p>
-<div class="highlight"><pre><span></span><code>関数 挨拶(名前) {
-    「こんにちは、」 + 名前 + 「さん」 を表示
-}
-</code></pre></div>
-<p>「わあ、日本語で書くとわかりやすい」</p>
-<p>「MikuLangらしくていいでしょ？」</p>
-<p>美久が嬉しそうに頷く。</p>
-<p>◇◇◇◇</p>
-<p>「じゃあ、ASTの構造を考えよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 関数定義のAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">FunctionDeclaration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;FunctionDeclaration&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;挨拶&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;名前&#39;</span><span class="p">],</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="c1">// 関数の中身</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// 関数呼び出しのAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">FunctionCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CallExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">callee</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;挨拶&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">arguments</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;美久&#39;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「関数定義と関数呼び出し、別々のASTなんだ」</p>
-<p>「そう。定義は設計図、呼び出しは実行命令」</p>
-<p>◇◇◇◇</p>
-<p>実際に実装を始める。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// ASTTypesに追加</span>
-<span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">FunctionDeclaration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FunctionDeclaration&#39;</span><span class="p">;</span>
-<span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">CallExpression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CallExpression&#39;</span><span class="p">;</span>
-<span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">ReturnStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ReturnStatement&#39;</span><span class="p">;</span>
-
-<span class="c1">// ヘルパー関数</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createFunction</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="nx">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">FunctionDeclaration</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">body</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">createCall</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">CallExpression</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">callee</span><span class="o">:</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">arguments</span><span class="o">:</span><span class="w"> </span><span class="nx">args</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">ReturnStatement</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「returnって何？」</p>
-<p>「関数から値を返すための命令」</p>
-<p>美久がメモを取る。</p>
-<p>◇◇◇◇</p>
-<p>「次は評価器を拡張しよう」</p>
-<p>僕は慎重にコードを書いていく。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 関数を保存するための環境を拡張</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">Environment</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">functions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parent</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">setFunction</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">func</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">functions</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">func</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">getFunction</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">functions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">functions</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getFunction</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`関数 &#39;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&#39; が見つかりません`</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「parent？」</p>
-<p>「スコープのため。関数の中と外で変数を分けるんだ」</p>
-<p>◇◇◇◇</p>
-<p>美久が首を傾げる。</p>
-<p>「スコープって？」</p>
-<p>「変数の有効範囲のこと」</p>
-<p>簡単な例を書いて説明する。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// グローバルスコープ</span>
-<span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">test</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// ローカルスコープ</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 20</span>
-<span class="p">}</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 10</span>
-</code></pre></div>
-<p>「なるほど！　同じ名前でも別の変数になるんだ」</p>
-<p>「そう。これがスコープの重要性」</p>
-<p>◇◇◇◇</p>
-<p>評価器に関数の処理を追加する。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 関数定義の評価</span>
-<span class="nx">evaluateFunctionDeclaration</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">params</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">closure</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="w"> </span><span class="c1">// クロージャ</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">setFunction</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">func</span><span class="p">);</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// 関数呼び出しの評価</span>
-<span class="nx">evaluateCallExpression</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">getFunction</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">callee</span><span class="p">);</span>
-
-<span class="w">  </span><span class="c1">// 引数を評価</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">arg</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">arg</span><span class="p">));</span>
-
-<span class="w">  </span><span class="c1">// 新しい環境を作成</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">funcEnv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Environment</span><span class="p">(</span><span class="nx">func</span><span class="p">.</span><span class="nx">closure</span><span class="p">);</span>
-
-<span class="w">  </span><span class="c1">// パラメータに引数を割り当て</span>
-<span class="w">  </span><span class="nx">func</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">param</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">funcEnv</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">param</span><span class="p">,</span><span class="w"> </span><span class="nx">args</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-<span class="w">  </span><span class="p">});</span>
-
-<span class="w">  </span><span class="c1">// 関数本体を実行</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">prevEnv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="p">;</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">funcEnv</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">func</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="c1">// return文がない場合</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;RETURN&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="nx">e</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prevEnv</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「複雑……」</p>
-<p>美久が困った顔をする。</p>
-<p>「一つずつ理解していけば大丈夫」</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。美久がソファで質問してきた。</p>
-<p>「クロージャって何？」</p>
-<p>「関数が定義された時の環境を記憶する仕組み」</p>
-<p>「どういうこと？」</p>
-<p>例を書いて説明する。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">makeCounter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">count</span><span class="p">;</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">makeCounter</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">());</span><span class="w"> </span><span class="c1">// 1</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counter</span><span class="p">());</span><span class="w"> </span><span class="c1">// 2</span>
-</code></pre></div>
-<p>「わあ、countの値が保持されてる」</p>
-<p>「これがクロージャの力」</p>
-<p>◇◇◇◇</p>
-<p>「実際に関数を使ったプログラムを書いてみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">funcProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="c1">// 関数定義</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;二乗&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span>
-<span class="w">            </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="c1">// 関数呼び出し</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;結果&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;二乗&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">5</span><span class="p">)])</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;結果&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">funcProgram</span><span class="p">);</span>
-<span class="c1">// 出力: 25</span>
-</code></pre></div>
-<p>「動いた！」</p>
-<p>美久が歓声を上げる。</p>
-<p>◇◇◇◇</p>
-<p>「私も関数を作ってみたい」</p>
-<p>美久がキーボードに向かう。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久の関数</span>
-<span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;好感度チェック&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="p">[</span><span class="s1">&#39;値&#39;</span><span class="p">],</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">          </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;値&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">80</span><span class="p">)</span>
-<span class="w">        </span><span class="p">),</span>
-<span class="w">        </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;大好き&#39;</span><span class="p">))</span>
-<span class="w">          </span><span class="p">]</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;もっと頑張って&#39;</span><span class="p">))</span>
-<span class="w">          </span><span class="p">]</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">)</span>
-</code></pre></div>
-<p>「かわいい関数だね」</p>
-<p>「えへへ」</p>
-<p>美久が照れる。</p>
-<p>◇◇◇◇</p>
-<p>実行してみる。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 好感度チェック関数を使う</span>
-<span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;メッセージ&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;好感度チェック&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">85</span><span class="p">)])</span>
-<span class="p">),</span>
-<span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;メッセージ&#39;</span><span class="p">))</span>
-<span class="c1">// 出力: 大好き</span>
-</code></pre></div>
-<p>「やった！」</p>
-<p>美久が喜ぶ姿を見て、僕も嬉しくなる。</p>
-<p>◇◇◇◇</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>作業を続けながら、美久が言った。</p>
-<p>「再帰関数も作れる？」</p>
-<p>また鋭い質問だ。</p>
-<p>「作れるよ。試してみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 階乗を計算する再帰関数</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">factorialProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;階乗&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;&lt;=&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">))]</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createReturn</span><span class="p">(</span>
-<span class="w">                  </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                    </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">),</span>
-<span class="w">                    </span><span class="nx">createCall</span><span class="p">(</span>
-<span class="w">                      </span><span class="s1">&#39;階乗&#39;</span><span class="p">,</span>
-<span class="w">                      </span><span class="p">[</span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                        </span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
-<span class="w">                        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">),</span>
-<span class="w">                        </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
-<span class="w">                      </span><span class="p">)]</span>
-<span class="w">                    </span><span class="p">)</span>
-<span class="w">                  </span><span class="p">)</span>
-<span class="w">                </span><span class="p">)</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;階乗&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">5</span><span class="p">)]))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">factorialProgram</span><span class="p">);</span>
-<span class="c1">// 出力: 120</span>
-</code></pre></div>
-<p>「すごい！　自分で自分を呼んでる」</p>
-<p>美久の理解の速さに感心する。</p>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。窓の外はオレンジ色に染まっている。</p>
-<p>「関数があると、プログラムがすごく便利になるね」</p>
-<p>美久が満足そうに言う。</p>
-<p>「そう。同じ処理を何度も書かなくて済む」</p>
-<p>「DRY原則？」</p>
-<p>「よく知ってるね」</p>
-<p>「Don't Repeat Yourself。昨日調べた」</p>
-<p>美久の向学心に、また感心する。</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>片付けながら、美久が言った。</p>
-<p>「MikuLangで、もっと複雑なプログラムが書けるようになってきた」</p>
-<p>「そうだね」</p>
-<p>「でも、まだ配列がないよね」</p>
-<p>鋭い指摘だ。</p>
-<p>「明日は配列を実装しよう」</p>
-<p>「やった！」</p>
-<p>美久の期待に応えたくなる。</p>
-<p>◇◇◇◇</p>
-<p>美久を見送った後、一人で今日のコードを見返す。</p>
-<p>関数の実装は、言語にとって大きな一歩だ。これで本格的なプログラムが書けるようになる。</p>
-<p>そして、美久のプログラミング理解も、着実に深まっている。</p>
-<p>クロージャ、スコープ、再帰——難しい概念も、しっかり理解している。</p>
-<p>明日は配列。データ構造の基本だ。</p>
-<p>美久なら、きっとすぐに理解してくれるだろう。</p>
-<p>そんな確信と期待を胸に、僕は明日の準備を始めた。</p>
-<p>MikuLangも、美久との関係も、順調に成長している。</p>
-<p>このゴールデンウィークが、特別な時間になりそうだ。</p>
+<h1 id="11">第11話 夜の河川敷と、不器用な「ごめん」<a class="headerlink" href="#11" title="Permanent link">&para;</a></h1>
+<p>息を切らしながら、夜の街を走る。心臓が、うるさいくらいに脈打っていた。
+　どこだ。美久は、どこにいる？</p>
+<p>彼女が行きそうな場所を、頭の中で必死に検索する。家の方向、駅、時々立ち寄る雑貨屋……違う。もっと、彼女が一人になりたい時に向かう場所。</p>
+<p>（……河川敷か！）</p>
+<p>思い当たった瞬間、僕は迷わず進路を変えた。あそこだ。悩んだり、考え事をしたりする時、彼女はよく、あの川辺のベンチに座っている。</p>
+<p>川沿いの道を、転がるように走る。街灯が等間隔に並ぶ、薄暗い道。その先に、見慣れたベンチと、そこにぽつんと座る小さな人影が見えた。</p>
+<p>間違いない。美久だ。</p>
+<p>僕は、逸る気持ちを抑えて少しだけペースを落とし、息を整えながら、ゆっくりと彼女に近づいた。</p>
+<p>「……美久」</p>
+<p>僕が声をかけると、彼女の肩がびくりと震えた。ゆっくりとこちらを振り向いたその瞳は、やっぱり、泣きはらしたように赤く腫れている。僕の顔を見ると、彼女はまたすぐに、気まずそうに俯いてしまった。</p>
+<p>隣に、そっと腰を下ろす。何を言えばいいのか、言葉がうまく出てこない。プログラムのエラーなら、原因を特定して、修正すればいい。でも、人の心は、そんなに単純じゃない。</p>
+<p>僕は、手の中で汗ばむほど強く握りしめていた彼女のノートを、そっと差し出した。</p>
+<p>「……忘れ物」</p>
+<p>そして、喉の奥から、やっとの思いで言葉を絞り出した。</p>
+<p>「……ごめん」</p>
+<p>その一言が、今の僕に言える、全てだった。
+　美久は、ノートを受け取ろうとせず、俯いたまま、か細い声で首を横に振った。</p>
+<p>「先輩は……悪くないです。私が、勝手に……。全然、ついていけなくなって……。私が、悪いんです」</p>
+<p>彼女は、自分を責めている。違う。そうじゃないんだ。</p>
+<p>「違う！」</p>
+<p>自分でも驚くくらい、強い声が出た。美久が、驚いたように顔を上げる。</p>
+<p>「悪いのは、俺だ。俺は、お前のこと、全然見てなかった。お前が、ノートに、こんな……こんなに苦しんでるのを書き殴ってる間、俺は、ただ自分のパズルに夢中になってた。本当に、最低だ」</p>
+<p>自分の不器用さが、もどかしい。もっとうまく、気持ちを伝えられたらいいのに。</p>
+<p>「俺は、お前が隣にいてくれるのが、当たり前だと思ってた。一緒に作ってるつもりで、本当は、ただの自己満足に、お前を付き合わせてただけだったんだ。……本当に、ごめん」</p>
+<p>僕の、不器用で、途切れ途切れの言葉を、彼女は黙って聞いていた。やがて、その大きな瞳から、ぽろり、とまた大粒の涙がこぼれ落ちた。でも、それは、さっきまでの孤独な涙とは、どこか違う、温かい色をしているように見えた。</p>
+<p>「……私こそ、ごめんなさい」</p>
+<p>しゃくりあげながら、彼女が言った。</p>
+<p>「分かったフリ、してました。先輩が、あまりにすごくて、置いていかれるのが、怖くて……」</p>
+<p>僕たちは、やっと、互いの弱さと過ちを、打ち明けられたんだ。</p>
+<p>しばらく、川のせせらぎだけが、僕たちの間に流れていた。気まずいけれど、不思議と心地いい沈黙だった。</p>
+<p>「なあ、美久」</p>
+<p>僕は、意を決して彼女に言った。</p>
+<p>「もう一度、やらないか。プログラミング言語作り。今度は、ちゃんと、お前の顔を見て、お前の声を聞きながら。俺は……俺は、お前と一緒に、作りたいんだ」</p>
+<p>僕の言葉に、美久は、涙でぐしゃぐしゃの顔を上げた。そして、僕が今まで見た中で、一番美しい笑顔で、小さく、でも、はっきりと、こくりと頷いた。</p>
+<p>その瞬間、僕たちの間にあった、あの見えない壁が、夜の闇に静かに溶けていったような気がした。</p>
 
 
 

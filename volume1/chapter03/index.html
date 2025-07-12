@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#3" class="md-skip">
+        <a href="#3-evaluator" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -1170,236 +1170,75 @@
   
 
 
-<h1 id="3">第3話 最初の一歩：数字を表示しよう<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
-<p>四月二十二日、月曜日。放課後。</p>
-<p>僕は情報処理室で美久を待っていた。今日から本格的にプログラミング言語の実装に入る予定だ。</p>
-<p>「隆弘先輩、お待たせ！」</p>
-<p>美久が駆け込んできた。今日も制服姿だけど、なんだか昨日より表情が明るい。</p>
-<p>「走らなくてもいいよ」</p>
-<p>「だって、楽しみで」</p>
-<p>美久が僕の隣に座る。また近い。もうこの距離感に慣れるしかないのかもしれない。</p>
-<p>「昨日の復習、してきた？」</p>
-<p>「もちろん！」</p>
-<p>美久がノートを広げる。昨日教えたASTの概念が、カラフルなペンで丁寧にまとめられている。</p>
-<p>「すごいね。美術の授業みたい」</p>
-<p>「えへへ。分かりやすくしたくて」</p>
-<p>ノートには、ASTの木構造が実際の木のイラストで描かれていた。葉っぱが数値、枝が演算子。なるほど、視覚的に理解しているんだ。</p>
-<p>「じゃあ、今日は実際にコードを書いていこう」</p>
-<p>「はい！」</p>
-<p>僕は新しいファイルを作成した。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// miku-lang.js</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;MikuLang インタープリタ v0.0.1&quot;</span><span class="p">);</span>
-</code></pre></div>
-<p>「わあ、私の名前！」</p>
-<p>美久が嬉しそうに声を上げる。</p>
-<p>「昨日、言語の名前はMikuLangにするって決めたでしょ」</p>
-<p>「覚えててくれたんだ……」</p>
-<p>美久の頬がほんのり赤く染まる。</p>
-<p>（そりゃ、覚えてるよ）</p>
-<p>僕は続けてコードを書き始めた。</p>
-<p>「まずは、一番簡単なことから始めよう。数字を表示するだけのプログラム」</p>
-<p>「数字を表示？」</p>
-<p>「うん。プログラミング言語として最小限の機能」</p>
-<p>僕は説明しながらコードを書いていく。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 数値リテラルのAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">numberNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">42</span>
-<span class="p">};</span>
-
-<span class="c1">// 評価関数</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown node type: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// 実行</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">numberNode</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// 42</span>
-</code></pre></div>
-<p>「動いた！」</p>
-<p>美久が歓声を上げる。</p>
-<p>「でも、これだけ？」</p>
-<p>「これだけ。でも、これがすべての始まり」</p>
-<p>僕は美久に向き直った。</p>
-<p>「どんなに複雑なプログラムも、結局は小さな部品の組み合わせなんだ」</p>
-<p>「小さな部品……」</p>
-<p>美久が考え込む。</p>
-<p>「あ、レゴブロックみたい？」</p>
-<p>「まさにその通り」</p>
-<p>美久の例えの上手さに、また感心する。</p>
-<p>◇◇◇◇</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>コードを見つめていた美久が、ふと顔を上げた。</p>
-<p>「なんで42なの？」</p>
-<p>「え？」</p>
-<p>「さっきのvalue: 42って。なんで42？」</p>
-<p>鋭い質問だ。普通は気にしないところに気づくのが美久らしい。</p>
-<p>「実は、プログラマーの間では有名な数字なんだ」</p>
-<p>「有名？」</p>
-<p>「『銀河ヒッチハイク・ガイド』っていうSF小説でね、『生命、宇宙、そして万物についての究極の疑問の答え』が42だって」</p>
-<p>美久が目を丸くする。</p>
-<p>「なにそれ、深い！」</p>
-<p>「深いというか、ジョークなんだけどね」</p>
-<p>僕は苦笑した。</p>
-<p>「でも、プログラミングの世界では、こういう小ネタが文化として根付いてるんだ」</p>
-<p>「へー。じゃあ、私も何か入れたい！」</p>
-<p>美久が目を輝かせる。</p>
-<p>「何がいい？」</p>
-<p>「うーん……」</p>
-<p>美久が考え込む。その真剣な表情が、なんだか可愛い。</p>
-<p>（って、何考えてるんだ、僕は）</p>
-<p>「あ、316！」</p>
-<p>「316？」</p>
-<p>「3月16日。隆弘先輩の誕生日」</p>
-<p>僕は言葉を失った。</p>
-<p>（覚えてたのか……）</p>
-<p>「だ、だめ？」</p>
-<p>美久が上目遣いで見てくる。</p>
-<p>「いや、別にいいけど……」</p>
-<p>僕は照れ隠しに、コードを修正した。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">numberNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">316</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「やった！」</p>
-<p>美久が小さくガッツポーズをする。</p>
-<p>◇◇◇◇</p>
-<p>「次は、もう少し複雑にしてみよう」</p>
-<p>僕は新しいコードを書き始めた。</p>
-<p>「さっきは数値だけだったけど、今度は文字列も扱えるようにする」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 文字列リテラルのAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">stringNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Hello, MikuLang!&#39;</span>
-<span class="p">};</span>
-
-<span class="c1">// 評価関数を拡張</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown node type: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<h1 id="3-evaluator">第3話 最初の評価器（Evaluator）<a class="headerlink" href="#3-evaluator" title="Permanent link">&para;</a></h1>
+<p>「この暗号みたいなリストを、コンピュータに計算させてあげる、ね……」</p>
+<p>週が明けた放課後。僕たちは学校の空き教室にいた。美久は目の前のノートパソコンに表示された <code>['+', 1, 2]</code> という文字列を眺めながら、うーんと唸っている。</p>
+<p>「でも、どうやって？　コンピュータに、このリストの読み方を教えてあげないといけないんですよね？」
+「その通りだ。その『読み方を教えるプログラム』のことを、専門用語で**評価器（Evaluator）**って言うんだ」
+「ひょうかき……」</p>
+<p>なんだか急に難しそうな言葉が出てきて、美久は少しだけ身構えたようだ。僕は慌てて付け加える。</p>
+<p>「大丈夫。難しく考える必要はない。美久が前に言ってた、『翻訳機』みたいなものだと思えばいい。僕たちの作った『お願い』のルールを、コンピュータがわかる形に翻訳してあげる機械だ」
+「なるほど……！　翻訳機！」</p>
+<p>その言葉で少し安心したのか、彼女の表情が和らいだ。僕はノートパソコンに向き直り、JavaScriptのファイルを開く。</p>
+<p>「じゃあ、その翻訳機を実際に作ってみよう。<code>evaluate</code>っていう名前をつけてやる」</p>
+<p>僕はそう言って、数行のコードを打ち込んだ。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">exp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ここに翻訳のルールを書いていく</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>「あ、if文が増えた！」</p>
-<p>「そう。新しい種類のノードを扱うたびに、条件分岐を増やしていく」</p>
-<p>「なるほど。さっきのレゴブロックの話みたい」</p>
-<p>美久の理解の速さに驚く。プログラミング未経験とは思えない。</p>
-<p>「美久、もしかして本当は経験者？」</p>
-<p>「ううん、本当に初めて」</p>
-<p>美久が首を振る。</p>
-<p>「でも、隆弘先輩の説明が分かりやすいから」</p>
-<p>そう言って、美久は僕を見つめた。</p>
-<p>（また、その眼差し……）</p>
-<p>なんだか照れくさくなって、僕は視線を逸らした。</p>
-<p>「それより、実際に動かしてみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">stringNode</span><span class="p">));</span><span class="w"> </span><span class="c1">// Hello, MikuLang!</span>
-</code></pre></div>
-<p>「わあ、文字も表示できた！」</p>
-<p>美久の喜ぶ姿を見ていると、こちらまで嬉しくなる。</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>休憩中、美久が窓の外を眺めながらつぶやいた。</p>
-<p>「ん？」</p>
-<p>「プログラミング言語を作るって、思ってたより地道なんだね」</p>
-<p>「がっかりした？」</p>
-<p>「ううん、逆」</p>
-<p>美久が振り返る。夕日が彼女の髪を金色に染めている。</p>
-<p>「一つ一つ積み重ねていくのが、なんだか……」</p>
-<p>美久が何か言いかけて、止まる。頬が少し赤い。</p>
-<p>「なんだか？」</p>
-<p>「……達成感がありそう」</p>
-<p>明らかに違うことを言おうとしていた気がする。でも、美久はすぐに笑顔を作った。</p>
-<p>「小さいことから始めるって、大事なんだね」</p>
-<p>「そうだね。いきなり大きなものは作れないから」</p>
-<p>僕も美久の話題転換に乗ることにした。</p>
-<p>「次は何を作るの？」</p>
-<p>「そうだな……」</p>
-<p>僕も気持ちを切り替えて、説明を続けた。</p>
-<p>「今度は、プログラムを実行する仕組みを作ろう」</p>
-<p>「実行する仕組み？」</p>
-<p>「さっきまでは、直接evaluateを呼んでたけど、もっと本格的なインタープリタにする」</p>
-<p>僕は新しい関数を書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// インタープリタのメイン関数</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">interpret</span><span class="p">(</span><span class="nx">ast</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">ast</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;=&gt; &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<p>「まず、一番簡単なルールからだ。『もし、お願いがただの数字だったら、それは計算する必要がないから、そのままその数字を返す』。これをコードにすると、こうなる」</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">exp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">exp</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">exp</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>「tryとcatchって？」</p>
-<p>「エラーが起きた時の処理。プログラムが急に止まらないようにする」</p>
-<p>「優しい設計だね」</p>
-<p>美久の言葉に、僕は少し驚いた。</p>
-<p>「優しい？」</p>
-<p>「だって、失敗しても大丈夫なようにしてるんでしょ？」</p>
-<p>（そういう見方もあるのか）</p>
-<p>技術的な観点しか考えていなかった僕には、新鮮な視点だった。</p>
-<p>「確かに、そうかもしれない」</p>
-<p>「隆弘先輩らしい」</p>
-<p>美久が微笑む。</p>
-<p>「私も、そんな優しいプログラムが書けるようになりたいな」</p>
-<p>◇◇◇◇</p>
-<p>気がつけば、もう六時を過ぎていた。</p>
-<p>「今日はここまでにしよう」</p>
-<p>「えー、もうちょっと」</p>
-<p>美久が名残惜しそうに言う。</p>
-<p>「明日も学校でしょ」</p>
-<p>「そうだけど……」</p>
-<p>美久がファイルを保存しながら、ぽつりとつぶやいた。</p>
-<p>「プログラミングって、思ってたより楽しい」</p>
-<p>「そう？」</p>
-<p>「うん。特に……」</p>
-<p>美久が言いかけて、止まる。</p>
-<p>「特に？」</p>
-<p>「……隆弘先輩と一緒だから」</p>
-<p>小さな声だったけど、はっきりと聞こえた。</p>
-<p>（美久……）</p>
-<p>僕の頬が熱くなる。どう返事をすればいいのか分からない。</p>
-<p>「じゃ、じゃあ、明日は真偽値も実装しよう」</p>
-<p>僕は慌てて話題を変えた。</p>
-<p>「真偽値？」</p>
-<p>「trueとfalseのこと。これがあると、もっと複雑なプログラムが書けるようになる」</p>
-<p>「楽しみ！」</p>
-<p>美久が立ち上がる。</p>
-<p>「隆弘先輩、今日もありがとう」</p>
-<p>「いや、僕も楽しかった」</p>
-<p>正直な気持ちだった。美久と一緒にコードを書いている時間は、研究とはまた違った楽しさがある。</p>
-<p>「本当？」</p>
-<p>「本当」</p>
-<p>美久の顔が、ぱっと明るくなった。</p>
-<p>「じゃあ、明日も楽しみだね」</p>
-<p>「うん」</p>
-<p>二人で情報処理室を出る。廊下には、もう誰もいない。</p>
-<p>「送っていこうか？」</p>
-<p>「大丈夫。すぐ隣だから」</p>
-<p>確かに、僕たちの家は隣同士だ。でも、なんとなく一緒に帰りたい気分だった。</p>
-<p>「じゃあ、また明日」</p>
-<p>「うん。また明日」</p>
-<p>美久が手を振って、先に歩いていく。その後ろ姿を見送りながら、僕は今日のことを振り返っていた。</p>
-<p>数字を表示するだけの、本当に簡単なプログラム。</p>
-<p>でも、美久の喜ぶ顔を見ていたら、それだけで十分な気がした。</p>
-<p>（明日は、もっと喜んでもらえるかな）</p>
-<p>そんなことを考えながら、僕も帰路についた。</p>
-<p>空には、春の星座が輝き始めていた。</p>
-<p>プログラミング言語MikuLangは、まだ生まれたばかり。</p>
-<p>でも、確実に成長している。</p>
-<p>美久との関係も、きっと——。</p>
+<p>「<code>typeof</code>っていうのは、そのデータがどんな種類かを調べる命令だ。この場合は、『もし<code>exp</code>が数字だったら』っていう意味になる」
+「へえー。じゃあ、<code>evaluate(5)</code>ってお願いしたら、<code>5</code>がそのまま返ってくるってことですか？」
+「正解。じゃあ、次が本番だ。『もし、お願いが <code>['+', 1, 2]</code> みたいなリストだったら』どうするか」</p>
+<p>僕はコードを書き足していく。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">exp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">exp</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">exp</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">exp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">operator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"> </span><span class="c1">// リストの1番目（演算子）</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">operand1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// リストの2番目（数字1）</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">operand2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">exp</span><span class="p">[</span><span class="mf">2</span><span class="p">];</span><span class="w"> </span><span class="c1">// リストの3番目（数字2）</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">operator</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">operand2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>「<code>Array.isArray(exp)</code>っていうので、<code>exp</code>がリストかどうかを調べてる。そして、リストの1番目が <code>+</code> だったら、2番目と3番目の数字を足し算する、っていうルールだ」
+「あ、なるほど……。でも、先輩。最後の行、ちょっと不思議です」</p>
+<p>美久が指さしたのは、<code>return evaluate(operand1) + evaluate(operand2);</code> の部分だった。</p>
+<p>「<code>evaluate</code>の中で、また<code>evaluate</code>を呼んでますよね？　それって、アリなんですか？」
+「よく気づいたな。それが一番大事なポイントだ」</p>
+<p>僕は彼女に向き直った。</p>
+<p>「翻訳機は、リストの中身がまた計算できるものかもしれないって考えるんだ。だから、2番目の<code>operand1</code>と3番目の<code>operand2</code>を、もう一度自分自身に『これ、翻訳して』ってお願いする。そうやって、どんどん中身を解き明かしていくんだ」
+「なんだか……玉ねぎの皮をむいていくみたいですね。むいてもむいても、また自分が出てくる、みたいな」
+「はは、面白い例えだな。でも、そんな感じだ。自分の仕事を、自分自身に依頼して、問題を少しずつ簡単にしていく。プログラミングの、すごく重要な考え方の一つだよ」</p>
+<p>美久は「ふーむ」と腕を組み、何かを深く納得したような顔をしている。彼女のこういう、物事の本質を直感で掴み取るところには、時々驚かされる。</p>
+<p>「じゃあ、いよいよ、こいつを動かしてみようか」</p>
+<p>僕はプログラムの最後に、一行を追加した。</p>
+<p><code>console.log(evaluate(['+', 1, 2]));</code></p>
+<p>エンターキーを押す。一瞬の沈黙の後、画面の片隅に、ぽつんと一つの数字が表示された。</p>
+<p><code>3</code></p>
+<p>「……あ」</p>
+<p>美久が、小さな声を漏らした。</p>
+<p>「動きましたね……先輩」
+「ああ。動いたな」</p>
+<p>僕たちの最初の言語が、産声を上げた瞬間だった。たった一つの計算しかできない、世界で一番小さな言語。でも、それは紛れもなく、僕たちが「作った」ものだった。</p>
+<p>「すごい……！　たったこれだけのコードで、ちゃんと計算できるんですね！」</p>
+<p>興奮した様子で画面を覗き込む彼女の横顔を見ながら、僕は静かな達成感を噛み締めていた。</p>
+<p>「ああ。でもな、美久」
+「はい？」
+「これが、全ての始まりなんだ」</p>
+<p>僕の言葉に、彼女はきょとんとした顔で僕を見つめ、そして、次の瞬間には、満面の笑みで力強く頷いたのだった。</p>
 
 
 

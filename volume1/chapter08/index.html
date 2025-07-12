@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#8-javascriptast" class="md-skip">
+        <a href="#8" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -1170,255 +1170,50 @@
   
 
 
-<h1 id="8-javascriptast">第8話 JavaScriptでASTを作る<a class="headerlink" href="#8-javascriptast" title="Permanent link">&para;</a></h1>
-<p>四月二十七日、土曜日。午後二時。</p>
-<p>約束の時間きっかりに、美久が僕の部屋のインターホンを鳴らした。</p>
-<p>「こんにちは、お邪魔します」</p>
-<p>今日の美久は、薄いピンクのワンピースに白いカーディガン。休日らしい、柔らかい雰囲気だ。</p>
-<p>「いらっしゃい。緊張してる？」</p>
-<p>「ち、ちょっとだけ……」</p>
-<p>美久が照れたように笑う。確かに、学校以外で二人きりというのは、なんだか特別な感じがする。</p>
-<p>「飲み物は？　コーヒーでいい？」</p>
-<p>「あ、お水で大丈夫です」</p>
-<p>キッチンに向かいながら、僕も少し緊張していることに気づく。部屋の片付けは完璧だし、資料も準備万端。でも、なぜかそわそわしてしまう。</p>
-<p>◇◇◇◇</p>
-<p>「今日は、昨日考えた構文をJavaScriptで実装していこう」</p>
-<p>僕たちは机を挟んで向かい合って座った。美久のノートPCも持参してきている。</p>
-<p>「はい！　楽しみです」</p>
-<p>美久がノートを開く。昨日のアイデアがびっしりと書き込まれている。</p>
-<p>「まず、基本的なAST構造を作ろう。JavaScriptのオブジェクトとして」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// MikuLangのAST定義</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">Program</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Program&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">NumberLiteral</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NumberLiteral&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">StringLiteral</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">BooleanLiteral</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BooleanLiteral&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">Identifier</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">BinaryExpression</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">UnaryExpression</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;UnaryExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">AssignmentExpression</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;AssignmentExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">PrintStatement</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;PrintStatement&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">IfStatement</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;IfStatement&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">WhileStatement</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;WhileStatement&#39;</span>
-<span class="p">};</span>
+<h1 id="8">第8話 見えないバグと、言えない言葉<a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
+<p>「よし、じゃあ早速試してみようか」</p>
+<p>変数という、強力な記憶装置を手に入れた僕たちの言語。僕は少し興奮した気持ちを抑えながら、テストケースを打ち込んでいった。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Environment</span><span class="p">();</span>
+<span class="nx">evaluate</span><span class="p">([</span><span class="s1">&#39;define&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">],</span><span class="w"> </span><span class="nx">env</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluate</span><span class="p">([</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">],</span><span class="w"> </span><span class="nx">env</span><span class="p">));</span><span class="w"> </span><span class="c1">// -&gt; 15</span>
+
+<span class="nx">evaluate</span><span class="p">([</span><span class="s1">&#39;define&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]],</span><span class="w"> </span><span class="nx">env</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluate</span><span class="p">([</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">],</span><span class="w"> </span><span class="nx">env</span><span class="p">));</span><span class="w"> </span><span class="c1">// -&gt; 5</span>
 </code></pre></div>
-<p>「わあ、たくさんある」</p>
-<p>「これが言語の『部品』になるんだ」</p>
-<p>◇◇◇◇</p>
-<p>「次は、これらを作るヘルパー関数を定義しよう」</p>
-<p>僕は丁寧にコードを書いていく。美久も自分のPCで同じように打ち込んでいる。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 数値リテラル</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">NumberLiteral</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="c1">// 文字列リテラル</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">StringLiteral</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="c1">// 識別子（変数名）</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Identifier</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">name</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「なるほど、関数で包むことで作りやすくなるんだ」</p>
-<p>「そう。これで手動でもASTが作りやすくなる」</p>
-<p>美久が真剣な表情でコードを見つめている。その横顔を見ていると、なんだか嬉しくなる。</p>
-<p>◇◇◇◇</p>
-<p>「じゃあ、昨日考えた『好感度を0にする』を実装してみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 「好感度 を 0 にする」のAST</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createAssignment</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">AssignmentExpression</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="nx">name</span><span class="p">),</span>
-<span class="w">    </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="c1">// 実際に作ってみる</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">setAffection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">setAffection</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
-</code></pre></div>
-<p>実行すると、きれいな構造が表示される。</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AssignmentExpression&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;left&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Identifier&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;好感度&quot;</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;right&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NumberLiteral&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「すごい！　日本語の変数名も使えるんだ」</p>
-<p>「JavaScriptは寛容だからね」</p>
-<p>◇◇◇◇</p>
-<p>しばらく作業を続けていると、美久がふと手を止めた。</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「これって、実際のプログラミング言語と同じ仕組み？」</p>
-<p>いい質問だ。</p>
-<p>「基本的には同じ。JavaScriptもPythonも、内部ではこういうASTを作ってる」</p>
-<p>「へー。じゃあ、私たちがやってることって……」</p>
-<p>「本物のプログラミング言語開発と同じだよ」</p>
-<p>美久の目が輝く。</p>
-<p>「すごい……私、本物を作ってるんだ」</p>
-<p>その感動が伝わってきて、僕も嬉しくなる。</p>
-<p>◇◇◇◇</p>
-<p>「次は、もっと複雑な構文を作ってみよう」</p>
-<p>僕は新しいコードを書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 「もしも 好感度 が 80 以上 ならば」</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createIfStatement</span><span class="p">(</span><span class="nx">condition</span><span class="p">,</span><span class="w"> </span><span class="nx">thenBranch</span><span class="p">,</span><span class="w"> </span><span class="nx">elseBranch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">condition</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="nx">thenBranch</span><span class="p">,</span>
-<span class="w">    </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="nx">elseBranch</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="c1">// 比較演算</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span><span class="nx">operator</span><span class="p">,</span><span class="w"> </span><span class="nx">left</span><span class="p">,</span><span class="w"> </span><span class="nx">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">BinaryExpression</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="nx">operator</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="nx">left</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="nx">right</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="c1">// 実際の if 文を作る</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ifStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createIfStatement</span><span class="p">(</span>
-<span class="w">  </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">    </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">80</span><span class="p">)</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;告白成功！&#39;</span><span class="p">))</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">);</span>
-</code></pre></div>
-<p>「複雑になってきた……」</p>
-<p>美久が眉をひそめる。</p>
-<p>「大丈夫。一つずつ分解して考えればいい」</p>
-<p>僕は図を描きながら説明する。美久の肩に触れそうなくらい近づいて、画面を指差す。</p>
-<p>（近い……）</p>
-<p>美久のシャンプーの香りがふわっと漂ってくる。集中、集中。</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。僕はお茶を入れて戻ってきた。</p>
-<p>「疲れた？」</p>
-<p>「ううん、楽しい」</p>
-<p>美久が伸びをする。その仕草が妙に色っぽくて、目を逸らしてしまう。</p>
-<p>「でも、隆弘先輩の部屋、落ち着くね」</p>
-<p>「そう？」</p>
-<p>「うん。隆弘先輩の匂いがする」</p>
-<p>ドキッとする発言。</p>
-<p>「に、匂い？」</p>
-<p>「あ、いや、変な意味じゃなくて！　なんていうか、安心する匂い？」</p>
-<p>美久が慌てて弁解する。顔が真っ赤だ。</p>
-<p>（かわいい）</p>
-<p>また、そんなことを考えてしまう。</p>
-<p>◇◇◇◇</p>
-<p>「そ、それより、続きをやろう」</p>
-<p>僕は話題を変えた。</p>
-<p>「今度は、実際に動くインタープリタの基礎を作る」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 環境（変数を保存する場所）</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">Environment</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">set</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">variables</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">get</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">variables</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`変数 &#39;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&#39; が見つかりません`</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">variables</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「環境？」</p>
-<p>「変数の値を覚えておく場所。メモリみたいなもの」</p>
-<p>「なるほど。好感度=100 みたいな情報を保存するんだ」</p>
-<p>美久の理解が早い。</p>
-<p>◇◇◇◇</p>
-<p>作業を続けていると、外が暗くなってきた。</p>
-<p>「もう六時か」</p>
-<p>「え、もうそんな時間？」</p>
-<p>美久も驚いている。集中していると時間があっという間だ。</p>
-<p>「お腹空いた？」</p>
-<p>「あ、ちょっと……」</p>
-<p>タイミングよく、美久のお腹が小さく鳴った。</p>
-<p>「きゃっ」</p>
-<p>美久が顔を真っ赤にして俯く。</p>
-<p>「ピザでも頼もうか」</p>
-<p>「え、いいの？」</p>
-<p>「一緒に食べながら作業しよう」</p>
-<p>なんだか、デートみたいな展開になってきた。</p>
-<p>◇◇◇◇</p>
-<p>ピザを食べながら、今日の成果を振り返る。</p>
-<p>「JavaScriptでASTを作る方法、理解できた？」</p>
-<p>「うん。最初は難しかったけど、だんだん分かってきた」</p>
-<p>美久がピザを頬張りながら答える。その姿が可愛くて、つい見とめてしまう。</p>
-<p>「隆弘先輩？」</p>
-<p>「あ、いや、なんでもない」</p>
-<p>慌てて自分のピザに集中する。</p>
-<p>「ねえ」</p>
-<p>美久が真剣な顔で言った。</p>
-<p>「私、本当にプログラミング言語が作れるかな」</p>
-<p>「作れるよ」</p>
-<p>即答する。</p>
-<p>「根拠は？」</p>
-<p>「美久の熱意と、理解力があれば大丈夫」</p>
-<p>それに、僕がついてるから——とは言えなかった。</p>
-<p>「ありがとう」</p>
-<p>美久が優しく微笑む。</p>
-<p>「隆弘先輩と一緒なら、きっとできる気がする」</p>
-<p>その言葉に、胸が熱くなる。</p>
-<p>◇◇◇◇</p>
-<p>夜八時。そろそろお開きの時間だ。</p>
-<p>「今日は、ありがとうございました」</p>
-<p>「こちらこそ。楽しかった」</p>
-<p>本当に楽しかった。プログラミングを教えるのも、美久と過ごす時間も。</p>
-<p>「明日も……いい？」</p>
-<p>美久が上目遣いで聞いてくる。</p>
-<p>「もちろん」</p>
-<p>即答してしまってから、ちょっと恥ずかしくなる。</p>
-<p>「やった！　じゃあ、明日は評価器を作るんだよね」</p>
-<p>「そう。いよいよMikuLangが動き始める」</p>
-<p>美久の期待に満ちた表情を見て、僕も楽しみになる。</p>
-<p>玄関で靴を履きながら、美久が振り返った。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「今日は、特別な一日でした」</p>
-<p>そう言って、美久は部屋を出ていった。</p>
-<p>一人になった部屋で、僕は今日のことを振り返る。</p>
-<p>JavaScriptでASTを作る。それは単なる技術的な作業のはずだった。</p>
-<p>でも、美久と一緒だと、すべてが特別な意味を持つ。</p>
-<p>明日もまた、特別な一日になる予感がした。</p>
+<p>画面には、僕の期待通りの数字が次々と表示される。<code>x</code>に<code>10</code>を記憶させ、それを使って<code>y</code>を計算する。完璧な動作だ。</p>
+<p>「おお……！　ちゃんと覚えてる……！」</p>
+<p>隣で見ていた美久も、感心したように声を上げた。でも、その笑顔は、先週までの彼女と比べて、どこか少しだけぎこちなく見えた。</p>
+<p>「じゃあ、次は少し意地悪なテストだ」</p>
+<p>僕は、にやりと笑いながら、新しいコードを打ち込んだ。</p>
+<p><code>evaluate(['define', 'x', 20], env);</code>
+<code>console.log(evaluate('x', env));</code></p>
+<p>一度定義した変数<code>x</code>を、新しい値で上書きする。いわゆる「再定義」だ。当然、画面には<code>20</code>と表示されるはずだった。
+　しかし。</p>
+<p><code>10</code></p>
+<p>「……あれ？」</p>
+<p>表示されたのは、古い値のままの<code>10</code>だった。僕たちの作った<code>define</code>は、新しい値で上書きできず、最初に入れられた値を頑なに守り続けてしまっている。</p>
+<p>「おかしいな……。なんでだ？」</p>
+<p>僕は眉をひそめ、完全に自分の世界に入り込んでしまった。ぶつぶつと独り言を呟きながら、コンソールに大量のデバッグ情報を出力し、コードのあちこちを睨みつける。頭の中は、この予期せぬバグの原因究明で、完全に占拠されてしまっていた。</p>
+<p>隣に、美久がいることも忘れて。</p>
+<p>彼女は、そんな僕の姿を、ただ黙って見つめているだけだった。僕の口から漏れる「スコープが汚染されてるのか？」「いや、参照のタイミングか？」なんていう言葉は、きっと今の彼女には、意味不明な呪文のようにしか聞こえないだろう。
+　手伝おうにも、何をすればいいのか分からない。「共同開発者」のはずが、いつの間にか、僕は彼女をただの「見学者」にしてしまっていた。</p>
+<p>「あの、先輩……」</p>
+<p>どれくらい時間が経っただろうか。美久が、おそるおそる、か細い声で僕に話しかけた。</p>
+<p>「何か、私にできること、ありますか……？」</p>
+<p>その声に含まれた、不安と遠慮の色に、僕は気づくべきだった。でも、バグのことで頭がいっぱいだった僕は、最悪の返事をしてしまう。</p>
+<p>「ああ、ごめん。今ちょっと、集中させてくれ。もうすぐ原因、分かると思うから」</p>
+<p>彼女の方を見ることさえせずに。悪気なんて、全くなかった。ただ、純粋に、問題解決に没頭していただけなんだ。でも、その言葉が、彼女の心をどれだけ深く傷つけたか、この時の僕には、想像もできなかった。</p>
+<p>「……そう、ですか」</p>
+<p>美久の声から、感情が消えた。</p>
+<p>「すみません、先輩。今日、ちょっと用事があるの、思い出しました。なので……お先に、失礼します」</p>
+<p>静かに立ち上がった彼女の言葉に、僕はまだ、画面に視線を釘付けにしたまま、生返事を返した。</p>
+<p>「ん？　ああ、そうか。わかった。お疲れ」</p>
+<p>ぱたん、と静かに教室のドアが閉まる音で、僕はようやく顔を上げた。そこに、彼女の姿はもうなかった。</p>
+<p>（あれ？　帰ったのか）</p>
+<p>一瞬、そう思っただけですぐに意識はコードの海へと戻っていく。一人になった教室に、僕のキーボードを叩く音だけが、虚しく響き渡っていた。</p>
+<p>僕たちの言語に生まれた、小さなバグ。
+　そして、僕たちの間に生まれた、目には見えない、もっと深刻なバグ。</p>
+<p>その存在に、僕はまだ、気づいてすらいなかった。</p>
 
 
 

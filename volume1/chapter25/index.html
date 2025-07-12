@@ -22,7 +22,7 @@
     
     
       
-        <title>第25話 文化祭当日 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+        <title>第25話 始まりの予感 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第25話 文化祭当日
+              第25話 始まりの予感
             
           </span>
         </div>
@@ -1139,277 +1139,30 @@
   
 
 
-<h1 id="25">第25話 文化祭当日<a class="headerlink" href="#25" title="Permanent link">&para;</a></h1>
-<h2 id="1137">11月3日（金）午前7時<a class="headerlink" href="#1137" title="Permanent link">&para;</a></h2>
-<p>ついに文化祭当日。</p>
-<p>昨夜はドキドキして、あまり眠れなかった。</p>
-<p>でも、不思議と元気。</p>
-<p>今日は、私たちのゲームが世界に羽ばたく日。</p>
-<p>「頑張るぞ！」</p>
-<p>鏡の前で気合を入れる。</p>
-<p>制服をきちんと着て、髪も丁寧にセット。</p>
-<p>今日は特別な日だから。</p>
-<p>◇◇◇◇</p>
-<h2 id="8">午前8時　学校到着<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
-<p>「おはよう、美久」</p>
-<p>校門で隆弘くんが待っててくれた。</p>
-<p>「おはよう」</p>
-<p>「準備はバッチリ？」</p>
-<p>「うん！」</p>
-<p>二人で教室に向かう。</p>
-<p>廊下は文化祭の準備で賑わってる。</p>
-<p>「緊張する？」</p>
-<p>「ちょっとだけ」</p>
-<p>「大丈夫。僕たちのゲームは最高だから」</p>
-<p>隆弘くんの自信に満ちた言葉に、勇気をもらう。</p>
-<p>◇◇◇◇</p>
-<h2 id="9">午前9時　プログラミング部展示準備<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
-<p>部室に到着すると、部長たちがもう準備を始めてた。</p>
-<p>「おお、主役が来た！」</p>
-<p>部長が笑顔で迎えてくれる。</p>
-<p>「今日はよろしくお願いします」</p>
-<p>展示用のパソコンをセッティング。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 文化祭展示用の初期設定</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">initializeExhibition</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// フルスクリーンモード</span>
-<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">requestFullscreen</span><span class="p">();</span>
-
-<span class="w">    </span><span class="c1">// 展示用メッセージを表示</span>
-<span class="w">    </span><span class="nx">showWelcomeMessage</span><span class="p">();</span>
-
-<span class="w">    </span><span class="c1">// デモモードを有効化</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">hasActivePlayer</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">startDemoMode</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// アナリティクス開始</span>
-<span class="w">    </span><span class="nx">startAnalytics</span><span class="p">();</span>
-
-<span class="w">    </span><span class="c1">// BGMボリュームを調整（騒がしい環境用）</span>
-<span class="w">    </span><span class="nx">adjustVolumeForExhibition</span><span class="p">();</span>
-
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;文化祭展示モード起動完了！&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// 来場者検知</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">hasActivePlayer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">lastActivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
-
-<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">lastActivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isDemoMode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">stopDemoMode</span><span class="p">();</span>
-<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;プレイヤー検知！デモモード終了&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">});</span>
-
-<span class="w">    </span><span class="c1">// 5分間操作がなければデモモードに戻る</span>
-<span class="w">    </span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">lastActivity</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">300000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">startDemoMode</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">10000</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「完璧だね」</p>
-<p>隆弘くんが最終チェックをする。</p>
-<p>◇◇◇◇</p>
-<h2 id="10">午前10時　文化祭開始<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
-<p>「いよいよだね」</p>
-<p>開始のアナウンスが流れる。</p>
-<p>最初のお客さんがやってきた。</p>
-<p>「プログラミング部の展示ですか？」</p>
-<p>「はい！私たちが作ったノベルゲームです」</p>
-<p>緊張しながら説明する。</p>
-<p>「へぇ、高校生が作ったの？すごいね」</p>
-<p>お客さんが興味深そうにプレイし始める。</p>
-<p>◇◇◇◇</p>
-<h2 id="11">午前11時　順調な滑り出し<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1">// リアルタイムアナリティクス</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">exhibitionAnalytics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">visitors</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">totalPlays</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">completedRoutes</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">feedback</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">    </span><span class="nx">popularChoices</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span>
-
-<span class="w">    </span><span class="c1">// 訪問者をカウント</span>
-<span class="w">    </span><span class="nx">countVisitor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">visitors</span><span class="o">++</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">updateDisplay</span><span class="p">();</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="c1">// プレイ統計を更新</span>
-<span class="w">    </span><span class="nx">updatePlayStats</span><span class="p">(</span><span class="nx">stats</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">totalPlays</span><span class="o">++</span><span class="p">;</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">stats</span><span class="p">.</span><span class="nx">completed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">completedRoutes</span><span class="o">++</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="c1">// 人気の選択肢を集計</span>
-<span class="w">        </span><span class="nx">stats</span><span class="p">.</span><span class="nx">choices</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">choice</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">choice</span><span class="p">.</span><span class="nx">scene</span><span class="si">}</span><span class="sb">_</span><span class="si">${</span><span class="nx">choice</span><span class="p">.</span><span class="nx">option</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">popularChoices</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">popularChoices</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="c1">// フィードバックを記録</span>
-<span class="w">    </span><span class="nx">addFeedback</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">feedback</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">            </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(),</span>
-<span class="w">            </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">message</span>
-<span class="w">        </span><span class="p">});</span>
-
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`新しいフィードバック: </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="c1">// 統計を表示</span>
-<span class="w">    </span><span class="nx">displayStats</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span>
-<span class="sb">            来場者数: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">visitors</span><span class="si">}</span><span class="sb">人</span>
-<span class="sb">            プレイ回数: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">totalPlays</span><span class="si">}</span><span class="sb">回</span>
-<span class="sb">            完走率: </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">completedRoutes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">totalPlays</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="p">)</span><span class="si">}</span><span class="sb">%</span>
-<span class="sb">            フィードバック数: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">feedback</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb">件</span>
-<span class="sb">        `</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「すごい！もう50人も来てる」</p>
-<p>画面に表示される統計を見て驚く。</p>
-<p>「評判いいみたいだよ」</p>
-<p>隆弘くんが嬉しそうに言う。</p>
-<p>◇◇◇◇</p>
-<h2 id="030">午後0時30分　お昼休憩<a class="headerlink" href="#030" title="Permanent link">&para;</a></h2>
-<p>「ちょっと休憩しようか」</p>
-<p>交代で昼食を取ることに。</p>
-<p>屋上でお弁当を食べる。</p>
-<p>「思ったより反響あってよかった」</p>
-<p>「うん。みんな楽しんでくれてる」</p>
-<p>「特に告白シーンの反応がいいね」</p>
-<p>隆弘くんの言葉に照れる。</p>
-<p>「あのシーン、力入れたから」</p>
-<p>「分かるよ。美久の気持ちが込められてる」</p>
-<p>◇◇◇◇</p>
-<h2 id="2">午後2時　特別な来場者<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<p>「あら、これが噂のゲーム？」</p>
-<p>見覚えのある声。</p>
-<p>振り返ると、生徒会長が立ってた。</p>
-<p>「会長！」</p>
-<p>「文化祭実行委員会でも話題になってるわよ」</p>
-<p>会長がゲームをプレイし始める。</p>
-<p>緊張しながら見守る。</p>
-<p>「素敵ね。プログラミングって、こんなこともできるのね」</p>
-<p>会長の言葉に、胸が熱くなる。</p>
-<p>◇◇◇◇</p>
-<h2 id="330">午後3時30分　友達の反応<a class="headerlink" href="#330" title="Permanent link">&para;</a></h2>
-<p>「美久ちゃん！これ作ったの！？」</p>
-<p>クラスメイトたちが集まってきた。</p>
-<p>「すごーい！」</p>
-<p>「美久ちゃん、実はプログラマー？」</p>
-<p>みんなの反応が嬉しい。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 友達からのコメントを表示</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">friendsComments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;さくら&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">comment</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久ちゃんの隠れた才能発見！&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ゆい&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">comment</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;イラストも可愛いし、ストーリーも素敵&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;あかり&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">comment</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;私もプログラミング始めようかな&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;みお&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">comment</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;先輩との共同作業、羨ましい〜&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="p">];</span>
-
-<span class="nx">friendsComments</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">friend</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">friend</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">friend</span><span class="p">.</span><span class="nx">comment</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">exhibitionAnalytics</span><span class="p">.</span><span class="nx">addFeedback</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">friend</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">friend</span><span class="p">.</span><span class="nx">comment</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>「みんな、ありがとう」</p>
-<p>友達に囲まれて、幸せを感じる。</p>
-<p>◇◇◇◇</p>
-<h2 id="445">午後4時45分　終了間近<a class="headerlink" href="#445" title="Permanent link">&para;</a></h2>
-<p>「そろそろ終了時間だね」</p>
-<p>一日があっという間だった。</p>
-<p>最終的な統計を確認する。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 最終統計</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">finalStats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">visitors</span><span class="o">:</span><span class="w"> </span><span class="mf">342</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">totalPlays</span><span class="o">:</span><span class="w"> </span><span class="mf">127</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">completedRoutes</span><span class="o">:</span><span class="w"> </span><span class="mf">89</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">feedback</span><span class="o">:</span><span class="w"> </span><span class="mf">76</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">rating</span><span class="o">:</span><span class="w"> </span><span class="mf">4.8</span><span class="w"> </span><span class="c1">// 5点満点</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;=== 文化祭最終統計 ===&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`来場者数: </span><span class="si">${</span><span class="nx">finalStats</span><span class="p">.</span><span class="nx">visitors</span><span class="si">}</span><span class="sb">人`</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`総プレイ数: </span><span class="si">${</span><span class="nx">finalStats</span><span class="p">.</span><span class="nx">totalPlays</span><span class="si">}</span><span class="sb">回`</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`完走数: </span><span class="si">${</span><span class="nx">finalStats</span><span class="p">.</span><span class="nx">completedRoutes</span><span class="si">}</span><span class="sb">回`</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`完走率: </span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">finalStats</span><span class="p">.</span><span class="nx">completedRoutes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">finalStats</span><span class="p">.</span><span class="nx">totalPlays</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="p">)</span><span class="si">}</span><span class="sb">%`</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`フィードバック: </span><span class="si">${</span><span class="nx">finalStats</span><span class="p">.</span><span class="nx">feedback</span><span class="si">}</span><span class="sb">件`</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`平均評価: ⭐</span><span class="si">${</span><span class="nx">finalStats</span><span class="p">.</span><span class="nx">rating</span><span class="si">}</span><span class="sb">/5.0`</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;==================&quot;</span><span class="p">);</span>
-
-<span class="c1">// 特別なメッセージ</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">finalStats</span><span class="p">.</span><span class="nx">rating</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">4.5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;🎉 大成功！素晴らしい作品でした！ 🎉&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「すごい数字……」</p>
-<p>予想以上の反響に驚く。</p>
-<p>◇◇◇◇</p>
-<h2 id="530">午後5時30分　片付け<a class="headerlink" href="#530" title="Permanent link">&para;</a></h2>
-<p>展示を片付けながら、今日一日を振り返る。</p>
-<p>「楽しかったね」</p>
-<p>「うん。あっという間だった」</p>
-<p>「みんなの笑顔が見れて良かった」</p>
-<p>隆弘くんと一緒に機材を片付ける。</p>
-<p>この達成感は、二人で分かち合うもの。</p>
-<p>◇◇◇◇</p>
-<h2 id="6">午後6時　打ち上げ<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p>プログラミング部のみんなで打ち上げ。</p>
-<p>「今年の文化祭MVP は、間違いなく君たちだ！」</p>
-<p>部長が乾杯の音頭を取る。</p>
-<p>「ありがとうございます！」</p>
-<p>みんなでジュースで乾杯。</p>
-<p>「来年はもっとすごいの作ろうね」</p>
-<p>「うん！」</p>
-<p>◇◇◇◇</p>
-<h2 id="7">午後7時　二人きり<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<p>打ち上げが終わって、二人で帰路につく。</p>
-<p>「今日は本当にお疲れ様」</p>
-<p>「隆弘くんも」</p>
-<p>夕暮れの校庭を歩く。</p>
-<p>「ねえ、覚えてる？」</p>
-<p>「何を？」</p>
-<p>「最初にプログラミング教えてって言った日」</p>
-<p>「もちろん」</p>
-<p>「あの時は、こんな風になるなんて思ってなかった」</p>
-<p>隆弘くんが優しく微笑む。</p>
-<p>「僕も。でも、最高の結果になった」</p>
-<p>「うん」</p>
-<p>手を繋いで歩く。</p>
-<p>◇◇◇◇</p>
-<h2 id="8_1">午後8時　約束の場所<a class="headerlink" href="#8_1" title="Permanent link">&para;</a></h2>
-<p>「ちょっと寄り道しない？」</p>
-<p>隆弘くんが提案する。</p>
-<p>向かった先は、学校の屋上。</p>
-<p>夜景がきれいに見える。</p>
-<p>「美久」</p>
-<p>「なに？」</p>
-<p>「今日で一つの区切りだけど」</p>
-<p>「うん」</p>
-<p>「これからも、ずっと一緒にいてくれる？」</p>
-<p>真剣な眼差し。</p>
-<p>「もちろん」</p>
-<p>即答だった。</p>
-<p>「次は何を作る？」</p>
-<p>「そうだな……もっと大きなゲーム？」</p>
-<p>「Webアプリとか？」</p>
-<p>「スマホアプリも面白そう」</p>
-<p>二人で夢を語り合う。</p>
-<p>プログラミングが繋いだ絆は、これからも続いていく。</p>
-<p>「好きだよ、美久」</p>
-<p>「私も好き」</p>
-<p>星空の下、もう一度キスをした。</p>
-<p>文化祭は終わったけど、私たちの物語は続く。</p>
-<p>JavaScriptが紡ぐ、永遠のラブストーリー。</p>
+<h1 id="25">第25話 始まりの予感<a class="headerlink" href="#25" title="Permanent link">&para;</a></h1>
+<p>相沢が去った後の教室には、僕と美久の、満ち足りた笑顔だけが残っていた。美久は、まだ興奮冷めやらぬといった様子で、僕の隣で小さく跳ねている。</p>
+<p>「先輩！　私たち、やりましたね！」
+「ああ。美久が頑張ったおかげだ」</p>
+<p>僕がそう言うと、彼女は「えへへ」と照れたように笑った。その笑顔は、いつもの「あざとさ」とは違う、純粋な喜びと達成感に満ちていた。</p>
+<p>（本当に、すごいな、美久は）</p>
+<p>最初は、僕の世界に引きずり込んでしまうんじゃないかと不安だった。でも、彼女は、僕が想像していた以上に、この「プログラミング」というパズルを楽しみ、そして、その奥にある美しさまで見つけ出してくれた。</p>
+<p>クロージャを「ロマンチック」だと表現した彼女の言葉が、僕の心に深く残っている。僕にとって、それはただの技術的な概念だった。でも、彼女の感性を通すと、まるで命が吹き込まれたかのように、温かい意味を帯びる。</p>
+<p>僕たちの言語は、確かに成長した。そして、それ以上に、僕たちの関係もまた、大きく変わった。</p>
+<p>最初は、ただの「教える先輩」と「教わる後輩」。それが、いつの間にか「共同開発者」になり、今では、互いの喜びを分かち合い、共に困難を乗り越える「仲間」になった。</p>
+<p>いや、それだけじゃない。</p>
+<p>美久が僕の腕を掴んだ時の、あの柔らかい感触。頭を撫でた時の、彼女の頬の赤らみ。そして、僕の言葉に、涙をこらえながら頷いた、あの夜の河川敷。</p>
+<p>僕の心の中で、彼女の存在が、プログラミング言語のコードのように、少しずつ、でも確実に、書き換えられていくのを感じていた。</p>
+<p>「先輩、次は何を作りますか？」</p>
+<p>美久が、きらきらした瞳で僕を見上げる。その声には、まだ見ぬ未来への期待が込められている。</p>
+<p>「そうだな……」</p>
+<p>僕たちの言語は、まだ完成には程遠い。これから先も、たくさんの機能を追加し、もっと賢く、もっと使いやすいものにしていく必要があるだろう。</p>
+<p>でも、僕が今、一番考えたいのは、そんな技術的なことじゃない。</p>
+<p>僕たちの「本当の物語」は、これから始まる。</p>
+<p>それは、僕たちの言語が、どんなに進化しても、きっと、コードには書き表せない、もっと複雑で、もっと温かい、僕と美久だけの「クロージャ」になるだろう。</p>
+<p>夕日が、教室の窓から差し込み、美久の横顔をオレンジ色に染める。その光の中で、彼女の笑顔が、僕の目に、今までで一番眩しく映った。</p>
+<p>「……美久」</p>
+<p>僕の口から、自然と、彼女の名前がこぼれた。</p>
+<p>僕たちの「始まりの予感」が、静かに、でも確かに、教室の空気を満たしていた。</p>
 
 
 

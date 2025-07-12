@@ -22,7 +22,7 @@
     
     
       
-        <title>第31話 年越しプログラミング - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
+        <title>第31話 新しい「関係」と、変わらない「情熱」 - あざとい後輩女子にJavaScriptを教えて欲しいと言われたんだけど</title>
       
     
     
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第31話 年越しプログラミング
+              第31話 新しい「関係」と、変わらない「情熱」
             
           </span>
         </div>
@@ -1139,316 +1139,25 @@
   
 
 
-<h1 id="31">第31話 年越しプログラミング<a class="headerlink" href="#31" title="Permanent link">&para;</a></h1>
-<h2 id="12312">12月31日（日）午後2時<a class="headerlink" href="#12312" title="Permanent link">&para;</a></h2>
-<p>大晦日の午後。</p>
-<p>隆弘くんの家で、二人でWinterLangの改良作業。</p>
-<p>「今年最後のプログラミングだね」</p>
-<p>「来年はもっとすごい機能を追加したい」</p>
-<p>隆弘くんが新しいアイデアを説明してくれる。</p>
-<p>「配列の操作をもっと直感的にしたいんだ」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// WinterLang v2.0 配列機能拡張</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">arrayFeatures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">newSyntax</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">creation</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;数字の配列 = [1, 2, 3, 4, 5]&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">access</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;数字の配列の1番目&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">length</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;数字の配列の長さ&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">push</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;数字の配列に6を追加&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">pop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;数字の配列から最後を削除&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-
-<span class="w">    </span><span class="nx">implementation</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">ast</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">ArrayLiteral</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ArrayLiteral&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Expression[]&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nx">ArrayAccess</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ArrayAccess&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">                </span><span class="nx">array</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Expression&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Expression&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nx">ArrayProperty</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ArrayProperty&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">array</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Expression&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">property</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="w"> </span><span class="c1">// &quot;長さ&quot;, &quot;最後&quot;, etc.</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// 評価器の拡張</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">ArrayEvaluator</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">evaluateArrayLiteral</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">elements</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">element</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">element</span><span class="p">));</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">evaluateArrayAccess</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">array</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">array</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;配列以外にはアクセスできません&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="c1">// 1ベースのインデックス（日本語らしく）</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="nx">index</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">evaluateArrayProperty</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">array</span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">switch</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">property</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;長さ&quot;</span><span class="o">:</span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;最後&quot;</span><span class="o">:</span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">];</span>
-<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;最初&quot;</span><span class="o">:</span>
-<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
-<span class="w">            </span><span class="k">default</span><span class="o">:</span>
-<span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`未知の配列プロパティ: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">property</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「1番目って言ったら、本当に1番目の要素を取得するんだ」</p>
-<p>「0から始まるインデックスじゃなくて？」</p>
-<p>「そう！日本語なんだから、自然に1から始めよう」</p>
-<p>この発想が面白い。</p>
-<p>◇◇◇◇</p>
-<h2 id="4">午後4時　パーサーの改良<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<p>配列機能に合わせて、パーサーも拡張。</p>
-<p>「ついにパーサーを本格的に触るのね」</p>
-<p>「うん。でも基本的な構造は同じだよ」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 配列関連のパーサー拡張</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">WinterLangParser</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// ...既存のメソッド</span>
-
-<span class="w">    </span><span class="nx">parseArrayLiteral</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">expectToken</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">currentToken</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">elements</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parseExpression</span><span class="p">());</span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">matchToken</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">));</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">expectToken</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ArrayLiteral&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="nx">elements</span>
-<span class="w">        </span><span class="p">};</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">parseArrayAccess</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">expectToken</span><span class="p">(</span><span class="s1">&#39;の&#39;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseExpression</span><span class="p">();</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">expectToken</span><span class="p">(</span><span class="s1">&#39;番目&#39;</span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ArrayAccess&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">array</span><span class="o">:</span><span class="w"> </span><span class="nx">array</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="nx">index</span>
-<span class="w">        </span><span class="p">};</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">parseArrayProperty</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">expectToken</span><span class="p">(</span><span class="s1">&#39;の&#39;</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">currentToken</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// &quot;長さ&quot;, &quot;最後&quot;, etc.</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">nextToken</span><span class="p">();</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ArrayProperty&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="nx">array</span><span class="o">:</span><span class="w"> </span><span class="nx">array</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">property</span><span class="o">:</span><span class="w"> </span><span class="nx">property</span>
-<span class="w">        </span><span class="p">};</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 式の解析を拡張</span>
-<span class="w">    </span><span class="nx">parsePostfixExpression</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">expr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parsePrimary</span><span class="p">();</span>
-
-<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">matchToken</span><span class="p">(</span><span class="s1">&#39;の&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">currentToken</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">next</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;番目&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="c1">// 配列アクセス</span>
-<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="nx">backtrack</span><span class="p">();</span><span class="w"> </span><span class="c1">// &#39;の&#39;を戻す</span>
-<span class="w">                    </span><span class="nx">expr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseArrayAccess</span><span class="p">(</span><span class="nx">expr</span><span class="p">);</span>
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">([</span><span class="s1">&#39;長さ&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;最後&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;最初&#39;</span><span class="p">].</span><span class="nx">includes</span><span class="p">(</span><span class="nx">next</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="c1">// 配列プロパティ</span>
-<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="nx">backtrack</span><span class="p">();</span><span class="w"> </span><span class="c1">// &#39;の&#39;を戻す</span>
-<span class="w">                    </span><span class="nx">expr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parseArrayProperty</span><span class="p">(</span><span class="nx">expr</span><span class="p">);</span>
-<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="k">break</span><span class="p">;</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="k">break</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">expr</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「こうやって段階的に機能を追加していくのね」</p>
-<p>「そうそう。いきなり全部作ろうとすると大変だから」</p>
-<p>隆弘くんのプログラミングに対する姿勢から学ぶことが多い。</p>
-<p>◇◇◇◇</p>
-<h2 id="6">午後6時　動作テスト<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p>新しい配列機能をテスト。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// WinterLang v2.0 テストコード</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">testCases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">            数字の配列 = [10, 20, 30, 40, 50]</span>
-<span class="sb">            数字の配列の3番目を表示</span>
-<span class="sb">        `</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">expected</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;配列の要素アクセス&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">            果物 = [&quot;りんご&quot;, &quot;みかん&quot;, &quot;ぶどう&quot;]  </span>
-<span class="sb">            果物の長さを表示</span>
-<span class="sb">        `</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">expected</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;配列の長さ取得&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">            点数 = [85, 92, 78, 96, 88]</span>
-<span class="sb">            点数の最後を表示</span>
-<span class="sb">        `</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">expected</span><span class="o">:</span><span class="w"> </span><span class="mf">88</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;配列の最後の要素&quot;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
-<span class="sb">            データ = [1, 2, 3]</span>
-<span class="sb">            データに4を追加</span>
-<span class="sb">            データの長さを表示</span>
-<span class="sb">        `</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">expected</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;配列への要素追加&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">];</span>
-
-<span class="c1">// テスト実行</span>
-<span class="nx">testCases</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">test</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`テスト</span><span class="si">${</span><span class="nx">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">test</span><span class="p">.</span><span class="nx">description</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">ast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">winterLangParser</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">winterLangEvaluator</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">ast</span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">result</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">test</span><span class="p">.</span><span class="nx">expected</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;✅ 成功&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`❌ 失敗: 期待値</span><span class="si">${</span><span class="nx">test</span><span class="p">.</span><span class="nx">expected</span><span class="si">}</span><span class="sb">, 実際</span><span class="si">${</span><span class="nx">result</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`❌ エラー: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>「全部動いた！」</p>
-<p>私が嬉しそうに報告。</p>
-<p>「配列の操作が日本語でできるって、やっぱり面白いね」</p>
-<p>◇◇◇◇</p>
-<h2 id="8">午後8時　年越しそば<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
-<p>隆弘くんのお母さんが年越しそばを作ってくれた。</p>
-<p>「今年もお疲れ様でした」</p>
-<p>「来年もよろしくお願いします」</p>
-<p>私たちも挨拶。</p>
-<p>「美久ちゃん、今年はうちの隆弘がお世話になって」</p>
-<p>「いえいえ、私の方こそ教えてもらって」</p>
-<p>温かい家族の雰囲気。</p>
-<p>「そうそう、来年は高校の文化祭でWinterLangを発表したいんです」</p>
-<p>隆弘くんが提案。</p>
-<p>「え？本当に？」</p>
-<p>「うん。みんなに見てもらいたい」</p>
-<p>ドキドキする。</p>
-<p>でも、楽しみでもある。</p>
-<p>◇◇◇◇</p>
-<h2 id="1130">午後11時30分　カウントダウン準備<a class="headerlink" href="#1130" title="Permanent link">&para;</a></h2>
-<p>もうすぐ新年。</p>
-<p>二人で来年の計画を話し合う。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 2024年の目標</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">goals2024</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">technical</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;WinterLang v3.0 完成&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;関数定義機能の実装&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="s2">&quot;ファイル入出力対応&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;エラーメッセージの日本語化&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;デバッグ機能の追加&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">personal</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;文化祭での発表成功&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;プログラミングコンテスト参加&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;もっと多くの人にプログラミングの楽しさを伝える&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;二人の関係をもっと深める&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">learning</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;コンパイラ理論の本格的学習&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;他の言語との比較研究&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="s2">&quot;言語設計の哲学を理解&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;チーム開発の経験&quot;</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「来年は忙しくなりそうだね」</p>
-<p>「でも、楽しそう」</p>
-<p>私が答える。</p>
-<p>「美久と一緒なら、何でもできる気がする」</p>
-<p>隆弘くんの言葉に、胸がドキドキ。</p>
-<p>◇◇◇◇</p>
-<h2 id="0">深夜0時　新年<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
-<p>「10、9、8、7、6、5、4、3、2、1...」</p>
-<p>「あけましておめでとう！」</p>
-<p>新年を迎えた瞬間、二人で手を合わせる。</p>
-<p>「今年もよろしくお願いします」</p>
-<p>「こちらこそ」</p>
-<p>隆弘くんが私の手を握る。</p>
-<p>温かくて、安心する。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 新年の誓い</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">newYearPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;隆弘くん&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;美久&quot;</span><span class="p">,</span>
-
-<span class="w">    </span><span class="nx">promises</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;一緒にWinterLangをもっと素晴らしい言語にする&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;プログラミングの勉強を頑張る&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;二人の時間を大切にする&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;お互いを支え合う&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">dreams</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;文化祭で多くの人にWinterLangを見てもらう&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;プログラミングで誰かの役に立つ&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">        </span><span class="s2">&quot;二人でもっと大きなことを成し遂げる&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;いつまでも一緒にいる&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-
-<span class="w">    </span><span class="nx">love</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;永遠に続く気持ち&quot;</span>
-<span class="p">};</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;新しい年の始まり&quot;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;二人で歩む道&quot;</span><span class="p">);</span>
-</code></pre></div>
-<p>新年の空気が清々しい。</p>
-<p>今年はどんな一年になるんだろう。</p>
-<p>きっと、去年以上に素晴らしい年になる。</p>
-<p>隆弘くんと一緒なら、どんな困難も乗り越えられる。</p>
-<p>WinterLangも、私たちの関係も、もっと成長していく。</p>
-<p>新しい年への期待に胸が躍る。</p>
+<h1 id="31">第31話 新しい「関係」と、変わらない「情熱」<a class="headerlink" href="#31" title="Permanent link">&para;</a></h1>
+<p>告白という名の「宣言」を交わしたあの日から、僕たちの関係は、大きく、そして、温かく変化した。空き教室での勉強会は、以前にも増して、甘い空気に包まれるようになった。</p>
+<p>「先輩、ここ、どうすればいいですか？」</p>
+<p>美久が、僕の隣に身を寄せ、ノートパソコンの画面を指差す。その指先が、僕の腕に、そっと触れる。そのたびに、僕の胸の奥が、きゅっと締め付けられるような、甘い痛みが走る。</p>
+<p>「ああ、そこはな……」</p>
+<p>僕は、美久の顔を見つめながら、ゆっくりと、言葉を選んで説明する。彼女の瞳は、僕の言葉を、一つも聞き漏らすまいと、真剣に輝いている。</p>
+<p>僕たちの言語は、クロージャまで実装できた。末尾再帰の最適化も、少しずつ、形になってきている。でも、僕たちが今、一番夢中になっているのは、そんな技術的なことだけじゃない。</p>
+<p>僕たちの「新しい関係」だ。</p>
+<p>放課後、二人で並んで帰る道。以前は、プログラミングの話ばかりだったけれど、今は、たわいもない話で盛り上がる。美久が、僕の服の袖を、きゅっと掴む。その小さな仕草が、僕の心を、温かいもので満たしてくれる。</p>
+<p>「先輩、今度の週末、どこか行きますか？」</p>
+<p>美久が、上目遣いで僕を見上げる。その瞳には、まだ見ぬ未来への期待が込められている。</p>
+<p>「そうだな……美久が行きたいところなら、どこでも」</p>
+<p>僕の言葉に、美久は、はにかんだように笑った。その笑顔は、僕にとって、何よりも大切な「宝物」だ。</p>
+<p>僕たちの言語は、まだ完成には程遠い。これから先も、たくさんの機能を追加し、もっと賢く、もっと使いやすいものにしていく必要があるだろう。</p>
+<p>でも、僕たちが今、一番大切にしたいのは、そんな技術的なことだけじゃない。</p>
+<p>僕たちの「本当の物語」は、まだ始まったばかりだ。</p>
+<p>それは、僕たちの言語が、どんなに進化しても、きっと、コードには書き表せない、もっと複雑で、もっと温かい、僕と美久だけの「クロージャ」になるだろう。</p>
+<p>夕日が、教室の窓から差し込み、美久の横顔をオレンジ色に染める。その光の中で、彼女の笑顔が、僕の目に、今までで一番眩しく映った。</p>
+<p>僕たちの「新しい関係」は、僕たちの「プログラミングへの情熱」と同じくらい、深く、そして、かけがえのないものになっていた。</p>
 
 
 

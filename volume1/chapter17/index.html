@@ -1170,370 +1170,53 @@
   
 
 
-<h1 id="17">第17話 デバッグツール<a class="headerlink" href="#17" title="Permanent link">&para;</a></h1>
-<p>五月六日、月曜日。振替休日。</p>
-<p>ゴールデンウィークも最後の一日。学校は休みだが、美久との開発は続く。</p>
-<p>「今日はデバッグツールだね」</p>
-<p>美久が期待に満ちた顔で言う。</p>
-<p>「プログラムの問題を見つけて直すための道具」</p>
-<p>「デバッグって、虫を取り除くって意味？」</p>
-<p>「そう。昔、コンピュータに本物の虫が入って故障したことから」</p>
-<p>◇◇◇◇</p>
-<p>「まず、実行トレース機能から作ろう」</p>
-<p>ホワイトボードに設計を書く。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// デバッグ情報を保持するクラス</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">DebugContext</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">trace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">breakpoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">();</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">stepMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">callStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">log</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">enabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">trace</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">        </span><span class="nx">type</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">info</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">(),</span>
-<span class="w">        </span><span class="nx">callStack</span><span class="o">:</span><span class="w"> </span><span class="p">[...</span><span class="k">this</span><span class="p">.</span><span class="nx">callStack</span><span class="p">]</span>
-<span class="w">      </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">enterFunction</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">callStack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;function_enter&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="p">});</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">exitFunction</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">callStack</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;function_exit&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="p">});</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<h1 id="17">第17話 終わらないループと、終わってほしくない時間<a class="headerlink" href="#17" title="Permanent link">&para;</a></h1>
+<p>頭を撫でられた、あの事件から数日。僕と美久の間には、まだ少しだけ、甘酸っぱいような、ぎこちない空気が漂っていた。
+　僕は、その照れ臭さを振り払うように、少しだけ早口で、新しいテーマを切り出した。</p>
+<p>「きょ、今日は、プログラミングの真髄とも言える機能、『繰り返し』を実装するぞ！」
+「繰り返し、ですか？」
+「ああ。<code>while</code>ループだ。『ある条件が満たされている間、ずっと同じ処理を繰り返す』。これができると、人間がやったら何時間もかかるような作業を、コンピュータに一瞬でやらせることができるようになるんだ」</p>
+<p>僕は、新しい構文<code>['while', condition, body]</code>をエディタに書き出した。</p>
+<p>「<code>condition</code>が<code>true</code>である限り、<code>body</code>の処理を、何度も、何度も、実行し続ける。そういう『お願い』だ」</p>
+<p>実装は、<code>if</code>文の応用だった。<code>evaluate</code>関数に<code>while</code>の分岐を追加し、条件式を評価し、その結果が<code>true</code>なら<code>body</code>を評価する。そして、<code>if</code>文と違うのは、<code>body</code>を評価し終わったら、また最初に戻って、もう一度、条件式を評価するところだ。</p>
+<p>「例えば、こんなコードだ」</p>
+<p>僕は、デモ用のコードを書いてみせた。</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;begin&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;define&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">],</span>
+<span class="w">  </span><span class="p">[</span><span class="s1">&#39;while&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">],</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;begin&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="p">[</span><span class="s1">&#39;define&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">]],</span>
+<span class="w">      </span><span class="c1">// console.log(x) のような表示機能はまだない</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="s1">&#39;x&#39;</span><span class="w"> </span><span class="c1">// 最終的なxの値を返す</span>
+<span class="p">]</span>
 </code></pre></div>
-<p>「トレースって何を記録するの？」</p>
-<p>「どの順番で何が実行されたか。プログラムの足跡みたいなもの」</p>
-<p>◇◇◇◇</p>
-<p>「評価器にデバッグ機能を組み込もう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// デバッグ機能付き評価器</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">DebugEvaluator</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">MikuLangEvaluator</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">();</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DebugContext</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// デバッグ情報を記録</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">debug</span><span class="p">.</span><span class="nx">enabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">debug</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;evaluate&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">location</span>
-<span class="w">      </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// ブレークポイントチェック</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">debug</span><span class="p">.</span><span class="nx">breakpoints</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">location</span><span class="o">?</span><span class="p">.</span><span class="nx">line</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">handleBreakpoint</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 通常の評価</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">handleBreakpoint</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;ブレークポイント:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">location</span><span class="p">);</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;現在の変数:&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">getAll</span><span class="p">());</span>
-<span class="w">    </span><span class="c1">// 実際の実装では、ここで実行を一時停止</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「ブレークポイントって？」</p>
-<p>「プログラムを一時停止したい場所。その時点での状態を確認できる」</p>
-<p>◇◇◇◇</p>
-<p>美久が質問してきた。</p>
-<p>「どんな時にデバッグツールを使うの？」</p>
-<p>「プログラムが思った通りに動かない時」</p>
-<p>具体例を示す。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// バグのあるプログラム例</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">buggyProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;階乗&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;&lt;=&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">))]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="c1">// バグ: n * 階乗(n) となっている（正しくは n-1）</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span>
-<span class="w">            </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;階乗&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)])</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;階乗&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">5</span><span class="p">)]))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「実行トレースを見てみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// デバッグ実行</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">debugEval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DebugEvaluator</span><span class="p">();</span>
-<span class="nx">debugEval</span><span class="p">.</span><span class="nx">debug</span><span class="p">.</span><span class="nx">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-
-<span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">debugEval</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">buggyProgram</span><span class="p">);</span>
-<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;エラー発生:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// トレースを表示</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;実行トレース:&#39;</span><span class="p">);</span>
-<span class="nx">debugEval</span><span class="p">.</span><span class="nx">debug</span><span class="p">.</span><span class="nx">trace</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">entry</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">entry</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb"> - </span><span class="si">${</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">entry</span><span class="p">.</span><span class="nx">info</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>「無限ループになってる！」</p>
-<p>美久が気づいた。</p>
-<p>「そう。階乗(n)が階乗(n)を呼び続けてる」</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。美久がお茶を飲みながら言った。</p>
-<p>「デバッグって、探偵みたいだね」</p>
-<p>「どういうこと？」</p>
-<p>「証拠を集めて、犯人（バグ）を見つける」</p>
-<p>面白い例えだ。</p>
-<p>「確かに。推理力が必要」</p>
-<p>◇◇◇◇</p>
-<p>「変数ウォッチ機能も作ろう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 変数の変化を監視</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">VariableWatcher</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">watches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">watch</span><span class="p">(</span><span class="nx">varName</span><span class="p">,</span><span class="w"> </span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">watches</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">varName</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">watches</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">varName</span><span class="p">,</span><span class="w"> </span><span class="p">[]);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">watches</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">varName</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">notify</span><span class="p">(</span><span class="nx">varName</span><span class="p">,</span><span class="w"> </span><span class="nx">oldValue</span><span class="p">,</span><span class="w"> </span><span class="nx">newValue</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">callbacks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">watches</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">varName</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[];</span>
-<span class="w">    </span><span class="nx">callbacks</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">cb</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">cb</span><span class="p">(</span><span class="nx">varName</span><span class="p">,</span><span class="w"> </span><span class="nx">oldValue</span><span class="p">,</span><span class="w"> </span><span class="nx">newValue</span><span class="p">));</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// 環境クラスを拡張</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">WatchableEnvironment</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Environment</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span><span class="w"> </span><span class="nx">watcher</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">(</span><span class="nx">parent</span><span class="p">);</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">watcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">watcher</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">set</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">oldValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">);</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">watcher</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">watcher</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">oldValue</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>美久がプログラムを書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久のデバッグ練習プログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuDebugProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;好感度計算&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;現在値&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;イベント&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;増加量&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)),</span>
-
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;===&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;イベント&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;デート&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;増加量&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">))</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;===&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;イベント&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;プレゼント&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;増加量&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">5</span><span class="p">))</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-
-<span class="w">          </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">            </span><span class="s1">&#39;新しい値&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;現在値&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;増加量&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">          </span><span class="p">),</span>
-
-<span class="w">          </span><span class="c1">// デバッグ出力</span>
-<span class="w">          </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;好感度変化:&#39;</span><span class="p">),</span>
-<span class="w">            </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;現在値&#39;</span><span class="p">),</span>
-<span class="w">            </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;→&#39;</span><span class="p">),</span>
-<span class="w">            </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;新しい値&#39;</span><span class="p">)</span>
-<span class="w">          </span><span class="p">]),</span>
-
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;新しい値&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-
-<span class="w">    </span><span class="c1">// テスト実行</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">50</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;好感度計算&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;デート&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="p">])</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「プロファイリング機能も追加しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 実行時間を計測</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">Profiler</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">timings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">start</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">timings</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">label</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">start</span><span class="o">:</span><span class="w"> </span><span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">(),</span>
-<span class="w">      </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timings</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">count</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">end</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">timing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">timings</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">label</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">timing</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">timing</span><span class="p">.</span><span class="nx">start</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">timing</span><span class="p">.</span><span class="nx">start</span><span class="p">;</span>
-<span class="w">      </span><span class="nx">timing</span><span class="p">.</span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">timing</span><span class="p">.</span><span class="nx">total</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">duration</span><span class="p">;</span>
-<span class="w">      </span><span class="nx">timing</span><span class="p">.</span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">report</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;=== プロファイリング結果 ===&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">timings</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">timing</span><span class="p">,</span><span class="w"> </span><span class="nx">label</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">label</span><span class="si">}</span><span class="sb">:`</span><span class="p">);</span>
-<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`  呼び出し回数: </span><span class="si">${</span><span class="nx">timing</span><span class="p">.</span><span class="nx">count</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`  合計時間: </span><span class="si">${</span><span class="nx">timing</span><span class="p">.</span><span class="nx">total</span><span class="o">?</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">2</span><span class="p">)</span><span class="si">}</span><span class="sb">ms`</span><span class="p">);</span>
-<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`  平均時間: </span><span class="si">${</span><span class="p">(</span><span class="nx">timing</span><span class="p">.</span><span class="nx">total</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">timing</span><span class="p">.</span><span class="nx">count</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">2</span><span class="p">)</span><span class="si">}</span><span class="sb">ms`</span><span class="p">);</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「エラーの詳細情報も表示できるようにしよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// エラー情報の拡張</span>
-<span class="kd">class</span><span class="w"> </span><span class="nx">MikuLangError</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span><span class="w"> </span><span class="nx">node</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MikuLangError&#39;</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">;</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">context</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">getDetailedMessage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">details</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">node</span><span class="o">?</span><span class="p">.</span><span class="nx">location</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">details</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="sb">`\n場所: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">line</span><span class="si">}</span><span class="sb">行目`</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="o">?</span><span class="p">.</span><span class="nx">callStack</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">details</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;\nコールスタック:&#39;</span><span class="p">;</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">callStack</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">func</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">details</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="sb">`\n  </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">func</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
-<span class="w">      </span><span class="p">});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">details</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。デバッグツールの実装も順調に進んだ。</p>
-<p>「デバッグツールがあると、プログラミングが楽になるね」</p>
-<p>美久が感想を述べる。</p>
-<p>「バグは必ず発生するから、見つけやすくすることが大事」</p>
-<p>「人間関係のデバッグツールもあればいいのに」</p>
-<p>美久の冗談に笑ってしまう。</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>片付けながら、美久が言った。</p>
-<p>「今日で連休も終わりか」</p>
-<p>「そうだね。でも、開発は続く」</p>
-<p>「学校でも続けられる？」</p>
-<p>「もちろん。放課後に」</p>
-<p>美久の顔が明るくなる。</p>
-<p>「よかった。まだまだ一緒に作りたいものがあるから」</p>
-<p>◇◇◇◇</p>
-<p>美久を見送る時、彼女が振り返った。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「この一週間、本当に充実してた」</p>
-<p>「僕もだよ」</p>
-<p>「明日からも、よろしくお願いします」</p>
-<p>美久が深々と頭を下げる。</p>
-<p>「こちらこそ」</p>
-<p>僕も頭を下げる。</p>
-<p>明日から、また日常が始まる。</p>
-<p>でも、美久との開発は続いていく。</p>
-<p>そして、MikuLangの完成も、もうすぐそこまで来ている。</p>
-<p>（次はパーサーか）</p>
-<p>本物のプログラミング言語への、最後のピース。</p>
-<p>美久と一緒なら、きっと作れる。</p>
+<p>「このコードを実行すると、<code>x</code>の値が0から1、2、3、4と変化していって、最終的に<code>5</code>が返ってくる。一瞬で、5回の足し算をやってのけるんだ」
+「すごい……！　自動で計算してくれるんですね！」</p>
+<p>美久が感心したように声を上げる。僕は、少しだけ意地悪な笑みを浮かべて、次のコードを見せた。</p>
+<p><code>['while', true, ['define', 'x', ['+', 'x', 1]]]</code></p>
+<p>「じゃあ、これはどうなると思う？」
+「え？　<code>true</code>ってことは……条件が、ずっと<code>true</code>……？　あ……！」</p>
+<p>美久が気づいた瞬間、僕はプログラムを実行した。案の定、プログラムは応答しなくなり、ブラウザのタブがフリーズする。僕は慌ててタブを閉じた。</p>
+<p>「こ、こわい……！　暴走しちゃった……」
+「そう。これが『無限ループ』だ。だから、<code>while</code>ループを使う時は、いつか必ずループが『終わる』ように、ちゃんと設計してあげないといけないんだ」</p>
+<p>僕がその危険性と重要性を説いている間、美久は、どこか遠くを見つめていた。</p>
+<p>（終わらないループ……）</p>
+<p>彼女の頭の中は、別のことでいっぱいだった。</p>
+<p>（先輩とこうして過ごす、この時間。この時間が、もし、<code>while (true)</code>だったら、いいのに……）</p>
+<p>この、楽しくて、少しだけ胸が苦しくなる、放課後の開発作業。でも、これには、必ず「終わり」が来る。言語が、完成した時に。
+　その事実に、彼女は、今更ながら気づいてしまったのだ。</p>
+<p>「……先輩」</p>
+<p>ぽつり、と彼女が呟いた。その声は、いつもの快活さが嘘のように、少しだけ、か細かった。</p>
+<p>「この言語が、もし、完成したら……。この、放課後の勉強会も、終わっちゃう、んですよね？」</p>
+<p>その質問は、僕の完全に意表を突くものだった。
+　終わり？　考えたこともなかった。美久とこうして過ごす時間が、僕にとっても、いつの間にか、かけがえのない、大切な日常になっていたから。</p>
+<p>僕は、うまく言葉を返すことができなかった。</p>
+<p>「……それは、まあ……そう、だな」</p>
+<p>肯定するのが、精一杯だった。
+　教室に、少しだけ切ない沈黙が流れる。「終わり」を意識させる<code>while</code>ループが、皮肉にも、僕たち二人に、この特別な時間の「終わり」を、はっきりと意識させてしまった。</p>
+<p>僕たちのこの心地よいループは、一体、どんな「条件」を満たした時に、終わりを迎えてしまうのだろうか。そんな、新たな不安と感傷の気配が、夕暮れの教室に、静かに漂い始めていた。</p>
 
 
 

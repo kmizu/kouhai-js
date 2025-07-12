@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#15" class="md-skip">
+        <a href="#15-if" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -1170,347 +1170,38 @@
   
 
 
-<h1 id="15">第15話 文字列処理<a class="headerlink" href="#15" title="Permanent link">&para;</a></h1>
-<p>五月四日、土曜日。みどりの日。</p>
-<p>ゴールデンウィークも残すところあと三日。美久との時間が、かけがえのないものになっている。</p>
-<p>「今日は文字列処理だね」</p>
-<p>美久がいつものように準備万端で言う。</p>
-<p>「テキストを扱う機能。ゲーム作りには必須」</p>
-<p>「文字列って、今まで使ってたStringLiteralとは違うの？」</p>
-<p>「基本は同じ。今日はその操作方法を増やす」</p>
-<p>◇◇◇◇</p>
-<p>「文字列の基本操作から始めよう」</p>
-<p>ホワイトボードに例を書く。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 文字列の連結</span>
-<span class="s2">&quot;Hello, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;World!&quot;</span>
-
-<span class="c1">// 文字列の長さ</span>
-<span class="s2">&quot;美久&quot;</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="c1">// 2</span>
-
-<span class="c1">// 文字列の一部を取得</span>
-<span class="s2">&quot;プログラミング&quot;</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span><span class="w"> </span><span class="c1">// &quot;プログ&quot;</span>
-</code></pre></div>
-<p>「JavaScriptの機能をMikuLangにも実装するんだ」</p>
-<p>「そう。便利な機能は取り入れていく」</p>
-<p>◇◇◇◇</p>
-<p>「文字列操作のASTを設計しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 文字列メソッド呼び出しのAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">StringMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CallExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">callee</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MemberExpression&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">object</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;こんにちは&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">property</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;length&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">computed</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">arguments</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
-<span class="p">};</span>
-
-<span class="c1">// 文字列の連結</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">StringConcat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BinaryExpression&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">operator</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Hello, &#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StringLiteral&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;World!&#39;</span><span class="w"> </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「メソッド呼び出しは関数と似てる」</p>
-<p>「オブジェクトのメソッドと同じ仕組み」</p>
-<p>◇◇◇◇</p>
-<p>実装を始める。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 組み込み文字列メソッド</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">stringMethods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">length</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">toUpperCase</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">(),</span>
-<span class="w">  </span><span class="nx">toLowerCase</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">(),</span>
-<span class="w">  </span><span class="nx">substring</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="p">,</span><span class="w"> </span><span class="nx">end</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span><span class="w"> </span><span class="nx">end</span><span class="p">),</span>
-<span class="w">  </span><span class="nx">indexOf</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">search</span><span class="p">),</span>
-<span class="w">  </span><span class="nx">replace</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="p">,</span><span class="w"> </span><span class="nx">replace</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">search</span><span class="p">,</span><span class="w"> </span><span class="nx">replace</span><span class="p">)</span>
-<span class="p">};</span>
-
-<span class="c1">// 評価器の拡張</span>
-<span class="nx">evaluateMemberExpression</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">object</span><span class="p">);</span>
-
-<span class="w">  </span><span class="c1">// 文字列の場合</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;string&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">methodName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">property</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">methodName</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">stringMethods</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">evaluatedArgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">args</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">arg</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">arg</span><span class="p">));</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">stringMethods</span><span class="p">[</span><span class="nx">methodName</span><span class="p">](</span><span class="nx">object</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">evaluatedArgs</span><span class="p">);</span>
-<span class="w">      </span><span class="p">};</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">// lengthプロパティ</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">methodName</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;length&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">object</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="c1">// 既存の処理...</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>美久が質問してきた。</p>
-<p>「どんな時に文字列処理を使うの？」</p>
-<p>「例えば、プレイヤーの名前を入力してもらって、それを使うとか」</p>
-<p>具体例を書く。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">nameProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;プレイヤー名&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;美久&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;挨拶&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;こんにちは、&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">          </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;プレイヤー名&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;さん！&#39;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">)</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;挨拶&#39;</span><span class="p">)),</span>
-
-<span class="w">    </span><span class="c1">// 名前の長さをチェック</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;名前の長さ&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createPropertyAccess</span><span class="p">(</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;プレイヤー名&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="s1">&#39;length&#39;</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;名前の文字数:&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;名前の長さ&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">nameProgram</span><span class="p">);</span>
-<span class="c1">// 出力:</span>
-<span class="c1">// こんにちは、美久さん！</span>
-<span class="c1">// 名前の文字数:</span>
-<span class="c1">// 2</span>
-</code></pre></div>
-<p>「名前を組み込んで、カスタマイズされたメッセージが作れる！」</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。美久がお茶を飲みながら言った。</p>
-<p>「文字列って、コミュニケーションの基本だよね」</p>
-<p>「どういうこと？」</p>
-<p>「言葉で気持ちを伝えるのも、文字列の組み合わせ」</p>
-<p>その発想に感心する。</p>
-<p>「確かに。プログラムも人とのコミュニケーション」</p>
-<p>◇◇◇◇</p>
-<p>「文字列の検索と置換も実装しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 文字列検索と置換の例</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">textProcessProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;メッセージ&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;隆弘先輩が大好きです&#39;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">),</span>
-
-<span class="w">    </span><span class="c1">// 文字列に特定の単語が含まれているかチェック</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;含まれているか&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;文字列&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;検索語&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span>
-<span class="w">            </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;indexOf&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;文字列&#39;</span><span class="p">),</span>
-<span class="w">                </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;検索語&#39;</span><span class="p">)</span>
-<span class="w">              </span><span class="p">]),</span>
-<span class="w">              </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
-<span class="w">            </span><span class="p">)</span>
-<span class="w">          </span><span class="p">)</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-
-<span class="w">    </span><span class="c1">// チェック</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;結果&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;含まれているか&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;メッセージ&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;好き&#39;</span><span class="p">)</span>
-<span class="w">      </span><span class="p">])</span>
-<span class="w">    </span><span class="p">),</span>
-
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;結果&#39;</span><span class="p">))</span><span class="w"> </span><span class="c1">// true</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「メッセージに『好き』が含まれてるかチェックしてる」</p>
-<p>「そう。テキストアドベンチャーゲームで、キーワード検索に使える」</p>
-<p>◇◇◇◇</p>
-<p>美久がプログラムを書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久の文字列処理プログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuStringProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="c1">// テンプレート機能</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;メッセージ生成&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;名前&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;好感度&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;基本メッセージ&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)),</span>
-
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">80</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">                  </span><span class="s1">&#39;基本メッセージ&#39;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                    </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;名前&#39;</span><span class="p">),</span>
-<span class="w">                    </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;先輩、ずっと一緒にいたいです...&#39;</span><span class="p">)</span>
-<span class="w">                  </span><span class="p">)</span>
-<span class="w">                </span><span class="p">)</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">                </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">),</span>
-<span class="w">                </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">50</span><span class="p">)</span>
-<span class="w">              </span><span class="p">),</span>
-<span class="w">              </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">                    </span><span class="s1">&#39;基本メッセージ&#39;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                      </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">                      </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;名前&#39;</span><span class="p">),</span>
-<span class="w">                      </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;先輩といると楽しいです&#39;</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">)</span>
-<span class="w">                  </span><span class="p">)</span>
-<span class="w">                </span><span class="p">]</span>
-<span class="w">              </span><span class="p">},</span>
-<span class="w">              </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">                </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">                    </span><span class="s1">&#39;基本メッセージ&#39;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">                      </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">                      </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;名前&#39;</span><span class="p">),</span>
-<span class="w">                      </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;先輩、よろしくお願いします&#39;</span><span class="p">)</span>
-<span class="w">                    </span><span class="p">)</span>
-<span class="w">                  </span><span class="p">)</span>
-<span class="w">                </span><span class="p">]</span>
-<span class="w">              </span><span class="p">}</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;基本メッセージ&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-
-<span class="w">    </span><span class="c1">// 使用例</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;メッセージ生成&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;隆弘&#39;</span><span class="p">),</span>
-<span class="w">      </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">85</span><span class="p">)</span>
-<span class="w">    </span><span class="p">]))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="nx">mikuLang</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">mikuStringProgram</span><span class="p">);</span>
-<span class="c1">// 出力: 隆弘先輩、ずっと一緒にいたいです...</span>
-</code></pre></div>
-<p>「好感度によってメッセージが変わる！」</p>
-<p>美久の顔が赤くなる。</p>
-<p>「実際のゲームみたいでしょ？」</p>
-<p>◇◇◇◇</p>
-<p>「文字列の分割と結合も便利」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// split と join の実装</span>
-<span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;セリフ分割&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="p">[</span><span class="s1">&#39;長文&#39;</span><span class="p">],</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="c1">// 「。」で分割</span>
-<span class="w">      </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;文リスト&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;split&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;長文&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;。&#39;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">])</span>
-<span class="w">      </span><span class="p">),</span>
-
-<span class="w">      </span><span class="c1">// 各文を処理</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ForStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">init</span><span class="o">:</span><span class="w"> </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)),</span>
-<span class="w">        </span><span class="nx">test</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">          </span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createLength</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;文リスト&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">),</span>
-<span class="w">        </span><span class="nx">update</span><span class="o">:</span><span class="w"> </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">          </span><span class="s1">&#39;i&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">createBinaryExpression</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">),</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">1</span><span class="p">))</span>
-<span class="w">        </span><span class="p">),</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">          </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createArrayAccess</span><span class="p">(</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;文リスト&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">))</span>
-<span class="w">          </span><span class="p">]</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">)</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。文字列処理の実装も順調に進んだ。</p>
-<p>「文字列処理、ゲーム作りには欠かせないね」</p>
-<p>美久が満足そうに言う。</p>
-<p>「テキストはゲームの命。特にノベルゲームでは」</p>
-<p>「物語を紡ぐのも、プログラミングなんだね」</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>片付けながら、美久が言った。</p>
-<p>「MikuLangで、本当に物語が書けるようになってきた」</p>
-<p>「そうだね。文字列処理があれば、複雑なテキスト処理もできる」</p>
-<p>「私たちの物語も、きっと素敵なものになる」</p>
-<p>美久の言葉の意味を考える。</p>
-<p>ゲームの物語？　それとも——</p>
-<p>◇◇◇◇</p>
-<p>美久を見送る時、彼女が振り返った。</p>
-<p>「明日は何を実装するの？」</p>
-<p>「標準ライブラリかな。便利な機能をまとめたもの」</p>
-<p>「楽しみ」</p>
-<p>美久が少し躊躇してから言った。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「好感度85のメッセージ、本当の気持ちです」</p>
-<p>そう言って、美久は急いで部屋に入っていった。</p>
-<p>僕は、しばらくその場に立ち尽くした。</p>
-<p>（ずっと一緒にいたい、か）</p>
-<p>僕も同じ気持ちだ。</p>
-<p>明日、いや、ゴールデンウィークが終わる前に、ちゃんと伝えよう。</p>
-<p>文字列では表現しきれない、本当の気持ちを。</p>
+<h1 id="15-if">第15話 もしも、の先の景色（if文）<a class="headerlink" href="#15-if" title="Permanent link">&para;</a></h1>
+<p>昼間の会話を引きずったままの、ぎこちない空気。それを振り払うかのように、僕はわざと明るい声を出した。</p>
+<p>「なあ、美久。今の僕たちの言語に、まだ決定的に足りていないものがあるんだ」
+「え……？　なんですか？」
+「それは、『判断力』だ」</p>
+<p>僕の言葉に、美久はきょとんと首を傾げた。</p>
+<p>「僕たちの言語は、まだ、言われたことを、その通りに実行することしかできない。でも、本物のプログラミング言語は、もっと賢いんだ。『もし、〇〇が本当なら、こちらを実行する。もし、嘘なら、あちらを実行する』。そんな風に、状況に応じて、やることを自分で『選択』できる能力。それが、<code>if</code>文なんだ」</p>
+<p>僕は、<code>if</code>文の構文をエディタに書いてみせた。</p>
+<p><code>['if', condition, true-exp, false-exp]</code></p>
+<p>「<code>condition</code>が『条件』、<code>true-exp</code>が『条件が本当だった時にやること』、<code>false-exp</code>が『条件が嘘だった時にやること』だ」
+「でも、先輩。コンピュータに、『本当』か『嘘』かなんて、どうやって判断させるんですか？」</p>
+<p>美久の、的確な質問。僕は待ってましたとばかりに頷いた。</p>
+<p>「そこで出てくるのが、<code>true</code>（真）と<code>false</code>（偽）っていう、二つの特別な値だ。プログラミングの世界では、この二つが、全ての判断の基準になる。これを**真偽値（Boolean）**って言う」
+「とぅるー、と、ふぉるす……」
+「そして、この<code>true</code>や<code>false</code>を作り出すための新しい『お願い』が、比較演算子だ」</p>
+<p>僕は、さらに例を書き足す。</p>
+<p><code>['&gt;', 'x', 10]</code>  // xは10より大きいか？
+<code>['==', 'y', 20]</code> // yは20と等しいか？</p>
+<p>「こいつらは、計算結果として、数字じゃなくて、<code>true</code>か<code>false</code>を返すんだ」</p>
+<p>僕が熱心に説明している間、美久は、相槌を打ちながらも、どこか別のことを考えているようだった。</p>
+<p>（もし、私が、プログラミングを好きになれなかったら、先輩は、私にこんな楽しそうな顔を、見せてくれたかな……）
+（もし、私が、もっと頭が良かったら、先輩の隣で、もっとちゃんと、笑えていたかな……）</p>
+<p>プログラムの「もしも」の話が、彼女自身の、どうしようもない「もしも」の感傷と、静かに重なっていく。
+　このままじゃ、ダメだ。また、先輩の世界から、置いていかれてしまう。</p>
+<p>彼女は、その感傷的な思考を、ぶんぶんと頭を振って追い出した。そして、僕の目を真っ直ぐに見て、言った。</p>
+<p>「先輩！　その<code>==</code>のルール、私に書かせてください！」</p>
+<p>その、あまりに唐突で、でも、力強い申し出に、僕は一瞬、言葉を失った。
+　彼女は、もう、僕が手を差し伸べるのを待ってはいない。自分の足で、僕のいる世界に踏み込もうとしてくれている。</p>
+<p>嬉しさが、じわりと胸に広がった。</p>
+<p>「……ああ、もちろんだ」</p>
+<p>僕は、最高の笑顔で応えた。ぎこちない空気は、もうどこにもなかった。僕たちは、再び「共同開発者」として、一つの新しい問題に向き合い始める。</p>
+<p>二人の関係もまた、無意識のうちに、一つの道を「選択」したのだ。ただの幼馴染でも、ただの先輩後輩でもない、もっと別の、新しい関係へと続く道を。そんな確信が、僕たちの間の、心地よい集中力を生み出していた。</p>
 
 
 

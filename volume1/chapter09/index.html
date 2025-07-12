@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#9-evaluator" class="md-skip">
+        <a href="#9" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -1170,302 +1170,34 @@
   
 
 
-<h1 id="9-evaluator">第9話 評価器（Evaluator）の仕組み<a class="headerlink" href="#9-evaluator" title="Permanent link">&para;</a></h1>
-<p>四月二十八日、日曜日。午後二時。</p>
-<p>今日も美久が時間通りにやってきた。</p>
-<p>「お邪魔します」</p>
-<p>「いらっしゃい」</p>
-<p>昨日とは違って、今日の美久はジーンズにTシャツというカジュアルな格好だ。リラックスした雰囲気がいい。</p>
-<p>「昨日の続き、楽しみにしてた」</p>
-<p>「僕も」</p>
-<p>正直、週末に美久と過ごす時間が、何よりも楽しみになっていた。</p>
-<p>◇◇◇◇</p>
-<p>「今日は評価器を作るんだよね」</p>
-<p>美久が昨日のコードを開きながら言った。</p>
-<p>「そう。ASTを実際に実行する部分」</p>
-<p>「評価器って、どんな役割なの？」</p>
-<p>僕はホワイトボードに図を描いた。</p>
-<div class="highlight"><pre><span></span><code>AST → 評価器（Evaluator） → 結果
-</code></pre></div>
-<p>「ASTは設計図みたいなもの。評価器は、その設計図を読んで実際に作業をする職人さん」</p>
-<p>「なるほど！　料理のレシピと料理人みたいな関係？」</p>
-<p>また的確な例えだ。</p>
-<p>◇◇◇◇</p>
-<p>「じゃあ、昨日作ったEnvironmentクラスを使って、評価器を実装していこう」</p>
-<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">Evaluator</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Environment</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">env</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluateProgram</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">NumberLiteral</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">StringLiteral</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">BooleanLiteral</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Identifier</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">BinaryExpression</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluateBinaryExpression</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">AssignmentExpression</span><span class="o">:</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluateAssignment</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
-<span class="w">      </span><span class="k">default</span><span class="o">:</span>
-<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown node type: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">type</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「クラスで作るんだ」</p>
-<p>「そう。状態（Environment）を持つから、クラスの方が管理しやすい」</p>
-<p>美久が真剣にコードを見つめている。</p>
-<p>◇◇◇◇</p>
-<p>「次は、各評価メソッドを実装していこう」</p>
-<div class="highlight"><pre><span></span><code><span class="nx">evaluateProgram</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">statement</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">statement</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">evaluateBinaryExpression</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
-
-<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">right</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;ゼロ除算エラー&#39;</span><span class="p">);</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;&lt;&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;&gt;=&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;&lt;=&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;===&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;!==&#39;</span><span class="o">:</span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">right</span><span class="p">;</span>
-<span class="w">    </span><span class="k">default</span><span class="o">:</span>
-<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Unknown operator: </span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「わあ、演算子がたくさん」</p>
-<p>「基本的な演算子は全部サポートしよう」</p>
-<p>◇◇◇◇</p>
-<p>作業を続けていると、美久が質問してきた。</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「代入はどうやって評価するの？」</p>
-<p>「いい質問。やってみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="nx">evaluateAssignment</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">);</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「シンプル！」</p>
-<p>「代入は、右辺を評価して、その値を環境に保存するだけ」</p>
-<p>美久がメモを取る。</p>
-<p>「でも、これだけ？」</p>
-<p>「基本はこれだけ。でも、エラー処理とか、型チェックとか、本格的な言語にはもっと機能がある」</p>
-<p>◇◇◇◇</p>
-<p>「実際に動かしてみよう」</p>
-<p>僕は昨日のASTを使って、評価器をテストした。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 「好感度 を 0 にする」</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ast1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">));</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">evaluator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Evaluator</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluator</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">ast1</span><span class="p">));</span><span class="w"> </span><span class="c1">// 0</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluator</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 0</span>
-
-<span class="c1">// 「好感度 を 10 にする」</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ast2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">));</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluator</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">ast2</span><span class="p">));</span><span class="w"> </span><span class="c1">// 10</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluator</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 10</span>
-</code></pre></div>
-<p>「おお、変数の値が更新されてる！」</p>
-<p>美久が感動している。</p>
-<p>「これが状態を持つプログラムの基本」</p>
-<p>◇◇◇◇</p>
-<p>「ちょっと休憩しよう」</p>
-<p>三時になったので、お茶を入れることにした。</p>
-<p>「手伝う」</p>
-<p>美久がキッチンについてくる。</p>
-<p>「大丈夫だよ」</p>
-<p>「でも、お邪魔してるし」</p>
-<p>狭いキッチンで二人並んでお茶の準備をする。距離が近くて、なんだかドキドキする。</p>
-<p>「隆弘先輩、料理とかするの？」</p>
-<p>「一人暮らしだから、そこそこは」</p>
-<p>「へー、意外」</p>
-<p>「意外？」</p>
-<p>「研究ばっかりしてるイメージだったから」</p>
-<p>美久の中の僕のイメージに、少し苦笑する。</p>
-<p>◇◇◇◇</p>
-<p>リビングに戻って、お茶を飲みながら話す。</p>
-<p>「プログラミング言語って、思ってたより生き物みたい」</p>
-<p>美久がポツリと言った。</p>
-<p>「生き物？」</p>
-<p>「だって、状態を持って、それが変化していくでしょ？」</p>
-<p>その洞察に驚く。</p>
-<p>「確かに。プログラムは生きているとも言える」</p>
-<p>「MikuLangも、生きてる感じがする」</p>
-<p>美久が嬉しそうに言う。その表情を見ていると、こちらまで幸せな気持ちになる。</p>
-<p>◇◇◇◇</p>
-<p>「さて、続きをやろうか」</p>
-<p>「はい！」</p>
-<p>今度は、もっと複雑な例を作ってみる。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// if文の評価</span>
-<span class="nx">evaluateIfStatement</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">condition</span><span class="p">);</span>
-
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">condition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">then</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="k">else</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="k">else</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// ブロック文の評価</span>
-<span class="nx">evaluateBlockStatement</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">statement</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">statement</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「if文もできるんだ」</p>
-<p>「そう。条件分岐は言語の基本機能」</p>
-<p>◇◇◇◇</p>
-<p>実際にif文を含むプログラムを作ってみる。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 「もしも 好感度 が 80 以上 ならば」</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">ifAst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">85</span><span class="p">)),</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">80</span><span class="p">)</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">      </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;結果&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;告白成功！&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="k">else</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;結果&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;もっと頑張ろう&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">evaluator2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Evaluator</span><span class="p">();</span>
-<span class="nx">evaluator2</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">ifAst</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">evaluator2</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;結果&#39;</span><span class="p">));</span><span class="w"> </span><span class="c1">// 告白成功！</span>
-</code></pre></div>
-<p>「やった！　条件分岐が動いた！」</p>
-<p>美久が手を叩いて喜ぶ。</p>
-<p>「これで本格的なプログラムが書けるようになったね」</p>
-<p>◇◇◇◇</p>
-<p>しばらく作業を続けていると、美久がふと手を止めた。</p>
-<p>「ねえ、隆弘先輩」</p>
-<p>「どうした？」</p>
-<p>「print文も実装したい」</p>
-<p>「いいね。やってみよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// print文の評価</span>
-<span class="nx">evaluatePrintStatement</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// ヘルパー関数</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">PrintStatement</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「これで出力もできる」</p>
-<p>◇◇◇◇</p>
-<p>完成した評価器で、簡単なプログラムを実行してみる。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">program</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;名前&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;美久&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;ゲーム開始！&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;名前&#39;</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;好感度&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">createBinaryExpression</span><span class="p">(</span>
-<span class="w">        </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">))</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">evaluator3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Evaluator</span><span class="p">();</span>
-<span class="nx">evaluator3</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">program</span><span class="p">);</span>
-<span class="c1">// 出力:</span>
-<span class="c1">// ゲーム開始！</span>
-<span class="c1">// 美久</span>
-<span class="c1">// 10</span>
-</code></pre></div>
-<p>「すごい！　本当のプログラムみたい！」</p>
-<p>美久の興奮が伝わってくる。</p>
-<p>◇◇◇◇</p>
-<p>夕方になり、外が薄暗くなってきた。</p>
-<p>「今日もあっという間だったね」</p>
-<p>「うん」</p>
-<p>美久が片付けながら言った。</p>
-<p>「でも、すごく充実してた」</p>
-<p>「MikuLangが、どんどん本物の言語になっていく」</p>
-<p>「そうだね」</p>
-<p>二人で窓の外を眺める。夕焼けが綺麗だ。</p>
-<p>「隆弘先輩」</p>
-<p>「ん？」</p>
-<p>「明日も……来ていい？」</p>
-<p>遠慮がちな質問に、胸が熱くなる。</p>
-<p>「もちろん。むしろ来てほしい」</p>
-<p>美久の顔が、夕日に照らされて赤く染まる。それとも、照れているのだろうか。</p>
-<p>◇◇◇◇</p>
-<p>美久を送り出した後、一人でコードを見返していた。</p>
-<p>評価器ができて、MikuLangは本当に動く言語になった。まだ機能は少ないけれど、確実に成長している。</p>
-<p>そして、美久との関係も——</p>
-<p>明日は何を実装しよう。ループ？　関数？　それとも——</p>
-<p>美久の喜ぶ顔を想像しながら、僕は明日の準備を始めた。</p>
-<p>プログラミング言語を作ることが、こんなに楽しいなんて。</p>
-<p>いや、美久と一緒だから楽しいのかもしれない。</p>
-<p>そんなことを考えながら、僕は夜遅くまでコードを書き続けた。</p>
+<h1 id="9">第9話 私だけが、そこにいない<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
+<p>ぱたん、と静かにドアを閉める。
+　その音で、先輩がこちらを振り向くことは、きっとないだろう。分かっていた。分かっていたけど、胸の奥が、きゅうっと締め付けられるように痛んだ。</p>
+<p>（私、どうしてあんなこと、言っちゃったんだろう）</p>
+<p>用事があるなんて、嘘。本当は、ただ、あの場所にいるのが、耐えられなくなっただけ。
+　逃げるように校舎を出て、いつもよりずっと重く感じる鞄を肩にかけ、とぼとぼと帰り道を歩く。夕方の気配を帯びた風が、火照った私の頬を冷たく撫でていった。</p>
+<p>先輩の隣には、もう私のいる場所はなかった。</p>
+<p>バグを見つけた時の、彼の瞳。見たこともないくらい真剣で、鋭くて、きらきらしていて……そして、その瞳には、もう私は映っていなかった。彼の頭の中は、私には理解できない問題でいっぱいで、私はただ、その隣で邪魔にならないように、息を潜めていることしかできなかった。</p>
+<p>いつの間にか、私たちは「共同開発者」じゃなくなっていた。ううん、最初から、そう思っていたのは、私だけだったのかもしれない。</p>
+<p>そもそも、どうして私が「プログラミング言語を作りたい」なんて、突拍子もないことを言い出したのか。</p>
+<p>きっかけは、ほんの些細なことだった。少し前に、先輩の友達が話しているのを、偶然聞いてしまったのだ。
+「嵐山、やっぱすげーよな。高校生で国際会議に論文通すとか、俺たちとは見てる世界が違いすぎるって」
+　その言葉が、ちくりと私の胸に刺さった。</p>
+<p>先輩がすごい人だってことは、ずっと前から知っていた。でも、その言葉は、私と先輩との間に、どうしようもなく分厚い壁があることを、改めて突きつけてくるようだった。</p>
+<p>どんどん、遠くへ行ってしまう。
+　その背中を、ただ見ているだけなのが、嫌だった。寂しかった。同じ世界には行けないかもしれないけど、せめて、彼の見ている世界を、ほんの少しでもいいから理解したかった。彼の隣にいるための、ちゃんとした「口実」が欲しかった。</p>
+<p>だから、お願いしたんだ。私なりに、精一杯の勇気を出して。</p>
+<p>最初は、本当に楽しかった。先輩が、私のために、一生懸命、言葉を選んでくれるのが、嬉しくて、くすぐったくて。<code>['+', 1, 2]</code>が<code>3</code>になった時は、本当に魔法みたいだと思った。
+　でも、<code>Environment</code>が出てきたあたりから、だんだん、分からなくなってきた。分かったフリをして頷くのが、どんどん辛くなっていった。</p>
+<p>（私にできること、ありますか……？）</p>
+<p>なんで、あんな馬鹿なことを聞いてしまったんだろう。できることなんて、何一つないくせに。彼の集中を、邪魔してしまっただけじゃないか。</p>
+<p>気づけば、いつもの河川敷まで来ていた。川辺のベンチに、ぺたんと力なく座り込む。夕日が川面をオレンジ色に染めていて、あまりに綺麗で、なんだか、泣きたくなった。
+　ぽつり、と何かが手の甲に落ちる。見れば、それは自分の涙だった。一度溢れ出してしまったら、もう、止めることはできなかった。</p>
+<p>「私……どうすれば、よかったんだろう……」</p>
+<p>先輩の隣にいたい。でも、隣にいればいるほど、自分が惨めになって、苦しくなる。</p>
+<p>（もう、やめようかな……）</p>
+<p>プログラミング言語作りも。先輩の隣にいることも。それが、きっと、先輩のためで、そして、私のためなんだ。</p>
+<p>そんな弱気な考えが、夕焼けに滲んだ視界と一緒に、私の心を支配していく。どうすればいいかなんて分からないまま、ただ、時間だけが、静かに過ぎていった。</p>
 
 
 

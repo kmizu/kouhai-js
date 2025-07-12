@@ -1170,368 +1170,44 @@
   
 
 
-<h1 id="14">第14話 エラー処理<a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>
-<p>五月三日、金曜日。憲法記念日。</p>
-<p>ゴールデンウィークも後半に入った。美久との日々は、もはや生活の一部になっている。</p>
-<p>「今日はエラー処理だね」</p>
-<p>美久がノートを開きながら言う。</p>
-<p>「プログラムを安全にする大事な機能」</p>
-<p>「エラーって、悪いものじゃないの？」</p>
-<p>「エラーは情報。何が間違っているかを教えてくれる」</p>
+<h1 id="14">第14話 クラスメイトが見た「世界の変化」<a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>
+<p>昼休み。僕は、いつものように自分の席で、分厚い専門書を広げていた。『計算機プログラムの構造と解釈』。僕にとってはバイブルのような本だが、クラスの皆にとっては、ただの難解な古文書にしか見えないだろう。</p>
+<p>「よお、嵐山。またそんな難しい本読んでんのか」</p>
+<p>不意に、隣の席の健太が話しかけてきた。彼は、僕とは正反対の、いわゆる陽キャグループの中心にいる男だ。</p>
+<p>「まあな」
+「てかさ、お前、最近、一年生の河内さんとめちゃくちゃ仲良いよな。ひょっとして、付き合ってんの？」</p>
+<p>ニヤニヤと、からかうような視線。僕は、思わずむせてしまった。</p>
+<p>「なっ……！　いや、そういうのじゃ、なくて……！」
+「あやしいー。まあ、あんな可愛い後輩に懐かれて、羨ましいこった」</p>
+<p>健太はそう言って笑うと、すぐに友達の輪に戻っていった。僕は、どきどきと早鐘を打つ心臓を抑えながら、ため息をついた。</p>
+<p>（そういう風に、見えてるのか……）</p>
+<p>でも、と僕は思う。不思議と、健太との今の会話に、以前感じていたような「疎外感」はなかった。むしろ、彼の軽口を、少しだけ心地よく感じてさえいる。
+　美久と話すようになってから、何かが変わったのかもしれない。彼女が楽しそうに話す、僕が全く知らなかった流行りの音楽や、人気のドラマの話。以前なら、どう相槌を打てばいいか分からなかったはずなのに、最近は、「へえ、それはどういうところが面白いんだ？」と、自然に興味が湧いてくるようになっていた。</p>
+<p>僕の世界が、ほんの少しだけ、広がったような気がした。</p>
 <p>◇◇◇◇</p>
-<p>「まず、try-catch の仕組みを実装しよう」</p>
-<p>ホワイトボードに構造を描く。</p>
-<div class="highlight"><pre><span></span><code>try {
-    // エラーが起きるかもしれない処理
-} catch (エラー) {
-    // エラーが起きた時の処理
-}
-</code></pre></div>
-<p>「あ、昨日まで使ってたやつ」</p>
-<p>「そう。今日はこれをMikuLangに実装する」</p>
+<p>その頃、美久は美久で、中庭のベンチで友人の沙耶とお弁当を広げていた。</p>
+<p>「ねえ、美久。最近、嵐山先輩とずっと一緒じゃない？　ぶっちゃけ、どうなのよ。進展は？」</p>
+<p>沙耶の直球な質問に、美久は「もう、沙耶ったら……」と、箸を止め、少し複雑な表情で頬杖をついた。</p>
+<p>「すごく、楽しいんだけどね……」
+「なによー、その煮え切らない返事。惚気？」
+「ううん、そうじゃなくて……」</p>
+<p>美久は、最近の隆弘の変化について、ぽつりぽつりと話し始めた。以前は、プログラミングの話になると、周りが見えなくなるくらい没頭してしまう、少し（かなり）変わった先輩だったこと。でも最近は、学校のこととか、私の好きなアイドルのこととか、色々質問してくれるようになったこと。それが、すごく、すごく嬉しいこと。</p>
+<p>「……嬉しい、んだけどね」</p>
+<p>美久は、言葉を続ける。</p>
+<p>「最近、なんだか、すごく欲張りになってる自分がいるの。ただ、隣にいて、一緒にパソコンの画面を覗いてるだけじゃ、なんだか物足りなくなってきちゃって……」</p>
+<p>そう。彼の隣は、世界で一番、居心地のいい場所だ。でも、同時に、一番もどかしい場所にもなりつつあった。「共同開発者」という、最高の口実。でも、その口実が、時々、もどかしい壁に感じてしまう。</p>
+<p>「なーんだ、やっぱり惚気じゃん」</p>
+<p>沙耶が、呆れたように笑った。</p>
+<p>「じゃあさ、今度の週末、どっか遊びに誘ってみれば？　プログラミング、以外でさ」
+「ええーっ！？　む、むむ、無理だよ、そんなの！」</p>
+<p>美久は、顔を真っ赤にしてぶんぶんと首を横に振った。でも、沙耶のその言葉は、彼女の心に、小さな、だけど確かな波紋を広げていた。</p>
 <p>◇◇◇◇</p>
-<p>「try-catch のASTを設計しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// try-catch文のAST</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">TryStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;TryStatement&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">block</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span><span class="w">  </span><span class="c1">// tryブロックの中身</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">handler</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CatchClause&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">param</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Identifier&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;error&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span><span class="w">  </span><span class="c1">// catchブロックの中身</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nx">finalizer</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="w">  </span><span class="c1">// finallyブロック（今回は実装しない）</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「handlerがcatchの部分？」</p>
-<p>「正解。エラーを捕まえる処理」</p>
-<p>◇◇◇◇</p>
-<p>実装を始める。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// ASTTypesに追加</span>
-<span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">TryStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;TryStatement&#39;</span><span class="p">;</span>
-<span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">CatchClause</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CatchClause&#39;</span><span class="p">;</span>
-<span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">ThrowStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ThrowStatement&#39;</span><span class="p">;</span>
-
-<span class="c1">// ヘルパー関数</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createTry</span><span class="p">(</span><span class="nx">tryBlock</span><span class="p">,</span><span class="w"> </span><span class="nx">catchParam</span><span class="p">,</span><span class="w"> </span><span class="nx">catchBlock</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">TryStatement</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">block</span><span class="o">:</span><span class="w"> </span><span class="nx">tryBlock</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">handler</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">CatchClause</span><span class="p">,</span>
-<span class="w">      </span><span class="nx">param</span><span class="o">:</span><span class="w"> </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="nx">catchParam</span><span class="p">),</span>
-<span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nx">catchBlock</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nx">finalizer</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-
-<span class="kd">function</span><span class="w"> </span><span class="nx">createThrow</span><span class="p">(</span><span class="nx">argument</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">ThrowStatement</span><span class="p">,</span>
-<span class="w">    </span><span class="nx">argument</span><span class="o">:</span><span class="w"> </span><span class="nx">argument</span>
-<span class="w">  </span><span class="p">};</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>「評価器も拡張しよう」</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// try-catch文の評価</span>
-<span class="nx">evaluateTryStatement</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// tryブロックを実行</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">block</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">handler</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="c1">// エラーを変数として設定</span>
-<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">catchEnv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Environment</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="p">);</span>
-<span class="w">      </span><span class="nx">catchEnv</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">handler</span><span class="p">.</span><span class="nx">param</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
-
-<span class="w">      </span><span class="c1">// catchブロックを実行</span>
-<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">prevEnv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="p">;</span>
-<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">catchEnv</span><span class="p">;</span>
-
-<span class="w">      </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">handler</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
-<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prevEnv</span><span class="p">;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">// catchがない場合は再スロー</span>
-<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// throw文の評価</span>
-<span class="nx">evaluateThrowStatement</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">argument</span><span class="p">);</span>
-<span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>「環境を切り替えてる」</p>
-<p>「catchブロック内でエラー変数を使えるようにするため」</p>
-<p>◇◇◇◇</p>
-<p>美久が質問してきた。</p>
-<p>「どんな時にエラーを投げるの？」</p>
-<p>「例えば、不正な入力があった時とか」</p>
-<p>具体例を書く。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">errorProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;年齢チェック&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;年齢&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;年齢&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createThrow</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;年齢は0以上である必要があります&#39;</span><span class="p">))</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;年齢OK&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createTry</span><span class="p">(</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;年齢チェック&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">createNumber</span><span class="p">(</span><span class="o">-</span><span class="mf">5</span><span class="p">)])</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s1">&#39;エラー&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;エラーが発生:&#39;</span><span class="p">)),</span>
-<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;エラー&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>実行してみる。</p>
-<div class="highlight"><pre><span></span><code>エラーが発生:
-年齢は0以上である必要があります
-</code></pre></div>
-<p>「エラーがちゃんと捕まえられた！」</p>
-<p>美久が感動している。</p>
-<p>「プログラムがクラッシュせずに、エラーを処理できる」</p>
-<p>◇◇◇◇</p>
-<p>休憩時間。美久がお茶を飲みながら言った。</p>
-<p>「エラー処理って、人生にも必要だよね」</p>
-<p>「どういうこと？」</p>
-<p>「失敗した時の対処法を用意しておくって意味で」</p>
-<p>その洞察に感心する。</p>
-<p>「確かに。予期しないことは必ず起きるから」</p>
-<p>◇◇◇◇</p>
-<p>「カスタムエラー型も作ってみよう」</p>
-<p>新しい機能を追加する。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// エラーオブジェクトの作成</span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">createError</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">createObject</span><span class="p">([</span>
-<span class="w">    </span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="nx">type</span><span class="p">)],</span>
-<span class="w">    </span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createString</span><span class="p">(</span><span class="nx">message</span><span class="p">)],</span>
-<span class="w">    </span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">())]</span>
-<span class="w">  </span><span class="p">]);</span>
-<span class="p">}</span>
-
-<span class="c1">// 使用例</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">customErrorProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;ゲームロード&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;セーブデータ&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;===&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;セーブデータ&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createThrow</span><span class="p">(</span><span class="nx">createError</span><span class="p">(</span>
-<span class="w">                  </span><span class="s1">&#39;LoadError&#39;</span><span class="p">,</span>
-<span class="w">                  </span><span class="s1">&#39;セーブデータが見つかりません&#39;</span>
-<span class="w">                </span><span class="p">))</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;ロード成功&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「エラーにも種類があるんだ」</p>
-<p>「エラーの種類によって、対処法を変えられる」</p>
-<p>◇◇◇◇</p>
-<p>美久がプログラムを書き始めた。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 美久のエラー処理プログラム</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">mikuErrorProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;告白&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;好感度&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;好感度&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">80</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createThrow</span><span class="p">(</span><span class="nx">createError</span><span class="p">(</span>
-<span class="w">                  </span><span class="s1">&#39;LoveError&#39;</span><span class="p">,</span>
-<span class="w">                  </span><span class="s1">&#39;まだ好感度が足りません&#39;</span>
-<span class="w">                </span><span class="p">))</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;告白成功！おめでとう！&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="nx">createAssignment</span><span class="p">(</span><span class="s1">&#39;現在の好感度&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">createNumber</span><span class="p">(</span><span class="mf">70</span><span class="p">)),</span>
-<span class="w">    </span><span class="nx">createTry</span><span class="p">(</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createAssignment</span><span class="p">(</span>
-<span class="w">            </span><span class="s1">&#39;結果&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">createCall</span><span class="p">(</span><span class="s1">&#39;告白&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;現在の好感度&#39;</span><span class="p">)])</span>
-<span class="w">          </span><span class="p">),</span>
-<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;結果&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s1">&#39;e&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;告白失敗...&#39;</span><span class="p">)),</span>
-<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createPropertyAccess</span><span class="p">(</span>
-<span class="w">            </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">),</span>
-<span class="w">            </span><span class="s1">&#39;message&#39;</span>
-<span class="w">          </span><span class="p">)),</span>
-<span class="w">          </span><span class="nx">createPrint</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;もっと頑張ろう！&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>「実行してみよう」</p>
-<div class="highlight"><pre><span></span><code>告白失敗...
-まだ好感度が足りません
-もっと頑張ろう！
-</code></pre></div>
-<p>「ゲームっぽい！」</p>
-<p>美久の発想力はいつも面白い。</p>
-<p>◇◇◇◇</p>
-<p>「複数のcatchも実装できる」</p>
-<p>より高度な例を示す。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 複数のエラータイプを処理</span>
-<span class="kd">const</span><span class="w"> </span><span class="nx">multiCatchProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">Program</span><span class="p">,</span>
-<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="nx">createFunction</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;ゲーム進行&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="p">[</span><span class="s1">&#39;コマンド&#39;</span><span class="p">],</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;===&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;コマンド&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;save&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createThrow</span><span class="p">(</span><span class="nx">createError</span><span class="p">(</span><span class="s1">&#39;SaveError&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;セーブに失敗しました&#39;</span><span class="p">))</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">ASTTypes</span><span class="p">.</span><span class="nx">IfStatement</span><span class="p">,</span>
-<span class="w">            </span><span class="nx">condition</span><span class="o">:</span><span class="w"> </span><span class="nx">createComparison</span><span class="p">(</span>
-<span class="w">              </span><span class="s1">&#39;===&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">createIdentifier</span><span class="p">(</span><span class="s1">&#39;コマンド&#39;</span><span class="p">),</span>
-<span class="w">              </span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">)</span>
-<span class="w">            </span><span class="p">),</span>
-<span class="w">            </span><span class="nx">then</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;BlockStatement&#39;</span><span class="p">,</span>
-<span class="w">              </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="nx">createThrow</span><span class="p">(</span><span class="nx">createError</span><span class="p">(</span><span class="s1">&#39;LoadError&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ロードに失敗しました&#39;</span><span class="p">))</span>
-<span class="w">              </span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nx">createReturn</span><span class="p">(</span><span class="nx">createString</span><span class="p">(</span><span class="s1">&#39;コマンド実行成功&#39;</span><span class="p">))</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>◇◇◇◇</p>
-<p>夕方になってきた。エラー処理の実装も順調に進んだ。</p>
-<p>「エラー処理、思ったより奥が深い」</p>
-<p>美久が感想を述べる。</p>
-<p>「プログラムの品質を上げる重要な要素だから」</p>
-<p>「失敗を想定して、対策を用意する。人生の教訓みたい」</p>
-<p>美久の言葉に、また感心する。</p>
-<p>◇◇◇◇</p>
-<p>「隆弘先輩」</p>
-<p>片付けながら、美久が言った。</p>
-<p>「MikuLangが、どんどん実用的になってきた」</p>
-<p>「そうだね。エラー処理があれば、安全なプログラムが書ける」</p>
-<p>「私たちの言語で、本当にゲームが作れそう」</p>
-<p>美久の期待に満ちた表情が嬉しい。</p>
-<p>「明日は何を実装する？」</p>
-<p>「文字列処理かな。テキストを扱う機能」</p>
-<p>「楽しみ！」</p>
-<p>◇◇◇◇</p>
-<p>美久を見送った後、今日のコードを振り返る。</p>
-<p>エラー処理の実装で、MikuLangはより堅牢な言語になった。</p>
-<p>美久の理解も、日に日に深まっている。</p>
-<p>そして、二人の距離も——</p>
-<p>（そろそろ、ちゃんと伝えないと）</p>
-<p>ゴールデンウィークも残りわずか。</p>
-<p>この特別な時間の中で、美久に気持ちを伝えたい。</p>
-<p>プログラミング言語の完成と同時に、僕たちの関係も新しいステージに進めたら——</p>
-<p>そんなことを考えながら、明日の準備を始めた。</p>
+<p>そして、放課後。
+　いつもの空き教室で顔を合わせた僕と美久は、お互いに、どこかぎこちなかった。</p>
+<p>「じゃあ、始めようか」
+「は、はい……！」</p>
+<p>昼間の、友人たちとの会話が、頭の片隅にこびりついている。僕たちの関係は、もう、ただの「先輩と後輩」でも、ただの「共同開発者」でも、いられなくなりつつあるのかもしれない。</p>
+<p>そんな、甘酸っぱくて、少しだけ厄介な変化の予兆が、教室の空気を満たしていた。</p>
 
 
 
